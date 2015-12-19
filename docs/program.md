@@ -1,9 +1,12 @@
 Program
 =======
+Program class provide shader compilation and gl program linking functionality.
+It also provide convinient access to uniforms and attributes.
+
 
 ##exemple
 
-#### Create a program
+##### Create a program
 ``` JavaScript
 var Program = require( 'nanogl' ).Program;
 
@@ -14,7 +17,7 @@ var prg = new Program( gl )
 prg.compile( vertexCode, fragmentCode );
 ```
 
-#### play with uniforms
+##### play with uniforms
 Once compiled, the Program object list all used uniforms and provide setter function for each one.
 > A uniform setter function support Array or TypedArray argument (`uniformNfv`) 
 > or values as arguments directly (`uniformNf`)
@@ -36,7 +39,7 @@ prg.uColor( [1.0, 0.0, 1.0] )
 gl.uniform3f( prg.uniforms.uColor, 1.0, 1.0, 1.0 );
 ```
 
-#### play with attributes
+##### play with attributes
 
 ``` JavaScript
 var position = prg.attributes.aPosition
@@ -49,7 +52,7 @@ gl.vertexAttribPointer( position, 3, gl.UNSIGNED_SHORT, ... );
 ```
 
 
-#### glsl vertex code of the example above
+##### glsl vertex code of the example above
 
 ```GLSL
 attribute vec3 aPosition;
