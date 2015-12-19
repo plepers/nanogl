@@ -47,3 +47,17 @@ gl.vertexAttribPointer( position, 3, gl.UNSIGNED_SHORT, ... );
 //...
 
 ```
+
+
+#### glsl vertex code of the example above
+
+```GLSL
+attribute vec3 aPosition;
+
+uniform mat4 uModelViewProjection;
+uniform vec3 uColor;
+
+void main(void){
+  // ...
+}
+```
