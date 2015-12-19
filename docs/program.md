@@ -20,9 +20,6 @@ Once compiled, the Program object list all used uniforms and provide setter func
 > or values as arguments directly (`uniformNf`)
 
 ``` JavaScript
-// set some uniforms values
-// --------------
-
 // /!\ program must be bound BEFORE uploading some uniforms
 prg.bind();
 
@@ -42,8 +39,6 @@ gl.uniform3f( prg.uniforms.uColor, 1.0, 1.0, 1.0 );
 #### play with attributes
 
 ``` JavaScript
-// access attributes locations
-
 var position = prg.attributes.aPosition
 
 // again, be sure program is bound before call related gl methods
