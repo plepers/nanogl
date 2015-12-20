@@ -2,9 +2,7 @@
 
 function Texture( gl, format ){
   this.gl = gl;
-
   this.id = this.gl.createTexture();
-
   this.width  = 0;
   this.height = 0;
   this.format = format || gl.RGB;
@@ -35,11 +33,12 @@ Texture.prototype = {
   fromData : function( width, height, data, dataType ){
     var gl = this.gl;
 
+    this.width  = width;
+    this.height = height;
+
     data = data || null;
     dataType =    dataType    || gl.UNSIGNED_BYTE;
 
-    this.width  = width;
-    this.height = height;
     gl.bindTexture( gl.TEXTURE_2D, this.id );
     gl.texImage2D( gl.TEXTURE_2D, 0, this.format, width, height, 0, this.format, dataType, data );
     gl.bindTexture( gl.TEXTURE_2D, null );

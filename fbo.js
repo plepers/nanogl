@@ -38,7 +38,6 @@ function Fbo( gl, width, height, opts )
   }
 
   this.color = new Texture( gl, opts.format );
-
   this.resize( width, height );
 }
 
@@ -55,9 +54,9 @@ Fbo.prototype = {
     this.width = w;
     this.height = h;
 
-    this._realloc();
+    this._allocate();
     if( !this.fbo ){
-      this._init();
+      this._attach();
     }
 
   },
@@ -103,7 +102,7 @@ Fbo.prototype = {
   },
 
 
-  _init : function() {
+  _attach : function() {
     var gl = this.gl;
 
     this.fbo = gl.createFramebuffer();
@@ -126,7 +125,7 @@ Fbo.prototype = {
   },
 
 
-  _realloc : function(){
+  _allocate : function(){
     var gl = this.gl;
 
     this.color.fromData( this.width, this.height );
