@@ -15,8 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/specs/*.js'
+      'test/specs/*.js',
+      {pattern: 'test/assets/*.*', watched: false, included: false, served: true, nocache: false}
     ],
+
+    proxies: {
+      '/assets/': '/base/test/assets/'
+    },
 
 
     // list of files to exclude
@@ -72,5 +77,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultanous
     concurrency: Infinity
-  })
-}
+  });
+};

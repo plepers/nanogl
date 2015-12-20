@@ -31,6 +31,8 @@ describe( "Program", function(){
     var p = new Program( gl );
     p.compile( vert, frag );
 
+    testContext.assertNoError();
+
   });
 
   it( "should compile complex", function(){
@@ -59,6 +61,7 @@ describe( "Program", function(){
       p.uFloat( .5 );
 
       testContext.drawProgram( p );
+      testContext.assertNoError();
       testContext.testPixel( 0, 0, 0xFF7FFF40 )
     });
 
@@ -68,15 +71,17 @@ describe( "Program", function(){
       p.uFloat( val );
 
       testContext.drawProgram( p );
+      testContext.assertNoError();
       testContext.testPixel( 0, 0, 0xFF7FFF40 )
     });
 
     it( "with location access", function(){
       p.bind()
 
-      gl.uniform1f( p.uniforms.uFloat, .5 )
+      gl.uniform1f( p.uFloat(), .5 )
 
       testContext.drawProgram( p );
+      testContext.assertNoError();
       testContext.testPixel( 0, 0, 0xFF7FFF40 )
     });
 
@@ -116,7 +121,7 @@ describe( "Program", function(){
     it( "with location access", function(){
       p.bind()
 
-      gl.uniform3f( p.uniforms.uVec3, 1, .5, .25 )
+      gl.uniform3f( p.uVec3(), 1, .5, .25 )
 
       testContext.drawProgram( p );
       testContext.testPixel( 0, 0, 0xFFFF7F40 )
@@ -148,7 +153,7 @@ describe( "Program", function(){
     it( "with location access", function(){
       p.bind()
 
-      gl.uniform3fv( p.uniforms.uVec3, [1, .25, 2 , .5, 1, .125] )
+      gl.uniform3fv( p.uVec3(), [1, .25, 2 , .5, 1, .125] )
 
       testContext.drawProgram( p );
       testContext.testPixel( 0, 0, 0xFF7F4040 )

@@ -5,13 +5,20 @@ var expect  = require( 'expect.js' );
 var cvs = null,
     gl = null;
 
-var glSize = 256;
+var glSize = 64;
 var fsgeom = null;
+
+var ctest32 = new Uint32Array( 1 )
+var ctest8888 = new Uint8Array( ctest32.buffer )
+
 
 function initGL(){
   cvs = document.createElement( 'canvas' );
   cvs.width = glSize;
   cvs.height = glSize;
+
+  cvs.style.width = glSize*4+'px'
+  cvs.style.height = glSize*4+'px'
 
   document.body.appendChild( cvs )
 
@@ -49,15 +56,14 @@ function getPixel(x, y){
 }
 
 function testPixel(x, y, rgba){
-  var r = (rgba >>> 16 ) & 0xFF
-  var g = (rgba >>> 8 ) & 0xFF
-  var b = rgba & 0xFF
-  var a = (rgba >>> 24 ) & 0xFF
   var res = getPixel( x, y );
-  expect( res[0] ).to.be( r );
-  expect( res[1] ).to.be( g );
-  expect( res[2] ).to.be( b );
-  expect( res[3] ).to.be( a );
+  ctest8888[3] = res[3];
+  ctest8888[2] = res[0];
+  ctest8888[1] = res[1];
+  ctest8888[0] = res[2];
+  var hex = '0x' + ctest32[0].toString(16)
+  var tex = '0x' + rgba.toString(16)
+  expect( hex ).to.equal( tex );
 }
 
 function drawProgram( p ){
@@ -66,11 +72,21 @@ function drawProgram( p ){
   fsgeom.render()
 }
 
+function assertNoError(){
+  expect( gl.getError() ).to.equal( 0 );
+}
+function bindScreen(){
+  gl.bindFramebuffer( gl.FRAMEBUFFER, null );
+  gl.viewport( 0,0,glSize, glSize )
+}
+
 module.exports = {
   getContext :    getContext,
   glSize :        glSize,
   getPixel :      getPixel,
   testPixel :     testPixel,
   fsgeom :        fsgeom,
-  drawProgram :   drawProgram
+  drawProgram :   drawProgram,
+  assertNoError : assertNoError,
+  bindScreen:     bindScreen
 }

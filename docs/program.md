@@ -19,7 +19,7 @@ prg.compile( vertexCode, fragmentCode );
 
 ##### play with uniforms
 Once compiled, the Program object list all used uniforms and provide setter function for each one.
-> A uniform setter function support Array or TypedArray argument (`uniformNfv`) 
+> A uniform setter function support Array or TypedArray argument (`uniformNfv`)
 > or values as arguments directly (`uniformNf`)
 
 ``` JavaScript
@@ -29,7 +29,7 @@ prg.bind();
 // set a mat4 uniform with a Float32Array or array
 prg.uModelViewProjection( mvpMatrix );
 
-// set a vec3 with separate arguments 
+// set a vec3 with separate arguments
 prg.uColor( 1.0, 1.0, 1.0 )
 
 // ... or (Typed)Array
@@ -42,7 +42,7 @@ gl.uniform3f( prg.uniforms.uColor, 1.0, 1.0, 1.0 );
 ##### play with attributes
 
 ``` JavaScript
-var position = prg.attributes.aPosition
+var position = prg.aPosition
 
 // again, be sure program is bound before call related gl methods
 prg.bind();
