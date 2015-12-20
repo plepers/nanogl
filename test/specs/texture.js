@@ -167,11 +167,63 @@ describe( "Texture", function(){
     filltex.bind()
     filltex.tTex( tex );
 
-    // testContext.drawProgram( filltex );
-    // testContext.testPixel( 0, 0, 0xFF101010 )
-    // testContext.testPixel( 0, 16, 0xFFee0000 )
+    testContext.drawProgram( filltex );
+    testContext.testPixel( 0, 0, 0xFF101010 )
+    testContext.testPixel( 0, 16, 0xFFee0000 )
 
     testContext.assertNoError();
+  });
+
+
+
+  it( "should accept Uint8Array RGB data", function( ){
+    var tex = new Texture( gl, gl.RGB );
+    tex.bind();
+    gl.pixelStorei( gl.UNPACK_ALIGNMENT, 1 );
+
+    var data = new Uint8Array( [
+      0x10, 0x10, 0x10,
+      0x20, 0x20, 0x20,
+      0x30, 0x30, 0x30,
+      0x40, 0x40, 0x40
+    ]);
+    tex.fromData( 2, 2, data );
+
+    testContext.assertNoError();
+
+    filltex.bind()
+    filltex.tTex( tex );
+    tex.setFilter( false, false, false )
+
+    testContext.drawProgram( filltex );
+    testContext.testPixel( 15, 15, 0xFF101010 )
+    testContext.testPixel( 16, 15, 0xFF202020 )
+    testContext.testPixel( 16, 16, 0xFF404040 )
+
+  });
+
+  it( "should accept Uint8Array RGBA data", function( ){
+    var tex = new Texture( gl, gl.RGBA );
+
+    var data = new Uint8Array( [
+      0x10, 0x10, 0x10, 0x60,
+      0x20, 0x20, 0x20, 0x70,
+      0x30, 0x30, 0x30, 0x80,
+      0x40, 0x40, 0x40, 0x90
+    ]);
+    tex.fromData( 2, 2, data );
+
+    testContext.assertNoError();
+
+    filltex.bind()
+    filltex.tTex( tex );
+    tex.setFilter( false, false, false )
+
+    testContext.drawProgram( filltex );
+    testContext.testPixel( 15, 15, 0x60101010 )
+    testContext.testPixel( 16, 15, 0x70202020 )
+    testContext.testPixel( 16, 16, 0x90404040 )
+
   });
 
 
