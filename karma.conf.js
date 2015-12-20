@@ -76,6 +76,82 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultanous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+
+    // SL and travis config
+    sauceLabs: {
+      startConnect: true,
+      testName: 'eagl unit tests'
+    },
+
+    // define SL browsers
+    customLaunchers: {
+
+      // OSX Maverick
+
+      'SL_Chrome_OSX9': {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        version: '40',
+        platform: 'OS X 10.10'
+      },
+      'SL_Firefox_OSX9': {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        version: '38',
+        platform: 'OS X 10.10'
+      },
+      'SL_Safari': {
+        base: 'SauceLabs',
+        browserName: 'safari',
+        platform: 'OS X 10.10',
+        version: '8'
+      },
+
+      //Win 8.1
+      'SL_Chrome_WIN81': {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        version: '40',
+        platform: 'Windows 8.1'
+      },
+      // 'SL_Firefox_WIN81': {
+      //   base: 'SauceLabs',
+      //   browserName: 'firefox',
+      //   version: '27',
+      //   platform: 'Windows 8.1'
+      // },
+
+      //Linux
+      // 'SL_Chrome_NIX': {
+      //   base: 'SauceLabs',
+      //   browserName: 'chrome',
+      //   version: '32',
+      //   platform: 'Linux'
+      // },
+      // 'SL_Firefox_NIX': {
+      //   base: 'SauceLabs',
+      //   browserName: 'firefox',
+      //   version: '27',
+      //   platform: 'Linux'
+      // },
+      'SL_IE_11': {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        platform: 'Windows 8.1',
+        version: '11'
+      },
+    },
   });
+
+  if( process.env.TRAVIS ) {
+
+    var browsers = [];
+    for( var browser in config.customLaunchers ){
+      browsers.push( browser );
+    }
+    config.browsers = browsers;
+
+  }
 };

@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '0.12'
+env:
+  global:
+  - secure: IIrhSYhgnL7ECCrtPgk1+5RZ8niy6m0a4xjM7vku8iaE2W5zhjmb/NJ2LKGEhn7+M94yu4t96Jn54XYwyvvfriWlQBV/9gs/M5CXzBaQedoiXPZnwR9zrP3PQ87ve2t0dSlPvHwJf3JP7Iy/1WLJeY2Xti1byjFfnDN7mPaBKbc=
+  - secure: ZbiSnbRYEMg98E67CLCIs8CPCUjIq4m3260z/du5K0H861iXuYUHQjrChwy0V3xul5hUpenQJmk0j1pdaHZ6wcfefBGJ0Fk/y4JEEbUEdxV75NA/KRdj4Nd+c0noGVb27y5XbDUG37xr5ALrQqoU1emy7dW97oGKXLUNQhR8czQ=
+branches:
+  only:
+  - develop
+  - master
+cache:
+  directories:
+  - node_modules
