@@ -96,13 +96,13 @@ module.exports = function(config) {
         version: '44',
         platform: 'OS X 10.10'
       },
-      'SL_Firefox_OSX10_10': {
+      'SL_Firefox38_OSX10_10': {
         base: 'SauceLabs',
         browserName: 'firefox',
         version: '38',
         platform: 'OS X 10.10'
       },
-      'SL_Firefox_OSX10_10': {
+      'SL_Firefox42_OSX10_10': {
         base: 'SauceLabs',
         browserName: 'firefox',
         version: '42',
