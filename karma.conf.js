@@ -90,16 +90,22 @@ module.exports = function(config) {
 
       // OSX Maverick
 
-      'SL_Chrome_OSX9': {
+      'SL_Chrome44_OSX10_10': {
         base: 'SauceLabs',
         browserName: 'chrome',
-        version: '40',
+        version: '44',
         platform: 'OS X 10.10'
       },
-      'SL_Firefox_OSX9': {
+      'SL_Firefox_OSX10_10': {
         base: 'SauceLabs',
         browserName: 'firefox',
         version: '38',
+        platform: 'OS X 10.10'
+      },
+      'SL_Firefox_OSX10_10': {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        version: '42',
         platform: 'OS X 10.10'
       },
       'SL_Safari': {
@@ -110,10 +116,10 @@ module.exports = function(config) {
       },
 
       //Win 8.1
-      'SL_Chrome_WIN81': {
+      'SL_Chrome44_WIN81': {
         base: 'SauceLabs',
         browserName: 'chrome',
-        version: '40',
+        version: '44',
         platform: 'Windows 8.1'
       },
       // 'SL_Firefox_WIN81': {
