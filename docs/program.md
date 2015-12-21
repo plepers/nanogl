@@ -24,6 +24,8 @@ Note that the program must be bound manually before using uniform setters.
 > A uniform setter function support Array or TypedArray argument (`uniformNfv`)
 > or, if not a matrix, values as arguments directly (`uniformNf`)
 
+> setter function return the uniform location, thus behave like getter when invoked with no arguments.
+
 ``` JavaScript
 // /!\ program must be bound BEFORE uploading some uniforms
 prg.bind();
