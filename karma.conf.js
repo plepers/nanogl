@@ -90,38 +90,39 @@ module.exports = function(config) {
 
       // OSX Maverick
 
-      'SL_Chrome44_OSX10_10': {
-        base: 'SauceLabs',
-        browserName: 'chrome',
-        version: '44',
-        platform: 'OS X 10.10'
-      },
-      'SL_Firefox38_OSX10_10': {
-        base: 'SauceLabs',
-        browserName: 'firefox',
-        version: '38',
-        platform: 'OS X 10.10'
-      },
-      'SL_Firefox42_OSX10_10': {
-        base: 'SauceLabs',
-        browserName: 'firefox',
-        version: '42',
-        platform: 'OS X 10.10'
-      },
-      'SL_Safari': {
-        base: 'SauceLabs',
-        browserName: 'safari',
-        platform: 'OS X 10.10',
-        version: '8'
-      },
+      // 'SL_Chrome44_OSX10_10': {
+      //   base: 'SauceLabs',
+      //   browserName: 'chrome',
+      //   version: '44',
+      //   platform: 'OS X 10.10'
+      // },
+      // 'SL_Firefox38_OSX10_10': {
+      //   base: 'SauceLabs',
+      //   browserName: 'firefox',
+      //   version: '38',
+      //   platform: 'OS X 10.10'
+      // },
+      // 'SL_Firefox42_OSX10_10': {
+      //   base: 'SauceLabs',
+      //   browserName: 'firefox',
+      //   version: '42',
+      //   platform: 'OS X 10.10'
+      // },
+      // 'SL_Safari': {
+      //   base: 'SauceLabs',
+      //   browserName: 'safari',
+      //   platform: 'OS X 10.10',
+      //   version: '8'
+      // },
 
-      //Win 8.1
-      'SL_Chrome44_WIN81': {
-        base: 'SauceLabs',
-        browserName: 'chrome',
-        version: '44',
-        platform: 'Windows 8.1'
-      },
+      // //Win 8.1
+      // 'SL_Chrome44_WIN81': {
+      //   base: 'SauceLabs',
+      //   browserName: 'chrome',
+      //   version: '44',
+      //   platform: 'Windows 8.1'
+      // },
+
       // 'SL_Firefox_WIN81': {
       //   base: 'SauceLabs',
       //   browserName: 'firefox',
@@ -142,6 +143,12 @@ module.exports = function(config) {
       //   version: '27',
       //   platform: 'Linux'
       // },
+      'SL_Chrome_OSX9': {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        version: '31',
+        platform: 'OS X 10.9'
+      },
       'SL_win10_Edge': {
         base: 'SauceLabs',
         browserName: 'MicrosoftEdge',
