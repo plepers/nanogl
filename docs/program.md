@@ -39,7 +39,7 @@ prg.uColor( [1.0, 0.0, 1.0] )
 
 // You can also access uniform's locations to manually do those stuff
 // just call the setter without arguments.
-gl.uniform3f( prg.uniforms.uColor(), 1.0, 1.0, 1.0 );
+gl.uniform3f( prg.uColor(), 1.0, 1.0, 1.0 );
 ```
 
 ##### play with attributes
