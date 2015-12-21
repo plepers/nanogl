@@ -33,7 +33,7 @@ function initGL(){
     failIfMajorPerformanceCaveat :  false
   }
 
-  gl = cvs.getContext( 'webgl', opts );
+  gl = cvs.getContext( 'webgl', opts ) || cvs.getContext( 'experimental-webgl', opts );
   gl.viewport( 0,0,glSize, glSize )
   gl.clearColor( 1, 0, 0, 1)
   gl.clear( gl.COLOR_BUFFER_BIT )
