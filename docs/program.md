@@ -55,7 +55,7 @@ prg.uTexture( 1 );
 // in this case texture is bound, and assigned to the predefined unit for this sampler 
 prg.uTexture( myNanoglTexture );
 
-// ... you can also get the uniforms location
+// ... you can also get the uniforms location, and do the job manually
 gl.uniform1i( prg.uTexture(), 1 );
 ```
 
