@@ -143,12 +143,12 @@ module.exports = function(config) {
       //   version: '27',
       //   platform: 'Linux'
       // },
-      'SL_Chrome_OSX9': {
-        base: 'SauceLabs',
-        browserName: 'chrome',
-        version: '31',
-        platform: 'OS X 10.9'
-      },
+      // 'SL_Chrome_OSX9': {
+      //   base: 'SauceLabs',
+      //   browserName: 'chrome',
+      //   version: '31',
+      //   platform: 'OS X 10.9'
+      // },
       'SL_win10_Edge': {
         base: 'SauceLabs',
         browserName: 'MicrosoftEdge',
