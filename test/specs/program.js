@@ -62,7 +62,7 @@ describe( "Program", function(){
 
       testContext.drawProgram( p );
       testContext.assertNoError();
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
     it( "with helper vector", function(){
@@ -72,7 +72,7 @@ describe( "Program", function(){
 
       testContext.drawProgram( p );
       testContext.assertNoError();
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
     it( "with location access", function(){
@@ -82,7 +82,7 @@ describe( "Program", function(){
 
       testContext.drawProgram( p );
       testContext.assertNoError();
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
   });
@@ -106,7 +106,7 @@ describe( "Program", function(){
       p.uVec3( .5, 1, .25 );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
     it( "with helper vector", function(){
@@ -115,7 +115,7 @@ describe( "Program", function(){
       p.uVec3( val );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
     it( "with location access", function(){
@@ -124,7 +124,7 @@ describe( "Program", function(){
       gl.uniform3f( p.uVec3(), 1, .5, .25 )
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFFFF7F40 )
+      testContext.testPixel( 0, 0, 0xFFFF8040 )
     });
 
   });
@@ -147,7 +147,7 @@ describe( "Program", function(){
       p.uVec3( val );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF40407F )
+      testContext.testPixel( 0, 0, 0xFF404080 )
     });
 
     it( "with location access", function(){
@@ -156,7 +156,7 @@ describe( "Program", function(){
       gl.uniform3fv( p.uVec3(), [1, .25, 2 , .5, 1, .125] )
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7F4040 )
+      testContext.testPixel( 0, 0, 0xFF804040 )
     });
 
   });

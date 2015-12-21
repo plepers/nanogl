@@ -120,7 +120,7 @@ describe( "Fbo", function(){
     testContext.drawProgram( p );
 
     // test color
-    testContext.testPixel( 0, 0, 0xFF7F0000 )
+    testContext.testPixel( 0, 0, 0xFF800000 )
     testContext.assertNoError();
     fbo.dispose();
   });

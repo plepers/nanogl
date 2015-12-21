@@ -125,13 +125,13 @@ describe( "Texture", function(){
     testContext.testPixel( 48, 3, 0xFF630A0A )
 
     // 16 test
-    filltex16.bind()
-    gl.uniform1i( filltex16.tTex(), 0 );
+    // filltex16.bind()
+    // gl.uniform1i( filltex16.tTex(), 0 );
 
-    tex.setFilter( false, false, false )
-    tex.setRepeat( false )
-    testContext.drawProgram( filltex16 );
-    testContext.testPixel( 0, 0, 0xFF00EE00 )
+    // tex.setFilter( false, false, false )
+    // tex.setRepeat( false )
+    // testContext.drawProgram( filltex16 );
+    // testContext.testPixel( 0, 0, 0xFF00EE00 )
 
     // MIPMAP
     gl.generateMipmap( gl.TEXTURE_2D, tex.id );

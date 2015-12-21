@@ -56,14 +56,23 @@ function getPixel(x, y){
 }
 
 function testPixel(x, y, rgba){
+  var r = (rgba >>> 16 ) & 0xFF
+  var g = (rgba >>> 8 ) & 0xFF
+  var b = rgba & 0xFF
+  var a = (rgba >>> 24 ) & 0xFF
   var res = getPixel( x, y );
-  ctest8888[3] = res[3];
-  ctest8888[2] = res[0];
-  ctest8888[1] = res[1];
-  ctest8888[0] = res[2];
-  var hex = '0x' + ctest32[0].toString(16)
-  var tex = '0x' + rgba.toString(16)
-  expect( hex ).to.equal( tex );
+
+  if( (Math.abs( r-res[0] ) > 1) || (Math.abs( g-res[1] ) > 1) || (Math.abs( b-res[2] ) > 1) || (Math.abs( a-res[3] ) > 1)){
+
+    ctest8888[3] = res[3];
+    ctest8888[2] = res[0];
+    ctest8888[1] = res[1];
+    ctest8888[0] = res[2];
+    var hex = '0x' + ctest32[0].toString(16)
+    var tex = '0x' + rgba.toString(16)
+    expect( hex ).to.equal( tex );
+  }
+
 }
 
 function drawProgram( p ){

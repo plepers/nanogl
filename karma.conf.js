@@ -136,11 +136,11 @@ module.exports = function(config) {
       //   version: '27',
       //   platform: 'Linux'
       // },
-      'SL_IE_11': {
+      'SL_win10_Edge': {
         base: 'SauceLabs',
-        browserName: 'internet explorer',
-        platform: 'Windows 8.1',
-        version: '11'
+        browserName: 'MicrosoftEdge',
+        platform: 'Windows 10',
+        version: '20.10240'
       },
     },
   });
