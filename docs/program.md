@@ -1,7 +1,7 @@
 Program
 =======
 Program class provide shader compilation and gl program linking functionality.
-It also provide convinient access to uniforms and attributes.
+It also give you convinient access to active uniforms and attributes.
 
 
 ##exemple
@@ -19,6 +19,8 @@ prg.compile( vertexCode, fragmentCode );
 
 ##### play with uniforms
 Once compiled, the Program object list all used uniforms and provide setter function for each one.
+
+Note that the program must be bound manually before using uniform setters.
 > A uniform setter function support Array or TypedArray argument (`uniformNfv`)
 > or values as arguments directly (`uniformNf`)
 
@@ -36,17 +38,16 @@ prg.uColor( 1.0, 1.0, 1.0 )
 prg.uColor( [1.0, 0.0, 1.0] )
 
 // You can also access uniform's locations to manually do those stuff
-gl.uniform3f( prg.uniforms.uColor, 1.0, 1.0, 1.0 );
+// just call the setter without arguments.
+gl.uniform3f( prg.uniforms.uColor(), 1.0, 1.0, 1.0 );
 ```
 
 ##### play with attributes
 
 ``` JavaScript
-var position = prg.aPosition
-
 // again, be sure program is bound before call related gl methods
 prg.bind();
-gl.vertexAttribPointer( position, 3, gl.UNSIGNED_SHORT, ... );
+gl.vertexAttribPointer( prg.aPosition(), 3, gl.FLOAT, ... );
 //...
 
 ```
