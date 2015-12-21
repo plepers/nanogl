@@ -29,11 +29,11 @@ function initGL(){
     antialias :               true,
     premultipliedAlpha :      true,
     preserveDrawingBuffer :   false,
-    preferLowPowerToHighPerformance :  false,
+    preferLowPowerToHighPerformance :  true,
     failIfMajorPerformanceCaveat :  false
   }
 
-  gl = cvs.getContext( 'webgl', opts ) || cvs.getContext( 'experimental-webgl', opts );
+  gl = cvs.getContext( 'webgl', opts ) || cvs.getContext( 'experimental-webgl', opts ) || cvs.getContext( 'webgl');
   gl.viewport( 0,0,glSize, glSize )
   gl.clearColor( 1, 0, 0, 1)
   gl.clear( gl.COLOR_BUFFER_BIT )
