@@ -153,5 +153,8 @@ module.exports = function(config) {
     }
     config.browsers = browsers;
 
+    config.autoWatch = false;
+    config.singleRun = true;
+
   }
 };
