@@ -17,42 +17,57 @@ function logShader( shader ) {
 }
 
 
+var USetFMap = {};
+USetFMap[ String(5126 ) /*FLOAT       */ ] = '1f';
+USetFMap[ String(35664) /*FLOAT_VEC2  */ ] = '2f';
+USetFMap[ String(35665) /*FLOAT_VEC3  */ ] = '3f';
+USetFMap[ String(35666) /*FLOAT_VEC4  */ ] = '4f';
+USetFMap[ String(35667) /*INT_VEC2    */ ] = '2i';
+USetFMap[ String(35668) /*INT_VEC3    */ ] = '3i';
+USetFMap[ String(35669) /*INT_VEC4    */ ] = '4i';
+USetFMap[ String(35670) /*BOOL        */ ] = '1i';
+USetFMap[ String(35671) /*BOOL_VEC2   */ ] = '2i';
+USetFMap[ String(35672) /*BOOL_VEC3   */ ] = '3i';
+USetFMap[ String(35673) /*BOOL_VEC4   */ ] = '4i';
+USetFMap[ String(35674) /*FLOAT_MAT2  */ ] = 'Matrix2f';
+USetFMap[ String(35675) /*FLOAT_MAT3  */ ] = 'Matrix3f';
+USetFMap[ String(35676) /*FLOAT_MAT4  */ ] = 'Matrix4f';
+USetFMap[ String(5124 ) /*INT         */ ] = '1i';
+USetFMap[ String(35678) /*SAMPLER_2D  */ ] = '1i';
+USetFMap[ String(35680) /*SAMPLER_CUBE*/ ] = '1i';
+
 /**
  * Uniform upload utilities
  */
 
-function getUniformSetFunctionName( type, gl ){
-  var p = 'uniform';
+function getUniformSetFunctionName( type ){
+  type = String(type);
+  return 'uniform' + USetFMap[type];
+}
+
+
+function getUniformSetter( type, location, gl, context ){
   switch( type ){
+    case gl.FLOAT_MAT2  :
+    case gl.FLOAT_MAT3  :
+    case gl.FLOAT_MAT4  :
+      return getMatrixSetFunction( type, location, gl, context );
 
-    case gl.FLOAT       : return p+'1f';
-    case gl.FLOAT_VEC2  : return p+'2f';
-    case gl.FLOAT_VEC3  : return p+'3f';
-    case gl.FLOAT_VEC4  : return p+'4f';
-
-    case gl.INT_VEC2    : return p+'2i';
-    case gl.INT_VEC3    : return p+'3i';
-    case gl.INT_VEC4    : return p+'4i';
-
-    case gl.BOOL        : return p+'1i';
-    case gl.BOOL_VEC2   : return p+'2i';
-    case gl.BOOL_VEC3   : return p+'3i';
-    case gl.BOOL_VEC4   : return p+'4i';
-
-    case gl.FLOAT_MAT2  : return p+'Matrix2f';
-    case gl.FLOAT_MAT3  : return p+'Matrix3f';
-    case gl.FLOAT_MAT4  : return p+'Matrix4f';
-
-    case gl.INT         :
     case gl.SAMPLER_2D  :
-    case gl.SAMPLER_CUBE: return p+'1i';
+    case gl.SAMPLER_CUBE:
+      return getSamplerSetFunction( type, location, gl, context );
+
+    default  :
+      return getUniformSetFunction( type, location, gl, context );
   }
   return null;
 }
 
 
-function getUniformSetFunction( type, location, gl ){
-  var fname = getUniformSetFunctionName( type, gl );
+
+function getUniformSetFunction( type, location, gl, context ){
+  context;
+  var fname = getUniformSetFunctionName( type );
   return function(){
     if( arguments.length === 1 && arguments[0].length !== undefined ){
       gl[fname+'v']( location, arguments[0] );
@@ -64,7 +79,20 @@ function getUniformSetFunction( type, location, gl ){
 }
 
 
-function getSamplerSetFunction( type, location, gl, unit ){
+function getMatrixSetFunction( type, location, gl, context ){
+  context;
+  var fname = getUniformSetFunctionName( type );
+  return function(){
+    if( arguments.length > 0 && arguments[0].length !== undefined ){
+      gl[fname+'v']( location, !!arguments[1], arguments[0] );
+    }
+    return location;
+  };
+}
+
+
+function getSamplerSetFunction( type, location, gl, context ){
+  var unit = context.texIndex++;
   return function(){
     if( arguments.length === 1 ) {
       if( arguments[0].id !== undefined ){ // is texture
@@ -170,7 +198,9 @@ Program.prototype = {
     // ========
 
     var numUniforms = gl.getProgramParameter( prg, gl.ACTIVE_UNIFORMS );
-    var texIndex = 0;
+    var context = {
+      texIndex : 0
+    };
 
     for ( var uniformIndex = 0; uniformIndex < numUniforms; ++uniformIndex )
     {
@@ -188,13 +218,7 @@ Program.prototype = {
 
       var uLocation = gl.getUniformLocation( prg, uniform.name );
 
-      if( uniform.type === gl.SAMPLER_2D || uniform.type === gl.SAMPLER_CUBE )
-      {
-        this[uName] = getSamplerSetFunction( uniform.type, uLocation, gl, texIndex++ );
-      } else {
-        this[uName] = getUniformSetFunction( uniform.type, uLocation, gl );
-      }
-
+      this[uName] = getUniformSetter( uniform.type, uLocation, gl, context );
 
     }
 

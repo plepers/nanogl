@@ -107,6 +107,7 @@ describe( "Program", function(){
 
       testContext.drawProgram( p );
       testContext.testPixel( 0, 0, 0xFF80FF40 )
+      testContext.assertNoError();
     });
 
     it( "with helper vector", function(){
@@ -116,6 +117,7 @@ describe( "Program", function(){
 
       testContext.drawProgram( p );
       testContext.testPixel( 0, 0, 0xFF80FF40 )
+      testContext.assertNoError();
     });
 
     it( "with location access", function(){
@@ -148,6 +150,7 @@ describe( "Program", function(){
 
       testContext.drawProgram( p );
       testContext.testPixel( 0, 0, 0xFF404080 )
+      testContext.assertNoError();
     });
 
     it( "with location access", function(){
@@ -157,6 +160,61 @@ describe( "Program", function(){
 
       testContext.drawProgram( p );
       testContext.testPixel( 0, 0, 0xFF804040 )
+      testContext.assertNoError();
+    });
+
+  });
+
+
+  describe( "should set mat4 uniform", function(){
+
+    var vert = require( '../glsl/test_umat4.vert')
+    var frag = require( '../glsl/test_umat4.frag')
+
+    var p = new Program( gl );
+    p.compile( vert, frag );
+
+    var matrix = new Float32Array([
+      .5,  0,  0,  0,
+      0,   .5, 0,  0,
+      0,   0,  .5, 0,
+      .25, .25, 0, 1
+    ])
+    var nullMat = new Float32Array([
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0
+    ])
+
+    it( "with helper vector", function(){
+      p.bind()
+      p.uMat4( matrix );
+
+      gl.clear( gl.COLOR_BUFFER_BIT );
+      testContext.drawProgram( p );
+      testContext.testPixel( 23, 23, 0xFF000000 );
+      testContext.testPixel( 24, 24, 0xFF8040FF );
+      testContext.testPixel( 55, 55, 0xFF8040FF );
+      testContext.testPixel( 56, 56, 0xFF000000 );
+      testContext.assertNoError();
+
+      p.uMat4( nullMat );
+    });
+
+    it( "with location access", function(){
+      p.bind()
+
+      gl.uniformMatrix4fv( p.uMat4(), false, matrix )
+
+      gl.clear( gl.COLOR_BUFFER_BIT );
+      testContext.drawProgram( p );
+      testContext.testPixel( 23, 23, 0xFF000000 );
+      testContext.testPixel( 24, 24, 0xFF8040FF );
+      testContext.testPixel( 55, 55, 0xFF8040FF );
+      testContext.testPixel( 56, 56, 0xFF000000 );
+      testContext.assertNoError();
+      p.uMat4( nullMat );
     });
 
   });
