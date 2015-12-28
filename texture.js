@@ -1,6 +1,7 @@
-
+var _UID = 0;
 
 function Texture( gl, format ){
+  this._uid = _UID++;
   this.gl = gl;
   this.id = this.gl.createTexture();
   this.width  = 0;

@@ -32,5 +32,8 @@
     "mocha": "^2.3.4",
     "stringify": "^3.2.0",
     "when": "^3.7.5"
+  },
+  "dependencies": {
+    "when": "^3.7.7"
   }
 }
