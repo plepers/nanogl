@@ -43,6 +43,7 @@ describe( "Program", function(){
     var p = new Program( gl );
     p.compile( vert, frag );
 
+    testContext.assertNoError();
   });
 
 

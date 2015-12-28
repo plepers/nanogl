@@ -20,6 +20,9 @@ function getAttachmentType( gl, type ){
 }
 
 
+var DEFAULT_OPTS = {};
+
+
 function Fbo( gl, width, height, opts )
 {
   this.gl = gl;
@@ -27,7 +30,7 @@ function Fbo( gl, width, height, opts )
   this.height = 0;
   this.fbo = null;
 
-  opts = opts || {};
+  opts = opts || DEFAULT_OPTS;
 
   this.flags = (opts.depth) | (opts.stencil*2);
 
