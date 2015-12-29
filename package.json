@@ -1,6 +1,6 @@
 {
   "name": "nanogl",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "webgl micro framework ",
   "main": "nanogl.js",
   "scripts": {
@@ -30,8 +30,7 @@
     "karma-safari-launcher": "^0.1.1",
     "karma-sauce-launcher": "^0.3.0",
     "mocha": "^2.3.4",
-    "stringify": "^3.2.0",
-    "when": "^3.7.5"
+    "stringify": "^3.2.0"
   },
   "dependencies": {
     "when": "^3.7.7"
