@@ -18,5 +18,5 @@ deploy:
   api_key:
     secure: tKdp4/Xvu83IwtTahMHj8To2u9qa45MLco29i6tu9H2mjwyPHMjj4tUJYySdpBnPUSpFT3e+nlUS7H+pWPbLhqIG5ZYmtaM08EdT09mkv/IrT6IRNAyj1IAN6E6wtTQzHLgh0U8e+sjjdndLz8NbfYc4h+oc09RSeufLTjs5FFtOoCZQPieFRGiksZbuchNAkCS6h8Es0jCNFJdrzhUh9Ws1sR816O9lAY4NjoZuv4Gq8Jhv6bFl9h+KPOy0S4DXxlcde2tMZ1u+vuznw4gpP3FhUV9AXOAYnuyPT2XkCtPnZNVj+i/E6EwZeVbnpc6HRcWxA7qmNIfGLaKeCZL8MuWO4hMc/kqLHAhJPSb5/mpj4nwkEZhUnxKCERw2OJcbHQHp1MVLB39Q7L9WiQWBXTePwd92KYzMXb3J0aHRPl6V7ZNSjdk1AKw8Y8J72tb2icDQ+0k4eepZohFduC+hWB9ISPg+67ndXfM/zW18ynIqyyyKJM5zCzJbD/MGVYPgbz+Dl9U6zFuQgcKRO+CBcFZQVfU0uD4MUY7KnCyxTErLKyv5oqIr0Us/fCdtDcYS9RqAZFbB/gU+hICGc4jITEJ+FX4GaAh5AKAypvZ3FBiAWuYKCQeMEpuVtLdvU7Vn4KZ/w4Eifuz53qQjHpvfQm6UJeD9bjKXIhYaVnu6YFA=
   on:
-    tags: true
+    branch: master
     repo: plepers/nanogl
