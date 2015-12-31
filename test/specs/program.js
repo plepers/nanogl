@@ -47,6 +47,32 @@ describe( "Program", function(){
   });
 
 
+
+  it( "should recompile", function(){
+
+    var p = new Program( gl );
+    p.compile(
+      require( '../glsl/complete.vert'),
+      require( '../glsl/complete.frag')
+    );
+
+    p.compile(
+      require( '../glsl/test_ufloat.vert'),
+      require( '../glsl/test_ufloat.frag')
+    );
+
+    testContext.assertNoError();
+
+    p.bind()
+
+    p.uFloat( .5 );
+
+    testContext.drawProgram( p );
+    testContext.testPixel( 0, 0, 0xFF80FF40 )
+
+  });
+
+
   describe( "should set float uniform", function(){
 
     var vert = require( '../glsl/test_ufloat.vert')
@@ -87,7 +113,6 @@ describe( "Program", function(){
     });
 
   });
-
 
 
 

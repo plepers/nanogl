@@ -117,17 +117,16 @@ function getAttribAccess( attrib ){
 /**
  * Shader compilation utility
  */
-function compileShader( gl, type, code ){
-  var shader = gl.createShader( type );
+function compileShader( gl, shader, code ){
   gl.shaderSource( shader, code );
   gl.compileShader( shader );
 
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     console.warn(gl.getShaderInfoLog(shader));
     logShader( code );
-    return null;
+    return false;
   }
-  return shader;
+  return true;
 }
 
 /**
@@ -137,7 +136,11 @@ function compileShader( gl, type, code ){
  */
 function Program( gl ){
   this.gl = gl;
-  this.program = null;
+  this.program = gl.createProgram();
+  this.vShader = gl.createShader( gl.VERTEX_SHADER );
+  this.fShader = gl.createShader( gl.FRAGMENT_SHADER );
+  gl.attachShader(this.program, this.vShader);
+  gl.attachShader(this.program, this.fShader);
 }
 
 Program.prototype = {
@@ -150,34 +153,19 @@ Program.prototype = {
 
     defs = ( defs || '' ) + '\n';
 
-    var gl = this.gl,
-        fShader, vShader,
-        program;
+    var gl = this.gl;
 
-    if( this.program ){
-      gl.deleteProgram( this.program );
-    }
-
-    if (! (fShader = compileShader( gl, gl.FRAGMENT_SHADER, defs + frag ) ) ) {
-      return false;
-    }
-    if (! (vShader = compileShader( gl, gl.VERTEX_SHADER,   defs + vert ) ) ) {
+    if( !( compileShader( gl, this.fShader, defs + frag ) &&
+           compileShader( gl, this.vShader, defs + vert ) ) ) {
       return false;
     }
 
-    program = gl.createProgram();
-    gl.attachShader(program, vShader);
-    gl.attachShader(program, fShader);
-    gl.linkProgram(program);
-    gl.deleteShader( vShader );
-    gl.deleteShader( fShader );
+    gl.linkProgram(this.program);
 
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.warn(gl.getProgramInfoLog(program));
+    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+      console.warn(gl.getProgramInfoLog(this.program));
       return false;
     }
-
-    this.program = program;
 
     this._grabParameters();
 
@@ -187,6 +175,8 @@ Program.prototype = {
 
   dispose : function() {
     this.gl.deleteProgram( this.program );
+    this.gl.deleteShader(  this.Shader  );
+    this.gl.deleteShader(  this.Shader  );
   },
 
 
