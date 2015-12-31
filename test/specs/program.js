@@ -31,6 +31,8 @@ describe( "Program", function(){
     var p = new Program( gl );
     p.compile( vert, frag );
 
+    testContext.assertNoError();
+
   });
 
   it( "should compile complex", function(){
@@ -40,6 +42,35 @@ describe( "Program", function(){
 
     var p = new Program( gl );
     p.compile( vert, frag );
+
+    testContext.assertNoError();
+  });
+
+
+
+  it( "should recompile", function(){
+
+    var p = new Program( gl );
+    p.compile(
+      require( '../glsl/complete.vert'),
+      require( '../glsl/complete.frag')
+    );
+
+    var vert = require( '../glsl/test_ufloat.vert'),
+        frag = require( '../glsl/test_ufloat.frag');
+    p.compile(
+      vert,
+      frag
+    );
+
+    testContext.assertNoError();
+
+    p.bind()
+
+    p.uFloat( .5 );
+
+    testContext.drawProgram( p );
+    testContext.testPixel( 0, 0, 0xFF80FF40 )
 
   });
 
@@ -59,7 +90,8 @@ describe( "Program", function(){
       p.uFloat( .5 );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.assertNoError();
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
     it( "with helper vector", function(){
@@ -68,20 +100,21 @@ describe( "Program", function(){
       p.uFloat( val );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.assertNoError();
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
     it( "with location access", function(){
       p.bind()
 
-      gl.uniform1f( p.uniforms.uFloat, .5 )
+      gl.uniform1f( p.uFloat(), .5 )
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.assertNoError();
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
     });
 
   });
-
 
 
 
@@ -101,7 +134,8 @@ describe( "Program", function(){
       p.uVec3( .5, 1, .25 );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
+      testContext.assertNoError();
     });
 
     it( "with helper vector", function(){
@@ -110,16 +144,17 @@ describe( "Program", function(){
       p.uVec3( val );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7FFF40 )
+      testContext.testPixel( 0, 0, 0xFF80FF40 )
+      testContext.assertNoError();
     });
 
     it( "with location access", function(){
       p.bind()
 
-      gl.uniform3f( p.uniforms.uVec3, 1, .5, .25 )
+      gl.uniform3f( p.uVec3(), 1, .5, .25 )
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFFFF7F40 )
+      testContext.testPixel( 0, 0, 0xFFFF8040 )
     });
 
   });
@@ -142,16 +177,72 @@ describe( "Program", function(){
       p.uVec3( val );
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF40407F )
+      testContext.testPixel( 0, 0, 0xFF404080 )
+      testContext.assertNoError();
     });
 
     it( "with location access", function(){
       p.bind()
 
-      gl.uniform3fv( p.uniforms.uVec3, [1, .25, 2 , .5, 1, .125] )
+      gl.uniform3fv( p.uVec3(), [1, .25, 2 , .5, 1, .125] )
 
       testContext.drawProgram( p );
-      testContext.testPixel( 0, 0, 0xFF7F4040 )
+      testContext.testPixel( 0, 0, 0xFF804040 )
+      testContext.assertNoError();
+    });
+
+  });
+
+
+  describe( "should set mat4 uniform", function(){
+
+    var vert = require( '../glsl/test_umat4.vert')
+    var frag = require( '../glsl/test_umat4.frag')
+
+    var p = new Program( gl );
+    p.compile( vert, frag );
+
+    var matrix = new Float32Array([
+      .5,  0,  0,  0,
+      0,   .5, 0,  0,
+      0,   0,  .5, 0,
+      .25, .25, 0, 1
+    ])
+    var nullMat = new Float32Array([
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0
+    ])
+
+    it( "with helper vector", function(){
+      p.bind()
+      p.uMat4( matrix );
+
+      gl.clear( gl.COLOR_BUFFER_BIT );
+      testContext.drawProgram( p );
+      testContext.testPixel( 23, 23, 0xFF000000 );
+      testContext.testPixel( 24, 24, 0xFF8040FF );
+      testContext.testPixel( 55, 55, 0xFF8040FF );
+      testContext.testPixel( 56, 56, 0xFF000000 );
+      testContext.assertNoError();
+
+      p.uMat4( nullMat );
+    });
+
+    it( "with location access", function(){
+      p.bind()
+
+      gl.uniformMatrix4fv( p.uMat4(), false, matrix )
+
+      gl.clear( gl.COLOR_BUFFER_BIT );
+      testContext.drawProgram( p );
+      testContext.testPixel( 23, 23, 0xFF000000 );
+      testContext.testPixel( 24, 24, 0xFF8040FF );
+      testContext.testPixel( 55, 55, 0xFF8040FF );
+      testContext.testPixel( 56, 56, 0xFF000000 );
+      testContext.assertNoError();
+      p.uMat4( nullMat );
     });
 
   });

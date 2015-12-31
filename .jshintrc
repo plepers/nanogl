@@ -1,0 +1,35 @@
+{
+  "browser": true,
+  "node": false,
+
+  "predef": [
+        "define",
+        "module",
+        "system",
+        "require",
+        "console",
+        "process"
+    ],
+
+  "boss": true,
+  "curly": true,
+    "elision": true,
+    "eqnull": true,
+  "expr": true,
+  "globalstrict": false,
+  "laxbreak": true,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": true,
+  "quotmark": "single",
+  "smarttabs": true,
+  "strict": false,
+  "sub": true,
+  "trailing": true,
+  "undef": true,
+  "unused": true,
+
+  "maxdepth": 3,
+  "maxcomplexity": 0
+}
