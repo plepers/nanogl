@@ -33,6 +33,7 @@ describe( "Fbo", function(){
       depth : true
     } );
     fbo.resize( 64, 64 );
+    expect( fbo.valid ).to.be.ok()
     testContext.assertNoError();
   });
 
