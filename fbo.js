@@ -23,6 +23,30 @@ function getAttachmentType( gl, type ){
 var DEFAULT_OPTS = {};
 
 
+
+function TypeChain( formats ){
+
+  if( !Array.isArray( formats ) ){
+    formats = [formats];
+  }
+  this.formats = formats;
+  this.current = 0;
+}
+
+TypeChain.prototype = {
+  next: function(){
+    if( this.current >= this.formats.length ){
+      return 0;
+    }
+    return this.formats[this.current++];
+  },
+  reset: function(){
+    this.current = 0;
+  }
+};
+
+
+
 function Fbo( gl, width, height, opts )
 {
   this.gl = gl;
@@ -39,6 +63,8 @@ function Fbo( gl, width, height, opts )
   } else {
     this.attachmentBuffer = null;
   }
+
+  this.types = new TypeChain( opts.type || gl.UNSIGNED_BYTE );
 
   this.color = new Texture( gl, opts.format );
   this.resize( width, height );
@@ -58,9 +84,7 @@ Fbo.prototype = {
     this.height = h;
 
     this._allocate();
-    if( !this.fbo ){
-      this._attach();
-    }
+
 
   },
 
@@ -119,19 +143,13 @@ Fbo.prototype = {
       gl.framebufferRenderbuffer( gl.FRAMEBUFFER, type, gl.RENDERBUFFER, this.attachmentBuffer );
     }
 
-    this.valid = true;
-    if( gl.checkFramebufferStatus(gl.FRAMEBUFFER) != gl.FRAMEBUFFER_COMPLETE ){
-      this.valid = false;
-    }
-
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
   },
 
 
   _allocate : function(){
     var gl = this.gl;
 
-    this.color.fromData( this.width, this.height );
+    this.color.fromData( this.width, this.height, null, this.types.next() );
 
     var attType = this.flags & 3;
     if( attType ){
@@ -140,6 +158,33 @@ Fbo.prototype = {
       gl.renderbufferStorage( gl.RENDERBUFFER,  format , this.width, this.height );
       gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
     }
+
+    if( !this.fbo ){
+      this._attach();
+    }
+
+    this.valid = true;
+    while( !this.isValid() ){
+      gl.getError(); // clear possible texture error
+      var nextFmt = this.types.next();
+      if( !nextFmt ) {
+        this.valid = false;
+        break;
+      }
+      this.color.fromData( this.width, this.height, null, nextFmt );
+    }
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+  },
+
+  isValid : function(){
+    var gl = this.gl;
+    return ( gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE );
+  },
+
+  getActualType : function(){
+    return this.color.type;
   }
 
 };

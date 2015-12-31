@@ -7,6 +7,7 @@ function Texture( gl, format ){
   this.width  = 0;
   this.height = 0;
   this.format = format || gl.RGB;
+  this.type   = gl.UNSIGNED_BYTE;
 
   gl.bindTexture( gl.TEXTURE_2D, this.id );
   this.setFilter( true );
@@ -26,7 +27,7 @@ Texture.prototype = {
     this.height = img.height;
 
     gl.bindTexture( gl.TEXTURE_2D, this.id );
-    gl.texImage2D(  gl.TEXTURE_2D, 0, this.format, this.format, gl.UNSIGNED_BYTE, img );
+    gl.texImage2D(  gl.TEXTURE_2D, 0, this.format, this.format, this.type, img );
     gl.bindTexture( gl.TEXTURE_2D, null );
   },
 
@@ -38,10 +39,10 @@ Texture.prototype = {
     this.height = height;
 
     data = data || null;
-    dataType =    dataType    || gl.UNSIGNED_BYTE;
+    this.type =    dataType || gl.UNSIGNED_BYTE;
 
     gl.bindTexture( gl.TEXTURE_2D, this.id );
-    gl.texImage2D( gl.TEXTURE_2D, 0, this.format, width, height, 0, this.format, dataType, data );
+    gl.texImage2D( gl.TEXTURE_2D, 0, this.format, width, height, 0, this.format, this.type, data );
     gl.bindTexture( gl.TEXTURE_2D, null );
   },
 

@@ -126,5 +126,49 @@ describe( "Fbo", function(){
   });
 
 
+  it( "should fallback when multiple formats", function(){
+    var float_texture_ext = gl.getExtension('OES_texture_float');
+    var halfFloat = gl.getExtension("OES_texture_half_float")
+    var fbo = new Fbo( gl, 32, 32, {
+      type : [ gl.FLOAT, halfFloat ? halfFloat.HALF_FLOAT_OES : gl.UNSIGNED_BYTE, gl.UNSIGNED_BYTE ],
+      format : gl.RGBA
+    });
+
+    // expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
+    if( float_texture_ext )
+      expect( fbo.getActualType() ).to.be.equal( gl.FLOAT )
+    else if( halfFloat )
+      expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
+    else
+      expect( fbo.getActualType() ).to.be.equal( gl.UNSIGNED_BYTE )
+
+
+    testContext.assertNoError();
+
+  })
+
+
+  it( "should fallback when multiple formats 2", function(){
+    var float_texture_ext = gl.getExtension('OES_texture_float');
+    var halfFloat = gl.getExtension("OES_texture_half_float")
+    var fbo = new Fbo( gl, 32, 32, {
+      type : [ halfFloat ? halfFloat.HALF_FLOAT_OES : gl.FLOAT, gl.FLOAT, gl.UNSIGNED_BYTE ],
+      format : gl.RGB
+    });
+
+    // expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
+    if( halfFloat )
+      expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
+    else if( float_texture_ext )
+      expect( fbo.getActualType() ).to.be.equal( gl.FLOAT )
+    else
+      expect( fbo.getActualType() ).to.be.equal( gl.UNSIGNED_BYTE )
+
+
+    testContext.assertNoError();
+
+  })
+
+
 
 });
