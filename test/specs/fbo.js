@@ -27,7 +27,16 @@ describe( "Fbo", function(){
     testContext.assertNoError();
   });
 
-    it( "should be valid", function(){
+  it( "full creation should resize", function(){
+    var fbo = new Fbo( gl, 32, 32, {
+      stencil : true,
+      depth : true
+    } );
+    fbo.resize( 64, 64 );
+    testContext.assertNoError();
+  });
+
+  it( "should be valid", function(){
     var fbo = new Fbo( gl, 32, 32, {
       stencil : true,
       depth : false

@@ -14,7 +14,12 @@ and any kind of pixel type (UNSIGNED_BYTE, FLOAT etc)
 ```JavaScript
 var Texture = require( 'nanogl' ).Texture;
 
-var texture = new Texture( gl, gl.RGB );
+var texture = new Texture( gl );
+
+// default pixel format is gl.RGB
+// you can specify different format as folowing
+var texture = new Texture( gl, gl.RGBA );
+
 ```
 
 
