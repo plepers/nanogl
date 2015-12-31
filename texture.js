@@ -78,8 +78,12 @@ Texture.prototype = {
    * Bind the texture
    *
    */
-  bind : function( ){
-    this.gl.bindTexture( this.gl.TEXTURE_2D, this.id );
+  bind : function( unit ){
+    var gl = this.gl;
+    if( unit !== undefined ){
+      gl.activeTexture( gl.TEXTURE0 + (0|unit) );
+    }
+    gl.bindTexture( gl.TEXTURE_2D, this.id );
   },
 
   /**

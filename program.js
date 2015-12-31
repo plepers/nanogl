@@ -95,9 +95,8 @@ function getSamplerSetFunction( type, location, gl, context ){
   var unit = context.texIndex++;
   return function(){
     if( arguments.length === 1 ) {
-      if( arguments[0].id !== undefined ){ // is texture
-        gl.activeTexture( gl.TEXTURE0 + unit );
-        gl.bindTexture( gl.TEXTURE_2D, arguments[0].id );
+      if( arguments[0].bind !== undefined ){ // is texture
+        arguments[0].bind( unit );
         gl.uniform1i( location, unit );
       } else {
         gl.uniform1i( location, arguments[0] );
