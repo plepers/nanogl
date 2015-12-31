@@ -129,20 +129,15 @@ describe( "Fbo", function(){
   it( "should fallback when multiple formats", function(){
     var float_texture_ext = gl.getExtension('OES_texture_float');
     var halfFloat = gl.getExtension("OES_texture_half_float")
+
+    var tList =  [ gl.FLOAT, halfFloat ? halfFloat.HALF_FLOAT_OES : gl.UNSIGNED_BYTE, gl.UNSIGNED_BYTE ];
+
     var fbo = new Fbo( gl, 32, 32, {
-      type : [ gl.FLOAT, halfFloat ? halfFloat.HALF_FLOAT_OES : gl.UNSIGNED_BYTE, gl.UNSIGNED_BYTE ],
+      type : tList,
       format : gl.RGBA
     });
-
-    // expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
-    if( float_texture_ext )
-      expect( fbo.getActualType() ).to.be.equal( gl.FLOAT )
-    else if( halfFloat )
-      expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
-    else
-      expect( fbo.getActualType() ).to.be.equal( gl.UNSIGNED_BYTE )
-
-
+    // should always fallback to U8
+    expect( tList ).to.contain( fbo.getActualType() )
     testContext.assertNoError();
 
   })
@@ -151,20 +146,18 @@ describe( "Fbo", function(){
   it( "should fallback when multiple formats 2", function(){
     var float_texture_ext = gl.getExtension('OES_texture_float');
     var halfFloat = gl.getExtension("OES_texture_half_float")
+    var tList =  [ halfFloat ? halfFloat.HALF_FLOAT_OES : gl.FLOAT, gl.FLOAT, gl.UNSIGNED_BYTE ];
     var fbo = new Fbo( gl, 32, 32, {
-      type : [ halfFloat ? halfFloat.HALF_FLOAT_OES : gl.FLOAT, gl.FLOAT, gl.UNSIGNED_BYTE ],
+      type : tList,
       format : gl.RGB
     });
-
     // expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
-    if( halfFloat )
-      expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
-    else if( float_texture_ext )
-      expect( fbo.getActualType() ).to.be.equal( gl.FLOAT )
-    else
-      expect( fbo.getActualType() ).to.be.equal( gl.UNSIGNED_BYTE )
+    // if( float_texture_ext || halfFloat )
+    //   expect( fbo.getActualType() ).not.to.be.equal( gl.UNSIGNED_BYTE )
+    // else
+    //   expect( fbo.getActualType() ).to.be.equal( gl.UNSIGNED_BYTE )
 
-
+    expect( tList ).to.contain( fbo.getActualType() )
     testContext.assertNoError();
 
   })

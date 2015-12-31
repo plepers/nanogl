@@ -56,9 +56,11 @@ describe( "Program", function(){
       require( '../glsl/complete.frag')
     );
 
+    var vert = require( '../glsl/test_ufloat.vert'),
+        frag = require( '../glsl/test_ufloat.frag');
     p.compile(
-      require( '../glsl/test_ufloat.vert'),
-      require( '../glsl/test_ufloat.frag')
+      vert,
+      frag
     );
 
     testContext.assertNoError();

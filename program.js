@@ -196,6 +196,13 @@ Program.prototype = {
     {
       var uniform = gl.getActiveUniform( prg, uniformIndex );
 
+      // safari 8.0 issue,
+      // when recompiling shader and link the progam again, old uniforms are kept in ACTIVE_UNIFORMS count but return null here
+      if( uniform === null ){
+        gl.getError(); // also flush error
+        continue;
+      }
+
       var uName   = uniform.name,
           n       = uName.indexOf('['),
           aSize   = 1;

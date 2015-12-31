@@ -23,9 +23,10 @@ function getAttachmentType( gl, type ){
 var DEFAULT_OPTS = {};
 
 
-
+/**
+ * Provide iterator of Pixel types
+ */
 function TypeChain( formats ){
-
   if( !Array.isArray( formats ) ){
     formats = [formats];
   }
@@ -46,7 +47,17 @@ TypeChain.prototype = {
 };
 
 
-
+/**
+ * @gl      :   then webgl context this Fbo belongs to
+ * @width   :   initial width of the fbo, the size can be later changed using Fbo#resize()
+ * @height  :   initial height of the fbo, the size can be later changed using Fbo#resize()
+ * @opts    :
+ *    depth   <bool> : if true, a depth buffer is attached
+ *    stencil <bool> : if true, a stencil buffer is attached
+ *    type <Array or GLEnum> : the pixel type of the Fbo, default is gl.UNSIGNED_BYTE, can be gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
+ *    format <GLEnum> : the internal pixel format, default to gl.RGB.
+ *
+ */
 function Fbo( gl, width, height, opts )
 {
   this.gl = gl;
@@ -73,7 +84,11 @@ function Fbo( gl, width, height, opts )
 
 Fbo.prototype = {
 
-
+  /**
+   * Realocate Fbo size
+   *  @w  :  new width
+   *  @h  :  new height
+   */
   resize : function( w, h ){
 
     if( this.width === w && this.height === h ) {
@@ -88,7 +103,10 @@ Fbo.prototype = {
 
   },
 
-
+  /**
+   * bind the color texture of this Fbo to a sampler2D location and a unit
+   * The related program must be in use.
+   */
   bindColor : function( location, unit ){
     var gl = this.gl;
     gl.activeTexture( gl.TEXTURE0 + unit );
@@ -96,14 +114,19 @@ Fbo.prototype = {
     gl.uniform1i( location, unit );
   },
 
-
+  /**
+   * Bind the Fbo and set gl viewport to it's size
+   */
   bind : function() {
     var gl = this.gl;
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.fbo);
     gl.viewport( 0, 0, this.width, this.height );
   },
 
-
+  /**
+   * Clear all buffer of the Fbo.
+   * The Fbo must be explicitely bound before calling this method
+   */
   clear : function() {
     var gl = this.gl;
     var bits = gl.COLOR_BUFFER_BIT;
@@ -116,7 +139,26 @@ Fbo.prototype = {
     gl.clear( bits );
   },
 
+  /**
+   * Check if the Fbo is valid,
+   * The Fbo must be explicitely bound before calling this method
+   */
+  isValid : function(){
+    var gl = this.gl;
+    return ( gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE );
+  },
 
+  /**
+   * return the actual pixel type of the underlying color texture (UNSIGNED_BYTE, FLOAT, HALF_FLOAT_EOS etc)
+   * after possibles types has been tested
+   */
+  getActualType : function(){
+    return this.color.type;
+  },
+
+  /**
+   * delete all webgl objects related to this Fbo
+   */
   dispose : function(){
     var gl = this.gl;
     if( this.attachmentBuffer ){
@@ -164,6 +206,9 @@ Fbo.prototype = {
     }
 
     this.valid = true;
+
+    gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
+
     while( !this.isValid() ){
       gl.getError(); // clear possible texture error
       var nextFmt = this.types.next();
@@ -176,15 +221,6 @@ Fbo.prototype = {
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
-  },
-
-  isValid : function(){
-    var gl = this.gl;
-    return ( gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE );
-  },
-
-  getActualType : function(){
-    return this.color.type;
   }
 
 };
