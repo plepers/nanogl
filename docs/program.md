@@ -20,6 +20,8 @@ prg.compile( vertexCode, fragmentCode );
 ##### play with uniforms
 Once compiled, the Program object list all used uniforms and provide setter function for each one.
 
+eg : for the following shader code `uniform vec3 uDirection;` it create a method `program.uDirection( 1, 0, 0 );`
+
 Note that the program must be bound manually before using uniform setters.
 > A uniform setter function support Array or TypedArray argument (`uniformNfv`)
 
@@ -55,7 +57,7 @@ prg.bind();
 prg.uTexture( 1 );
 
 // ... or directly provide a Texture instance
-// in this case texture is bound, and assigned to the predefined unit for this sampler 
+// in this case texture is bound, and assigned to the predefined unit for this sampler
 prg.uTexture( myNanoglTexture );
 
 // ... you can also get the uniforms location, and do the job manually
