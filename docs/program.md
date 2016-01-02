@@ -30,8 +30,8 @@ Note that the program must be bound manually before using uniform setters.
 > setter functions return the uniform location, thus behave like getter when invoked with no arguments.
 
 ``` JavaScript
-// /!\ program must be bound BEFORE uploading some uniforms
-prg.bind();
+// /!\ program must be in use BEFORE uploading some uniforms
+prg.use();
 
 // set a mat4 uniform with a Float32Array or array
 prg.uModelViewProjection( mvpMatrix );
@@ -51,7 +51,7 @@ gl.uniform3f( prg.uColor(), 1.0, 1.0, 1.0 );
 
 Textures/samplers work like other uniforms, but in addition it also accept nanogl Textures as arguments.
 ``` JavaScript
-prg.bind();
+prg.use();
 
 // link GL_TEXTURE1 unit to uTexture ...
 prg.uTexture( 1 );
@@ -67,8 +67,8 @@ gl.uniform1i( prg.uTexture(), 1 );
 ##### play with attributes
 
 ``` JavaScript
-// again, be sure program is bound before call related gl methods
-prg.bind();
+// again, be sure program is in use before call related gl methods
+prg.use();
 gl.vertexAttribPointer( prg.aPosition(), 3, gl.FLOAT, ... );
 //...
 
