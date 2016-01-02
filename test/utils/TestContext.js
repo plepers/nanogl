@@ -77,6 +77,8 @@ function testPixel(x, y, rgba){
 }
 
 function drawProgram( p ){
+
+  gl.clear( gl.COLOR_BUFFER_BIT )
   p.bind()
   fsgeom.bind( p );
   fsgeom.render()

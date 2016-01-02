@@ -13,7 +13,7 @@ function ArrayBuffer( gl, data, usage ){
   this.length       = 0;
 
   if( data ){
-    this.data( data, -1 );
+    this.data( data );
   }
 }
 

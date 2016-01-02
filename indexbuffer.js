@@ -9,7 +9,7 @@ function IndexBuffer( gl, type, data, usage ){
   this.length = 0;
   this.type   = type || gl.UNSIGNED_SHORT;
   this.usage  = usage || gl.STATIC_DRAW;
-  this.typeSize = BufferUtils.getComponentSize( type );
+  this.typeSize = BufferUtils.getComponentSize( this.type );
 
 
   if( data ){
