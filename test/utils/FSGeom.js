@@ -41,9 +41,7 @@ FSGeom.prototype = {
     var gl = this.gl;
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer );
-    gl.enableVertexAttribArray( prg.aPosition );
     gl.vertexAttribPointer( prg.aPosition, 2, gl.FLOAT, false, this.stride, 0 );
-
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.ibuffer );
 
   },

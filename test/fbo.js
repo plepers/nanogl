@@ -1,8 +1,8 @@
-var Program = require( '../../nanogl' ).Program;
-var Fbo = require( '../../nanogl' ).Fbo;
+var Program = require( '../nanogl' ).Program;
+var Fbo = require( '../nanogl' ).Fbo;
 var expect  = require( 'expect.js' );
 
-var testContext = require( '../utils/TestContext' );
+var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
 
@@ -27,7 +27,17 @@ describe( "Fbo", function(){
     testContext.assertNoError();
   });
 
-    it( "should be valid", function(){
+  it( "full creation should resize", function(){
+    var fbo = new Fbo( gl, 32, 32, {
+      stencil : true,
+      depth : true
+    } );
+    fbo.resize( 64, 64 );
+    expect( fbo.valid ).to.be.ok()
+    testContext.assertNoError();
+  });
+
+  it( "should be valid", function(){
     var fbo = new Fbo( gl, 32, 32, {
       stencil : true,
       depth : false
@@ -96,8 +106,8 @@ describe( "Fbo", function(){
 
 
     // draw 0xFF7F0000 to Fbo color
-    vert = require( '../glsl/test_uvec3.vert')
-    frag = require( '../glsl/test_uvec3.frag')
+    vert = require( './glsl/test_uvec3.vert')
+    frag = require( './glsl/test_uvec3.frag')
     p = new Program( gl );
     p.compile( vert, frag );
     p.bind()
@@ -110,8 +120,8 @@ describe( "Fbo", function(){
     // draw Fbo to screen
     testContext.bindScreen();
 
-    vert = require( '../glsl/filltex.vert')
-    frag = require( '../glsl/filltex.frag')
+    vert = require( './glsl/filltex.vert')
+    frag = require( './glsl/filltex.frag')
     p = new Program( gl );
     p.compile( vert, frag );
     p.bind()
@@ -124,6 +134,43 @@ describe( "Fbo", function(){
     testContext.assertNoError();
     fbo.dispose();
   });
+
+
+  it( "should fallback when multiple formats", function(){
+    var float_texture_ext = gl.getExtension('OES_texture_float');
+    var halfFloat = gl.getExtension("OES_texture_half_float")
+
+    var tList =  [ gl.FLOAT, halfFloat ? halfFloat.HALF_FLOAT_OES : gl.UNSIGNED_BYTE, gl.UNSIGNED_BYTE ];
+
+    var fbo = new Fbo( gl, 32, 32, {
+      type : tList,
+      format : gl.RGBA
+    });
+    // should always fallback to U8
+    expect( tList ).to.contain( fbo.getActualType() )
+    testContext.assertNoError();
+
+  })
+
+
+  it( "should fallback when multiple formats 2", function(){
+    var float_texture_ext = gl.getExtension('OES_texture_float');
+    var halfFloat = gl.getExtension("OES_texture_half_float")
+    var tList =  [ halfFloat ? halfFloat.HALF_FLOAT_OES : gl.FLOAT, gl.FLOAT, gl.UNSIGNED_BYTE ];
+    var fbo = new Fbo( gl, 32, 32, {
+      type : tList,
+      format : gl.RGB
+    });
+    // expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
+    // if( float_texture_ext || halfFloat )
+    //   expect( fbo.getActualType() ).not.to.be.equal( gl.UNSIGNED_BYTE )
+    // else
+    //   expect( fbo.getActualType() ).to.be.equal( gl.UNSIGNED_BYTE )
+
+    expect( tList ).to.contain( fbo.getActualType() )
+    testContext.assertNoError();
+
+  })
 
 
 

@@ -56,13 +56,14 @@ function getPixel(x, y){
 }
 
 function testPixel(x, y, rgba){
+  var TOLERANCE = 2;
   var r = (rgba >>> 16 ) & 0xFF
   var g = (rgba >>> 8 ) & 0xFF
   var b = rgba & 0xFF
   var a = (rgba >>> 24 ) & 0xFF
   var res = getPixel( x, y );
 
-  if( (Math.abs( r-res[0] ) > 1) || (Math.abs( g-res[1] ) > 1) || (Math.abs( b-res[2] ) > 1) || (Math.abs( a-res[3] ) > 1)){
+  if( (Math.abs( r-res[0] ) > TOLERANCE) || (Math.abs( g-res[1] ) > TOLERANCE) || (Math.abs( b-res[2] ) > TOLERANCE) || (Math.abs( a-res[3] ) > TOLERANCE)){
 
     ctest8888[3] = res[3];
     ctest8888[2] = res[0];
@@ -76,6 +77,8 @@ function testPixel(x, y, rgba){
 }
 
 function drawProgram( p ){
+
+  gl.clear( gl.COLOR_BUFFER_BIT )
   p.bind()
   fsgeom.bind( p );
   fsgeom.render()

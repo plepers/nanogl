@@ -1,12 +1,12 @@
 
 
-var Texture = require( '../../nanogl' ).Texture;
-var Program = require( '../../nanogl' ).Program;
+var Texture = require( '../nanogl' ).Texture;
+var Program = require( '../nanogl' ).Program;
 var expect  = require( 'expect.js' );
 
 var when = require( 'when' );
 
-var testContext = require( '../utils/TestContext' );
+var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
 function loadImage( img, src ){
@@ -24,8 +24,8 @@ var filltex, filltex16;
 describe( "Texture", function(){
 
   before(function() {
-    vert = require( '../glsl/filltex.vert')
-    frag = require( '../glsl/filltex.frag')
+    vert = require( './glsl/filltex.vert')
+    frag = require( './glsl/filltex.frag')
     filltex = new Program( gl );
     filltex.compile( vert, frag, "#define UV_MULT 2.0" );
 
@@ -112,14 +112,14 @@ describe( "Texture", function(){
 
     // NEAREST
     tex.setFilter( false, false, false )
-    tex.setRepeat( false )
+    tex.clamp()
     testContext.drawProgram( filltex );
     testContext.testPixel( 16, 3, 0xFFee0000 )
     testContext.testPixel( 48, 3, 0xFF101010 )
 
     // LINEAR
     tex.setFilter( true, false, false )
-    tex.setRepeat( false )
+    tex.clamp()
     testContext.drawProgram( filltex );
     testContext.testPixel( 16, 3, 0xFF955900 )
     testContext.testPixel( 48, 3, 0xFF630A0A )
@@ -136,7 +136,7 @@ describe( "Texture", function(){
     // MIPMAP
     gl.generateMipmap( gl.TEXTURE_2D, tex.id );
     tex.setFilter( false, true, false )
-    tex.setRepeat( false )
+    tex.clamp()
     testContext.drawProgram( filltex16 );
     testContext.testPixel( 0, 0, 0xFF7b4004 )
     testContext.testPixel( 2, 0, 0xFF777700 )
@@ -144,14 +144,14 @@ describe( "Texture", function(){
 
     // MIPMAP LINEAR
     tex.setFilter( false, true, true )
-    tex.setRepeat( false )
+    tex.clamp()
     testContext.drawProgram( filltex16 );
     testContext.testPixel( 0, 0, 0xFF794209 )
     testContext.testPixel( 2, 0, 0xFF767405 )
 
     // LINEAR MIPMAP LINEAR
     tex.setFilter( true, true, true )
-    tex.setRepeat( false )
+    tex.clamp()
     testContext.drawProgram( filltex16 );
     testContext.testPixel( 0, 0, 0xff794509 )
     testContext.testPixel( 2, 0, 0xff756c0c )
