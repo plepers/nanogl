@@ -1,10 +1,10 @@
-var IndexBuffer = require( '../../indexbuffer' );
-var ArrayBuffer = require( '../../arraybuffer' );
-var Program = require( '../../program' );
+var IndexBuffer = require( '../indexbuffer' );
+var ArrayBuffer = require( '../arraybuffer' );
+var Program = require( '../program' );
 
 var expect  = require( 'expect.js' );
 
-var testContext = require( '../utils/TestContext' );
+var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
 var indices = new Uint16Array([
@@ -72,8 +72,8 @@ describe( "ArrayBuffer", function(){
 
     var p = new Program( gl );
     p.compile(
-      require( '../glsl/test_uvec3.vert'),
-      require( '../glsl/test_uvec3.frag')
+      require( './glsl/test_uvec3.vert'),
+      require( './glsl/test_uvec3.frag')
     );
     p.use();
     p.uVec3( 1.0, 1.0, 1.0 );

@@ -1,9 +1,9 @@
-var ArrayBuffer = require( '../../arraybuffer' );
-var Program = require( '../../program' );
+var ArrayBuffer = require( '../arraybuffer' );
+var Program = require( '../program' );
 
 var expect  = require( 'expect.js' );
 
-var testContext = require( '../utils/TestContext' );
+var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
 var vertexData = new Uint8Array( 24 * 4 );
@@ -87,8 +87,8 @@ describe( "ArrayBuffer", function(){
 
     var p = new Program( gl );
     p.compile(
-      require( '../glsl/test_uvec3_array.vert'),
-      require( '../glsl/test_uvec3_array.frag')
+      require( './glsl/test_uvec3_array.vert'),
+      require( './glsl/test_uvec3_array.frag')
     );
     p.use()
 
@@ -108,8 +108,8 @@ describe( "ArrayBuffer", function(){
 
     var p = new Program( gl );
     p.compile(
-      require( '../glsl/test_arraybuffer.vert'),
-      require( '../glsl/test_arraybuffer.frag')
+      require( './glsl/test_arraybuffer.vert'),
+      require( './glsl/test_arraybuffer.frag')
     );
 
     testContext.assertNoError();
