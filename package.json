@@ -1,6 +1,6 @@
 {
   "name": "nanogl",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "webgl micro framework ",
   "main": "nanogl.js",
   "scripts": {
