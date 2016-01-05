@@ -1,12 +1,12 @@
 
 
-var Texture = require( '../../nanogl' ).Texture;
-var Program = require( '../../nanogl' ).Program;
+var Texture = require( '../nanogl' ).Texture;
+var Program = require( '../nanogl' ).Program;
 var expect  = require( 'expect.js' );
 
 var when = require( 'when' );
 
-var testContext = require( '../utils/TestContext' );
+var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
 function loadImage( img, src ){
@@ -24,8 +24,8 @@ var filltex, filltex16;
 describe( "Texture", function(){
 
   before(function() {
-    vert = require( '../glsl/filltex.vert')
-    frag = require( '../glsl/filltex.frag')
+    vert = require( './glsl/filltex.vert')
+    frag = require( './glsl/filltex.frag')
     filltex = new Program( gl );
     filltex.compile( vert, frag, "#define UV_MULT 2.0" );
 

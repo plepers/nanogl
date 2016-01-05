@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/specs/*.js',
+      'test/*.js',
       {pattern: 'test/assets/*.*', watched: false, included: false, served: true, nocache: false}
     ],
 
@@ -32,7 +32,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/specs/*.js': [ 'browserify' ]
+      'test/*.js': [ 'browserify' ]
     },
 
     browserify: {

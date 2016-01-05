@@ -25,6 +25,7 @@ var DEFAULT_OPTS = {};
 
 /**
  * Provide iterator of Pixel types
+ * todo : maybe overkill...
  */
 function TypeChain( formats ){
   if( !Array.isArray( formats ) ){
@@ -69,15 +70,10 @@ function Fbo( gl, width, height, opts )
 
   this.flags = (opts.depth) | (opts.stencil*2);
 
-  if( this.flags & 3 ){
-    this.attachmentBuffer = gl.createRenderbuffer();
-  } else {
-    this.attachmentBuffer = null;
-  }
-
   this.types = new TypeChain( opts.type || gl.UNSIGNED_BYTE );
 
   this.color = new Texture( gl, opts.format );
+  this._init();
   this.resize( width, height );
 }
 
@@ -95,12 +91,9 @@ Fbo.prototype = {
       return;
     }
 
-    this.width = w;
-    this.height = h;
-
+    this.width  = w|0;
+    this.height = h|0;
     this._allocate();
-
-
   },
 
   /**
@@ -125,17 +118,13 @@ Fbo.prototype = {
 
   /**
    * Clear all buffer of the Fbo.
-   * The Fbo must be explicitely bound before calling this method
+   * The Fbo must be explicitly bound before calling this method
    */
   clear : function() {
     var gl = this.gl;
     var bits = gl.COLOR_BUFFER_BIT;
-    if( this.flags & 1 ) {
-      bits |= gl.DEPTH_BUFFER_BIT;
-    }
-    if( this.flags & 2 ) {
-      bits |= gl.STENCIL_BUFFER_BIT;
-    }
+    bits |= ( this.flags & 1 ) ? gl.DEPTH_BUFFER_BIT : 0;
+    bits |= ( this.flags & 2 ) ? gl.STENCIL_BUFFER_BIT : 0;
     gl.clear( bits );
   },
 
@@ -171,7 +160,7 @@ Fbo.prototype = {
   },
 
 
-  _attach : function() {
+  _init : function() {
     var gl = this.gl;
 
     this.fbo = gl.createFramebuffer();
@@ -182,6 +171,8 @@ Fbo.prototype = {
 
     if( attType ) {
       var type   = getAttachmentType( gl, attType );
+      this.attachmentBuffer = gl.createRenderbuffer();
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.attachmentBuffer );
       gl.framebufferRenderbuffer( gl.FRAMEBUFFER, type, gl.RENDERBUFFER, this.attachmentBuffer );
     }
 
@@ -191,8 +182,6 @@ Fbo.prototype = {
   _allocate : function(){
     var gl = this.gl;
 
-    this.color.fromData( this.width, this.height, null, this.types.next() );
-
     var attType = this.flags & 3;
     if( attType ){
       var format = getAttachmentFormat( gl, attType );
@@ -201,23 +190,14 @@ Fbo.prototype = {
       gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
     }
 
-    if( !this.fbo ){
-      this._attach();
-    }
-
-    this.valid = true;
 
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
 
-    while( !this.isValid() ){
-      gl.getError(); // clear possible texture error
-      var nextFmt = this.types.next();
-      if( !nextFmt ) {
-        this.valid = false;
-        break;
-      }
+    var nextFmt = this.types.next();
+    do {
       this.color.fromData( this.width, this.height, null, nextFmt );
-    }
+      gl.getError(); // clear possible texture error
+    } while( !(this.valid = this.isValid() ) && ( nextFmt = this.types.next() ) );
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
