@@ -252,7 +252,6 @@ Program.prototype = {
     {
       var attribName = gl.getActiveAttrib( prg, aIndex ).name;
       var aLocation  = gl.getAttribLocation( prg, attribName );
-      gl.enableVertexAttribArray( aLocation );
       this[attribName] = getAttribAccess( aLocation );
     }
   }
