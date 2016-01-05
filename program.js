@@ -12,8 +12,8 @@ function appendLine( l, i ){
 /**
   * Add line numbers and log
   */
-function logShader( shader ) {
-  console.log( shader.split( '\n' ).map( appendLine ).join( '\n' ) );
+function formatCode( shader ) {
+  shader.split( '\n' ).map( appendLine ).join( '\n' );
 }
 
 
@@ -60,7 +60,6 @@ function getUniformSetter( type, location, gl, context ){
     default  :
       return getUniformSetFunction( type, location, gl, context );
   }
-  return null;
 }
 
 
@@ -121,8 +120,8 @@ function compileShader( gl, shader, code ){
   gl.compileShader( shader );
 
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.warn(gl.getShaderInfoLog(shader));
-    logShader( code );
+    Program.warn( gl.getShaderInfoLog(shader) );
+    Program.warn( formatCode( code ) );
     return false;
   }
   return true;
@@ -142,27 +141,45 @@ function Program( gl ){
   gl.attachShader(this.program, this.fShader);
 }
 
+/**
+ * Program.verbose
+ *   can be set to false to prevent shader code logs on glsl errors
+ */
+Program.verbose = true;
+
+
+
 Program.prototype = {
 
-  bind : function(){
+  /**
+   * Shortcut for gl.useProgram()
+   * alias program.bind()
+   */
+  use : function(){
     this.gl.useProgram( this.program );
   },
 
-  compile : function( vert, frag, defs ){
+  /**
+   * Compile vertex and fragment shader then link program
+   *  @vert :   string of vertex shader code
+   *  @frag :   string of fragment shader code
+   *  @prefix : an optional string append to both shaders
+   */
+  compile : function( vert, frag, prefix ){
 
-    defs = ( defs || '' ) + '\n';
+    prefix = ( prefix || '' ) + '\n';
 
     var gl = this.gl;
 
-    if( !( compileShader( gl, this.fShader, defs + frag ) &&
-           compileShader( gl, this.vShader, defs + vert ) ) ) {
+    if( !( compileShader( gl, this.fShader, prefix + frag ) &&
+           compileShader( gl, this.vShader, prefix + vert ) ) ) {
       return false;
     }
 
     gl.linkProgram(this.program);
 
     if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      console.warn(gl.getProgramInfoLog(this.program));
+      Program.warn(gl.getProgramInfoLog(this.program));
       return false;
     }
 
@@ -171,14 +188,24 @@ Program.prototype = {
     return true;
   },
 
-
+  /**
+    * Delete program and shader
+    *
+    */
   dispose : function() {
     this.gl.deleteProgram( this.program );
     this.gl.deleteShader(  this.Shader  );
     this.gl.deleteShader(  this.Shader  );
   },
 
-
+  /**
+   *  Internal
+   *  List all uniforms and attributes and create helper function on Program instance
+   *  eg :
+   *     for a uniform vec3 uDirection;
+   *     create a method
+   *        program.uDirection( 1, 0, 0 );
+   */
   _grabParameters : function(){
     var gl = this.gl,
         prg = this.program;
@@ -211,9 +238,7 @@ Program.prototype = {
         uName = uName.substring(0, n);
       }
 
-
       var uLocation = gl.getUniformLocation( prg, uniform.name );
-
       this[uName] = getUniformSetter( uniform.type, uLocation, gl, context );
 
     }
@@ -227,12 +252,26 @@ Program.prototype = {
     {
       var attribName = gl.getActiveAttrib( prg, aIndex ).name;
       var aLocation  = gl.getAttribLocation( prg, attribName );
-      gl.enableVertexAttribArray( aLocation );
       this[attribName] = getAttribAccess( aLocation );
     }
   }
 
 
+};
+
+// alias Program.use()
+Program.prototype.bind = Program.prototype.use;
+
+
+
+/**
+ * internal logs
+ *
+ */
+Program.warn = function(str){
+  if( Program.verbose ){
+    console.warn(str);
+  }
 };
 
 module.exports = Program;

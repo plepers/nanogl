@@ -1,8 +1,8 @@
-var Program = require( '../../nanogl' ).Program;
-var Fbo = require( '../../nanogl' ).Fbo;
+var Program = require( '../nanogl' ).Program;
+var Fbo = require( '../nanogl' ).Fbo;
 var expect  = require( 'expect.js' );
 
-var testContext = require( '../utils/TestContext' );
+var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
 
@@ -106,8 +106,8 @@ describe( "Fbo", function(){
 
 
     // draw 0xFF7F0000 to Fbo color
-    vert = require( '../glsl/test_uvec3.vert')
-    frag = require( '../glsl/test_uvec3.frag')
+    vert = require( './glsl/test_uvec3.vert')
+    frag = require( './glsl/test_uvec3.frag')
     p = new Program( gl );
     p.compile( vert, frag );
     p.bind()
@@ -120,8 +120,8 @@ describe( "Fbo", function(){
     // draw Fbo to screen
     testContext.bindScreen();
 
-    vert = require( '../glsl/filltex.vert')
-    frag = require( '../glsl/filltex.frag')
+    vert = require( './glsl/filltex.vert')
+    frag = require( './glsl/filltex.frag')
     p = new Program( gl );
     p.compile( vert, frag );
     p.bind()

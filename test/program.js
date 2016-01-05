@@ -1,7 +1,7 @@
-var Program = require( '../../nanogl' ).Program;
+var Program = require( '../nanogl' ).Program;
 var expect  = require( 'expect.js' );
 
-var testContext = require( '../utils/TestContext' );
+var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
 
@@ -25,8 +25,8 @@ describe( "Program", function(){
 
   it( "should compile simple", function(){
 
-    var vert = require( '../glsl/simple.vert')
-    var frag = require( '../glsl/simple.frag')
+    var vert = require( './glsl/simple.vert')
+    var frag = require( './glsl/simple.frag')
 
     var p = new Program( gl );
     p.compile( vert, frag );
@@ -37,8 +37,8 @@ describe( "Program", function(){
 
   it( "should compile complex", function(){
 
-    var vert = require( '../glsl/complete.vert')
-    var frag = require( '../glsl/complete.frag')
+    var vert = require( './glsl/complete.vert')
+    var frag = require( './glsl/complete.frag')
 
     var p = new Program( gl );
     p.compile( vert, frag );
@@ -52,12 +52,12 @@ describe( "Program", function(){
 
     var p = new Program( gl );
     p.compile(
-      require( '../glsl/complete.vert'),
-      require( '../glsl/complete.frag')
+      require( './glsl/complete.vert'),
+      require( './glsl/complete.frag')
     );
 
-    var vert = require( '../glsl/test_ufloat.vert'),
-        frag = require( '../glsl/test_ufloat.frag');
+    var vert = require( './glsl/test_ufloat.vert'),
+        frag = require( './glsl/test_ufloat.frag');
     p.compile(
       vert,
       frag
@@ -77,8 +77,8 @@ describe( "Program", function(){
 
   describe( "should set float uniform", function(){
 
-    var vert = require( '../glsl/test_ufloat.vert')
-    var frag = require( '../glsl/test_ufloat.frag')
+    var vert = require( './glsl/test_ufloat.vert')
+    var frag = require( './glsl/test_ufloat.frag')
 
     var p = new Program( gl );
     p.compile( vert, frag );
@@ -121,8 +121,8 @@ describe( "Program", function(){
 
   describe( "should set vec3 uniform", function(){
 
-    var vert = require( '../glsl/test_uvec3.vert')
-    var frag = require( '../glsl/test_uvec3.frag')
+    var vert = require( './glsl/test_uvec3.vert')
+    var frag = require( './glsl/test_uvec3.frag')
 
     var p = new Program( gl );
     p.compile( vert, frag );
@@ -163,8 +163,8 @@ describe( "Program", function(){
 
   describe( "should set vec3 Array uniform", function(){
 
-    var vert = require( '../glsl/test_uvec3_array.vert')
-    var frag = require( '../glsl/test_uvec3_array.frag')
+    var vert = require( './glsl/test_uvec3_array.vert')
+    var frag = require( './glsl/test_uvec3_array.frag')
 
     var p = new Program( gl );
     p.compile( vert, frag );
@@ -196,8 +196,8 @@ describe( "Program", function(){
 
   describe( "should set mat4 uniform", function(){
 
-    var vert = require( '../glsl/test_umat4.vert')
-    var frag = require( '../glsl/test_umat4.frag')
+    var vert = require( './glsl/test_umat4.vert')
+    var frag = require( './glsl/test_umat4.frag')
 
     var p = new Program( gl );
     p.compile( vert, frag );
