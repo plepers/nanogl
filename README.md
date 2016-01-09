@@ -2,5 +2,5 @@
 
 
 # nanogl
-webgl mico framework
+webgl micro framework
 

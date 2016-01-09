@@ -69,7 +69,9 @@ ArrayBuffer.prototype = {
       var attrib = this._attribs[i];
 
       if( program[attrib.name] !== undefined ){
-        gl.vertexAttribPointer( program[attrib.name](),
+        var aLocation = program[attrib.name]();
+        gl.enableVertexAttribArray( aLocation );
+        gl.vertexAttribPointer( aLocation,
                                 attrib.size,
                                 attrib.type,
                                 attrib.normalize,
