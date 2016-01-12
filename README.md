@@ -2,5 +2,5 @@
 
 
 # nanogl
-webgl micro framework
+webgl micro framework (6Ko)
 
