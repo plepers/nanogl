@@ -10,10 +10,11 @@ function appendLine( l, i ){
 }
 
 /**
-  * Add line numbers and log
+  * Format shader code
+  * add padded lines number
   */
 function formatCode( shader ) {
-  shader.split( '\n' ).map( appendLine ).join( '\n' );
+  return shader.split( '\n' ).map( appendLine ).join( '\n' );
 }
 
 
