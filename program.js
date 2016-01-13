@@ -46,7 +46,9 @@ function getUniformSetFunctionName( type ){
   return 'uniform' + USetFMap[type];
 }
 
-
+/**
+ * For a given uniform's type, return the proper setter function
+ */
 function getUniformSetter( type, location, gl, context ){
   switch( type ){
     case gl.FLOAT_MAT2  :
@@ -64,7 +66,10 @@ function getUniformSetter( type, location, gl, context ){
 }
 
 
-
+/**
+ * setter factory for vector uniforms
+ * return a function wich take both array or arguments
+ */
 function getUniformSetFunction( type, location, gl, context ){
   context;
   var fname = getUniformSetFunctionName( type );
@@ -78,7 +83,9 @@ function getUniformSetFunction( type, location, gl, context ){
   };
 }
 
-
+/**
+ * setter factory for matrix uniforms
+ */
 function getMatrixSetFunction( type, location, gl, context ){
   context;
   var fname = getUniformSetFunctionName( type );
@@ -90,7 +97,9 @@ function getMatrixSetFunction( type, location, gl, context ){
   };
 }
 
-
+/**
+ * setter factory for sampler uniforms
+ */
 function getSamplerSetFunction( type, location, gl, context ){
   var unit = context.texIndex++;
   return function(){
@@ -106,7 +115,9 @@ function getSamplerSetFunction( type, location, gl, context ){
   };
 }
 
-
+/**
+ * getter factory for attributes
+ */
 function getAttribAccess( attrib ){
   return function(){
     return attrib;
@@ -195,8 +206,9 @@ Program.prototype = {
     */
   dispose : function() {
     this.gl.deleteProgram( this.program );
-    this.gl.deleteShader(  this.Shader  );
-    this.gl.deleteShader(  this.Shader  );
+    this.gl.deleteShader(  this.fShader  );
+    this.gl.deleteShader(  this.vShader  );
+    this.gl = null;
   },
 
   /**
