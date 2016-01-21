@@ -50,9 +50,15 @@ describe( "ArrayBuffer", function(){
   });
 
 
-  it( "data() should leave clean state", function(){
+  it( "data( array ) should leave clean state", function(){
     var p = new IndexBuffer( gl );
     p.data( indices );
+    testContext.assertNoError();
+  });
+
+  it( "data( size ) should leave clean state", function(){
+    var p = new IndexBuffer( gl );
+    p.data( 64 );
     testContext.assertNoError();
   });
 

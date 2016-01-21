@@ -4,13 +4,12 @@ var TGT = 0x8893;
 
 
 function IndexBuffer( gl, type, data, usage ){
-  this.gl     = gl;
-  this.buffer = gl.createBuffer();
-  this.length = 0;
-  this.type   = type || gl.UNSIGNED_SHORT;
-  this.usage  = usage || gl.STATIC_DRAW;
+  this.gl       = gl;
+  this.buffer   = gl.createBuffer();
+  this.type     = type || gl.UNSIGNED_SHORT;
+  this.usage    = usage || gl.STATIC_DRAW;
   this.typeSize = BufferUtils.getComponentSize( this.type );
-
+  this.length   = 0;
 
   if( data ){
     this.data( data );
@@ -31,7 +30,8 @@ IndexBuffer.prototype = {
     gl.bindBuffer( TGT, this.buffer );
     gl.bufferData( TGT, array, this.usage );
     gl.bindBuffer( TGT, null );
-    this.length = array.byteLength / this.typeSize;
+    var bl = ( array.byteLength === undefined ) ? array : array.byteLength;
+    this.length = bl / this.typeSize;
   },
 
 
