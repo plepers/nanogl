@@ -3,14 +3,13 @@ var BufferUtils = require( './bufferutils' );
 var TGT = 0x8892;
 
 function ArrayBuffer( gl, data, usage ){
-  this.gl = gl;
-  this.usage = usage || gl.STATIC_DRAW;
-  this.buffer = gl.createBuffer();
-
-  this._attribs     = [];
-  this._stride      = 0;
-  this.byteLength   = 0;
-  this.length       = 0;
+  this.gl         = gl;
+  this.usage      = usage || gl.STATIC_DRAW;
+  this.buffer     = gl.createBuffer();
+  this.attribs    = [];
+  this.stride     = 0;
+  this.byteLength = 0;
+  this.length     = 0;
 
   if( data ){
     this.data( data );
@@ -27,15 +26,15 @@ ArrayBuffer.prototype = {
 
 
   attrib: function( name, size, type, normalize ){
-    this._attribs.push({
+    this.attribs.push({
       name      : name       ,
       type      : 0|type     ,
       size      : 0|size     ,
       normalize : !!normalize,
-      offset    : this._stride
+      offset    : this.stride
     });
-    this._stride += BufferUtils.getComponentSize( type ) * size;
-    this.length = this.byteLength / this._stride;
+    this.stride += BufferUtils.getComponentSize( type ) * size;
+    this._computeLength();
     return this;
   },
 
@@ -46,10 +45,8 @@ ArrayBuffer.prototype = {
     gl.bufferData( TGT, array, this.usage );
     gl.bindBuffer( TGT, null );
 
-    this.byteLength = array.byteLength;
-    if( this._stride > 0 ) {
-      this.length = this.byteLength / this._stride;
-    }
+    this.byteLength = ( array.byteLength === undefined ) ? array : array.byteLength;
+    this._computeLength();
   },
 
 
@@ -65,8 +62,8 @@ ArrayBuffer.prototype = {
     var gl = this.gl;
     gl.bindBuffer( TGT, this.buffer );
 
-    for (var i = 0; i < this._attribs.length; i++) {
-      var attrib = this._attribs[i];
+    for (var i = 0; i < this.attribs.length; i++) {
+      var attrib = this.attribs[i];
 
       if( program[attrib.name] !== undefined ){
         var aLocation = program[attrib.name]();
@@ -75,7 +72,7 @@ ArrayBuffer.prototype = {
                                 attrib.size,
                                 attrib.type,
                                 attrib.normalize,
-                                this._stride,
+                                this.stride,
                                 attrib.offset
                               );
       }
@@ -95,6 +92,13 @@ ArrayBuffer.prototype = {
     this.gl.deleteBuffer( this.buffer );
     this.buffer = null;
     this.gl = null;
+  },
+
+
+  _computeLength: function(){
+    if( this.stride > 0 ) {
+      this.length = this.byteLength / this.stride;
+    }
   }
 
 };

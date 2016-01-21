@@ -49,9 +49,16 @@ describe( "ArrayBuffer", function(){
   });
 
 
-  it( "data() should leave clean state", function(){
+  it( "data( array ) should leave clean state", function(){
     var p = new ArrayBuffer( gl );
     p.data( vertexData );
+    testContext.assertNoError();
+  });
+
+
+  it( "data( size ) should leave clean state", function(){
+    var p = new ArrayBuffer( gl );
+    p.data( 64 );
     testContext.assertNoError();
   });
 
@@ -72,7 +79,7 @@ describe( "ArrayBuffer", function(){
     b.attrib( 'aTexCoord', 2, gl.FLOAT );
     b.attrib( 'aColor', 4, gl.UNSIGNED_BYTE, true );
 
-    expect( b._stride ).to.be.equal( 24 )
+    expect( b.stride ).to.be.equal( 24 )
     expect( b.length ).to.be.equal( 4 )
 
   });
