@@ -1,5 +1,5 @@
 var _UID = 0;
-
+var T2D = 0x0DE1;
 
 /**
  * compute filtering enum, return one of the following :
@@ -29,10 +29,10 @@ function Texture( gl, format ){
   this.format = format || gl.RGB;
   this.type   = gl.UNSIGNED_BYTE;
 
-  gl.bindTexture( gl.TEXTURE_2D, this.id );
+  gl.bindTexture( T2D, this.id );
   this.setFilter( true );
   this.clamp( );
-  gl.bindTexture( gl.TEXTURE_2D, null );
+  gl.bindTexture( T2D, null );
 }
 
 
@@ -48,9 +48,9 @@ Texture.prototype = {
     this.width  = img.width;
     this.height = img.height;
 
-    gl.bindTexture( gl.TEXTURE_2D, this.id );
-    gl.texImage2D(  gl.TEXTURE_2D, 0, this.format, this.format, this.type, img );
-    gl.bindTexture( gl.TEXTURE_2D, null );
+    gl.bindTexture( T2D, this.id );
+    gl.texImage2D(  T2D, 0, this.format, this.format, this.type, img );
+    gl.bindTexture( T2D, null );
   },
 
   /**
@@ -67,11 +67,11 @@ Texture.prototype = {
     this.height = height;
 
     data = data || null;
-    this.type =    dataType || gl.UNSIGNED_BYTE;
+    this.type = dataType || gl.UNSIGNED_BYTE;
 
-    gl.bindTexture( gl.TEXTURE_2D, this.id );
-    gl.texImage2D( gl.TEXTURE_2D, 0, this.format, width, height, 0, this.format, this.type, data );
-    gl.bindTexture( gl.TEXTURE_2D, null );
+    gl.bindTexture( T2D, this.id );
+    gl.texImage2D( T2D, 0, this.format, width, height, 0, this.format, this.type, data );
+    gl.bindTexture( T2D, null );
   },
 
   /**
@@ -83,7 +83,7 @@ Texture.prototype = {
     if( unit !== undefined ){
       gl.activeTexture( gl.TEXTURE0 + (0|unit) );
     }
-    gl.bindTexture( gl.TEXTURE_2D, this.id );
+    gl.bindTexture( T2D, this.id );
   },
 
   /**
@@ -111,8 +111,8 @@ Texture.prototype = {
 
     var filter = getFilter( smooth, mipmap, miplinear);
 
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, getFilter( smooth, false, false ) );
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter );
+    gl.texParameteri( T2D, gl.TEXTURE_MAG_FILTER, getFilter( smooth, false, false ) );
+    gl.texParameteri( T2D, gl.TEXTURE_MIN_FILTER, filter );
   },
 
   /**
@@ -142,8 +142,8 @@ Texture.prototype = {
    */
   wrap : function( glenum ) {
     var gl = this.gl;
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, glenum );
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, glenum );
+    gl.texParameteri( T2D, gl.TEXTURE_WRAP_S, glenum );
+    gl.texParameteri( T2D, gl.TEXTURE_WRAP_T, glenum );
   }
 
 };

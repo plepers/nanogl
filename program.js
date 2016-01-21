@@ -205,10 +205,12 @@ Program.prototype = {
     *
     */
   dispose : function() {
-    this.gl.deleteProgram( this.program );
-    this.gl.deleteShader(  this.fShader  );
-    this.gl.deleteShader(  this.vShader  );
-    this.gl = null;
+    if( this.gl !== null ){
+      this.gl.deleteProgram( this.program );
+      this.gl.deleteShader(  this.fShader  );
+      this.gl.deleteShader(  this.vShader  );
+      this.gl = null;
+    }
   },
 
   /**
@@ -243,11 +245,9 @@ Program.prototype = {
       }
 
       var uName   = uniform.name,
-          n       = uName.indexOf('['),
-          aSize   = 1;
+          n       = uName.indexOf('[');
 
       if( n >= 0 ){
-        aSize = parseInt( uName.substring(n+1, uName.indexOf(']') ) );
         uName = uName.substring(0, n);
       }
 
