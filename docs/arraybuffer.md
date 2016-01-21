@@ -15,6 +15,8 @@ var data = new Float32Array([ 1, 0, 0, 0, 0, 1 ] );
 var buffer = new ArrayBuffer( gl, data, gl.DYNAMIC_DRAW );
 ```
 
+##### Populate Buffer
+
 Set buffer data
 ```JavaScript
 var buffer = new ArrayBuffer( gl );
@@ -49,3 +51,17 @@ buffer.attribPointer( program );
 
 ```
 
+##### Drawing commands
+
+ArrayBuffer provide gl.drawElements shortcuts, with optional count/offset.
+
+  - `drawPoints(count, offset)`
+  - `drawLineStrip(count, offset)`
+  - `drawLineLoop(count, offset)`
+  - `drawLines(count, offset)`
+  - `drawTriangleStrip(count, offset)`
+  - `drawTriangleFan(count, offset)`
+  - `drawTriangles(count, offset)`
+
+`count` in elements and `offset` in bytes
+If count/ offset is missing, the full buffer is drawn.
