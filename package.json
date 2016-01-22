@@ -5,6 +5,7 @@
   "main": "nanogl.js",
   "scripts": {
     "test": "jshint *.js && karma start",
+    "docs": "jsdoc program.js ",
     "gztest": "browserify nanogl.js -o gztest.js && uglifyjs --screw-ie8 -m -c warnings=false -o gztest.min.js -- gztest.js && gzip -k -9 gztest.js && stat -f%z gztest.js.gz && rm ./*gztest*"
   },
   "repository": {
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/plepers/nanogl#readme",
   "devDependencies": {
     "browserify": "^13.0.0",
+    "documentation": "^3.0.4",
     "expect.js": "^0.3.1",
     "jshint": "^2.9.1-rc1",
     "karma": "^0.13.15",

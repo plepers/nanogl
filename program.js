@@ -1,5 +1,5 @@
 
-/**
+/*
  * Shader logging utilities
  */
 
@@ -9,10 +9,10 @@ function appendLine( l, i ){
   return __pads[String(i+1).length] + ( i+1 ) + ': ' + l;
 }
 
-/**
-  * Format shader code
-  * add padded lines number
-  */
+/*
+ * Format shader code
+ * add padded lines number
+ */
 function formatCode( shader ) {
   return shader.split( '\n' ).map( appendLine ).join( '\n' );
 }
@@ -37,7 +37,7 @@ USetFMap[ String(5124 ) /*INT         */ ] = '1i';
 USetFMap[ String(35678) /*SAMPLER_2D  */ ] = '1i';
 USetFMap[ String(35680) /*SAMPLER_CUBE*/ ] = '1i';
 
-/**
+/*
  * Uniform upload utilities
  */
 
@@ -46,7 +46,7 @@ function getUniformSetFunctionName( type ){
   return 'uniform' + USetFMap[type];
 }
 
-/**
+/*
  * For a given uniform's type, return the proper setter function
  */
 function getUniformSetter( type, location, gl, context ){
@@ -66,7 +66,7 @@ function getUniformSetter( type, location, gl, context ){
 }
 
 
-/**
+/*
  * setter factory for vector uniforms
  * return a function wich take both array or arguments
  */
@@ -83,7 +83,7 @@ function getUniformSetFunction( type, location, gl, context ){
   };
 }
 
-/**
+/*
  * setter factory for matrix uniforms
  */
 function getMatrixSetFunction( type, location, gl, context ){
@@ -97,7 +97,7 @@ function getMatrixSetFunction( type, location, gl, context ){
   };
 }
 
-/**
+/*
  * setter factory for sampler uniforms
  */
 function getSamplerSetFunction( type, location, gl, context ){
@@ -115,7 +115,7 @@ function getSamplerSetFunction( type, location, gl, context ){
   };
 }
 
-/**
+/*
  * getter factory for attributes
  */
 function getAttribAccess( attrib ){
@@ -124,7 +124,7 @@ function getAttribAccess( attrib ){
   };
 }
 
-/**
+/*
  * Shader compilation utility
  */
 function compileShader( gl, shader, code ){
@@ -138,24 +138,62 @@ function compileShader( gl, shader, code ){
   }
   return true;
 }
-
 /**
- * Program
- *   Compile opengl program and expose uniforms and attributes
- *   @gl : webgl context this program belongs to
+ * Program constructor. Create gl program and shaders. You can pass optional shader code to immediatly compile shaders
+ *   @param {WebGLRenderingContext} gl webgl context this program belongs to
+ *   @param {String} [vert=undefined] an optional vertex shader code. See {@link Program#compile}
+ *   @param {String} [frag=undefined] an optional fragment shader code See {@link Program#compile}
+ *   @param {String} [defs=undefined] an optional string prepend to both fragment and vertex shader code. See {@link Program#compile}.
+ *   @see {@link Program#compile}
+ *
+ * @example <caption>For the given vertex shader</caption>
+ * attribute vec3 aPosition;
+ * uniform mat4 uMVP;
+ * uniform vec3 uCameraPosition;
+ *
+ * @example <caption>access to uniforms and attributes</caption>
+ * var prg =  new Program( gl, vert, frag );
+ * prg.use()
+ *
+ * var mvp = glmatrix.mat4.create()
+ * prg.uMVP( mvp )
+ *
+ * prg.uCameraPosition( 0, 0, 0 )
+ * // or
+ * var campos = glmatrix.vec3.create()
+ * prg.uCameraPosition( campos )
+ * // or
+ * prg.uCameraPosition( [0, 1, 2] )
+ *
+ * // get the uniform location
+ * var matLocation = prg.uMVP()
+
+ * // or attribute location
+ * var aPosition = prg.aPosition()
+ *
+ *
+ * @class
+ * @classdesc Program class provide shader compilation and linking functionality.
+ *              It also give you convinient access to active uniforms and attributes.
+ *              Once compiled, the Program object list all used uniforms and provide setter function for each one. See {@link Program} constructor.
+ *
  */
-function Program( gl ){
+function Program( gl, vert, frag, defs  ){
   this.gl = gl;
   this.program = gl.createProgram();
   this.vShader = gl.createShader( gl.VERTEX_SHADER );
   this.fShader = gl.createShader( gl.FRAGMENT_SHADER );
   gl.attachShader(this.program, this.vShader);
   gl.attachShader(this.program, this.fShader);
+
+  if( vert !== undefined && frag !== undefined ){
+    this.compile( vert, frag, defs );
+  }
 }
 
 /**
  * Program.verbose
- *   can be set to false to prevent shader code logs on glsl errors
+ *   can be set to false to prevent shader code logs on glsl errors (default to true)
  */
 Program.verbose = true;
 
@@ -172,10 +210,11 @@ Program.prototype = {
   },
 
   /**
-   * Compile vertex and fragment shader then link program
-   *  @vert :   string of vertex shader code
-   *  @frag :   string of fragment shader code
-   *  @prefix : an optional string append to both shaders
+   * Compile vertex and fragment shader then link gl program
+   * This method can be safely called several times.
+   *  @param {String} vert vertex shader code
+   *  @param {String} frag fragment shader code
+   *  @param {String} [prefix=''] an optional string append to both fragment and vertex code
    */
   compile : function( vert, frag, prefix ){
 
@@ -201,8 +240,7 @@ Program.prototype = {
   },
 
   /**
-    * Delete program and shader
-    *
+    * Delete program and shaders
     */
   dispose : function() {
     if( this.gl !== null ){
@@ -213,8 +251,7 @@ Program.prototype = {
     }
   },
 
-  /**
-   *  Internal
+  /*
    *  List all uniforms and attributes and create helper function on Program instance
    *  eg :
    *     for a uniform vec3 uDirection;
@@ -272,14 +309,15 @@ Program.prototype = {
 
 };
 
-// alias Program.use()
+/**
+ * alias to Program.use()
+ */
 Program.prototype.bind = Program.prototype.use;
 
 
 
-/**
+/*
  * internal logs
- *
  */
 Program.warn = function(str){
   if( Program.verbose ){
