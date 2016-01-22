@@ -53,7 +53,7 @@ buffer.attribPointer( program );
 
 ##### Drawing commands
 
-ArrayBuffer provide gl.drawElements shortcuts, with optional count/offset.
+ArrayBuffer provide gl.drawArrays shortcuts, with optional count/offset.
 
   - `drawPoints(count, offset)`
   - `drawLineStrip(count, offset)`
