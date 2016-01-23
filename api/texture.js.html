@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>texture.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ArrayBuffer.html">ArrayBuffer</a><ul class='methods'><li data-type='method'><a href="ArrayBuffer.html#attrib">attrib</a></li><li data-type='method'><a href="ArrayBuffer.html#attribPointer">attribPointer</a></li><li data-type='method'><a href="ArrayBuffer.html#bind">bind</a></li><li data-type='method'><a href="ArrayBuffer.html#data">data</a></li><li data-type='method'><a href="ArrayBuffer.html#dispose">dispose</a></li><li data-type='method'><a href="ArrayBuffer.html#draw">draw</a></li><li data-type='method'><a href="ArrayBuffer.html#subData">subData</a></li></ul></li><li><a href="Fbo.html">Fbo</a><ul class='methods'><li data-type='method'><a href="Fbo.html#bind">bind</a></li><li data-type='method'><a href="Fbo.html#bindColor">bindColor</a></li><li data-type='method'><a href="Fbo.html#clear">clear</a></li><li data-type='method'><a href="Fbo.html#dispose">dispose</a></li><li data-type='method'><a href="Fbo.html#getActualType">getActualType</a></li><li data-type='method'><a href="Fbo.html#isValid">isValid</a></li><li data-type='method'><a href="Fbo.html#resize">resize</a></li></ul></li><li><a href="IndexBuffer.html">IndexBuffer</a><ul class='methods'><li data-type='method'><a href="IndexBuffer.html#bind">bind</a></li><li data-type='method'><a href="IndexBuffer.html#data">data</a></li><li data-type='method'><a href="IndexBuffer.html#dispose">dispose</a></li><li data-type='method'><a href="IndexBuffer.html#draw">draw</a></li><li data-type='method'><a href="IndexBuffer.html#subData">subData</a></li></ul></li><li><a href="Program.html">Program</a><ul class='methods'><li data-type='method'><a href="Program.html#compile">compile</a></li><li data-type='method'><a href="Program.html#dispose">dispose</a></li><li data-type='method'><a href="Program.html#use">use</a></li></ul></li><li><a href="Texture.html">Texture</a><ul class='methods'><li data-type='method'><a href="Texture.html#bind">bind</a></li><li data-type='method'><a href="Texture.html#clamp">clamp</a></li><li data-type='method'><a href="Texture.html#dispose">dispose</a></li><li data-type='method'><a href="Texture.html#fromData">fromData</a></li><li data-type='method'><a href="Texture.html#fromImage">fromImage</a></li><li data-type='method'><a href="Texture.html#mirror">mirror</a></li><li data-type='method'><a href="Texture.html#repeat">repeat</a></li><li data-type='method'><a href="Texture.html#setFilter">setFilter</a></li><li data-type='method'><a href="Texture.html#wrap">wrap</a></li></ul></li></ul><h3>Interfaces</h3><ul><li><a href="Drawable.html">Drawable</a><ul class='methods'><li data-type='method'><a href="Drawable.html#drawLineLoop">drawLineLoop</a></li><li data-type='method'><a href="Drawable.html#drawLines">drawLines</a></li><li data-type='method'><a href="Drawable.html#drawLineStrip">drawLineStrip</a></li><li data-type='method'><a href="Drawable.html#drawPoints">drawPoints</a></li><li data-type='method'><a href="Drawable.html#drawTriangleFan">drawTriangleFan</a></li><li data-type='method'><a href="Drawable.html#drawTriangles">drawTriangles</a></li><li data-type='method'><a href="Drawable.html#drawTriangleStrip">drawTriangleStrip</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">texture.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var _UID = 0;
+var T2D = 0x0DE1;
+
+/*
+ * compute filtering enum, return one of the following :
+ *  NEAREST
+ *  LINEAR
+ *  NEAREST_MIPMAP_NEAREST
+ *  LINEAR_MIPMAP_NEAREST
+ *  NEAREST_MIPMAP_LINEAR
+ *  LINEAR_MIPMAP_LINEAR
+ */
+function getFilter( smooth, mipmap, miplinear ){
+  return 0x2600 | (+smooth) | (+mipmap&lt;&lt;8) | ( +( mipmap &amp;&amp; miplinear )&lt;&lt;1 );
+}
+
+
+/**
+ * @class
+ * @classdesc Texture class manage TEXTURE_2D types textures
+ *
+ *  @param {WebGLRenderingContext} gl webgl context the texture belongs to
+ *  @param {GLenum} [format=GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
+ */
+function Texture( gl, format ){
+  this._uid = _UID++;
+  this.gl = gl;
+  this.id = this.gl.createTexture();
+  this.width  = 0;
+  this.height = 0;
+  this.format = format || gl.RGB;
+  this.type   = gl.UNSIGNED_BYTE;
+
+  gl.bindTexture( T2D, this.id );
+  this.setFilter( true );
+  this.clamp( );
+  gl.bindTexture( T2D, null );
+}
+
+
+Texture.prototype = {
+
+  /**
+   * set texture data from html source
+   *   @param {TexImageSource} img the source. Can be ImageBitmap, ImageData, HTMLImageElement, HTMLCanvasElement, HTMLVideoElement
+   */
+  fromImage : function( img ){
+    var gl = this.gl;
+
+    this.width  = img.width;
+    this.height = img.height;
+
+    gl.bindTexture( T2D, this.id );
+    gl.texImage2D(  T2D, 0, this.format, this.format, this.type, img );
+    gl.bindTexture( T2D, null );
+  },
+
+  /**
+   * Allocate texture to the given size, with optional data (TypedArray) and data type
+   *  @param {number} width     the new texture's width
+   *  @param {number} height    the new texture's height
+   *  @param {TypedArray} [data=null]  TypedArray of texture data, can be null
+   *  @param {GLenum} [dataType=GL_UNSIGNED_BYTE] can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc depending on available extensions
+   */
+  fromData : function( width, height, data, dataType ){
+    var gl = this.gl;
+
+    this.width  = width;
+    this.height = height;
+
+    data = data || null;
+    this.type = dataType || gl.UNSIGNED_BYTE;
+
+    gl.bindTexture( T2D, this.id );
+    gl.texImage2D( T2D, 0, this.format, width, height, 0, this.format, this.type, data );
+    gl.bindTexture( T2D, null );
+  },
+
+  /**
+   * Bind the texture
+   *   @param {uint} [unit=undefined] optional texture unit to make active before binding
+   */
+  bind : function( unit ){
+    var gl = this.gl;
+    if( unit !== undefined ){
+      gl.activeTexture( gl.TEXTURE0 + (0|unit) );
+    }
+    gl.bindTexture( T2D, this.id );
+  },
+
+  /**
+   * delete the webgl texture
+   *
+   */
+  dispose : function( ){
+    this.gl.deleteTexture( this.id );
+    this.id = null;
+    this.gl = null;
+  },
+
+  /**
+   * Change the filtering parameters
+   *   @param {boolean} [smooth=false]    if true, use LINEAR filtering
+   *   @param {boolean} [mipmap=false]    if true, enable mipmaping
+   *   @param {boolean} [miplinear=false] if true, use linear Mipmapping
+   */
+  setFilter : function( smooth, mipmap, miplinear ){
+    var gl = this.gl;
+
+    smooth      = !!smooth;
+    mipmap      = !!mipmap;
+    miplinear   = !!miplinear;
+
+    var filter = getFilter( smooth, mipmap, miplinear);
+
+    gl.texParameteri( T2D, gl.TEXTURE_MAG_FILTER, getFilter( smooth, false, false ) );
+    gl.texParameteri( T2D, gl.TEXTURE_MIN_FILTER, filter );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to gl.REPEAT
+   */
+  repeat : function( ){
+    this.wrap( this.gl.REPEAT );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE
+   */
+  clamp : function( ){
+    this.wrap( this.gl.CLAMP_TO_EDGE );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT
+   */
+  mirror : function( ){
+    this.wrap( this.gl.MIRRORED_REPEAT );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to the given value
+   *  @param {GLenum} wrap the wrap enum
+   */
+  wrap : function( wrap ) {
+    var gl = this.gl;
+    gl.texParameteri( T2D, gl.TEXTURE_WRAP_S, wrap );
+    gl.texParameteri( T2D, gl.TEXTURE_WRAP_T, wrap );
+  }
+
+};
+
+module.exports = Texture;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 13:36:01 GMT+0100 (CET) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
