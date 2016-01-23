@@ -2,9 +2,9 @@ var Texture = require( './texture' );
 
 function getAttachmentFormat( gl, type ){
   switch( type ){
-    case 1: return gl.DEPTH_COMPONENT16;
-    case 2: return gl.STENCIL_INDEX8;
-    case 3: return gl.DEPTH_STENCIL;
+    case 1: return 0x81A5;  // DEPTH_COMPONENT16;
+    case 2: return 0x8D48;  // STENCIL_INDEX8;
+    case 3: return 0x84F9;  // DEPTH_STENCIL;
     default: throw new Error( 'unknown attachment type '+type );
   }
 }
@@ -12,40 +12,15 @@ function getAttachmentFormat( gl, type ){
 
 function getAttachmentType( gl, type ){
   switch( type ){
-    case 1: return gl.DEPTH_ATTACHMENT;
-    case 2: return gl.STENCIL_ATTACHMENT;
-    case 3: return gl.DEPTH_STENCIL_ATTACHMENT;
+    case 1: return 0x8D00;  // DEPTH_ATTACHMENT
+    case 2: return 0x8D20;  // STENCIL_ATTACHMENT;
+    case 3: return 0x821A;  // DEPTH_STENCIL_ATTACHMENT;
     default: throw new Error( 'unknown attachment type '+type );
   }
 }
 
 
 var DEFAULT_OPTS = {};
-
-
-/**
- * Provide iterator of Pixel types
- * todo : maybe overkill...
- */
-function TypeChain( formats ){
-  if( !Array.isArray( formats ) ){
-    formats = [formats];
-  }
-  this.formats = formats;
-  this.current = 0;
-}
-
-TypeChain.prototype = {
-  next: function(){
-    if( this.current >= this.formats.length ){
-      return 0;
-    }
-    return this.formats[this.current++];
-  },
-  reset: function(){
-    this.current = 0;
-  }
-};
 
 
 /**
@@ -70,7 +45,8 @@ function Fbo( gl, width, height, opts )
 
   this.flags = (opts.depth) | (opts.stencil*2);
 
-  this.types = new TypeChain( opts.type || gl.UNSIGNED_BYTE );
+  var types = opts.type || gl.UNSIGNED_BYTE;
+  this.types = Array.isArray( types ) ? types : [types];
 
   this.color = new Texture( gl, opts.format );
   this._init();
@@ -86,14 +62,11 @@ Fbo.prototype = {
    *  @h  :  new height
    */
   resize : function( w, h ){
-
-    if( this.width === w && this.height === h ) {
-      return;
+    if( this.width !== w || this.height !== h ) {
+      this.width  = w|0;
+      this.height = h|0;
+      this._allocate();
     }
-
-    this.width  = w|0;
-    this.height = h|0;
-    this._allocate();
   },
 
   /**
@@ -193,11 +166,12 @@ Fbo.prototype = {
 
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
 
-    var nextFmt = this.types.next();
+    var tIndex = 0;
+    var nextFmt = this.types[tIndex];
     do {
       this.color.fromData( this.width, this.height, null, nextFmt );
       gl.getError(); // clear possible texture error
-    } while( !(this.valid = this.isValid() ) && ( nextFmt = this.types.next() ) );
+    } while( !(this.valid = this.isValid() ) && ( nextFmt = this.types[++tIndex] ) );
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
