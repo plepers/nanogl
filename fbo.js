@@ -1,37 +1,16 @@
 var Texture = require( './texture' );
 
-function getAttachmentFormat( gl, type ){
-  switch( type ){
-    case 1: return 0x81A5;  // DEPTH_COMPONENT16;
-    case 2: return 0x8D48;  // STENCIL_INDEX8;
-    case 3: return 0x84F9;  // DEPTH_STENCIL;
-    default: throw new Error( 'unknown attachment type '+type );
-  }
-}
-
-
-function getAttachmentType( gl, type ){
-  switch( type ){
-    case 1: return 0x8D00;  // DEPTH_ATTACHMENT
-    case 2: return 0x8D20;  // STENCIL_ATTACHMENT;
-    case 3: return 0x821A;  // DEPTH_STENCIL_ATTACHMENT;
-    default: throw new Error( 'unknown attachment type '+type );
-  }
-}
-
-
-var DEFAULT_OPTS = {};
-
 
 /**
- * @gl      :   then webgl context this Fbo belongs to
- * @width   :   initial width of the fbo, the size can be later changed using Fbo#resize()
- * @height  :   initial height of the fbo, the size can be later changed using Fbo#resize()
- * @opts    :
- *    depth   <bool> : if true, a depth buffer is attached
- *    stencil <bool> : if true, a stencil buffer is attached
- *    type <Array or GLEnum> : the pixel type of the Fbo, default is gl.UNSIGNED_BYTE, can be gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
- *    format <GLEnum> : the internal pixel format, default to gl.RGB.
+ * @class
+ * @param {WebGLRenderingContext} gl      then webgl context this Fbo belongs to
+ * @param {uint} width   initial width of the fbo, the size can be later changed using Fbo#resize()
+ * @param {uint} height  initial height of the fbo, the size can be later changed using Fbo#resize()
+ * @param {Object} [opts]
+ * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
+ * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
+ * @param {GLenum|GLenum[]} [opts.type=GL_UNSIGNED_BYTE] the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
+ * @param {GLenum} [opts.format=GL_RGB] the internal pixel format.
  *
  */
 function Fbo( gl, width, height, opts )
@@ -57,9 +36,9 @@ function Fbo( gl, width, height, opts )
 Fbo.prototype = {
 
   /**
-   * Realocate Fbo size
-   *  @w  :  new width
-   *  @h  :  new height
+   * Resize FBO attachments
+   *  @param {uint} w new width
+   *  @param {uint} h new height
    */
   resize : function( w, h ){
     if( this.width !== w || this.height !== h ) {
@@ -70,8 +49,10 @@ Fbo.prototype = {
   },
 
   /**
-   * bind the color texture of this Fbo to a sampler2D location and a unit
+   * Bind the color texture of this Fbo to a sampler2D location and a unit
    * The related program must be in use.
+   * @param {WebGLUniformLocation} location the program's sampler to bind the textue to
+   * @param {} unit the texture unit to use
    */
   bindColor : function( location, unit ){
     var gl = this.gl;
@@ -119,7 +100,7 @@ Fbo.prototype = {
   },
 
   /**
-   * delete all webgl objects related to this Fbo
+   * Delete all webgl objects related to this Fbo (fbo, color attachment and depth/stencil renderbuffer )
    */
   dispose : function(){
     var gl = this.gl;
@@ -178,5 +159,32 @@ Fbo.prototype = {
   }
 
 };
+
+//---------------------------------
+//                        Utilities
+//---------------------------------
+
+
+function getAttachmentFormat( gl, type ){
+  switch( type ){
+    case 1: return 0x81A5;  // DEPTH_COMPONENT16;
+    case 2: return 0x8D48;  // STENCIL_INDEX8;
+    case 3: return 0x84F9;  // DEPTH_STENCIL;
+    default: throw new Error( 'unknown attachment type '+type );
+  }
+}
+
+
+function getAttachmentType( gl, type ){
+  switch( type ){
+    case 1: return 0x8D00;  // DEPTH_ATTACHMENT
+    case 2: return 0x8D20;  // STENCIL_ATTACHMENT;
+    case 3: return 0x821A;  // DEPTH_STENCIL_ATTACHMENT;
+    default: throw new Error( 'unknown attachment type '+type );
+  }
+}
+
+
+var DEFAULT_OPTS = {};
 
 module.exports = Fbo;
