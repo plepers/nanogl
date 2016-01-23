@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>indexbuffer.js - Documentation</title>
+    <title>texture.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">indexbuffer.js</h1>
+    <h1 class="page-title">texture.js</h1>
     
 
     
@@ -38,102 +38,159 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var BufferUtils = require( './bufferutils' );
+            <pre class="prettyprint source linenums"><code>var _UID = 0;
+var T2D = 0x0DE1;
 
-/* GL_ELEMENT_ARRAY_BUFFER */
-var TGT = 0x8893;
-
-/**
- * @class
- * @implements {Drawable}
- * @param {WebGLRenderingContext} gl      then webgl context this ArrayBuffer belongs to
- * @param {GLenum} [type=GL_UNSIGNED_SHORT]  the inetger type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)
- * @param {TypedArray|uint} [data]   optional data to copy to buffer, or the size (in bytes)
- * @param {GLenum} [usage=GL_STATIC_DRAW] the usage hint for this buffer.
- *
+/*
+ * compute filtering enum, return one of the following :
+ *  NEAREST
+ *  LINEAR
+ *  NEAREST_MIPMAP_NEAREST
+ *  LINEAR_MIPMAP_NEAREST
+ *  NEAREST_MIPMAP_LINEAR
+ *  LINEAR_MIPMAP_LINEAR
  */
-function IndexBuffer( gl, type, data, usage ){
-  this.gl       = gl;
-  this.buffer   = gl.createBuffer();
-  this.type     = type || gl.UNSIGNED_SHORT;
-  this.usage    = usage || gl.STATIC_DRAW;
-  this.typeSize = BufferUtils.getComponentSize( this.type );
-  this.length   = 0;
-
-  if( data ){
-    this.data( data );
-  }
+function getFilter( smooth, mipmap, miplinear ){
+  return 0x2600 | (+smooth) | (+mipmap&lt;&lt;8) | ( +( mipmap &amp;&amp; miplinear )&lt;&lt;1 );
 }
 
 
-IndexBuffer.prototype = {
+/**
+ * @class
+ * @classdesc Texture class manage TEXTURE_2D types textures
+ *
+ *  @param {WebGLRenderingContext} gl webgl context the texture belongs to
+ *  @param {GLenum} [format=GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
+ */
+function Texture( gl, format ){
+  this._uid = _UID++;
+  this.gl = gl;
+  this.id = this.gl.createTexture();
+  this.width  = 0;
+  this.height = 0;
+  this.format = format || gl.RGB;
+  this.type   = gl.UNSIGNED_BYTE;
 
+  gl.bindTexture( T2D, this.id );
+  this.setFilter( true );
+  this.clamp( );
+  gl.bindTexture( T2D, null );
+}
+
+
+Texture.prototype = {
 
   /**
-   * Bind the underlying webgl buffer.
+   * set texture data from html source
+   *   @param {TexImageSource} img the source. Can be ImageBitmap, ImageData, HTMLImageElement, HTMLCanvasElement, HTMLVideoElement
    */
-  bind: function(){
-    this.gl.bindBuffer( TGT, this.buffer );
-  },
-
-  /**
-   * Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size.
-   *   @param {TypedArray|uint} array the data to send to the buffer, or a size.
-   */
-  data: function( array ){
+  fromImage : function( img ){
     var gl = this.gl;
-    gl.bindBuffer( TGT, this.buffer );
-    gl.bufferData( TGT, array, this.usage );
-    gl.bindBuffer( TGT, null );
-    var bl = ( array.byteLength === undefined ) ? array : array.byteLength;
-    this.length = bl / this.typeSize;
+
+    this.width  = img.width;
+    this.height = img.height;
+
+    gl.bindTexture( T2D, this.id );
+    gl.texImage2D(  T2D, 0, this.format, this.format, this.type, img );
+    gl.bindTexture( T2D, null );
   },
 
   /**
-   * Set a part of the buffer with the given data, starting a offset (in bytes)
-   *  @param {typedArray} array the data to send to buffer
-   *  @param {uint} offset the offset in byte where the data will be written
+   * Allocate texture to the given size, with optional data (TypedArray) and data type
+   *  @param {number} width     the new texture's width
+   *  @param {number} height    the new texture's height
+   *  @param {TypedArray} [data=null]  TypedArray of texture data, can be null
+   *  @param {GLenum} [dataType=GL_UNSIGNED_BYTE] can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc depending on available extensions
    */
-  subData: function( array, offset ){
+  fromData : function( width, height, data, dataType ){
     var gl = this.gl;
-    gl.bindBuffer(    TGT, this.buffer );
-    gl.bufferSubData( TGT, offset, array );
-    gl.bindBuffer(    TGT, null );
+
+    this.width  = width;
+    this.height = height;
+
+    data = data || null;
+    this.type = dataType || gl.UNSIGNED_BYTE;
+
+    gl.bindTexture( T2D, this.id );
+    gl.texImage2D( T2D, 0, this.format, width, height, 0, this.format, this.type, data );
+    gl.bindTexture( T2D, null );
   },
 
+  /**
+   * Bind the texture
+   *   @param {uint} [unit=undefined] optional texture unit to make active before binding
+   */
+  bind : function( unit ){
+    var gl = this.gl;
+    if( unit !== undefined ){
+      gl.activeTexture( gl.TEXTURE0 + (0|unit) );
+    }
+    gl.bindTexture( T2D, this.id );
+  },
 
   /**
-   * Delete underlying webgl objects
+   * delete the webgl texture
+   *
    */
-  dispose: function(){
-    this.gl.deleteBuffer( this.buffer );
-    this.buffer = null;
+  dispose : function( ){
+    this.gl.deleteTexture( this.id );
+    this.id = null;
     this.gl = null;
   },
 
   /**
-   * Shortcut to gl.drawArrays
-   *   @param {GLenum} mode the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)
-   *   @param {uint} [count] the number of indices to draw (full buffer is used if omited)
-   *   @param {uint} [offset=0] the position of the first index to draw
+   * Change the filtering parameters
+   *   @param {boolean} [smooth=false]    if true, use LINEAR filtering
+   *   @param {boolean} [mipmap=false]    if true, enable mipmaping
+   *   @param {boolean} [miplinear=false] if true, use linear Mipmapping
    */
-  draw: function( mode, count, offset ){
-    count  = ( count === undefined  ) ? this.length : count;
-    offset = ( offset === undefined ) ? 0 : offset;
-    this.gl.drawElements( mode, count, this.type, offset );
-  }
+  setFilter : function( smooth, mipmap, miplinear ){
+    var gl = this.gl;
 
+    smooth      = !!smooth;
+    mipmap      = !!mipmap;
+    miplinear   = !!miplinear;
+
+    var filter = getFilter( smooth, mipmap, miplinear);
+
+    gl.texParameteri( T2D, gl.TEXTURE_MAG_FILTER, getFilter( smooth, false, false ) );
+    gl.texParameteri( T2D, gl.TEXTURE_MIN_FILTER, filter );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to gl.REPEAT
+   */
+  repeat : function( ){
+    this.wrap( this.gl.REPEAT );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE
+   */
+  clamp : function( ){
+    this.wrap( this.gl.CLAMP_TO_EDGE );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT
+   */
+  mirror : function( ){
+    this.wrap( this.gl.MIRRORED_REPEAT );
+  },
+
+  /**
+   * Set both WRAP_S and WRAP_T property to the given value
+   *  @param {GLenum} wrap the wrap enum
+   */
+  wrap : function( wrap ) {
+    var gl = this.gl;
+    gl.texParameteri( T2D, gl.TEXTURE_WRAP_S, wrap );
+    gl.texParameteri( T2D, gl.TEXTURE_WRAP_T, wrap );
+  }
 
 };
 
-
-/*
- * Implement Drawable
- */
-BufferUtils.Drawable( IndexBuffer.prototype );
-
-
-module.exports = IndexBuffer;</code></pre>
+module.exports = Texture;</code></pre>
         </article>
     </section>
 
@@ -145,7 +202,7 @@ module.exports = IndexBuffer;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 13:57:05 GMT+0100 (CET) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 14:06:58 GMT+0100 (CET) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

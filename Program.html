@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>IndexBuffer - Documentation</title>
+    <title>Program - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">IndexBuffer</h1>
+    <h1 class="page-title">Program</h1>
     
 
     
@@ -41,8 +41,12 @@
 <header>
     
         <h2>
-        IndexBuffer
+        Program
         </h2>
+        
+            <div class="class-description">Program class provide shader compilation and linking functionality.
+             It also give you convenient access to active uniforms and attributes.
+             Once compiled, the Program object list all used uniforms/attributes and provide getter/setter function for each one. See <a href="Program.html">Program</a> constructor.</div>
         
     
 </header>
@@ -53,12 +57,442 @@
         
 
     
+    <h2>Constructor</h2>
+    
 
-    <h4 class="name" id="IndexBuffer"><span class="type-signature"></span>new IndexBuffer<span class="signature">(gl, type<span class="signature-attributes">opt</span>, data<span class="signature-attributes">opt</span>, usage<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Program"><span class="type-signature"></span>new Program<span class="signature">(gl, vert<span class="signature-attributes">opt</span>, frag<span class="signature-attributes">opt</span>, defs<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
+
+<div class="description">
+    Program constructor. Create gl program and shaders. You can pass optional shader code to immediatly compile shaders
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>gl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">WebGLRenderingContext</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">webgl context this program belongs to</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>vert</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an optional vertex shader code. See <a href="Program.html#compile">Program#compile</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>frag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an optional fragment shader code See <a href="Program.html#compile">Program#compile</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an optional string prepend to both fragment and vertex shader code. See <a href="Program.html#compile">Program#compile</a>.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="program.js.html">program.js</a>, <a href="program.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Program.html#compile">Program#compile</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">For the given vertex shader</p>
+    
+    <pre class="prettyprint"><code>attribute vec3 aPosition;
+uniform mat4 uMVP;
+uniform vec3 uCameraPosition;</code></pre>
+
+        <p class="code-caption">access to uniforms and attributes</p>
+    
+    <pre class="prettyprint"><code>var prg =  new Program( gl, vert, frag );
+prg.use()
+
+var mvp = glmatrix.mat4.create()
+prg.uMVP( mvp )
+
+prg.uCameraPosition( 0, 0, 0 )
+// or
+var campos = glmatrix.vec3.create()
+prg.uCameraPosition( campos )
+// or
+prg.uCameraPosition( [0, 1, 2] )
+
+// get the uniform location
+var matLocation = prg.uMVP()
+// or attribute location
+var aPosition = prg.aPosition()</code></pre>
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".verbose"><span class="type-signature">(static) </span>verbose<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Program.verbose
+  can be set to false to prevent shader code logs on glsl errors (default to true)
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="program.js.html">program.js</a>, <a href="program.js.html#line59">line 59</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    alias to Program.use()
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="program.js.html">program.js</a>, <a href="program.js.html#line176">line 176</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="compile"><span class="type-signature"></span>compile<span class="signature">(vert, frag, prefix<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Compile vertex and fragment shader then link gl program
+This method can be safely called several times.
+</div>
 
 
 
@@ -97,13 +531,13 @@
 
         <tr>
             
-                <td class="name"><code>gl</code></td>
+                <td class="name"><code>vert</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">WebGLRenderingContext</span>
+<span class="param-type">String</span>
 
 
             
@@ -125,20 +559,20 @@
                 </td>
             
 
-            <td class="description last">then webgl context this ArrayBuffer belongs to</td>
+            <td class="description last">vertex shader code</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>frag</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">GLenum</span>
+<span class="param-type">String</span>
 
 
             
@@ -146,8 +580,6 @@
 
             
                 <td class="attributes">
-                
-                    &lt;optional><br>
                 
 
                 
@@ -159,28 +591,23 @@
             
                 <td class="default">
                 
-                    GL_UNSIGNED_SHORT
-                
                 </td>
             
 
-            <td class="description last">the inetger type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)</td>
+            <td class="description last">fragment shader code</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>prefix</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">TypedArray</span>
-|
-
-<span class="param-type">uint</span>
+<span class="param-type">String</span>
 
 
             
@@ -201,290 +628,12 @@
             
                 <td class="default">
                 
-                </td>
-            
-
-            <td class="description last">optional data to copy to buffer, or the size (in bytes)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>usage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">GLenum</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
+                    ''
                 
                 </td>
             
 
-            
-                <td class="default">
-                
-                    GL_STATIC_DRAW
-                
-                </td>
-            
-
-            <td class="description last">the usage hint for this buffer.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="implements">Implements:</dt>
-    <dd class="implements"><ul>
-        
-            <li><a href="Drawable.html">Drawable</a></li>
-        
-    </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line15">line 15</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Bind the underlying webgl buffer.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line35">line 35</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="data"><span class="type-signature"></span>data<span class="signature">(array)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>array</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TypedArray</span>
-|
-
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the data to send to the buffer, or a size.</td>
+            <td class="description last">an optional string append to both fragment and vertex code</td>
         </tr>
 
     
@@ -525,7 +674,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line43">line 43</a>
+        <a href="program.js.html">program.js</a>, <a href="program.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -563,7 +712,7 @@
 
 
 <div class="description">
-    Delete underlying webgl objects
+    Delete program and shaders
 </div>
 
 
@@ -607,7 +756,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line68">line 68</a>
+        <a href="program.js.html">program.js</a>, <a href="program.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -638,14 +787,15 @@
 
     
 
-    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(mode, count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="use"><span class="type-signature"></span>use<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays
+    Shortcut for gl.useProgram()
+alias program.bind()
 </div>
 
 
@@ -654,147 +804,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">GLenum</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">the number of indices to draw (full buffer is used if omited)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">the position of the first index to draw</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -830,161 +839,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line80">line 80</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="subData"><span class="type-signature"></span>subData<span class="signature">(array, offset)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set a part of the buffer with the given data, starting a offset (in bytes)
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>array</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">typedArray</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the data to send to buffer</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the offset in byte where the data will be written</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line57">line 57</a>
+        <a href="program.js.html">program.js</a>, <a href="program.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -1028,7 +883,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 13:57:05 GMT+0100 (CET) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 14:06:58 GMT+0100 (CET) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

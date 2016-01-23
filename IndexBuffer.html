@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Fbo - Documentation</title>
+    <title>IndexBuffer - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Fbo</h1>
+    <h1 class="page-title">IndexBuffer</h1>
     
 
     
@@ -41,7 +41,7 @@
 <header>
     
         <h2>
-        Fbo
+        IndexBuffer
         </h2>
         
     
@@ -54,7 +54,7 @@
 
     
 
-    <h4 class="name" id="Fbo"><span class="type-signature"></span>new Fbo<span class="signature">(gl, width, height, opts<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="IndexBuffer"><span class="type-signature"></span>new IndexBuffer<span class="signature">(gl, type<span class="signature-attributes">opt</span>, data<span class="signature-attributes">opt</span>, usage<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -84,6 +84,8 @@
         <th>Attributes</th>
         
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -118,204 +120,12 @@
             
 
             
-
-            <td class="description last">then webgl context this Fbo belongs to</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>width</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">initial width of the fbo, the size can be later changed using Fbo#resize()</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">initial height of the fbo, the size can be later changed using Fbo#resize()</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>depth</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
                 <td class="default">
                 
-                    false
-                
                 </td>
             
 
-            <td class="description last">if true, a depth renderbuffer is attached</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>stencil</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last">if true, a stencil renderbuffer is attached</td>
+            <td class="description last">then webgl context this ArrayBuffer belongs to</td>
         </tr>
 
     
@@ -329,9 +139,6 @@
             
                 
 <span class="param-type">GLenum</span>
-|
-
-<span class="param-type">Array.&lt;GLenum></span>
 
 
             
@@ -352,19 +159,59 @@
             
                 <td class="default">
                 
-                    GL_UNSIGNED_BYTE
+                    GL_UNSIGNED_SHORT
                 
                 </td>
             
 
-            <td class="description last">the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks</td>
+            <td class="description last">the inetger type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>format</code></td>
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TypedArray</span>
+|
+
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">optional data to copy to buffer, or the size (in bytes)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>usage</code></td>
             
 
             <td class="type">
@@ -391,19 +238,12 @@
             
                 <td class="default">
                 
-                    GL_RGB
+                    GL_STATIC_DRAW
                 
                 </td>
             
 
-            <td class="description last">the internal pixel format.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last">the usage hint for this buffer.</td>
         </tr>
 
     
@@ -428,6 +268,13 @@
     
 
     
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Drawable.html">Drawable</a></li>
+        
+    </ul></dd>
+    
 
     
 
@@ -444,7 +291,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line16">line 16</a>
+        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -500,7 +347,7 @@
 
 
 <div class="description">
-    Bind the Fbo and set gl viewport to it's size
+    Bind the underlying webgl buffer.
 </div>
 
 
@@ -544,7 +391,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line67">line 67</a>
+        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -575,15 +422,14 @@
 
     
 
-    <h4 class="name" id="bindColor"><span class="type-signature"></span>bindColor<span class="signature">(location, unit)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="data"><span class="type-signature"></span>data<span class="signature">(array)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Bind the color texture of this Fbo to a sampler2D location and a unit
-The related program must be in use.
+    Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size.
 </div>
 
 
@@ -619,13 +465,16 @@ The related program must be in use.
 
         <tr>
             
-                <td class="name"><code>location</code></td>
+                <td class="name"><code>array</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">WebGLUniformLocation</span>
+<span class="param-type">TypedArray</span>
+|
+
+<span class="param-type">uint</span>
 
 
             
@@ -635,25 +484,7 @@ The related program must be in use.
 
             
 
-            <td class="description last">the program's sampler to bind the textue to</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>unit</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the texture unit to use</td>
+            <td class="description last">the data to send to the buffer, or a size.</td>
         </tr>
 
     
@@ -694,90 +525,7 @@ The related program must be in use.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line57">line 57</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="clear"><span class="type-signature"></span>clear<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Clear all buffer of the Fbo.
-The Fbo must be explicitly bound before calling this method
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line77">line 77</a>
+        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line43">line 43</a>
     </li></ul></dd>
     
 
@@ -815,7 +563,7 @@ The Fbo must be explicitly bound before calling this method
 
 
 <div class="description">
-    Delete all webgl objects related to this Fbo (fbo, color attachment and depth/stencil renderbuffer )
+    Delete underlying webgl objects
 </div>
 
 
@@ -859,7 +607,7 @@ The Fbo must be explicitly bound before calling this method
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line105">line 105</a>
+        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -890,180 +638,14 @@ The Fbo must be explicitly bound before calling this method
 
     
 
-    <h4 class="name" id="getActualType"><span class="type-signature"></span>getActualType<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(mode, count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    return the actual pixel type of the underlying color texture (UNSIGNED_BYTE, FLOAT, HALF_FLOAT_EOS etc)
-after possibles types has been tested
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line98">line 98</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="isValid"><span class="type-signature"></span>isValid<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Check if the Fbo is valid,
-The Fbo must be explicitely bound before calling this method
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line89">line 89</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="resize"><span class="type-signature"></span>resize<span class="signature">(w, h)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Resize FBO attachments
+    Shortcut to gl.drawArrays
 </div>
 
 
@@ -1087,7 +669,11 @@ The Fbo must be explicitely bound before calling this method
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1099,30 +685,42 @@ The Fbo must be explicitely bound before calling this method
 
         <tr>
             
-                <td class="name"><code>w</code></td>
+                <td class="name"><code>mode</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">uint</span>
+<span class="param-type">GLenum</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">new width</td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>h</code></td>
+                <td class="name"><code>count</code></td>
             
 
             <td class="type">
@@ -1135,10 +733,63 @@ The Fbo must be explicitely bound before calling this method
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">new height</td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the number of indices to draw (full buffer is used if omited)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">the position of the first index to draw</td>
         </tr>
 
     
@@ -1179,7 +830,161 @@ The Fbo must be explicitely bound before calling this method
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fbo.js.html">fbo.js</a>, <a href="fbo.js.html#line43">line 43</a>
+        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="subData"><span class="type-signature"></span>subData<span class="signature">(array, offset)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Set a part of the buffer with the given data, starting a offset (in bytes)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">typedArray</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the data to send to buffer</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the offset in byte where the data will be written</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="indexbuffer.js.html">indexbuffer.js</a>, <a href="indexbuffer.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -1223,7 +1028,7 @@ The Fbo must be explicitely bound before calling this method
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 13:57:05 GMT+0100 (CET) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 14:06:58 GMT+0100 (CET) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

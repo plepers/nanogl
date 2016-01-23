@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Texture - Documentation</title>
+    <title>Drawable - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Texture</h1>
+    <h1 class="page-title">Drawable</h1>
     
 
     
@@ -41,10 +41,8 @@
 <header>
     
         <h2>
-        Texture
+        Drawable
         </h2>
-        
-            <div class="class-description">Texture class manage TEXTURE_2D types textures</div>
         
     
 </header>
@@ -53,16 +51,86 @@
     <div class="container-overview">
     
         
+            <div class="description">Interface for buffer that can be drawn.</div>
+        
+
+        
+
+
+<dl class="details">
 
     
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="Texture"><span class="type-signature"></span>new Texture<span class="signature">(gl, format<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="drawLineLoop"><span class="type-signature"></span>drawLineLoop<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Shortcut to gl.drawArrays( gl.LINE_LOOP, offset, count )
+</div>
 
 
 
@@ -101,209 +169,7 @@
 
         <tr>
             
-                <td class="name"><code>gl</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">WebGLRenderingContext</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">webgl context the texture belongs to</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>format</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">GLenum</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    GL_RGB
-                
-                </td>
-            
-
-            <td class="description last">the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="signature">(unit<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Bind the texture
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>unit</code></td>
+                <td class="name"><code>count</code></td>
             
 
             <td class="type">
@@ -328,8 +194,51 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last">optional texture unit to make active before binding</td>
+            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">the position in buffer to start from.</td>
         </tr>
 
     
@@ -370,7 +279,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line83">line 83</a>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -401,178 +310,14 @@
 
     
 
-    <h4 class="name" id="clamp"><span class="type-signature"></span>clamp<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="drawLines"><span class="type-signature"></span>drawLines<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line130">line 130</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="dispose"><span class="type-signature"></span>dispose<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    delete the webgl texture
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line95">line 95</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="fromData"><span class="type-signature"></span>fromData<span class="signature">(width, height, data<span class="signature-attributes">opt</span>, dataType<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Allocate texture to the given size, with optional data (TypedArray) and data type
+    Shortcut to gl.drawArrays( gl.LINES, offset, count )
 </div>
 
 
@@ -612,83 +357,13 @@
 
         <tr>
             
-                <td class="name"><code>width</code></td>
+                <td class="name"><code>count</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">the new texture's width</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">the new texture's height</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TypedArray</span>
+<span class="param-type">uint</span>
 
 
             
@@ -709,25 +384,23 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
-            <td class="description last">TypedArray of texture data, can be null</td>
+            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>dataType</code></td>
+                <td class="name"><code>offset</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">GLenum</span>
+<span class="param-type">uint</span>
 
 
             
@@ -748,12 +421,12 @@
             
                 <td class="default">
                 
-                    GL_UNSIGNED_BYTE
+                    0
                 
                 </td>
             
 
-            <td class="description last">can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc depending on available extensions</td>
+            <td class="description last">the position in buffer to start from.</td>
         </tr>
 
     
@@ -794,7 +467,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line65">line 65</a>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -825,309 +498,14 @@
 
     
 
-    <h4 class="name" id="fromImage"><span class="type-signature"></span>fromImage<span class="signature">(img)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="drawLineStrip"><span class="type-signature"></span>drawLineStrip<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    set texture data from html source
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>img</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">TexImageSource</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the source. Can be ImageBitmap, ImageData, HTMLImageElement, HTMLCanvasElement, HTMLVideoElement</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line47">line 47</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="mirror"><span class="type-signature"></span>mirror<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line137">line 137</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="repeat"><span class="type-signature"></span>repeat<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Set both WRAP_S and WRAP_T property to gl.REPEAT
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line123">line 123</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setFilter"><span class="type-signature"></span>setFilter<span class="signature">(smooth<span class="signature-attributes">opt</span>, mipmap<span class="signature-attributes">opt</span>, miplinear<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Change the filtering parameters
+    Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )
 </div>
 
 
@@ -1167,13 +545,13 @@
 
         <tr>
             
-                <td class="name"><code>smooth</code></td>
+                <td class="name"><code>count</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">uint</span>
 
 
             
@@ -1194,25 +572,23 @@
             
                 <td class="default">
                 
-                    false
-                
                 </td>
             
 
-            <td class="description last">if true, use LINEAR filtering</td>
+            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>mipmap</code></td>
+                <td class="name"><code>offset</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">uint</span>
 
 
             
@@ -1233,51 +609,12 @@
             
                 <td class="default">
                 
-                    false
+                    0
                 
                 </td>
             
 
-            <td class="description last">if true, enable mipmaping</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>miplinear</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last">if true, use linear Mipmapping</td>
+            <td class="description last">the position in buffer to start from.</td>
         </tr>
 
     
@@ -1318,7 +655,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line107">line 107</a>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -1349,14 +686,14 @@
 
     
 
-    <h4 class="name" id="wrap"><span class="type-signature"></span>wrap<span class="signature">(wrap)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="drawPoints"><span class="type-signature"></span>drawPoints<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Set both WRAP_S and WRAP_T property to the given value
+    Shortcut to gl.drawArrays( gl.POINTS, offset, count )
 </div>
 
 
@@ -1380,7 +717,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1392,23 +733,76 @@
 
         <tr>
             
-                <td class="name"><code>wrap</code></td>
+                <td class="name"><code>count</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">GLenum</span>
+<span class="param-type">uint</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">the wrap enum</td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">the position in buffer to start from.</td>
         </tr>
 
     
@@ -1449,7 +843,571 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="texture.js.html">texture.js</a>, <a href="texture.js.html#line145">line 145</a>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="drawTriangleFan"><span class="type-signature"></span>drawTriangleFan<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">the position in buffer to start from.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line79">line 79</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="drawTriangles"><span class="type-signature"></span>drawTriangles<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">the position in buffer to start from.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line87">line 87</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="drawTriangleStrip"><span class="type-signature"></span>drawTriangleStrip<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">the position in buffer to start from.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -1493,7 +1451,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 13:57:05 GMT+0100 (CET) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 14:06:58 GMT+0100 (CET) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Drawable - Documentation</title>
+    <title>ArrayBuffer - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Drawable</h1>
+    <h1 class="page-title">ArrayBuffer</h1>
     
 
     
@@ -41,7 +41,7 @@
 <header>
     
         <h2>
-        Drawable
+        ArrayBuffer
         </h2>
         
     
@@ -51,10 +51,169 @@
     <div class="container-overview">
     
         
-            <div class="description">Interface for buffer that can be drawn.</div>
+
+    
+
+    <h4 class="name" id="ArrayBuffer"><span class="type-signature"></span>new ArrayBuffer<span class="signature">(gl, data<span class="signature-attributes">opt</span>, usage<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
         
 
         
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>gl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">WebGLRenderingContext</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">then webgl context this ArrayBuffer belongs to</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TypedArray</span>
+|
+
+<span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">optional data to copy to buffer, or the size (in bytes)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>usage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">GLenum</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    GL_STATIC_DRAW
+                
+                </td>
+            
+
+            <td class="description last">the usage hint for this buffer.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
 
 
 <dl class="details">
@@ -69,6 +228,13 @@
 
     
 
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="Drawable.html">Drawable</a></li>
+        
+    </ul></dd>
     
 
     
@@ -86,7 +252,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line33">line 33</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -98,7 +264,20 @@
 </dl>
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     </div>
 
@@ -122,14 +301,15 @@
 
     
 
-    <h4 class="name" id="drawLineLoop"><span class="type-signature"></span>drawLineLoop<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="attrib"><span class="type-signature"></span>attrib<span class="signature">(name, size, type, normalize<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays( gl.LINE_LOOP, offset, count )
+    Add attribute declaration for this buffer. Once attributes declared, the buffer can be linked to
+programs attributes using <a href="ArrayBuffer.html#attribPointer">ArrayBuffer#attribPointer</a>
 </div>
 
 
@@ -169,13 +349,13 @@
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">uint</span>
+<span class="param-type">string</span>
 
 
             
@@ -183,8 +363,6 @@
 
             
                 <td class="attributes">
-                
-                    &lt;optional><br>
                 
 
                 
@@ -199,20 +377,90 @@
                 </td>
             
 
-            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
+            <td class="description last">the name of the program's attribute</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>offset</code></td>
+                <td class="name"><code>size</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">uint</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the size of the attribute (3 for a vec3)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">GLenum</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the type of data (GL_FLOAT, GL_SHORT etc)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>normalize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
 
 
             
@@ -233,12 +481,12 @@
             
                 <td class="default">
                 
-                    0
+                    false
                 
                 </td>
             
 
-            <td class="description last">the position in buffer to start from.</td>
+            <td class="description last">indicate if the data must be normalized</td>
         </tr>
 
     
@@ -279,7 +527,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line55">line 55</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line49">line 49</a>
     </li></ul></dd>
     
 
@@ -310,14 +558,15 @@
 
     
 
-    <h4 class="name" id="drawLines"><span class="type-signature"></span>drawLines<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="attribPointer"><span class="type-signature"></span>attribPointer<span class="signature">(program)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays( gl.LINES, offset, count )
+    Link given program attributes to this buffer. You should first declare attributes using <a href="ArrayBuffer.html#attrib">ArrayBuffer#attrib</a>
+before calling this method.
 </div>
 
 
@@ -341,11 +590,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -357,76 +602,23 @@
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>program</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">uint</span>
+<span class="param-type"><a href="Program.html">Program</a></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">the position in buffer to start from.</td>
+            <td class="description last">the nanogl Program</td>
         </tr>
 
     
@@ -467,7 +659,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line63">line 63</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line93">line 93</a>
     </li></ul></dd>
     
 
@@ -498,14 +690,14 @@
 
     
 
-    <h4 class="name" id="drawLineStrip"><span class="type-signature"></span>drawLineStrip<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )
+    Bind the underlying webgl buffer.
 </div>
 
 
@@ -514,112 +706,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">the position in buffer to start from.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -655,7 +741,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line47">line 47</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -686,14 +772,14 @@
 
     
 
-    <h4 class="name" id="drawPoints"><span class="type-signature"></span>drawPoints<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="data"><span class="type-signature"></span>data<span class="signature">(array)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays( gl.POINTS, offset, count )
+    Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size.
 </div>
 
 
@@ -717,11 +803,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -733,12 +815,15 @@
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>array</code></td>
             
 
             <td class="type">
             
                 
+<span class="param-type">TypedArray</span>
+|
+
 <span class="param-type">uint</span>
 
 
@@ -746,63 +831,10 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">the position in buffer to start from.</td>
+            <td class="description last">the data to send to the buffer, or a size.</td>
         </tr>
 
     
@@ -843,7 +875,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line39">line 39</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line66">line 66</a>
     </li></ul></dd>
     
 
@@ -874,14 +906,14 @@
 
     
 
-    <h4 class="name" id="drawTriangleFan"><span class="type-signature"></span>drawTriangleFan<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="dispose"><span class="type-signature"></span>dispose<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )
+    Delete underlying webgl objects
 </div>
 
 
@@ -890,112 +922,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">uint</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">the position in buffer to start from.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1031,7 +957,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line79">line 79</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -1062,14 +988,14 @@
 
     
 
-    <h4 class="name" id="drawTriangles"><span class="type-signature"></span>drawTriangles<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(mode, count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )
+    Shortcut to gl.drawArrays
 </div>
 
 
@@ -1105,6 +1031,41 @@
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">GLenum</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)</td>
+        </tr>
+
     
 
         <tr>
@@ -1178,7 +1139,7 @@
                 </td>
             
 
-            <td class="description last">the position in buffer to start from.</td>
+            <td class="description last">the position of the first vertex to draw</td>
         </tr>
 
     
@@ -1219,7 +1180,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line87">line 87</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -1250,14 +1211,14 @@
 
     
 
-    <h4 class="name" id="drawTriangleStrip"><span class="type-signature"></span>drawTriangleStrip<span class="signature">(count<span class="signature-attributes">opt</span>, offset<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="subData"><span class="type-signature"></span>subData<span class="signature">(array, offset)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )
+    Set a part of the buffer with the given data, starting a offset (in bytes)
 </div>
 
 
@@ -1281,11 +1242,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1297,37 +1254,23 @@
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>array</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">uint</span>
+<span class="param-type">typedArray</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">the number of vertices to draw (full buffer is used if omited)</td>
+            <td class="description last">the data to send to buffer</td>
         </tr>
 
     
@@ -1347,26 +1290,10 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
 
-            <td class="description last">the position in buffer to start from.</td>
+            <td class="description last">the offset in byte where the data will be written</td>
         </tr>
 
     
@@ -1407,7 +1334,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bufferutils.js.html">bufferutils.js</a>, <a href="bufferutils.js.html#line71">line 71</a>
+        <a href="arraybuffer.js.html">arraybuffer.js</a>, <a href="arraybuffer.js.html#line81">line 81</a>
     </li></ul></dd>
     
 
@@ -1451,7 +1378,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 13:57:05 GMT+0100 (CET) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 14:06:58 GMT+0100 (CET) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

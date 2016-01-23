@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>arraybuffer.js - Documentation</title>
+    <title>indexbuffer.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">arraybuffer.js</h1>
+    <h1 class="page-title">indexbuffer.js</h1>
     
 
     
@@ -40,28 +40,25 @@
         <article>
             <pre class="prettyprint source linenums"><code>var BufferUtils = require( './bufferutils' );
 
-/*
- * GL_ARRAY_BUFFER */
-var TGT = 0x8892;
-
-
+/* GL_ELEMENT_ARRAY_BUFFER */
+var TGT = 0x8893;
 
 /**
  * @class
  * @implements {Drawable}
  * @param {WebGLRenderingContext} gl      then webgl context this ArrayBuffer belongs to
+ * @param {GLenum} [type=GL_UNSIGNED_SHORT]  the inetger type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)
  * @param {TypedArray|uint} [data]   optional data to copy to buffer, or the size (in bytes)
  * @param {GLenum} [usage=GL_STATIC_DRAW] the usage hint for this buffer.
  *
  */
-function ArrayBuffer( gl, data, usage ){
-  this.gl         = gl;
-  this.usage      = usage || gl.STATIC_DRAW;
-  this.buffer     = gl.createBuffer();
-  this.attribs    = [];
-  this.stride     = 0;
-  this.byteLength = 0;
-  this.length     = 0;
+function IndexBuffer( gl, type, data, usage ){
+  this.gl       = gl;
+  this.buffer   = gl.createBuffer();
+  this.type     = type || gl.UNSIGNED_SHORT;
+  this.usage    = usage || gl.STATIC_DRAW;
+  this.typeSize = BufferUtils.getComponentSize( this.type );
+  this.length   = 0;
 
   if( data ){
     this.data( data );
@@ -69,34 +66,14 @@ function ArrayBuffer( gl, data, usage ){
 }
 
 
-ArrayBuffer.prototype = {
+IndexBuffer.prototype = {
+
 
   /**
    * Bind the underlying webgl buffer.
    */
   bind: function(){
     this.gl.bindBuffer( TGT, this.buffer );
-  },
-
-  /**
-   * Add attribute declaration for this buffer. Once attributes declared, the buffer can be linked to
-   * programs attributes using {@link ArrayBuffer#attribPointer}
-   *  @param {string} name the name of the program's attribute
-   *  @param {uint} size the size of the attribute (3 for a vec3)
-   *  @param {GLenum} type the type of data (GL_FLOAT, GL_SHORT etc)
-   *  @param {boolean} [normalize=false] indicate if the data must be normalized
-   */
-  attrib: function( name, size, type, normalize ){
-    this.attribs.push({
-      name      : name       ,
-      type      : 0|type     ,
-      size      : 0|size     ,
-      normalize : !!normalize,
-      offset    : this.stride
-    });
-    this.stride += BufferUtils.getComponentSize( type ) * size;
-    this._computeLength();
-    return this;
   },
 
   /**
@@ -108,9 +85,8 @@ ArrayBuffer.prototype = {
     gl.bindBuffer( TGT, this.buffer );
     gl.bufferData( TGT, array, this.usage );
     gl.bindBuffer( TGT, null );
-
-    this.byteLength = ( array.byteLength === undefined ) ? array : array.byteLength;
-    this._computeLength();
+    var bl = ( array.byteLength === undefined ) ? array : array.byteLength;
+    this.length = bl / this.typeSize;
   },
 
   /**
@@ -125,44 +101,6 @@ ArrayBuffer.prototype = {
     gl.bindBuffer(    TGT, null );
   },
 
-  /**
-   * Link given program attributes to this buffer. You should first declare attributes using {@link ArrayBuffer#attrib}
-   * before calling this method.
-   *   @param {Program} program the nanogl Program
-   */
-  attribPointer: function( program ){
-    var gl = this.gl;
-    gl.bindBuffer( TGT, this.buffer );
-
-    for (var i = 0; i &lt; this.attribs.length; i++) {
-      var attrib = this.attribs[i];
-
-      if( program[attrib.name] !== undefined ){
-        var aLocation = program[attrib.name]();
-        gl.enableVertexAttribArray( aLocation );
-        gl.vertexAttribPointer( aLocation,
-                                attrib.size,
-                                attrib.type,
-                                attrib.normalize,
-                                this.stride,
-                                attrib.offset
-                              );
-      }
-
-    }
-  },
-
-  /**
-   * Shortcut to gl.drawArrays
-   *   @param {GLenum} mode the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)
-   *   @param {uint} [count] the number of vertices to draw (full buffer is used if omited)
-   *   @param {uint} [offset=0] the position of the first vertex to draw
-   */
-  draw: function( mode, count, offset ){
-    count  = ( count === undefined  ) ? this.length : count;
-    offset = ( offset === undefined ) ? 0 : offset;
-    this.gl.drawArrays( mode, offset, count );
-  },
 
   /**
    * Delete underlying webgl objects
@@ -173,23 +111,29 @@ ArrayBuffer.prototype = {
     this.gl = null;
   },
 
-
-  _computeLength: function(){
-    if( this.stride > 0 ) {
-      this.length = this.byteLength / this.stride;
-    }
+  /**
+   * Shortcut to gl.drawArrays
+   *   @param {GLenum} mode the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)
+   *   @param {uint} [count] the number of indices to draw (full buffer is used if omited)
+   *   @param {uint} [offset=0] the position of the first index to draw
+   */
+  draw: function( mode, count, offset ){
+    count  = ( count === undefined  ) ? this.length : count;
+    offset = ( offset === undefined ) ? 0 : offset;
+    this.gl.drawElements( mode, count, this.type, offset );
   }
 
+
 };
+
 
 /*
  * Implement Drawable
  */
-BufferUtils.Drawable( ArrayBuffer.prototype );
+BufferUtils.Drawable( IndexBuffer.prototype );
 
 
-module.exports = ArrayBuffer;
-</code></pre>
+module.exports = IndexBuffer;</code></pre>
         </article>
     </section>
 
@@ -201,7 +145,7 @@ module.exports = ArrayBuffer;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 13:57:05 GMT+0100 (CET) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jan 23 2016 14:06:58 GMT+0100 (CET) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
