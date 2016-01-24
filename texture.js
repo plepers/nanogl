@@ -33,8 +33,7 @@ function Texture( gl, format ){
 
   gl.bindTexture( T2D, this.id );
   this.setFilter( true );
-  this.clamp( );
-  gl.bindTexture( T2D, null );
+
 }
 
 
@@ -52,7 +51,6 @@ Texture.prototype = {
 
     gl.bindTexture( T2D, this.id );
     gl.texImage2D(  T2D, 0, this.format, this.format, this.type, img );
-    gl.bindTexture( T2D, null );
   },
 
   /**
@@ -73,7 +71,6 @@ Texture.prototype = {
 
     gl.bindTexture( T2D, this.id );
     gl.texImage2D( T2D, 0, this.format, width, height, 0, this.format, this.type, data );
-    gl.bindTexture( T2D, null );
   },
 
   /**
@@ -106,14 +103,8 @@ Texture.prototype = {
    */
   setFilter : function( smooth, mipmap, miplinear ){
     var gl = this.gl;
-
-    smooth      = !!smooth;
-    mipmap      = !!mipmap;
-    miplinear   = !!miplinear;
-
-    var filter = getFilter( smooth, mipmap, miplinear);
-
-    gl.texParameteri( T2D, gl.TEXTURE_MAG_FILTER, getFilter( smooth, false, false ) );
+    var filter = getFilter( !!smooth, !!mipmap, !!miplinear);
+    gl.texParameteri( T2D, gl.TEXTURE_MAG_FILTER, getFilter( !!smooth, false, false ) );
     gl.texParameteri( T2D, gl.TEXTURE_MIN_FILTER, filter );
   },
 

@@ -18,13 +18,13 @@ module.exports = {
   },
 
   Drawable: function( proto ){
-    proto.drawPoints         = function(count, offset){ this.draw( this.gl.POINTS         , count, offset ); };
-    proto.drawLineStrip      = function(count, offset){ this.draw( this.gl.LINE_STRIP     , count, offset ); };
-    proto.drawLineLoop       = function(count, offset){ this.draw( this.gl.LINE_LOOP      , count, offset ); };
-    proto.drawLines          = function(count, offset){ this.draw( this.gl.LINES          , count, offset ); };
-    proto.drawTriangleStrip  = function(count, offset){ this.draw( this.gl.TRIANGLE_STRIP , count, offset ); };
-    proto.drawTriangleFan    = function(count, offset){ this.draw( this.gl.TRIANGLE_FAN   , count, offset ); };
-    proto.drawTriangles      = function(count, offset){ this.draw( this.gl.TRIANGLES      , count, offset ); };
+    proto.drawPoints         = function(count, offset){ this.draw( 0 /* POINTS         */ , count, offset ); };
+    proto.drawLines          = function(count, offset){ this.draw( 1 /* LINES          */ , count, offset ); };
+    proto.drawLineLoop       = function(count, offset){ this.draw( 2 /* LINE_LOOP      */ , count, offset ); };
+    proto.drawLineStrip      = function(count, offset){ this.draw( 3 /* LINE_STRIP     */ , count, offset ); };
+    proto.drawTriangles      = function(count, offset){ this.draw( 4 /* TRIANGLES      */ , count, offset ); };
+    proto.drawTriangleStrip  = function(count, offset){ this.draw( 5 /* TRIANGLE_STRIP */ , count, offset ); };
+    proto.drawTriangleFan    = function(count, offset){ this.draw( 6 /* TRIANGLE_FAN   */ , count, offset ); };
   }
 
 };

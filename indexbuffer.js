@@ -79,8 +79,7 @@ IndexBuffer.prototype = {
    */
   draw: function( mode, count, offset ){
     count  = ( count === undefined  ) ? this.length : count;
-    offset = ( offset === undefined ) ? 0 : offset;
-    this.gl.drawElements( mode, count, this.type, offset );
+    this.gl.drawElements( mode, count, this.type, 0|offset );
   }
 
 

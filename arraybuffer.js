@@ -120,8 +120,7 @@ ArrayBuffer.prototype = {
    */
   draw: function( mode, count, offset ){
     count  = ( count === undefined  ) ? this.length : count;
-    offset = ( offset === undefined ) ? 0 : offset;
-    this.gl.drawArrays( mode, offset, count );
+    this.gl.drawArrays( mode, offset, 0|count );
   },
 
   /**

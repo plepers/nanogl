@@ -210,25 +210,41 @@ function formatCode( shader ) {
   return shader.split( '\n' ).map( appendLine ).join( '\n' );
 }
 
+/*
+ * Shader compilation utility
+ */
+function compileShader( gl, shader, code ){
+  gl.shaderSource( shader, code );
+  gl.compileShader( shader );
+
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    Program.warn( gl.getShaderInfoLog(shader) );
+    Program.warn( formatCode( code ) );
+    return false;
+  }
+  return true;
+}
+
+
 
 var USetFMap = {};
-USetFMap[ String(5126 ) /*FLOAT       */ ] = '1f';
-USetFMap[ String(35664) /*FLOAT_VEC2  */ ] = '2f';
-USetFMap[ String(35665) /*FLOAT_VEC3  */ ] = '3f';
-USetFMap[ String(35666) /*FLOAT_VEC4  */ ] = '4f';
-USetFMap[ String(35667) /*INT_VEC2    */ ] = '2i';
-USetFMap[ String(35668) /*INT_VEC3    */ ] = '3i';
-USetFMap[ String(35669) /*INT_VEC4    */ ] = '4i';
-USetFMap[ String(35670) /*BOOL        */ ] = '1i';
-USetFMap[ String(35671) /*BOOL_VEC2   */ ] = '2i';
-USetFMap[ String(35672) /*BOOL_VEC3   */ ] = '3i';
-USetFMap[ String(35673) /*BOOL_VEC4   */ ] = '4i';
-USetFMap[ String(35674) /*FLOAT_MAT2  */ ] = 'Matrix2f';
-USetFMap[ String(35675) /*FLOAT_MAT3  */ ] = 'Matrix3f';
-USetFMap[ String(35676) /*FLOAT_MAT4  */ ] = 'Matrix4f';
-USetFMap[ String(5124 ) /*INT         */ ] = '1i';
-USetFMap[ String(35678) /*SAMPLER_2D  */ ] = '1i';
-USetFMap[ String(35680) /*SAMPLER_CUBE*/ ] = '1i';
+USetFMap[ 5126  /*FLOAT       */ ] = '1f';
+USetFMap[ 35664 /*FLOAT_VEC2  */ ] = '2f';
+USetFMap[ 35665 /*FLOAT_VEC3  */ ] = '3f';
+USetFMap[ 35666 /*FLOAT_VEC4  */ ] = '4f';
+USetFMap[ 35670 /*BOOL        */ ] =
+USetFMap[ 5124  /*INT         */ ] =
+USetFMap[ 35678 /*SAMPLER_2D  */ ] =
+USetFMap[ 35680 /*SAMPLER_CUBE*/ ] = '1i';
+USetFMap[ 35671 /*BOOL_VEC2   */ ] =
+USetFMap[ 35667 /*INT_VEC2    */ ] = '2i';
+USetFMap[ 35672 /*BOOL_VEC3   */ ] =
+USetFMap[ 35668 /*INT_VEC3    */ ] = '3i';
+USetFMap[ 35673 /*BOOL_VEC4   */ ] =
+USetFMap[ 35669 /*INT_VEC4    */ ] = '4i';
+USetFMap[ 35674 /*FLOAT_MAT2  */ ] = 'Matrix2f';
+USetFMap[ 35675 /*FLOAT_MAT3  */ ] = 'Matrix3f';
+USetFMap[ 35676 /*FLOAT_MAT4  */ ] = 'Matrix4f';
 
 /*
  * Uniform upload utilities
@@ -315,21 +331,6 @@ function getAttribAccess( attrib ){
   return function(){
     return attrib;
   };
-}
-
-/*
- * Shader compilation utility
- */
-function compileShader( gl, shader, code ){
-  gl.shaderSource( shader, code );
-  gl.compileShader( shader );
-
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    Program.warn( gl.getShaderInfoLog(shader) );
-    Program.warn( formatCode( code ) );
-    return false;
-  }
-  return true;
 }
 
 

@@ -2,7 +2,7 @@
 
 
 # nanogl
-webgl micro framework (6Ko)
+webgl micro framework (3.2Ko)
 
 #### Quick guides
 
