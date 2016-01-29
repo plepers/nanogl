@@ -96,7 +96,7 @@ Program.prototype = {
     gl.linkProgram(this.program);
 
     if ( Program.debug && !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      Program.warn(gl.getProgramInfoLog(this.program));
+      warn(gl.getProgramInfoLog(this.program));
       return false;
     }
 
@@ -183,7 +183,7 @@ Program.prototype.bind = Program.prototype.use;
 /*
  * internal logs
  */
-Program.warn = function(str){
+function warn(str){
   console.warn(str);
 };
 
@@ -219,8 +219,8 @@ function compileShader( gl, shader, code ){
   gl.compileShader( shader );
 
   if (Program.debug && !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    Program.warn( gl.getShaderInfoLog(shader) );
-    Program.warn( formatCode( code ) );
+    warn( gl.getShaderInfoLog(shader) );
+    warn( formatCode( code ) );
     return false;
   }
 
