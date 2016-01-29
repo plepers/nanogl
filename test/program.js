@@ -4,7 +4,7 @@ var expect  = require( 'expect.js' );
 var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
 
-
+Program.debug = true
 
 describe( "Program", function(){
 
