@@ -185,7 +185,7 @@ Program.prototype.bind = Program.prototype.use;
  */
 function warn(str){
   console.warn(str);
-};
+}
 
 
 
