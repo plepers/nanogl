@@ -168,6 +168,8 @@ Program.prototype = {
       var aLocation  = gl.getAttribLocation( prg, attribName );
       this[attribName] = getAttribAccess( aLocation );
     }
+
+    this.ready   = true;
   }
 
 
