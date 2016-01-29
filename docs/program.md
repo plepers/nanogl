@@ -8,7 +8,7 @@ It also give you convinient access to active uniforms and attributes.
 
 ##### Create a program
 ``` JavaScript
-var Program = require( 'nanogl' ).Program;
+var Program = require( 'nanogl/program' );
 
 // create a new Program with a given gl context
 var prg = new Program( gl )
