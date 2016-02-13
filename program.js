@@ -12,27 +12,6 @@
  * uniform mat4 uMVP;
  * uniform vec3 uCameraPosition;
  *
- * @example <caption>access to uniforms and attributes</caption>
- * var prg =  new Program( gl, vert, frag );
- * prg.use()
- *
- * var mvp = glmatrix.mat4.create()
- * prg.uMVP( mvp )
- *
- * prg.uCameraPosition( 0, 0, 0 )
- * // or
- * var campos = glmatrix.vec3.create()
- * prg.uCameraPosition( campos )
- * // or
- * prg.uCameraPosition( [0, 1, 2] )
- *
- * // get the uniform location
- * var matLocation = prg.uMVP()
-
- * // or attribute location
- * var aPosition = prg.aPosition()
- *
- *
  * @class
  * @classdesc Program class provide shader compilation and linking functionality.
  *              It also give you convenient access to active uniforms and attributes.
@@ -300,7 +279,8 @@ function getMatrixSetFunction( type, location, gl, context ){
   var fname = getUniformSetFunctionName( type );
   return function(){
     if( arguments.length > 0 && arguments[0].length !== undefined ){
-      gl[fname+'v']( location, !!arguments[1], arguments[0] );
+      var transpose = (arguments.length > 1) ? !!arguments[1] : false;
+      gl[fname+'v']( location, transpose, arguments[0] );
     }
     return location;
   };
