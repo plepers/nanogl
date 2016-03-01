@@ -44,6 +44,7 @@ function Program( gl, vert, frag, defs  ){
   this.program = gl.createProgram();
   this.vShader = gl.createShader( gl.VERTEX_SHADER );
   this.fShader = gl.createShader( gl.FRAGMENT_SHADER );
+  this.dyns    = [];
   this.ready   = false;
   gl.attachShader(this.program, this.vShader);
   gl.attachShader(this.program, this.fShader);
@@ -100,6 +101,11 @@ Program.prototype = {
       return false;
     }
 
+    // delete old accessors
+    while (this.dyns.length>0) {
+      delete this[this.dyns.pop()];
+    }
+
     return true;
   },
 
@@ -154,7 +160,7 @@ Program.prototype = {
 
       var uLocation = gl.getUniformLocation( prg, uniform.name );
       this[uName] = getUniformSetter( uniform.type, uLocation, gl, context );
-
+      this.dyns.push( uName );
     }
 
     // Attributes
@@ -167,6 +173,7 @@ Program.prototype = {
       var attribName = gl.getActiveAttrib( prg, aIndex ).name;
       var aLocation  = gl.getAttribLocation( prg, attribName );
       this[attribName] = getAttribAccess( aLocation );
+      this.dyns.push( attribName );
     }
 
     this.ready   = true;
