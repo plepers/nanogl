@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jshint *.js && karma start",
     "docs": "jsdoc program.js texture.js fbo.js arraybuffer.js indexbuffer.js bufferutils.js -R README.md -d ../nanogl_gh_pages -t node_modules/minami",
-    "gztest": "browserify nanogl.js -o gztest.js && uglifyjs --screw-ie8 -m -c warnings=false -o gztest.min.js -- gztest.js && gzip -k -9 gztest.min.js && stat -f%z gztest.min.js.gz && rm ./*gztest*"
+    "gztest": "browserify nanogl.js -o gztest.js && uglifyjs --screw-ie8 -m -c warnings=false -o gztest.min.js -- gztest.js && gzip -k -9 gztest.min.js && stat -f%z gztest.min.js.gz && rm ./*gztest*",
+    "perf": "browserify -t [ stringify --extensions [.vert .frag] ] -o test/perf/main.js test/perf/index.js"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,7 @@
     "karma-sauce-launcher": "^0.3.0",
     "minami": "^1.1.1",
     "mocha": "^2.3.4",
-    "stringify": "^3.2.0",
+    "stringify": "^3.2.1",
     "uglify-js": "^2.6.1",
     "when": "^3.7.7"
   }
