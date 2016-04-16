@@ -24,10 +24,10 @@ var buffer = new IndexBuffer( gl, gl.UNSIGNED_BYTE, data, gl.DYNAMIC_DRAW );
 
 
 ```JavaScript
-var buffer = new IndexBuffer( gl );
+var buffer = new IndexBuffer( gl, gl.UNSIGNED_INT );
 
 // allocate buffer with TypedArray
-var data = new Uint8Array([
+var data = new Uint32Array([
   0, 1, 2,
   1, 3, 2
 ]);
@@ -35,7 +35,7 @@ buffer.data( data );
 
 // update the second triangle
 var part = new Uint8Array([ 1, 2, 3 ] );
-buffer.subData( part, 3 );
+buffer.subData( part, 12 );
 ```
 
 

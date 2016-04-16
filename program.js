@@ -23,6 +23,8 @@ function Program( gl, vert, frag, defs  ){
   this.program = gl.createProgram();
   this.vShader = gl.createShader( gl.VERTEX_SHADER );
   this.fShader = gl.createShader( gl.FRAGMENT_SHADER );
+  this.dyns    = [];
+  this.ready   = false;
   gl.attachShader(this.program, this.vShader);
   gl.attachShader(this.program, this.fShader);
 
@@ -32,10 +34,10 @@ function Program( gl, vert, frag, defs  ){
 }
 
 /**
- * Program.verbose
- *   can be set to false to prevent shader code logs on glsl errors (default to true)
+ * Program.debug
+ *   can be set to true to check and log compilation and linking errors (default to false)
  */
-Program.verbose = true;
+Program.debug = true;
 
 
 
@@ -46,6 +48,9 @@ Program.prototype = {
    * alias program.bind()
    */
   use : function(){
+    if( !this.ready ){
+      this._grabParameters();
+    }
     this.gl.useProgram( this.program );
   },
 
@@ -57,6 +62,7 @@ Program.prototype = {
    *  @param {String} [prefix=''] an optional string append to both fragment and vertex code
    */
   compile : function( vert, frag, prefix ){
+    this.ready   = false;
 
     prefix = ( prefix || '' ) + '\n';
 
@@ -69,12 +75,15 @@ Program.prototype = {
 
     gl.linkProgram(this.program);
 
-    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      Program.warn(gl.getProgramInfoLog(this.program));
+    if ( Program.debug && !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+      warn(gl.getProgramInfoLog(this.program));
       return false;
     }
 
-    this._grabParameters();
+    // delete old accessors
+    while (this.dyns.length>0) {
+      delete this[this.dyns.pop()];
+    }
 
     return true;
   },
@@ -130,7 +139,7 @@ Program.prototype = {
 
       var uLocation = gl.getUniformLocation( prg, uniform.name );
       this[uName] = getUniformSetter( uniform.type, uLocation, gl, context );
-
+      this.dyns.push( uName );
     }
 
     // Attributes
@@ -143,7 +152,10 @@ Program.prototype = {
       var attribName = gl.getActiveAttrib( prg, aIndex ).name;
       var aLocation  = gl.getAttribLocation( prg, attribName );
       this[attribName] = getAttribAccess( aLocation );
+      this.dyns.push( attribName );
     }
+
+    this.ready   = true;
   }
 
 
@@ -159,11 +171,9 @@ Program.prototype.bind = Program.prototype.use;
 /*
  * internal logs
  */
-Program.warn = function(str){
-  if( Program.verbose ){
-    console.warn(str);
-  }
-};
+function warn(str){
+  console.warn(str);
+}
 
 
 
@@ -196,11 +206,12 @@ function compileShader( gl, shader, code ){
   gl.shaderSource( shader, code );
   gl.compileShader( shader );
 
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    Program.warn( gl.getShaderInfoLog(shader) );
-    Program.warn( formatCode( code ) );
+  if (Program.debug && !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    warn( gl.getShaderInfoLog(shader) );
+    warn( formatCode( code ) );
     return false;
   }
+
   return true;
 }
 
