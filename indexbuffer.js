@@ -15,10 +15,12 @@ var TGT = 0x8893;
 function IndexBuffer( gl, type, data, usage ){
   this.gl       = gl;
   this.buffer   = gl.createBuffer();
-  this.type     = type || gl.UNSIGNED_SHORT;
   this.usage    = usage || gl.STATIC_DRAW;
-  this.typeSize = BufferUtils.getComponentSize( this.type );
-  this.length   = 0;
+  this.type     = 0;
+  this.typeSize = 0;
+  this.size     = 0;
+
+  this.setType( type || gl.UNSIGNED_SHORT );
 
   if( data ){
     this.data( data );
@@ -37,6 +39,15 @@ IndexBuffer.prototype = {
   },
 
   /**
+   *  Change the type of internal type of the IndexBuffer
+   *  @param {GLenum} type  the integer type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)
+   */
+  setType: function( type ){
+    this.type = type;
+    this.typeSize = BufferUtils.getComponentSize( type );
+  },
+
+  /**
    * Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size.
    *   @param {TypedArray|uint} array the data to send to the buffer, or a size.
    */
@@ -45,8 +56,7 @@ IndexBuffer.prototype = {
     gl.bindBuffer( TGT, this.buffer );
     gl.bufferData( TGT, array, this.usage );
     gl.bindBuffer( TGT, null );
-    var bl = ( array.byteLength === undefined ) ? array : array.byteLength;
-    this.length = bl / this.typeSize;
+    this.size = ( array.byteLength === undefined ) ? array : array.byteLength;
   },
 
   /**
@@ -78,7 +88,7 @@ IndexBuffer.prototype = {
    *   @param {uint} [offset=0] the position of the first index to draw
    */
   draw: function( mode, count, offset ){
-    count  = ( count === undefined  ) ? this.length : count;
+    count  = ( count === undefined  ) ? this.size/this.typeSize : count;
     this.gl.drawElements( mode, count, this.type, 0|offset );
   }
 
