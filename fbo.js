@@ -24,28 +24,15 @@ function Fbo( gl, width, height, opts )
 
   opts = opts || DEFAULT_OPTS;
 
-  this.flags =  ( opts.depth ) |
+  var flags =  ( opts.depth ) |
                 ( opts.stencil <<1) |
                 ( (opts.depth && opts.depthTex) <<2);
 
   var types = opts.type || gl.UNSIGNED_BYTE;
   this.types = Array.isArray( types ) ? types : [types];
 
-  this.color = new Texture( gl, opts.format );
-  this.depth = null;
-
-  // activate extension and
-  // discard depthTex if extension unavailable
-  if( this.flags & 4 ){
-    this._depthTexExt = gl.getExtension( 'WEBGL_depth_texture' ) ||
-                        gl.getExtension( 'WEBKIT_WEBGL_depth_texture' ) ||
-                        gl.getExtension( 'MOZ_WEBGL_depth_texture' );
-
-    if( this._depthTexExt === null ){
-      this.flags = this.flags | ~4;
-    }
-  }
-
+  this.color      = new Texture( gl, opts.format );
+  this.attachment = new DepthStencilAttachment( this, flags );
 
   this._init();
   this.resize( width, height );
@@ -95,9 +82,7 @@ Fbo.prototype = {
    */
   clear : function() {
     var gl = this.gl;
-    var bits = gl.COLOR_BUFFER_BIT;
-    bits |= ( this.flags & 1 ) ? gl.DEPTH_BUFFER_BIT : 0;
-    bits |= ( this.flags & 2 ) ? gl.STENCIL_BUFFER_BIT : 0;
+    var bits = gl.COLOR_BUFFER_BIT | this.attachment.clearBits();
     gl.clear( bits );
   },
 
@@ -122,7 +107,17 @@ Fbo.prototype = {
    * return true if depth texture is available and set for this fbo
    */
   isDepthTexture : function(){
-    return this.flags & 4;
+    return this.attachment.flags & 4;
+  },
+
+  /**
+   * return depth Texture if set
+   */
+  getDepthTexture : function(){
+    if( this.attachment.flags & 4 ){
+      return this.attachment.buffer;
+    }
+    return null;
   },
 
   /**
@@ -130,17 +125,10 @@ Fbo.prototype = {
    */
   dispose : function(){
     var gl = this.gl;
-    if( this.depth ){
-      if( this.flags & 4 ){
-        this.depth.dispose();
-      }else{
-        gl.deleteRenderbuffer( this.depth );
-      }
-    }
     gl.deleteFramebuffer( this.fbo );
     this.color.dispose();
+    this.attachment.dispose();
     this.valid = false;
-    this._depthTexExt = null;
     this.gl = null;
   },
 
@@ -153,19 +141,14 @@ Fbo.prototype = {
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
     gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.color.id, 0 );
 
-
-    if( this.flags & 3 ) {
-      this._createDepth();
-    }
-
+    this.attachment._init();
   },
 
   // (re)allocate render buffers to size
   _allocate : function(){
     var gl = this.gl;
 
-    this._allocateDepth();
-
+    this.attachment._allocate();
 
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
 
@@ -178,51 +161,101 @@ Fbo.prototype = {
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
-  },
+  }
 
 
-  _createDepth : function(){
-    var gl = this.gl;
+};
+
+
+
+//---------------------------------
+//         Depth/Stencil Attachment
+//---------------------------------
+
+function DepthStencilAttachment( fbo, flags ){
+  this.fbo   = fbo;
+  this.flags = flags;
+  this.buffer = null;
+  this._depthTexExt = null;
+
+  var gl = fbo.gl;
+
+  // activate extension and
+  // discard depthTex if extension unavailable
+  if( this.flags & 4 ){
+    this._depthTexExt = gl.getExtension( 'WEBGL_depth_texture' ) ||
+                        gl.getExtension( 'WEBKIT_WEBGL_depth_texture' ) ||
+                        gl.getExtension( 'MOZ_WEBGL_depth_texture' );
+
+    if( this._depthTexExt === null ){
+      this.flags = this.flags | ~4;
+    }
+  }
+}
+
+
+DepthStencilAttachment.prototype = {
+
+  _init : function(){
+    var gl = this.fbo.gl;
     var attType = this.flags & 3;
-    var depth;
+    var depth = null;
 
     if( this.flags & 4 ){
       depth = new Texture( gl, getTextureFormat( gl, attType ) );
-      depth.fromData( this.width, this.height, null, getTextureInternalFormat( gl, attType ) );
+      depth.fromData( this.fbo.width, this.fbo.height, null, getTextureInternalFormat( gl, attType ) );
 
       if( gl.getError() === gl.INVALID_VALUE ){
         // depth texture not supported
         this.flags = this.flags & ~4;
         depth.dispose();
-        this._createDepth();
+        this._allocate();
         return;
       }
 
       gl.framebufferTexture2D( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.TEXTURE_2D, depth.id, 0 );
 
-    } else {
+    } else if( attType ){
       depth = gl.createRenderbuffer();
       gl.bindRenderbuffer(    gl.RENDERBUFFER,  depth );
       gl.framebufferRenderbuffer( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.RENDERBUFFER, depth );
     }
 
-    this.depth = depth;
+    this.buffer = depth;
   },
 
 
-  _allocateDepth : function(){
-    var gl = this.gl;
+  _allocate : function(){
+    var gl = this.fbo.gl;
     if( this.flags & 4 ){
-      this.depth.fromData( this.width, this.height, null, getTextureInternalFormat( gl, this.flags & 3 ) );
+      this.buffer.fromData( this.fbo.width, this.fbo.height, null, getTextureInternalFormat( gl, this.flags & 3 ) );
     } else if( this.flags & 3 ){
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.depth );
-      gl.renderbufferStorage( gl.RENDERBUFFER,  getAttachmentFormat( gl, this.flags & 3 ) , this.width, this.height );
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.buffer );
+      gl.renderbufferStorage( gl.RENDERBUFFER,  getAttachmentFormat( gl, this.flags & 3 ) , this.fbo.width, this.fbo.height );
       gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
     }
+  },
+
+
+  dispose : function(){
+    if( this.buffer ){
+      if( this.flags & 4 ){
+        this.buffer.dispose();
+      }else{
+        this.fbo.gl.deleteRenderbuffer( this.buffer );
+      }
+    }
+    this._depthTexExt = null;
+  },
+
+
+  clearBits : function(){
+    return ( ( this.flags & 1 ) ? 0x0100 : 0 ) |
+           ( ( this.flags & 2 ) ? 0x0400 : 0 );
   }
 
-};
 
+};
 
 //---------------------------------
 //                        Utilities

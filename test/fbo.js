@@ -63,26 +63,26 @@ describe( "Fbo", function(){
 
   it( "should set flags correctly", function(){
     var fbo = new Fbo( gl, 32, 32 )
-    expect( fbo.flags ).to.equal( 0 );
+    expect( fbo.attachment.flags ).to.equal( 0 );
     fbo.dispose();
 
     fbo = new Fbo( gl, 32, 32, {
       depth : true
     } )
-    expect( fbo.flags ).to.equal( 1 );
+    expect( fbo.attachment.flags ).to.equal( 1 );
     fbo.dispose();
 
     fbo = new Fbo( gl, 32, 32, {
       stencil : true
     } )
-    expect( fbo.flags ).to.equal( 2 );
+    expect( fbo.attachment.flags ).to.equal( 2 );
     fbo.dispose();
 
     fbo = new Fbo( gl, 32, 32, {
       stencil : true,
       depth : true
     } )
-    expect( fbo.flags ).to.equal( 3 );
+    expect( fbo.attachment.flags ).to.equal( 3 );
     fbo.dispose();
   });
 
