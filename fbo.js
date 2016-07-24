@@ -9,6 +9,7 @@ var Texture = require( './texture' );
  * @param {Object} [opts]
  * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
  * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
+ * @param {boolean} [opts.depthTex=false] if true, try to create a texture for depth/stencil attachment. Fallback to a RenderBuffer if WEBGL_depth_texture is not enabled
  * @param {GLenum|GLenum[]} [opts.type=GL_UNSIGNED_BYTE] the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
  * @param {GLenum} [opts.format=GL_RGB] the internal pixel format.
  *
@@ -19,15 +20,33 @@ function Fbo( gl, width, height, opts )
   this.width = 0;
   this.height = 0;
   this.fbo = null;
+  this._depthTexExt = null;
 
   opts = opts || DEFAULT_OPTS;
 
-  this.flags = (opts.depth) | (opts.stencil*2);
+  this.flags =  ( opts.depth ) |
+                ( opts.stencil <<1) |
+                ( (opts.depth && opts.depthTex) <<2);
 
   var types = opts.type || gl.UNSIGNED_BYTE;
   this.types = Array.isArray( types ) ? types : [types];
 
   this.color = new Texture( gl, opts.format );
+  this.depth = null;
+
+  // activate extension and
+  // discard depthTex if extension unavailable
+  if( this.flags & 4 ){
+    this._depthTexExt = gl.getExtension( 'WEBGL_depth_texture' ) ||
+                        gl.getExtension( 'WEBKIT_WEBGL_depth_texture' ) ||
+                        gl.getExtension( 'MOZ_WEBGL_depth_texture' );
+
+    if( this._depthTexExt === null ){
+      this.flags = this.flags | ~4;
+    }
+  }
+
+
   this._init();
   this.resize( width, height );
 }
@@ -100,20 +119,33 @@ Fbo.prototype = {
   },
 
   /**
+   * return true if depth texture is available and set for this fbo
+   */
+  isDepthTexture : function(){
+    return this.flags & 4;
+  },
+
+  /**
    * Delete all webgl objects related to this Fbo (fbo, color attachment and depth/stencil renderbuffer )
    */
   dispose : function(){
     var gl = this.gl;
-    if( this.attachmentBuffer ){
-      gl.deleteRenderbuffer( this.attachmentBuffer );
+    if( this.depth ){
+      if( this.flags & 4 ){
+        this.depth.dispose();
+      }else{
+        gl.deleteRenderbuffer( this.depth );
+      }
     }
     gl.deleteFramebuffer( this.fbo );
     this.color.dispose();
     this.valid = false;
+    this._depthTexExt = null;
     this.gl = null;
   },
 
 
+  // create render buffers and set attchment points
   _init : function() {
     var gl = this.gl;
 
@@ -121,28 +153,18 @@ Fbo.prototype = {
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
     gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.color.id, 0 );
 
-    var attType = this.flags & 3;
 
-    if( attType ) {
-      var type   = getAttachmentType( gl, attType );
-      this.attachmentBuffer = gl.createRenderbuffer();
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.attachmentBuffer );
-      gl.framebufferRenderbuffer( gl.FRAMEBUFFER, type, gl.RENDERBUFFER, this.attachmentBuffer );
+    if( this.flags & 3 ) {
+      this._createDepth();
     }
 
   },
 
-
+  // (re)allocate render buffers to size
   _allocate : function(){
     var gl = this.gl;
 
-    var attType = this.flags & 3;
-    if( attType ){
-      var format = getAttachmentFormat( gl, attType );
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.attachmentBuffer );
-      gl.renderbufferStorage( gl.RENDERBUFFER,  format , this.width, this.height );
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
-    }
+    this._allocateDepth();
 
 
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
@@ -156,21 +178,81 @@ Fbo.prototype = {
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
+  },
+
+
+  _createDepth : function(){
+    var gl = this.gl;
+    var attType = this.flags & 3;
+    var depth;
+
+    if( this.flags & 4 ){
+      depth = new Texture( gl, getTextureFormat( gl, attType ) );
+      depth.fromData( this.width, this.height, null, getTextureInternalFormat( gl, attType ) );
+
+      if( gl.getError() === gl.INVALID_VALUE ){
+        // depth texture not supported
+        this.flags = this.flags & ~4;
+        depth.dispose();
+        this._createDepth();
+        return;
+      }
+
+      gl.framebufferTexture2D( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.TEXTURE_2D, depth.id, 0 );
+
+    } else {
+      depth = gl.createRenderbuffer();
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  depth );
+      gl.framebufferRenderbuffer( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.RENDERBUFFER, depth );
+    }
+
+    this.depth = depth;
+  },
+
+
+  _allocateDepth : function(){
+    var gl = this.gl;
+    if( this.flags & 4 ){
+      this.depth.fromData( this.width, this.height, null, getTextureInternalFormat( gl, this.flags & 3 ) );
+    } else if( this.flags & 3 ){
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.depth );
+      gl.renderbufferStorage( gl.RENDERBUFFER,  getAttachmentFormat( gl, this.flags & 3 ) , this.width, this.height );
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
+    }
   }
 
 };
+
 
 //---------------------------------
 //                        Utilities
 //---------------------------------
 
-
+// renderbuffer format
 function getAttachmentFormat( gl, type ){
   switch( type ){
     case 1: return 0x81A5;  // DEPTH_COMPONENT16;
     case 2: return 0x8D48;  // STENCIL_INDEX8;
     case 3: return 0x84F9;  // DEPTH_STENCIL;
     default: throw new Error( 'unknown attachment type '+type );
+  }
+}
+
+// depth texture format
+function getTextureFormat( gl, type ){
+  switch( type ){
+    case 1: return 0x1902;  // DEPTH_COMPONENT;
+    case 3: return 0x84F9;  // DEPTH_STENCIL;
+    default: throw new Error( 'unknown texture type '+type );
+  }
+}
+
+// depth texture internal format
+function getTextureInternalFormat( gl, type ){
+  switch( type ){
+    case 1: return 0x1405;  // UNSIGNED_INT;
+    case 3: return 0x84FA;  // UNSIGNED_INT_24_8_WEBGL (WEBGL_depth_texture extension)
+    default: throw new Error( 'unknown texture type '+type );
   }
 }
 
@@ -183,6 +265,7 @@ function getAttachmentType( gl, type ){
     default: throw new Error( 'unknown attachment type '+type );
   }
 }
+
 
 
 var DEFAULT_OPTS = {};
