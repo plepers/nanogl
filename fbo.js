@@ -4,8 +4,6 @@ var Texture = require( './texture' );
 /**
  * @class
  * @param {WebGLRenderingContext} gl      the webgl context this Fbo belongs to
- * @param {uint} width   initial width of the fbo, the size can be later changed using Fbo#resize()
- * @param {uint} height  initial height of the fbo, the size can be later changed using Fbo#resize()
  * @param {Object} [opts]
  * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
  * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
