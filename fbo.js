@@ -9,33 +9,27 @@ var Texture = require( './texture' );
  * @param {Object} [opts]
  * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
  * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
- * @param {boolean} [opts.depthTex=false] if true, try to create a texture for depth/stencil attachment. Fallback to a RenderBuffer if WEBGL_depth_texture is not enabled
  * @param {GLenum|GLenum[]} [opts.type=GL_UNSIGNED_BYTE] the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
  * @param {GLenum} [opts.format=GL_RGB] the internal pixel format.
  *
  */
-function Fbo( gl, width, height, opts )
+function Fbo( gl, opts )
 {
   this.gl = gl;
   this.width = 0;
   this.height = 0;
   this.fbo = null;
-  this._depthTexExt = null;
 
   opts = opts || DEFAULT_OPTS;
 
   var flags =  ( opts.depth ) |
-                ( opts.stencil <<1) |
-                ( (opts.depth && opts.depthTex) <<2);
+               ( opts.stencil <<1);
 
   var types = opts.type || gl.UNSIGNED_BYTE;
   this.types = Array.isArray( types ) ? types : [types];
 
   this.color      = new Texture( gl, opts.format );
   this.attachment = new DepthStencilAttachment( this, flags );
-
-  this._init();
-  this.resize( width, height );
 }
 
 
@@ -47,6 +41,9 @@ Fbo.prototype = {
    *  @param {uint} h new height
    */
   resize : function( w, h ){
+    if( this.fbo === null ){
+      this._init();
+    }
     if( this.width !== w || this.height !== h ) {
       this.width  = w|0;
       this.height = h|0;
@@ -104,23 +101,6 @@ Fbo.prototype = {
   },
 
   /**
-   * return true if depth texture is available and set for this fbo
-   */
-  isDepthTexture : function(){
-    return this.attachment.flags & 4;
-  },
-
-  /**
-   * return depth Texture if set
-   */
-  getDepthTexture : function(){
-    if( this.attachment.flags & 4 ){
-      return this.attachment.buffer;
-    }
-    return null;
-  },
-
-  /**
    * Delete all webgl objects related to this Fbo (fbo, color attachment and depth/stencil renderbuffer )
    */
   dispose : function(){
@@ -129,7 +109,8 @@ Fbo.prototype = {
     this.color.dispose();
     this.attachment.dispose();
     this.valid = false;
-    this.gl = null;
+    this.fbo   = null;
+    this.gl    = null;
   },
 
 
@@ -176,21 +157,6 @@ function DepthStencilAttachment( fbo, flags ){
   this.fbo   = fbo;
   this.flags = flags;
   this.buffer = null;
-  this._depthTexExt = null;
-
-  var gl = fbo.gl;
-
-  // activate extension and
-  // discard depthTex if extension unavailable
-  if( this.flags & 4 ){
-    this._depthTexExt = gl.getExtension( 'WEBGL_depth_texture' ) ||
-                        gl.getExtension( 'WEBKIT_WEBGL_depth_texture' ) ||
-                        gl.getExtension( 'MOZ_WEBGL_depth_texture' );
-
-    if( this._depthTexExt === null ){
-      this.flags = this.flags | ~4;
-    }
-  }
 }
 
 
@@ -201,21 +167,7 @@ DepthStencilAttachment.prototype = {
     var attType = this.flags & 3;
     var depth = null;
 
-    if( this.flags & 4 ){
-      depth = new Texture( gl, getTextureFormat( gl, attType ) );
-      depth.fromData( this.fbo.width, this.fbo.height, null, getTextureInternalFormat( gl, attType ) );
-
-      if( gl.getError() === gl.INVALID_VALUE ){
-        // depth texture not supported
-        this.flags = this.flags & ~4;
-        depth.dispose();
-        this._allocate();
-        return;
-      }
-
-      gl.framebufferTexture2D( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.TEXTURE_2D, depth.id, 0 );
-
-    } else if( attType ){
+    if( attType !== 0 ){
       depth = gl.createRenderbuffer();
       gl.bindRenderbuffer(    gl.RENDERBUFFER,  depth );
       gl.framebufferRenderbuffer( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.RENDERBUFFER, depth );
@@ -227,11 +179,11 @@ DepthStencilAttachment.prototype = {
 
   _allocate : function(){
     var gl = this.fbo.gl;
-    if( this.flags & 4 ){
-      this.buffer.fromData( this.fbo.width, this.fbo.height, null, getTextureInternalFormat( gl, this.flags & 3 ) );
-    } else if( this.flags & 3 ){
+    var attType = this.flags & 3;
+
+    if( attType !== 0 ){
       gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.buffer );
-      gl.renderbufferStorage( gl.RENDERBUFFER,  getAttachmentFormat( gl, this.flags & 3 ) , this.fbo.width, this.fbo.height );
+      gl.renderbufferStorage( gl.RENDERBUFFER,  getAttachmentFormat( gl, attType ) , this.fbo.width, this.fbo.height );
       gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
     }
   },
@@ -239,13 +191,9 @@ DepthStencilAttachment.prototype = {
 
   dispose : function(){
     if( this.buffer ){
-      if( this.flags & 4 ){
-        this.buffer.dispose();
-      }else{
-        this.fbo.gl.deleteRenderbuffer( this.buffer );
-      }
+      this.fbo.gl.deleteRenderbuffer( this.buffer );
     }
-    this._depthTexExt = null;
+    this.buffer = null;
   },
 
 
@@ -268,24 +216,6 @@ function getAttachmentFormat( gl, type ){
     case 2: return 0x8D48;  // STENCIL_INDEX8;
     case 3: return 0x84F9;  // DEPTH_STENCIL;
     default: throw new Error( 'unknown attachment type '+type );
-  }
-}
-
-// depth texture format
-function getTextureFormat( gl, type ){
-  switch( type ){
-    case 1: return 0x1902;  // DEPTH_COMPONENT;
-    case 3: return 0x84F9;  // DEPTH_STENCIL;
-    default: throw new Error( 'unknown texture type '+type );
-  }
-}
-
-// depth texture internal format
-function getTextureInternalFormat( gl, type ){
-  switch( type ){
-    case 1: return 0x1405;  // UNSIGNED_INT;
-    case 3: return 0x84FA;  // UNSIGNED_INT_24_8_WEBGL (WEBGL_depth_texture extension)
-    default: throw new Error( 'unknown texture type '+type );
   }
 }
 

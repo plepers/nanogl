@@ -15,20 +15,37 @@ describe( "Fbo", function(){
 
 
   it( "color only creation should leave clean state", function(){
-    var fbo = new Fbo( gl, 32, 32 );
+    var fbo = new Fbo( gl );
+
     testContext.assertNoError();
   });
 
   it( "full creation should leave clean state", function(){
-    var fbo = new Fbo( gl, 32, 32, {
+    var fbo = new Fbo( gl, {
       stencil : true,
       depth : true
     } );
     testContext.assertNoError();
   });
 
+
+  it( "color only init should leave clean state", function(){
+    var fbo = new Fbo( gl );
+    fbo.resize( 32, 32 );
+    testContext.assertNoError();
+  });
+
+  it( "full init should leave clean state", function(){
+    var fbo = new Fbo( gl, {
+      stencil : true,
+      depth : true
+    } );
+    fbo.resize( 32, 32 );
+    testContext.assertNoError();
+  });
+
   it( "full creation should resize", function(){
-    var fbo = new Fbo( gl, 32, 32, {
+    var fbo = new Fbo( gl, {
       stencil : true,
       depth : true
     } );
@@ -38,10 +55,11 @@ describe( "Fbo", function(){
   });
 
   it( "should be valid", function(){
-    var fbo = new Fbo( gl, 32, 32, {
+    var fbo = new Fbo( gl, {
       stencil : true,
       depth : false
     } );
+    fbo.resize( 32, 32 );
     expect( fbo.valid ).to.be.ok()
     testContext.assertNoError();
     fbo.dispose();
@@ -49,7 +67,21 @@ describe( "Fbo", function(){
 
 
   it( "should dispose correctly", function(){
-    var fbo = new Fbo( gl, 32, 32, {
+    var fbo = new Fbo( gl, {
+      stencil : true,
+      depth : false
+    } );
+
+    fbo.resize( 32, 32 );
+    var dispose = function(){
+      fbo.dispose()
+    }
+    expect(dispose).to.not.throwException();
+    testContext.assertNoError();
+  });
+
+  it( "should dispose when not init", function(){
+    var fbo = new Fbo( gl, {
       stencil : true,
       depth : false
     } );
@@ -62,23 +94,23 @@ describe( "Fbo", function(){
 
 
   it( "should set flags correctly", function(){
-    var fbo = new Fbo( gl, 32, 32 )
+    var fbo = new Fbo( gl )
     expect( fbo.attachment.flags ).to.equal( 0 );
     fbo.dispose();
 
-    fbo = new Fbo( gl, 32, 32, {
+    fbo = new Fbo( gl, {
       depth : true
     } )
     expect( fbo.attachment.flags ).to.equal( 1 );
     fbo.dispose();
 
-    fbo = new Fbo( gl, 32, 32, {
+    fbo = new Fbo( gl, {
       stencil : true
     } )
     expect( fbo.attachment.flags ).to.equal( 2 );
     fbo.dispose();
 
-    fbo = new Fbo( gl, 32, 32, {
+    fbo = new Fbo( gl, {
       stencil : true,
       depth : true
     } )
@@ -89,10 +121,12 @@ describe( "Fbo", function(){
 
 
   it( "should bind correctly", function(){
-    var fbo = new Fbo( gl, 32, 32, {
+    var fbo = new Fbo( gl, {
       stencil : true,
       depth : false
     } );
+
+    fbo.resize( 32, 32 );
     fbo.bind();
     testContext.assertNoError();
     fbo.dispose();
@@ -102,8 +136,8 @@ describe( "Fbo", function(){
   it( "should pass render test A", function(){
     var vert, frag, p;
 
-    var fbo = new Fbo( gl, 32, 32 );
-
+    var fbo = new Fbo( gl );
+    fbo.resize( 32, 32 );
 
     // draw 0xFF7F0000 to Fbo color
     vert = require( './glsl/test_uvec3.vert')
@@ -142,10 +176,11 @@ describe( "Fbo", function(){
 
     var tList =  [ gl.FLOAT, halfFloat ? halfFloat.HALF_FLOAT_OES : gl.UNSIGNED_BYTE, gl.UNSIGNED_BYTE ];
 
-    var fbo = new Fbo( gl, 32, 32, {
+    var fbo = new Fbo( gl, {
       type : tList,
       format : gl.RGBA
     });
+    fbo.resize( 32, 32 );
     // should always fallback to U8
     expect( tList ).to.contain( fbo.getActualType() )
     testContext.assertNoError();
@@ -157,10 +192,11 @@ describe( "Fbo", function(){
     var float_texture_ext = gl.getExtension('OES_texture_float');
     var halfFloat = gl.getExtension("OES_texture_half_float")
     var tList =  [ halfFloat ? halfFloat.HALF_FLOAT_OES : gl.FLOAT, gl.FLOAT, gl.UNSIGNED_BYTE ];
-    var fbo = new Fbo( gl, 32, 32, {
+    var fbo = new Fbo( gl, {
       type : tList,
       format : gl.RGB
     });
+    fbo.resize( 32, 32 );
     // expect( fbo.getActualType() ).to.be.equal( halfFloat.HALF_FLOAT_OES )
     // if( float_texture_ext || halfFloat )
     //   expect( fbo.getActualType() ).not.to.be.equal( gl.UNSIGNED_BYTE )
