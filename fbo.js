@@ -4,8 +4,6 @@ var Texture = require( './texture' );
 /**
  * @class
  * @param {WebGLRenderingContext} gl      the webgl context this Fbo belongs to
- * @param {uint} width   initial width of the fbo, the size can be later changed using Fbo#resize()
- * @param {uint} height  initial height of the fbo, the size can be later changed using Fbo#resize()
  * @param {Object} [opts]
  * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
  * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
@@ -13,7 +11,7 @@ var Texture = require( './texture' );
  * @param {GLenum} [opts.format=GL_RGB] the internal pixel format.
  *
  */
-function Fbo( gl, width, height, opts )
+function Fbo( gl, opts )
 {
   this.gl = gl;
   this.width = 0;
@@ -22,14 +20,14 @@ function Fbo( gl, width, height, opts )
 
   opts = opts || DEFAULT_OPTS;
 
-  this.flags = (opts.depth) | (opts.stencil*2);
+  var flags =  ( opts.depth ) |
+               ( opts.stencil <<1);
 
   var types = opts.type || gl.UNSIGNED_BYTE;
   this.types = Array.isArray( types ) ? types : [types];
 
-  this.color = new Texture( gl, opts.format );
-  this._init();
-  this.resize( width, height );
+  this.color      = new Texture( gl, opts.format );
+  this.attachment = new DepthStencilAttachment( this, flags );
 }
 
 
@@ -41,6 +39,9 @@ Fbo.prototype = {
    *  @param {uint} h new height
    */
   resize : function( w, h ){
+    if( this.fbo === null ){
+      this._init();
+    }
     if( this.width !== w || this.height !== h ) {
       this.width  = w|0;
       this.height = h|0;
@@ -76,9 +77,7 @@ Fbo.prototype = {
    */
   clear : function() {
     var gl = this.gl;
-    var bits = gl.COLOR_BUFFER_BIT;
-    bits |= ( this.flags & 1 ) ? gl.DEPTH_BUFFER_BIT : 0;
-    bits |= ( this.flags & 2 ) ? gl.STENCIL_BUFFER_BIT : 0;
+    var bits = gl.COLOR_BUFFER_BIT | this.attachment.clearBits();
     gl.clear( bits );
   },
 
@@ -104,16 +103,16 @@ Fbo.prototype = {
    */
   dispose : function(){
     var gl = this.gl;
-    if( this.attachmentBuffer ){
-      gl.deleteRenderbuffer( this.attachmentBuffer );
-    }
     gl.deleteFramebuffer( this.fbo );
     this.color.dispose();
+    this.attachment.dispose();
     this.valid = false;
-    this.gl = null;
+    this.fbo   = null;
+    this.gl    = null;
   },
 
 
+  // create render buffers and set attchment points
   _init : function() {
     var gl = this.gl;
 
@@ -121,29 +120,14 @@ Fbo.prototype = {
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
     gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.color.id, 0 );
 
-    var attType = this.flags & 3;
-
-    if( attType ) {
-      var type   = getAttachmentType( gl, attType );
-      this.attachmentBuffer = gl.createRenderbuffer();
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.attachmentBuffer );
-      gl.framebufferRenderbuffer( gl.FRAMEBUFFER, type, gl.RENDERBUFFER, this.attachmentBuffer );
-    }
-
+    this.attachment._init();
   },
 
-
+  // (re)allocate render buffers to size
   _allocate : function(){
     var gl = this.gl;
 
-    var attType = this.flags & 3;
-    if( attType ){
-      var format = getAttachmentFormat( gl, attType );
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.attachmentBuffer );
-      gl.renderbufferStorage( gl.RENDERBUFFER,  format , this.width, this.height );
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
-    }
-
+    this.attachment._allocate();
 
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
 
@@ -158,13 +142,72 @@ Fbo.prototype = {
 
   }
 
+
+};
+
+
+
+//---------------------------------
+//         Depth/Stencil Attachment
+//---------------------------------
+
+function DepthStencilAttachment( fbo, flags ){
+  this.fbo   = fbo;
+  this.flags = flags;
+  this.buffer = null;
+}
+
+
+DepthStencilAttachment.prototype = {
+
+  _init : function(){
+    var gl = this.fbo.gl;
+    var attType = this.flags & 3;
+    var depth = null;
+
+    if( attType !== 0 ){
+      depth = gl.createRenderbuffer();
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  depth );
+      gl.framebufferRenderbuffer( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.RENDERBUFFER, depth );
+    }
+
+    this.buffer = depth;
+  },
+
+
+  _allocate : function(){
+    var gl = this.fbo.gl;
+    var attType = this.flags & 3;
+
+    if( attType !== 0 ){
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.buffer );
+      gl.renderbufferStorage( gl.RENDERBUFFER,  getAttachmentFormat( gl, attType ) , this.fbo.width, this.fbo.height );
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
+    }
+  },
+
+
+  dispose : function(){
+    if( this.buffer ){
+      this.fbo.gl.deleteRenderbuffer( this.buffer );
+    }
+    this.buffer = null;
+  },
+
+
+  clearBits : function(){
+    return ( ( this.flags & 1 ) ? 0x0100 : 0 ) |
+           ( ( this.flags & 2 ) ? 0x0400 : 0 );
+  }
+
+
 };
 
 //---------------------------------
 //                        Utilities
 //---------------------------------
 
-
+// renderbuffer format
 function getAttachmentFormat( gl, type ){
   switch( type ){
     case 1: return 0x81A5;  // DEPTH_COMPONENT16;
@@ -183,6 +226,7 @@ function getAttachmentType( gl, type ){
     default: throw new Error( 'unknown attachment type '+type );
   }
 }
+
 
 
 var DEFAULT_OPTS = {};
