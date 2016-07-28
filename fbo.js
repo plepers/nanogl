@@ -39,12 +39,12 @@ Fbo.prototype = {
    *  @param {uint} h new height
    */
   resize : function( w, h ){
-    if( this.fbo === null ){
-      this._init();
-    }
     if( this.width !== w || this.height !== h ) {
       this.width  = w|0;
       this.height = h|0;
+      if( this.fbo === null ){
+        this._init();
+      }
       this._allocate();
     }
   },
