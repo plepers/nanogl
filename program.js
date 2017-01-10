@@ -1,4 +1,6 @@
 
+var _UID = 0;
+
 /**
  * Program constructor. Create gl program and shaders. You can pass optional shader code to immediatly compile shaders
  *   @param {WebGLRenderingContext} gl webgl context this program belongs to
@@ -27,6 +29,9 @@ function Program( gl, vert, frag, defs  ){
   this.ready   = false;
   gl.attachShader(this.program, this.vShader);
   gl.attachShader(this.program, this.fShader);
+
+  this._uid    = (_UID++)|0; 
+  this._cuid   = (_UID++)|0; 
 
   if( vert !== undefined && frag !== undefined ){
     this.compile( vert, frag, defs );
@@ -84,6 +89,8 @@ Program.prototype = {
     while (this.dyns.length>0) {
       delete this[this.dyns.pop()];
     }
+
+    this._cuid   = (_UID++)|0; 
 
     return true;
   },
