@@ -153,7 +153,7 @@ module.exports = function(config) {
         base: 'SauceLabs',
         browserName: 'MicrosoftEdge',
         platform: 'Windows 10',
-        version: '20.10240'
+        version: '13.10586'
       },
     },
   });
