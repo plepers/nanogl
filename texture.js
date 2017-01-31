@@ -20,16 +20,19 @@ function getFilter( smooth, mipmap, miplinear ){
  * @classdesc Texture class manage TEXTURE_2D types textures
  *
  *  @param {WebGLRenderingContext} gl webgl context the texture belongs to
- *  @param {GLenum} [format=GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
+ *  @param {GLenum} [format  =GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
+ *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
  */
-function Texture( gl, format ){
+function Texture( gl, format, internal ){
   this._uid = _UID++;
   this.gl = gl;
   this.id = this.gl.createTexture();
   this.width  = 0;
   this.height = 0;
-  this.format = format || gl.RGB;
-  this.type   = gl.UNSIGNED_BYTE;
+
+  this.format   = format   || gl.RGB;
+  this.internal = internal || this.format;
+  this.type     = gl.UNSIGNED_BYTE;
 
   gl.bindTexture( T2D, this.id );
   this.setFilter( true );
@@ -50,7 +53,7 @@ Texture.prototype = {
     this.height = img.height;
 
     gl.bindTexture( T2D, this.id );
-    gl.texImage2D(  T2D, 0, this.format, this.format, this.type, img );
+    gl.texImage2D(  T2D, 0, this.internal, this.format, this.type, img );
   },
 
   /**
@@ -70,7 +73,7 @@ Texture.prototype = {
     this.type = dataType || gl.UNSIGNED_BYTE;
 
     gl.bindTexture( T2D, this.id );
-    gl.texImage2D( T2D, 0, this.format, width, height, 0, this.format, this.type, data );
+    gl.texImage2D( T2D, 0, this.internal, width, height, 0, this.format, this.type, data );
   },
 
   /**
