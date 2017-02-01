@@ -8,7 +8,8 @@ var Texture = require( './texture' );
  * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
  * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
  * @param {GLenum|GLenum[]} [opts.type=GL_UNSIGNED_BYTE] the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
- * @param {GLenum} [opts.format=GL_RGB] the internal pixel format.
+ * @param {GLenum} [opts.format=GL_RGB]   the color attachment pixel format.
+ * @param {GLenum} [opts.internal=GL_RGB] the internal color attachment pixel format.
  *
  */
 function Fbo( gl, opts )
@@ -23,11 +24,18 @@ function Fbo( gl, opts )
   var flags =  ( opts.depth ) |
                ( opts.stencil <<1);
 
-  var types = opts.type || gl.UNSIGNED_BYTE;
-  this.types = Array.isArray( types ) ? types : [types];
+  this.configs = 
+    opts.configs || 
+    [{
+      type     : opts.type,
+      format   : opts.format,
+      internal : opts.internal
+    }];
+  
 
-  this.color      = new Texture( gl, opts.format );
+  this.color      = new Texture( gl );
   this.attachment = new DepthStencilAttachment( this, flags );
+
 }
 
 
@@ -132,11 +140,12 @@ Fbo.prototype = {
     gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
 
     var tIndex = 0;
-    var nextFmt = this.types[tIndex];
+    var nextCfg = this.configs[tIndex];
     do {
-      this.color.fromData( this.width, this.height, null, nextFmt );
+      this.color.setFormat( nextCfg.format, nextCfg.type, nextCfg.internal );
+      this.color.fromData( this.width, this.height, null );
       gl.getError(); // clear possible texture error
-    } while( !(this.valid = this.isValid() ) && ( nextFmt = this.types[++tIndex] ) );
+    } while( !(this.valid = this.isValid() ) && ( nextCfg = this.configs[++tIndex] ) );
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 

@@ -21,18 +21,17 @@ function getFilter( smooth, mipmap, miplinear ){
  *
  *  @param {WebGLRenderingContext} gl webgl context the texture belongs to
  *  @param {GLenum} [format  =GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
+ *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
  *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
  */
-function Texture( gl, format, internal ){
+function Texture( gl, format, type, internal ){
   this._uid = _UID++;
   this.gl = gl;
   this.id = this.gl.createTexture();
   this.width  = 0;
   this.height = 0;
 
-  this.format   = format   || gl.RGB;
-  this.internal = internal || this.format;
-  this.type     = gl.UNSIGNED_BYTE;
+  this.setFormat( format, type, internal );
 
   gl.bindTexture( T2D, this.id );
   this.setFilter( true );
@@ -41,6 +40,18 @@ function Texture( gl, format, internal ){
 
 
 Texture.prototype = {
+
+  /**
+   * define underlying format, internal format and data type of texture
+   *  @param {GLenum} [format  =GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
+   *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
+   *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
+   */
+  setFormat : function( format, type, internal ){
+    this.format   = format   || this.gl.RGB;
+    this.internal = internal || this.format;
+    this.type     = type     || this.gl.UNSIGNED_BYTE;
+  },
 
   /**
    * set texture data from html source
@@ -63,14 +74,13 @@ Texture.prototype = {
    *  @param {TypedArray} [data=null]  TypedArray of texture data, can be null
    *  @param {GLenum} [dataType=GL_UNSIGNED_BYTE] can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc depending on available extensions
    */
-  fromData : function( width, height, data, dataType ){
+  fromData : function( width, height, data ){
     var gl = this.gl;
 
     this.width  = width;
     this.height = height;
 
     data = data || null;
-    this.type = dataType || gl.UNSIGNED_BYTE;
 
     gl.bindTexture( T2D, this.id );
     gl.texImage2D( T2D, 0, this.internal, width, height, 0, this.format, this.type, data );

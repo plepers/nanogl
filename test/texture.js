@@ -176,7 +176,7 @@ describe( "Texture", function(){
 
 
 
-  it( "should accept Uint8Array RGB data", function( ){
+  it( "@should accept Uint8Array RGB data", function( ){
     var tex = new Texture( gl, gl.RGB );
     tex.bind();
     gl.pixelStorei( gl.UNPACK_ALIGNMENT, 1 );
