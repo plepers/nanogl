@@ -69,7 +69,7 @@ Program.prototype = {
   compile : function( vert, frag, prefix ){
     this.ready   = false;
 
-    prefix = ( prefix || '' ) + '\n';
+    prefix = ( prefix === undefined ) ? '' : prefix+'\n';
 
     var gl = this.gl;
 
@@ -115,16 +115,19 @@ Program.prototype = {
    *        program.uDirection( 1, 0, 0 );
    */
   _grabParameters : function(){
+
     var gl = this.gl,
         prg = this.program;
+
+    var context = {
+      texIndex    : 0,
+      ublockIndex : 0
+    };
 
     // Uniforms
     // ========
 
     var numUniforms = gl.getProgramParameter( prg, gl.ACTIVE_UNIFORMS );
-    var context = {
-      texIndex : 0
-    };
 
     for ( var uniformIndex = 0; uniformIndex < numUniforms; ++uniformIndex )
     {
@@ -145,8 +148,13 @@ Program.prototype = {
       }
 
       var uLocation = gl.getUniformLocation( prg, uniform.name );
-      this[uName] = getUniformSetter( uniform.type, uLocation, gl, context );
-      this.dyns.push( uName );
+      
+      // in Webgl2 location can be null here if uniform is member of a uniform block
+      if( uLocation !== null ) 
+      {
+        this[uName] = getUniformSetter( uniform.type, uLocation, gl, context );
+        this.dyns.push( uName );
+      }
     }
 
     // Attributes
@@ -160,6 +168,23 @@ Program.prototype = {
       var aLocation  = gl.getAttribLocation( prg, attribName );
       this[attribName] = getAttribAccess( aLocation );
       this.dyns.push( attribName );
+    }
+
+
+    // UniformBlock
+    // ============
+
+    if( gl.ACTIVE_UNIFORM_BLOCKS !== undefined ) {
+
+      var numBlocks = gl.getProgramParameter( prg, gl.ACTIVE_UNIFORM_BLOCKS );
+
+      for ( var blockIndex = 0; blockIndex < numBlocks; ++blockIndex )
+      {
+        var blockName = gl.getActiveUniformBlockName( prg, blockIndex );
+        this[blockName] = getUniformBufferSetFunction( blockIndex, gl, context );
+        this.dyns.push( blockName );
+      }
+
     }
 
     this.ready   = true;
@@ -319,6 +344,30 @@ function getSamplerSetFunction( type, location, gl, context ){
       }
     }
     return location;
+  };
+}
+
+
+/*
+ * setter factory for uniform buffers
+ * can be 
+ *   f( buffer ) 
+ *     buffer is bound to auto increment binding point unit and block binding reset to this point
+ *   f( unit )
+ *     only set the block binding point to given unit
+ */
+function getUniformBufferSetFunction( index, gl, context ){
+  var unit = context.ublockIndex++;
+  return function(){
+    if( arguments.length === 1 ) {
+      if( arguments[0] instanceof WebGLBuffer ){ // is buffer
+        gl.uniformBlockBinding(this.program, index, unit);
+        gl.bindBufferBase(gl.UNIFORM_BUFFER, unit, arguments[0] );
+      } else {
+        gl.uniformBlockBinding(this.program, index, arguments[0]);
+      }
+    }
+    return index;
   };
 }
 

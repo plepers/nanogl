@@ -6,7 +6,7 @@ var gl = testContext.getContext();
 
 Program.debug = true
 
-describe( "Program", function(){
+describe( "Program GLSL1", function(){
 
   it( "should be exported in nanogl namespace", function(){
 
@@ -249,4 +249,54 @@ describe( "Program", function(){
 
 
 
+});
+
+describe( "@WEBGL2 Program GLSL300", function(){
+
+  it( "should compile simple", function(){
+
+    var vert = require( './glsl300/simple.vert')
+    var frag = require( './glsl300/simple.frag')
+
+    var p = new Program( gl );
+    var res = p.compile( vert, frag );
+
+    expect( res ).to.be.ok()
+
+    testContext.assertNoError();
+
+  });
+
+  it( "should compile u blocks", function(){
+
+    var vert = require( './glsl300/ublock.vert')
+    var frag = require( './glsl300/ublock.frag')
+
+    var p = new Program( gl );
+    var res = p.compile( vert, frag );
+
+    expect( res ).to.be.ok()
+
+    testContext.assertNoError();
+
+  });
+
+
+  it( "should retreive u blocks", function(){
+
+    var vert = require( './glsl300/ublock.vert')
+    var frag = require( './glsl300/ublock.frag')
+
+    var p = new Program( gl );
+    var res = p.compile( vert, frag );
+    p.use()
+
+    expect( res ).to.be.ok()
+    expect( p.BlockA ).to.be.ok()
+    expect( p.BlockB ).to.be.ok()
+    expect( p.uMat4 ).to.be( undefined )
+
+    testContext.assertNoError();
+
+  });
 });
