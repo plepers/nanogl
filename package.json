@@ -4,7 +4,9 @@
   "description": "webgl micro framework ",
   "main": "nanogl.js",
   "scripts": {
-    "test": "jshint *.js && karma start",
+    "test": "npm run test_gl1",
+    "test_gl1": "jshint *.js && karma start",
+    "test_gl2": "jshint *.js && karma start --webgl_version=2",
     "docs": "jsdoc program.js texture.js fbo.js arraybuffer.js indexbuffer.js bufferutils.js -R README.md -d ../nanogl_gh_pages -t node_modules/minami",
     "gztest": "browserify nanogl.js -o gztest.js && uglifyjs --screw-ie8 -m -c warnings=false -o gztest.min.js -- gztest.js && gzip -k -9 gztest.min.js && stat -f%z gztest.min.js.gz && rm ./*gztest*",
     "perf": "browserify -t [ stringify --extensions [.vert .frag] ] -o test/perf/main.js test/perf/index.js"
