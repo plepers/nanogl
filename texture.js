@@ -27,7 +27,7 @@ function getFilter( smooth, mipmap, miplinear ){
 function Texture( gl, format, type, internal ){
   this._uid = _UID++;
   this.gl = gl;
-  this.id = this.gl.createTexture();
+  this.id = gl.createTexture();
   this.width  = 0;
   this.height = 0;
 

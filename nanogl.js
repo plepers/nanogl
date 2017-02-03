@@ -4,5 +4,6 @@ module.exports = {
   Texture     :   require( './texture' ),
   Fbo         :   require( './fbo' ),
   ArrayBuffer :   require( './arraybuffer' ),
-  IndexBuffer :   require( './indexbuffer' )
+  IndexBuffer :   require( './indexbuffer' ),
+  Sampler     :   require( './sampler' )
 };
