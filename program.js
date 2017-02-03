@@ -289,6 +289,8 @@ function getUniformSetter( type, location, gl, context ){
 
     case gl.SAMPLER_2D  :
     case gl.SAMPLER_CUBE:
+    case 0x8B62 : //gl.SAMPLER_2D_SHADOW:
+    case 0x8B5F : //gl.SAMPLER_3D:
       return getSamplerSetFunction( type, location, gl, context );
 
     default  :
