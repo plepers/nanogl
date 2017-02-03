@@ -226,7 +226,7 @@ describe( "Fbo", function(){
   it( "@WEBGL2 cascading configs FLOAT", function(){
 
 
-    var float_texture_ext = gl.getExtension('OES_texture_float');
+    var color_buffer_float  = gl.getExtension('EXT_color_buffer_float');
 
     var configs = [{
       type   : gl.FLOAT, 

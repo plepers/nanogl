@@ -247,8 +247,6 @@ describe( "Program GLSL1", function(){
 
   });
 
-
-
 });
 
 describe( "@WEBGL2 Program GLSL300", function(){
