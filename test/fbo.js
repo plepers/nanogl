@@ -282,4 +282,53 @@ describe( "Fbo", function(){
 
 
 
+  it( "new api ?", function(){
+    
+    var fbo = new Fbo( gl );
+
+
+    // attach color from existing texture
+    fbo.attachColor( texture, 0 )
+
+    var configs = [{
+      type   : gl.FLOAT, 
+      format : gl.RGB,
+      internal : gl.RGB
+    }]
+
+    // attach color from config
+    fbo.addColor( 0, configs )
+
+
+    // attach depth from texture (optional depth texture n webgl 1 )
+    fbo.attachDepth( depthTexture )
+
+    // attach depth and or stencil renderbuffer
+    fbo.addDepth( true, true )
+
+    // attach depth and or stencil texture
+    fbo.addDepthTexture( true, true )
+
+
+    // general attachment
+    fbo.attach( attachmentPoint, target )
+
+    
+    /* attachment
+    {
+      bool    isTexture
+      GLEnum  bindingPoint
+      [Texture|RenderBuffer] target
+
+      private :
+
+      _resize()
+
+    }
+    */ 
+    fbo.getColor( )
+  })
+
+
+
 });

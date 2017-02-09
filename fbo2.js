@@ -1,6 +1,50 @@
 var Texture = require( './texture' );
 
 
+function Attachment( target ){
+
+  this.target       = target;
+  this.level        = 0;
+  
+  this.isTexture    = target.gl.isTexture( target.id );
+
+}
+
+Attachment.prototype = {
+
+
+  resize : function( w, h ){
+
+    if( this.isTexture ){
+      this.target.fromData( w, h, null );
+    } else {
+      this.target.resize( w, h );
+      this.target.allocate();
+    }
+
+  },
+
+
+  attach : function(){
+    var gl = this.target.gl;
+    if( this.isTexture ){
+      gl.framebufferTexture2D(    gl.FRAMEBUFFER, bindingPoint, gl.TEXTURE_2D,   this.target.id, this.level );
+    } else {
+      gl.framebufferRenderbuffer( gl.FRAMEBUFFER, bindingPoint, gl.RENDERBUFFER, this.target.id );
+    }
+  },
+
+
+  dispose : function(){
+    this.target.dispose();
+    this.target = null;
+  }
+
+}
+
+
+
+
 /**
  * @class
  * @param {WebGLRenderingContext} gl      the webgl context this Fbo belongs to
@@ -12,34 +56,72 @@ var Texture = require( './texture' );
  * @param {GLenum} [opts.internal=GL_RGB] the internal color attachment pixel format.
  *
  */
-function Fbo( gl, opts )
+function Fbo( gl )
 {
   this.gl = gl;
-  this.width = 0;
+  this.width  = 0;
   this.height = 0;
-  this.fbo = null;
 
-  opts = opts || DEFAULT_OPTS;
+  this.fbo = gl.createFramebuffer();
 
-  var flags =  ( opts.depth ) |
-               ( opts.stencil <<1);
-
-  this.configs = 
-    opts.configs || 
-    [{
-      type     : opts.type,
-      format   : opts.format,
-      internal : opts.internal
-    }];
-  
-
-  this.color      = new Texture( gl );
-  this.attachment = new DepthStencilAttachment( this, flags );
-
+  this.attachments     = {}
+  this.attachmentsList = []
 }
 
 
 Fbo.prototype = {
+
+  // /!\ FBO must be bound manualy
+  attach : function( attachment, bindingPoint ){
+    var gl = this.gl;
+
+    this.detach( bindingPoint );
+
+    this.attachments[bindingPoint.toString()] = attachment;
+    this.attachmentsList.push( attachment );
+
+    attachment.resize( this.width, this.height );
+    attachment.attach();
+
+  },
+
+
+  detach : function( bindingPoint ){
+    var att = this.attachments[bindingPoint.toString()];
+    if( att !== undefined ){
+      var index = this.attachmentsList.indexOf( att );
+      this.attachmentsList.splice( index, 1 );
+    }
+  },
+
+
+
+  attachColor : function( texture, unit ){
+    unit = 0|unit;
+    
+  },
+
+
+  addColor : function( config, unit ){
+    unit = 0|unit;
+    
+  },
+
+
+  attachDepth : function( texOrRbuff ){
+
+  },
+
+
+  addDepth : function( depth, stencil ){
+
+  },
+
+
+  addDepthTexture : function( texture ){
+
+  },
+
 
   /**
    * Resize FBO attachments
@@ -50,25 +132,10 @@ Fbo.prototype = {
     if( this.width !== w || this.height !== h ) {
       this.width  = w|0;
       this.height = h|0;
-      if( this.fbo === null ){
-        this._init();
-      }
       this._allocate();
     }
   },
 
-  /**
-   * Bind the color texture of this Fbo to a sampler2D location and a unit
-   * The related program must be in use.
-   * @param {WebGLUniformLocation} location the program's sampler to bind the textue to
-   * @param {} unit the texture unit to use
-   */
-  bindColor : function( location, unit ){
-    var gl = this.gl;
-    gl.activeTexture( gl.TEXTURE0 + unit );
-    gl.bindTexture( gl.TEXTURE_2D, this.color.id );
-    gl.uniform1i( location, unit );
-  },
 
   /**
    * Bind the Fbo and set gl viewport to it's size
@@ -76,7 +143,11 @@ Fbo.prototype = {
   bind : function() {
     var gl = this.gl;
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.fbo);
-    gl.viewport( 0, 0, this.width, this.height );
+  },
+
+
+  defaultViewport : function(){
+    this.gl.viewport( 0, 0, this.width, this.height );
   },
 
   /**
@@ -98,56 +169,33 @@ Fbo.prototype = {
     return ( gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE );
   },
 
-  /**
-   * return the actual pixel type of the underlying color texture (UNSIGNED_BYTE, FLOAT, HALF_FLOAT_EOS etc)
-   * after possibles types has been tested
-   */
-  getActualType : function(){
-    return this.color.type;
-  },
 
   /**
-   * Delete all webgl objects related to this Fbo (fbo, color attachment and depth/stencil renderbuffer )
+   * Delete all webgl objects related to this Fbo (fbo, and all attachments )
    */
   dispose : function(){
     var gl = this.gl;
     gl.deleteFramebuffer( this.fbo );
-    this.color.dispose();
-    this.attachment.dispose();
+    
+    for (var i = 0; i < this.attachmentsList.length; i++) {
+      this.attachmentsList[i].dispose();
+    }
+    this.attachmentsList = null;
+    this.attachments     = null;
+
     this.valid = false;
     this.fbo   = null;
     this.gl    = null;
   },
 
 
-  // create render buffers and set attchment points
-  _init : function() {
-    var gl = this.gl;
-
-    this.fbo = gl.createFramebuffer();
-    gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
-    gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.color.id, 0 );
-
-    this.attachment._init();
-  },
 
   // (re)allocate render buffers to size
   _allocate : function(){
-    var gl = this.gl;
-
-    this.attachment._allocate();
-
-    gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
-
-    var tIndex = 0;
-    var nextCfg = this.configs[tIndex];
-    do {
-      this.color.setFormat( nextCfg.format, nextCfg.type, nextCfg.internal );
-      this.color.fromData( this.width, this.height, null );
-      gl.getError(); // clear possible texture error
-    } while( !(this.valid = this.isValid() ) && ( nextCfg = this.configs[++tIndex] ) );
-
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    
+    for (var i = 0; i < this.attachmentsList.length; i++) {
+      this.attachmentsList[i].resize( this.width, this.height );
+    }
 
   }
 
@@ -176,7 +224,7 @@ DepthStencilAttachment.prototype = {
 
     if( attType !== 0 ){
       depth = gl.createRenderbuffer();
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  depth ); // TODO, should eb useless, remove and test
+      gl.bindRenderbuffer(    gl.RENDERBUFFER,  depth );
       gl.framebufferRenderbuffer( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.RENDERBUFFER, depth );
     }
 
