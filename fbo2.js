@@ -1,4 +1,6 @@
-var Texture = require( './texture' );
+
+
+// var COLOR_ATTACHMENT0 = 0x8CE0;
 
 
 function Attachment( target ){
@@ -13,6 +15,11 @@ function Attachment( target ){
 Attachment.prototype = {
 
 
+  isWritable : function(){
+    return true;
+  },
+
+
   resize : function( w, h ){
 
     if( this.isTexture ){
@@ -25,7 +32,7 @@ Attachment.prototype = {
   },
 
 
-  attach : function(){
+  attach : function( bindingPoint ){
     var gl = this.target.gl;
     if( this.isTexture ){
       gl.framebufferTexture2D(    gl.FRAMEBUFFER, bindingPoint, gl.TEXTURE_2D,   this.target.id, this.level );
@@ -40,10 +47,10 @@ Attachment.prototype = {
     this.target = null;
   }
 
-}
+};
 
 
-
+Fbo.Attachment = Attachment;
 
 /**
  * @class
@@ -64,16 +71,18 @@ function Fbo( gl )
 
   this.fbo = gl.createFramebuffer();
 
-  this.attachments     = {}
-  this.attachmentsList = []
+  this.attachments     = {};
+  this.attachmentsList = [];
 }
 
 
 Fbo.prototype = {
 
+  
+
   // /!\ FBO must be bound manualy
   attach : function( attachment, bindingPoint ){
-    var gl = this.gl;
+    bindingPoint = 0|bindingPoint;
 
     this.detach( bindingPoint );
 
@@ -81,7 +90,7 @@ Fbo.prototype = {
     this.attachmentsList.push( attachment );
 
     attachment.resize( this.width, this.height );
-    attachment.attach();
+    attachment.attach( bindingPoint );
 
   },
 
@@ -96,31 +105,31 @@ Fbo.prototype = {
 
 
 
-  attachColor : function( texture, unit ){
-    unit = 0|unit;
+  // attachColor : function( texture, unit ){
+  //   unit = 0|unit;
+  // },
+
+
+  // addColor : function( config, unit ){
+  //   unit = 0|unit;
     
-  },
+  // },
 
 
-  addColor : function( config, unit ){
-    unit = 0|unit;
-    
-  },
+  // attachDepth : function( texOrRbuff ){
+  //   var att = new Attachment( texOrRbuff )
+  //   this.attach( att, this.gl. )
+  // },
 
 
-  attachDepth : function( texOrRbuff ){
+  // addDepth : function( depth, stencil ){
 
-  },
-
-
-  addDepth : function( depth, stencil ){
-
-  },
+  // },
 
 
-  addDepthTexture : function( texture ){
+  // addDepthTexture : function( texture ){
 
-  },
+  // },
 
 
   /**
@@ -285,7 +294,5 @@ function getAttachmentType( gl, type ){
 }
 
 
-
-var DEFAULT_OPTS = {};
 
 module.exports = Fbo;

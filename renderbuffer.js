@@ -53,7 +53,7 @@ RenderBuffer.prototype = {
 
       this._valid = true;
     }
-  }
+  },
 
 
   /**
