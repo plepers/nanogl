@@ -1,6 +1,8 @@
-var Program = require( '../nanogl' ).Program;
-var Fbo = require( '../nanogl' ).Fbo;
-var expect  = require( 'expect.js' );
+var Fbo          = require( '../fbo' )
+var Texture      = require( '../texture' )
+var Program      = require( '../program' )
+var Renderbuffer = require( '../renderbuffer' )
+var expect       = require( 'expect.js' );
 
 var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
@@ -9,69 +11,28 @@ var gl = testContext.getContext();
 
 describe( "Fbo", function(){
 
-  it( "should be exported in nanogl namespace", function(){
-    expect( Fbo ).to.be.ok( );
-  });
 
 
-  it( "color only creation should leave clean state", function(){
+  it( "ctor should leave clean state", function(){
+    
     var fbo = new Fbo( gl );
-
     testContext.assertNoError();
-  });
-
-  it( "full creation should leave clean state", function(){
-    var fbo = new Fbo( gl, {
-      stencil : true,
-      depth : true
-    } );
-    testContext.assertNoError();
-  });
+    
+  })
 
 
-  it( "color only init should leave clean state", function(){
+  it( "dispose should leave clean state", function(){
+    
     var fbo = new Fbo( gl );
-    fbo.resize( 32, 32 );
-    testContext.assertNoError();
-  });
+    fbo.dispose()
 
-  it( "full init should leave clean state", function(){
-    var fbo = new Fbo( gl, {
-      stencil : true,
-      depth : true
-    } );
-    fbo.resize( 32, 32 );
     testContext.assertNoError();
-  });
 
-  it( "full creation should resize", function(){
-    var fbo = new Fbo( gl, {
-      stencil : true,
-      depth : true
-    } );
-    fbo.resize( 64, 64 );
-    expect( fbo.valid ).to.be.ok()
-    testContext.assertNoError();
-  });
-
-  it( "should be valid", function(){
-    var fbo = new Fbo( gl, {
-      stencil : true,
-      depth : false
-    } );
-    fbo.resize( 32, 32 );
-    expect( fbo.valid ).to.be.ok()
-    testContext.assertNoError();
-    fbo.dispose();
-  });
-
+  })
 
   it( "should dispose correctly", function(){
-    var fbo = new Fbo( gl, {
-      stencil : true,
-      depth : false
-    } );
-
+    
+    var fbo = new Fbo( gl );
     fbo.resize( 32, 32 );
     var dispose = function(){
       fbo.dispose()
@@ -79,12 +40,11 @@ describe( "Fbo", function(){
     expect(dispose).to.not.throwException();
     testContext.assertNoError();
   });
+
 
   it( "should dispose when not init", function(){
-    var fbo = new Fbo( gl, {
-      stencil : true,
-      depth : false
-    } );
+    
+    var fbo = new Fbo( gl );
     var dispose = function(){
       fbo.dispose()
     }
@@ -93,44 +53,44 @@ describe( "Fbo", function(){
   });
 
 
-  it( "should set flags correctly", function(){
-    var fbo = new Fbo( gl )
-    expect( fbo.attachment.flags ).to.equal( 0 );
-    fbo.dispose();
-
-    fbo = new Fbo( gl, {
-      depth : true
-    } )
-    expect( fbo.attachment.flags ).to.equal( 1 );
-    fbo.dispose();
-
-    fbo = new Fbo( gl, {
-      stencil : true
-    } )
-    expect( fbo.attachment.flags ).to.equal( 2 );
-    fbo.dispose();
-
-    fbo = new Fbo( gl, {
-      stencil : true,
-      depth : true
-    } )
-    expect( fbo.attachment.flags ).to.equal( 3 );
-    fbo.dispose();
-  });
-
-
-
-  it( "should bind correctly", function(){
-    var fbo = new Fbo( gl, {
-      stencil : true,
-      depth : false
-    } );
-
+  it( "should dispose when color attach", function(){
+    
+    var fbo = new Fbo( gl );
     fbo.resize( 32, 32 );
-    fbo.bind();
+    fbo.bind()
+    fbo.attachColor()
+    
+    var dispose = function(){
+      fbo.dispose()
+    }
+    expect(dispose).to.not.throwException();
     testContext.assertNoError();
-    fbo.dispose();
   });
+
+  it( "should dispose when color attach not alloc", function(){
+    
+    var fbo = new Fbo( gl );
+    fbo.bind()
+    fbo.attachColor()
+
+    var dispose = function(){
+      fbo.dispose()
+    }
+    expect(dispose).to.not.throwException();
+    testContext.assertNoError();
+  });
+
+
+
+  it( "resize empty fbo", function(){
+    
+    var fbo = new Fbo( gl );
+    fbo.resize( 32, 32 );
+    
+    testContext.assertNoError();
+
+  })
+
 
 
   it( "should pass render test A", function(){
@@ -138,6 +98,8 @@ describe( "Fbo", function(){
 
     var fbo = new Fbo( gl );
     fbo.resize( 32, 32 );
+    fbo.bind()
+    fbo.attachColor();
 
     // draw 0xFF7F0000 to Fbo color
     vert = require( './glsl/test_uvec3.vert')
@@ -149,6 +111,7 @@ describe( "Fbo", function(){
 
 
     fbo.bind();
+    fbo.defaultViewport();
     testContext.drawProgram( p );
 
     // draw Fbo to screen
@@ -159,7 +122,7 @@ describe( "Fbo", function(){
     p = new Program( gl );
     p.compile( vert, frag );
     p.bind()
-    fbo.bindColor( p.tTex(), 0 );
+    fbo.getColor().bind( 0 );
 
     testContext.drawProgram( p );
 
@@ -170,117 +133,403 @@ describe( "Fbo", function(){
   });
 
 
-  // =============================================
-  //         WEBGL 1 
-  // Testing gl.FLOAT depend on optional support
-  // result is not predictable -> test case loose
-  // =============================================
 
-  it( "@WEBGL1 should fallback when multiple formats", function(){
-    var float_texture_ext = gl.getExtension('OES_texture_float');
-    var halfFloat = gl.getExtension("OES_texture_half_float")
+  describe( "attach basic color", function(){
+
+    var fbo, tex, color;
+
+    beforeEach( function() {
+
+      tex = new Texture(gl)
+      fbo = new Fbo( gl );
+    });
 
 
-    var configs = [{
-      type   : gl.FLOAT, 
-      format : gl.RGB
-    }]
-
-    if( halfFloat ){
-      configs.push( {
-        type   : halfFloat.HALF_FLOAT_OES, 
-        format : gl.RGB
-      })
-    }
-    configs.push( {
-      type   : gl.UNSIGNED_BYTE, 
-      format : gl.RGB
+    afterEach( function(){
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      fbo.dispose()
     })
 
 
-    var fbo = new Fbo( gl, {
-      configs : configs
-    });
-
-    fbo.resize( 32, 32 );
-    // should always fallback to U8
-    // expect( tList ).to.contain( fbo.getActualType() )
-    testContext.assertNoError();
-
-  })
-
-
-
-
-
-
-  // =============================================
-  //         WEBGL 2
-  // FLOAT texture need specific internal format
-  // AAAND depend on optional support
-  // Here, all types should be supported and cascading useless...
-  // asset that actualType is the first type in configs
-  // =============================================
-  
-
-  it( "@WEBGL2 cascading configs FLOAT", function(){
-
-
-    var color_buffer_float  = gl.getExtension('EXT_color_buffer_float');
-
-    var configs = [{
-      type   : gl.FLOAT, 
-      format : gl.RGB,
-      internal : gl.RGB32F
-    }]
-
-
-    configs.push( {
-      type   : gl.UNSIGNED_BYTE, 
-      format : gl.RGB
-    })
-
-
-    var fbo = new Fbo( gl, {
-      configs : configs
-    });
-
-    fbo.resize( 32, 32 );
+    it( " after resize leave clean state", function(){
     
-    // expect( fbo.getActualType() ).to.be( gl.FLOAT )
-    testContext.assertNoError();
+      fbo.bind()
+      fbo.resize( 32, 32 );
+      fbo.attach( 0x8CE0, tex );
+      testContext.assertNoError();
 
-  })
-
-
-  it( "@WEBGL2 cascading invalid hsould lead to next cfg", function(){
-
-
-    var configs = [{
-      type   : gl.FLOAT, 
-      format : gl.RGB,
-      internal : gl.RGB
-    }]
-
-
-    configs.push( {
-      type   : gl.UNSIGNED_BYTE, 
-      format : gl.RGB
     })
 
 
-    var fbo = new Fbo( gl, {
-      configs : configs
-    });
+    it( "after resize make complete fbo ", function(){
+      
+      fbo.bind()
+      fbo.resize( 64, 64 );
+      fbo.attach( 0x8CE0, tex );
+
+      expect( fbo.isValid() ).to.be.ok()
+      testContext.assertNoError();
+
+    })
+
+    it( " before resize leave clean state", function(){
+    
+      fbo.bind()
+      fbo.attach( 0x8CE0, tex );
+      fbo.resize( 16, 16 );
+      testContext.assertNoError();
+
+    })
 
 
-    fbo.resize( 32, 32 );
-    // should always fallback to U8
-    expect( fbo.getActualType() ).to.be( gl.UNSIGNED_BYTE )
-    testContext.assertNoError();
+    it( "before resize make complete fbo ", function(){
+      
+      fbo.bind()
+      fbo.attach( 0x8CE0, tex );
+      fbo.resize( 4, 8 );
+
+      expect( fbo.isValid() ).to.be.ok()
+      testContext.assertNoError();
+
+    })
 
   })
 
+
+
+  describe( "detach basic color", function(){
+
+    var fbo, tex, color;
+
+    beforeEach( function() {
+      tex = new Texture(gl)
+      fbo = new Fbo( gl );
+    });
+
+
+    afterEach( function(){
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      fbo.dispose()
+    })
+
+
+    it( " leave clean state", function(){
+    
+      fbo.bind()
+      fbo.attach( 0x8CE0, tex );
+      fbo.resize( 32, 32 );
+      fbo.detach( 0x8CE0 );
+      testContext.assertNoError();
+
+    })
+
+
+
+  })
+
+
+
+
+  describe( "getAttachment", function(){
+
+    var fbo, tex, color;
+
+    beforeEach( function() {
+      tex = new Texture(gl)
+      fbo = new Fbo( gl );
+      fbo.bind();
+      color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
+    });
+
+
+    afterEach( function(){
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      fbo.dispose()
+    })
+
+    it( "return color0", function(){
+      
+      var att = fbo.getAttachment( gl.COLOR_ATTACHMENT0 );
+      expect( att.isTexture() ).to.be.ok()
+
+    })
+
+    it( "return null for color 1", function(){
+      
+      var att = fbo.getAttachment( gl.COLOR_ATTACHMENT0 + 1);
+      expect( att ).to.be(null)
+
+    })
+    
+  });
+
+
+
+  describe( "attach depth/stencil", function(){
+
+    var fbo, tex, color;
+
+    beforeEach( function() {
+      tex = new Texture(gl)
+      fbo = new Fbo( gl );
+      fbo.bind();
+      color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
+    });
+
+
+    afterEach( function(){
+      gl.bindFramebuffer( gl.FRAMEBUFFER, null );
+      fbo.dispose()
+    })
+
+
+    it( "after resize leave clean state", function(){
+      
+      var depth = new Renderbuffer( gl, gl.DEPTH_COMPONENT16 );
+      fbo.bind()
+      fbo.resize( 32, 32 );
+      fbo.attach( gl.DEPTH_ATTACHMENT, depth );
+      testContext.assertNoError();
+
+    })
+
+
+    it( "after resize make complete fbo ", function(){
+      
+      var depth = new Renderbuffer( gl, gl.DEPTH_COMPONENT16 );
+
+      fbo.bind()
+      fbo.resize( 64, 64 );
+      fbo.attach( gl.DEPTH_ATTACHMENT, depth );
+
+      expect( fbo.isValid() ).to.be.ok()
+      testContext.assertNoError();
+
+    })
+
+
+    it( " before resize leave clean state", function(){
+      var depth = new Renderbuffer( gl, gl.DEPTH_COMPONENT16 );
+
+      fbo.bind()
+      fbo.attach( gl.DEPTH_ATTACHMENT, depth );
+      fbo.resize( 16, 16 );
+      testContext.assertNoError();
+
+    })
+
+
+    it( "before resize make complete fbo ", function(){
+      var depth = new Renderbuffer( gl, gl.DEPTH_COMPONENT16 );
+
+      fbo.bind()
+      fbo.attach( gl.DEPTH_ATTACHMENT, depth );
+      fbo.resize( 4, 8 );
+
+      expect( fbo.isValid() ).to.be.ok()
+      testContext.assertNoError();
+
+    })
+
+  })
+
+
+
+
+  describe( "attach depth/stencil helper", function(){
+
+    var fbo, tex, color;
+
+    beforeEach( function() {
+      tex = new Texture(gl)
+      fbo = new Fbo( gl );
+      fbo.bind();
+      color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
+    });
+
+
+    afterEach( function(){
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      fbo.dispose()
+    })
+
+
+    it( " depth only", function(){
+      
+      fbo.attachDepth();
+      var att = fbo.getDepth()
+
+      expect( att.format ).to.be( gl.DEPTH_COMPONENT16 )
+      testContext.assertNoError();
+
+    })
+
+
+    it( " stencil only", function(){
+      
+      fbo.attachDepth( false, true );
+      var att = fbo.getDepth( )
+
+      expect( att.format ).to.be( gl.STENCIL_INDEX8 )
+      testContext.assertNoError();
+
+    })
+
+
+    it( " both", function(){
+      
+      fbo.attachDepth( true, true );
+      var att = fbo.getDepth( )
+
+      expect( att.format ).to.be( gl.DEPTH_STENCIL )
+      testContext.assertNoError();
+
+    })
+
+    
+
+
+  })
+
+
+  describe( " clear", function(){
+
+    var fbo, tex, color;
+
+    beforeEach( function() {
+      tex = new Texture(gl)
+      fbo = new Fbo( gl );
+      fbo.bind();
+      color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
+      fbo.resize( 16,16 )
+    });
+
+
+    afterEach( function(){
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      fbo.dispose()
+    })
+
+
+    it( " with depth only", function(){
+      
+      fbo.attachDepth();
+      fbo.clear();
+      testContext.assertNoError();
+
+    })
+
+
+    it( " with stencil only", function(){
+      
+      fbo.attachDepth( false, true );
+      fbo.clear();
+      testContext.assertNoError();
+
+    })
+
+
+    it( " with both", function(){
+      
+      fbo.attachDepth( true, true );
+      fbo.clear();
+      testContext.assertNoError();
+
+    })
+
+    it( " with none", function(){
+      
+      fbo.clear();
+      testContext.assertNoError();
+
+    })
+
+    
+
+
+  })
+
+
+  describe( "@WEBGL2 attach depth/stencil texture helper", function(){
+
+    var fbo, tex, color;
+
+    beforeEach( function() {
+      tex = new Texture(gl)
+      fbo = new Fbo( gl );
+      fbo.bind();
+      color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
+    });
+
+
+    afterEach( function(){
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      fbo.dispose()
+    })
+
+
+    it( " depth only", function(){
+      
+      fbo.attachDepth( true, false, true );
+      var dt = fbo.getDepth()
+      expect( dt ).to.be.ok()
+
+      testContext.assertNoError();
+
+    })
+
+
+
+    it( " both", function(){
+      
+      fbo.attachDepth( true, true );
+      var att = fbo.getDepth( )
+
+      expect( att ).to.be.ok()
+      testContext.assertNoError();
+
+    })
+
+
+
+
+  })
+
+
+
+
+  describe( "@WEBGL2 attach second color", function(){
+
+
+
+
+
+    it( " test", function(){
+      
+      var fbo, tex, color;
+
+      tex0 = new Texture(gl)
+      tex1 = new Texture(gl)
+      fbo = new Fbo( gl );
+
+
+      fbo.bind()
+      fbo.resize( 32, 32 );
+      fbo.attach( 0x8CE0      , tex0 );
+      fbo.attach( 0x8CE0 + 1  , tex1 );
+
+      testContext.assertNoError();
+
+
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      fbo.dispose()
+
+      testContext.assertNoError();
+
+    })
+
+
+  })
 
 
 

@@ -17,9 +17,15 @@ function RenderBuffer( gl, format ){
 
   this.width  = 0;
   this.height = 0;
-  this.format = format || this.gl.DEPTH_COMPONENT16;
+  this.format = format || gl.DEPTH_COMPONENT16;
 
   this._valid = false;
+
+  // Dummy allocation needed
+  // on some platform (chrome 57, osx, nvidia), gl.framebufferRenderbuffer raise 
+  // an INVALID_OPERATION if a RB is attached before it storage is set.
+  this._storage();
+
 }
 
 
@@ -27,8 +33,8 @@ RenderBuffer.prototype = {
 
 
   /**
-   * set texture data from html source
-   *   @param {TexImageSource} img the source. Can be ImageBitmap, ImageData, HTMLImageElement, HTMLCanvasElement, HTMLVideoElement
+   * 
+   *  
    */
   resize : function( w, h ){
     if( this.width !== w || this.height !== h ){
@@ -45,15 +51,12 @@ RenderBuffer.prototype = {
    */
   allocate : function(){
     if( !this._valid && this.width > 0 && this.height > 0 ){
-      var gl = this.gl;
-
-      gl.bindRenderbuffer(    RENDERBUFFER,  this.id );
-      gl.renderbufferStorage( RENDERBUFFER,  this.format , this.width, this.height );
-      gl.bindRenderbuffer(    RENDERBUFFER,  null );
-
+      this._storage();
       this._valid = true;
     }
   },
+
+
 
 
   /**
@@ -73,6 +76,18 @@ RenderBuffer.prototype = {
     this.id = null;
     this.gl = null;
   },
+
+  /*
+   * actual RB gl allocation
+   */
+  _storage : function(){
+
+    var gl = this.gl;
+    gl.bindRenderbuffer(    RENDERBUFFER,  this.id );
+    gl.renderbufferStorage( RENDERBUFFER,  this.format , this.width, this.height );
+    gl.bindRenderbuffer(    RENDERBUFFER,  null );
+
+  }
 
 
 };
