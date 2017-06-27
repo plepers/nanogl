@@ -33,7 +33,11 @@ function initGL(){
     failIfMajorPerformanceCaveat :  false
   }
 
-  gl = cvs.getContext( 'webgl', opts ) || cvs.getContext( 'experimental-webgl', opts ) || cvs.getContext( 'webgl');
+  if( __karma__.config.webgl_version===2 )
+    gl = cvs.getContext( 'webgl2', opts )
+  else
+    gl = cvs.getContext( 'webgl', opts ) || cvs.getContext( 'experimental-webgl', opts ) || cvs.getContext( 'webgl');
+  
   gl.viewport( 0,0,glSize, glSize )
   gl.clearColor( 0, 0, 0, 1)
   gl.clear( gl.COLOR_BUFFER_BIT )
