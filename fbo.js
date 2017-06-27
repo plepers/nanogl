@@ -80,6 +80,7 @@ function Fbo( gl )
   this.height = 0;
 
   this.fbo = gl.createFramebuffer();
+  this.bind();
 
   this.attachments     = {};
   this.attachmentsList = [];
