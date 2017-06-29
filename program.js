@@ -42,7 +42,7 @@ function Program( gl, vert, frag, defs  ){
  * Program.debug
  *   can be set to true to check and log compilation and linking errors (default to false)
  */
-Program.debug = true;
+Program.debug = false;
 
 
 
