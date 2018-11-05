@@ -5,8 +5,9 @@
 module.exports = function(config) {
   var glversion = 1;
 
-  if( config.webgl_version !== undefined ){
-    glversion = config.webgl_version;
+
+  if( config.webglVersion !== undefined ){
+    glversion = config.webglVersion;
   }
 
   

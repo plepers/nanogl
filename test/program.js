@@ -247,7 +247,80 @@ describe( "Program GLSL1", function(){
 
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  describe( "should uniform struct/block", function(){
+
+    it( "should compile", function(){
+      var prefix = (testContext.getGlVersion()===2) ? '#version 300 es' : '';
+
+      var vert = require( './glsl/ublock_compat.vert')
+      var frag = require( './glsl/ublock_compat.frag')
+
+      var p = new Program( gl );
+      p.compile( vert, frag, prefix );
+
+      testContext.assertNoError();
+
+    });
+
+
+    it( "should grab params", function(){
+      var prefix = (testContext.getGlVersion()===2) ? '#version 300 es' : '';
+
+      var vert = require( './glsl/ublock_compat.vert')
+      var frag = require( './glsl/ublock_compat.frag')
+
+      var p = new Program( gl );
+      p.compile( vert, frag, prefix );
+      p.use();
+
+      testContext.assertNoError();
+
+    });
+
+  });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 describe( "@WEBGL2 Program GLSL300", function(){
 
