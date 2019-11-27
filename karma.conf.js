@@ -116,43 +116,51 @@ module.exports = function(config) {
 
       // OSX Maverick
 
-      // 'SL_Chrome44_OSX10_10': {
-      //   base: 'SauceLabs',
-      //   browserName: 'chrome',
-      //   version: '44',
-      //   platform: 'OS X 10.10'
-      // },
+      'SL_Chrome78_OSX10_13': {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        version: '78.0',
+        platform: 'macOS 10.13'
+      },
       // 'SL_Firefox38_OSX10_10': {
       //   base: 'SauceLabs',
       //   browserName: 'firefox',
       //   version: '38',
       //   platform: 'OS X 10.10'
       // },
-      // 'SL_Firefox42_OSX10_10': {
-      //   base: 'SauceLabs',
-      //   browserName: 'firefox',
-      //   version: '42',
-      //   platform: 'OS X 10.10'
-      // },
+      'SL_Firefox70_OSX10_13': {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        version: '70.0',
+        platform: 'macOS 10.13'
+      },
     //   'SL_Safari': {
     //     base: 'SauceLabs',
     //     browserName: 'safari',
     //     platform: 'OS X 10.10',
     //     version: '8'
     //   },
-      'SL_Safari_12': {
-        base: 'SauceLabs',
-        browserName: 'safari',
-        platform: 'macOS 10.14',
-        version: '12.0'
-      },
+      // 'SL_Safari_12': {
+      //   base: 'SauceLabs',
+      //   browserName: 'safari',
+      //   platform: 'macOS 10.14',
+      //   version: '12.0'
+      // },
 
       //Win 8.1
       'SL_Chrome78_WIN10': {
         base: 'SauceLabs',
         browserName: 'chrome',
         version: '78.0',
-        platform: 'Windows 8.1'
+        platform: 'Windows 10'
+      },
+
+
+      'SL_Chrome50_WIN10': {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        version: '50.0',
+        platform: 'Windows 10'
       },
 
       // 'SL_Firefox_WIN81': {
