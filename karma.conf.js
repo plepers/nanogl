@@ -134,20 +134,26 @@ module.exports = function(config) {
       //   version: '42',
       //   platform: 'OS X 10.10'
       // },
-      // 'SL_Safari': {
-      //   base: 'SauceLabs',
-      //   browserName: 'safari',
-      //   platform: 'OS X 10.10',
-      //   version: '8'
-      // },
+    //   'SL_Safari': {
+    //     base: 'SauceLabs',
+    //     browserName: 'safari',
+    //     platform: 'OS X 10.10',
+    //     version: '8'
+    //   },
+      'SL_Safari': {
+        base: 'SauceLabs',
+        browserName: 'safari',
+        platform: 'macOS 10.13',
+        version: '13.0'
+      },
 
-      // //Win 8.1
-      // 'SL_Chrome44_WIN81': {
-      //   base: 'SauceLabs',
-      //   browserName: 'chrome',
-      //   version: '44',
-      //   platform: 'Windows 8.1'
-      // },
+      //Win 8.1
+      'SL_Chrome78_WIN10': {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        version: '78.0',
+        platform: 'Windows 8.1'
+      },
 
       // 'SL_Firefox_WIN81': {
       //   base: 'SauceLabs',
@@ -179,7 +185,13 @@ module.exports = function(config) {
         base: 'SauceLabs',
         browserName: 'MicrosoftEdge',
         platform: 'Windows 10',
-        version: '13.10586'
+        version: '18.17763'
+      },
+      'SL_win10_FF': {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        platform: 'Windows 10',
+        version: '70.0'
       },
     },
   });
