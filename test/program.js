@@ -1,4 +1,4 @@
-var Program = require( '../nanogl' ).Program;
+var Program = require( '../program' );
 var expect  = require( 'expect.js' );
 
 var testContext = require( './utils/TestContext' );

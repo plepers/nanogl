@@ -1,7 +1,7 @@
 
 
-var Texture = require( '../nanogl' ).Texture;
-var Program = require( '../nanogl' ).Program;
+var Texture = require( '../texture' );
+var Program = require( '../program' );
 var expect  = require( 'expect.js' );
 
 var when = require( 'when' );
@@ -35,8 +35,8 @@ describe( "Texture", function(){
     mireRGB  = document.createElement( 'img' );
     mireRGBA = document.createElement( 'img' );
     return when.all( [
-      loadImage( mireRGB, 'assets/mireRGB.png' ),
-      loadImage( mireRGBA, 'assets/mireRGBA.png' ),
+      loadImage( mireRGB, 'base/test/assets/mireRGB.png' ),
+      loadImage( mireRGBA, 'base/test/assets/mireRGBA.png' ),
     ]);
   });
 

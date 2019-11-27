@@ -1,8 +1,8 @@
 
 
-var Sampler = require( '../nanogl' ).Sampler;
-var Texture = require( '../nanogl' ).Texture;
-var Program = require( '../nanogl' ).Program;
+var Sampler = require( '../sampler' );
+var Texture = require( '../texture' );
+var Program = require( '../program' );
 var expect  = require( 'expect.js' );
 
 var when = require( 'when' );
@@ -36,8 +36,8 @@ describe( "Sampler @WEBGL2", function(){
     mireRGB  = document.createElement( 'img' );
     mireRGBA = document.createElement( 'img' );
     return when.all( [
-      loadImage( mireRGB, 'assets/mireRGB.png' ),
-      loadImage( mireRGBA, 'assets/mireRGBA.png' ),
+      loadImage( mireRGB, 'base/test/assets/mireRGB.png' ),
+      loadImage( mireRGBA, 'base/test/assets/mireRGBA.png' ),
     ]);
   });
 

@@ -5,8 +5,8 @@
   "main": "nanogl.js",
   "scripts": {
     "test": "npm run test_gl1",
-    "test_gl1": "jshint *.js && karma start",
-    "test_gl2": "jshint *.js && karma start --webgl-version=2",
+    "test_gl1": "tsc && karma start",
+    "test_gl2": "tsc && karma start --webgl-version=2",
     "docs": "jsdoc program.js texture.js fbo.js arraybuffer.js indexbuffer.js bufferutils.js -R README.md -d ../nanogl_gh_pages -t node_modules/minami",
     "gztest": "browserify nanogl.js -o gztest.js && uglifyjs --screw-ie8 -m -c warnings=false -o gztest.min.js -- gztest.js && gzip -k -9 gztest.min.js && stat -f%z gztest.min.js.gz && rm ./*gztest*",
     "perf": "browserify -t [ stringify --extensions [.vert .frag] ] -o test/perf/main.js test/perf/index.js"
@@ -29,7 +29,7 @@
     "expect.js": "^0.3.1",
     "jsdoc": "^3.4.0",
     "jshint": "^2.9.1-rc1",
-    "karma": "^3.1.1",
+    "karma": "^0.13.22",
     "karma-browserify": "^4.4.2",
     "karma-chrome-launcher": "^0.2.2",
     "karma-mocha": "^0.2.1",
