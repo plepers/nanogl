@@ -218,6 +218,7 @@ module.exports = function(config) {
 
       browsers.push( browser );
     }
+    console.log( browsers );
     config.browsers = browsers;
 
     config.autoWatch = false;
