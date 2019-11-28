@@ -1,234 +1,181 @@
-var Texture = require( './texture' );
-
-
-/**
- * @class
- * @param {WebGLRenderingContext} gl      the webgl context this Fbo belongs to
- * @param {Object} [opts]
- * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
- * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
- * @param {GLenum|GLenum[]} [opts.type=GL_UNSIGNED_BYTE] the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
- * @param {GLenum} [opts.format=GL_RGB] the internal pixel format.
- *
- */
-function Fbo( gl, opts )
-{
-  this.gl = gl;
-  this.width = 0;
-  this.height = 0;
-  this.fbo = null;
-
-  opts = opts || DEFAULT_OPTS;
-
-  var flags =  ( opts.depth ) |
-               ( opts.stencil <<1);
-
-  var types = opts.type || gl.UNSIGNED_BYTE;
-  this.types = Array.isArray( types ) ? types : [types];
-
-  this.color      = new Texture( gl, opts.format );
-  this.attachment = new DepthStencilAttachment( this, flags );
+"use strict";
+const Texture = require("./texture");
+const RenderBuffer = require("./renderbuffer");
+const utils_1 = require("./utils");
+function isTexture(target) {
+    return target.id instanceof WebGLTexture;
 }
-
-
-Fbo.prototype = {
-
-  /**
-   * Resize FBO attachments
-   *  @param {uint} w new width
-   *  @param {uint} h new height
-   */
-  resize : function( w, h ){
-    if( this.width !== w || this.height !== h ) {
-      this.width  = w|0;
-      this.height = h|0;
-      if( this.fbo === null ){
-        this._init();
-      }
-      this._allocate();
+class Attachment {
+    constructor(target) {
+        this.target = target;
+        this.level = 0;
+        this._isTexture = isTexture(target);
     }
-  },
-
-  /**
-   * Bind the color texture of this Fbo to a sampler2D location and a unit
-   * The related program must be in use.
-   * @param {WebGLUniformLocation} location the program's sampler to bind the textue to
-   * @param {} unit the texture unit to use
-   */
-  bindColor : function( location, unit ){
-    var gl = this.gl;
-    gl.activeTexture( gl.TEXTURE0 + unit );
-    gl.bindTexture( gl.TEXTURE_2D, this.color.id );
-    gl.uniform1i( location, unit );
-  },
-
-  /**
-   * Bind the Fbo and set gl viewport to it's size
-   */
-  bind : function() {
-    var gl = this.gl;
-    gl.bindFramebuffer(gl.FRAMEBUFFER, this.fbo);
-    gl.viewport( 0, 0, this.width, this.height );
-  },
-
-  /**
-   * Clear all buffer of the Fbo.
-   * The Fbo must be explicitly bound before calling this method
-   */
-  clear : function() {
-    var gl = this.gl;
-    var bits = gl.COLOR_BUFFER_BIT | this.attachment.clearBits();
-    gl.clear( bits );
-  },
-
-  /**
-   * Check if the Fbo is valid,
-   * The Fbo must be explicitely bound before calling this method
-   */
-  isValid : function(){
-    var gl = this.gl;
-    return ( gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE );
-  },
-
-  /**
-   * return the actual pixel type of the underlying color texture (UNSIGNED_BYTE, FLOAT, HALF_FLOAT_EOS etc)
-   * after possibles types has been tested
-   */
-  getActualType : function(){
-    return this.color.type;
-  },
-
-  /**
-   * Delete all webgl objects related to this Fbo (fbo, color attachment and depth/stencil renderbuffer )
-   */
-  dispose : function(){
-    var gl = this.gl;
-    gl.deleteFramebuffer( this.fbo );
-    this.color.dispose();
-    this.attachment.dispose();
-    this.valid = false;
-    this.fbo   = null;
-    this.gl    = null;
-  },
-
-
-  // create render buffers and set attchment points
-  _init : function() {
-    var gl = this.gl;
-
-    this.fbo = gl.createFramebuffer();
-    gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
-    gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.color.id, 0 );
-
-    this.attachment._init();
-  },
-
-  // (re)allocate render buffers to size
-  _allocate : function(){
-    var gl = this.gl;
-
-    this.attachment._allocate();
-
-    gl.bindFramebuffer( gl.FRAMEBUFFER, this.fbo );
-
-    var tIndex = 0;
-    var nextFmt = this.types[tIndex];
-    do {
-      this.color.fromData( this.width, this.height, null, nextFmt );
-      gl.getError(); // clear possible texture error
-    } while( !(this.valid = this.isValid() ) && ( nextFmt = this.types[++tIndex] ) );
-
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-
-  }
-
-
-};
-
-
-
-//---------------------------------
-//         Depth/Stencil Attachment
-//---------------------------------
-
-function DepthStencilAttachment( fbo, flags ){
-  this.fbo   = fbo;
-  this.flags = flags;
-  this.buffer = null;
+    isTexture() {
+        return this._isTexture;
+    }
+    _resize(w, h) {
+        if (w > 0 && h > 0) {
+            if (isTexture(this.target)) {
+                this.target.fromData(w, h, null);
+            }
+            else {
+                this.target.resize(w, h);
+                this.target.allocate();
+            }
+        }
+    }
+    _attach(bindingPoint) {
+        var gl = this.target.gl;
+        if (this._isTexture) {
+            gl.framebufferTexture2D(gl.FRAMEBUFFER, bindingPoint, gl.TEXTURE_2D, this.target.id, this.level);
+        }
+        else {
+            gl.framebufferRenderbuffer(gl.FRAMEBUFFER, bindingPoint, gl.RENDERBUFFER, this.target.id);
+        }
+    }
+    _detach(bindingPoint) {
+        var gl = this.target.gl;
+        if (this._isTexture) {
+            gl.framebufferTexture2D(gl.FRAMEBUFFER, bindingPoint, gl.TEXTURE_2D, null, this.level);
+        }
+        else {
+            gl.framebufferRenderbuffer(gl.FRAMEBUFFER, bindingPoint, gl.RENDERBUFFER, null);
+        }
+    }
+    dispose() {
+        this.target.dispose();
+    }
 }
-
-
-DepthStencilAttachment.prototype = {
-
-  _init : function(){
-    var gl = this.fbo.gl;
-    var attType = this.flags & 3;
-    var depth = null;
-
-    if( attType !== 0 ){
-      depth = gl.createRenderbuffer();
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  depth );
-      gl.framebufferRenderbuffer( gl.FRAMEBUFFER, getAttachmentType( gl, attType ), gl.RENDERBUFFER, depth );
+class Fbo {
+    constructor(gl) {
+        this.gl = gl;
+        this.width = 0;
+        this.height = 0;
+        this.fbo = gl.createFramebuffer();
+        this.bind();
+        this.attachments = {};
+        this.attachmentsList = [];
     }
-
-    this.buffer = depth;
-  },
-
-
-  _allocate : function(){
-    var gl = this.fbo.gl;
-    var attType = this.flags & 3;
-
-    if( attType !== 0 ){
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  this.buffer );
-      gl.renderbufferStorage( gl.RENDERBUFFER,  getAttachmentFormat( gl, attType ) , this.fbo.width, this.fbo.height );
-      gl.bindRenderbuffer(    gl.RENDERBUFFER,  null );
+    attach(bindingPoint, res) {
+        const attachment = new Attachment(res);
+        bindingPoint = 0 | bindingPoint;
+        this.detach(bindingPoint);
+        this.attachments[bindingPoint.toString()] = attachment;
+        this.attachmentsList.push(attachment);
+        attachment._resize(this.width, this.height);
+        attachment._attach(bindingPoint);
+        return attachment;
     }
-  },
-
-
-  dispose : function(){
-    if( this.buffer ){
-      this.fbo.gl.deleteRenderbuffer( this.buffer );
+    detach(bindingPoint) {
+        const att = this.attachments[bindingPoint.toString()];
+        if (att !== undefined) {
+            const index = this.attachmentsList.indexOf(att);
+            this.attachmentsList.splice(index, 1);
+            att._detach(bindingPoint);
+        }
+        delete this.attachments[bindingPoint.toString()];
     }
-    this.buffer = null;
-  },
-
-
-  clearBits : function(){
-    return ( ( this.flags & 1 ) ? 0x0100 : 0 ) |
-           ( ( this.flags & 2 ) ? 0x0400 : 0 );
-  }
-
-
-};
-
-//---------------------------------
-//                        Utilities
-//---------------------------------
-
-// renderbuffer format
-function getAttachmentFormat( gl, type ){
-  switch( type ){
-    case 1: return 0x81A5;  // DEPTH_COMPONENT16;
-    case 2: return 0x8D48;  // STENCIL_INDEX8;
-    case 3: return 0x84F9;  // DEPTH_STENCIL;
-    default: throw new Error( 'unknown attachment type '+type );
-  }
+    getAttachment(bindingPoint) {
+        const att = this.attachments[bindingPoint.toString()];
+        if (att !== undefined) {
+            return att;
+        }
+        return null;
+    }
+    getColor(index) {
+        index = index | 0;
+        const att = this.getAttachment(0x8ce0 + index);
+        return att ? att.target : null;
+    }
+    getDepth() {
+        const att = this.getAttachment(0x8d00) ||
+            this.getAttachment(0x8d20) ||
+            this.getAttachment(0x821a);
+        return att ? att.target : null;
+    }
+    attachColor(format, type, internal) {
+        const t = new Texture(this.gl, format, type, internal);
+        return this.attach(0x8ce0, t);
+    }
+    attachDepth(depth = true, stencil = false, useTexture = false) {
+        let attachment;
+        if (useTexture) {
+            const cfg = dsTextureConfig(this.gl, stencil);
+            attachment = new Texture(this.gl, cfg.format, cfg.type, cfg.internal);
+        }
+        else {
+            attachment = new RenderBuffer(this.gl, dsRenderbufferStorage(depth, stencil));
+        }
+        return this.attach(dsAttachmentPoint(depth, stencil), attachment);
+    }
+    resize(w, h) {
+        if (this.width !== w || this.height !== h) {
+            this.width = w | 0;
+            this.height = h | 0;
+            this._allocate();
+        }
+    }
+    bind() {
+        const gl = this.gl;
+        gl.bindFramebuffer(gl.FRAMEBUFFER, this.fbo);
+    }
+    clear() {
+        this.gl.clear(0x4500);
+    }
+    defaultViewport() {
+        this.gl.viewport(0, 0, this.width, this.height);
+    }
+    isValid() {
+        const gl = this.gl;
+        return gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
+    }
+    dispose() {
+        const gl = this.gl;
+        gl.deleteFramebuffer(this.fbo);
+        for (var i = 0; i < this.attachmentsList.length; i++) {
+            this.attachmentsList[i].dispose();
+        }
+        this.attachmentsList.length = 0;
+        this.attachments = {};
+    }
+    _allocate() {
+        for (var attachment of this.attachmentsList) {
+            attachment._resize(this.width, this.height);
+        }
+    }
 }
-
-
-function getAttachmentType( gl, type ){
-  switch( type ){
-    case 1: return 0x8D00;  // DEPTH_ATTACHMENT
-    case 2: return 0x8D20;  // STENCIL_ATTACHMENT;
-    case 3: return 0x821A;  // DEPTH_STENCIL_ATTACHMENT;
-    default: throw new Error( 'unknown attachment type '+type );
-  }
+function dsFlag(depth, stencil) {
+    return depth | (stencil << 1);
 }
-
-
-
-var DEFAULT_OPTS = {};
-
+function dsAttachmentPoint(depth, stencil) {
+    switch (dsFlag(depth, stencil)) {
+        case 1:
+            return 0x8d00;
+        case 2:
+            return 0x8d20;
+        case 3:
+            return 0x821a;
+        default:
+            return 0;
+    }
+}
+function dsRenderbufferStorage(depth, stencil) {
+    switch (dsFlag(depth, stencil)) {
+        case 1:
+            return 0x81a5;
+        case 2:
+            return 0x8d48;
+        case 3:
+            return 0x84f9;
+        default:
+            return 0;
+    }
+}
+function dsTextureConfig(gl, stencil) {
+    if (stencil) {
+        return { format: 0x84f9, type: 0x84fa, internal: utils_1.isWebgl2(gl) ? gl.DEPTH24_STENCIL8 : gl.DEPTH_STENCIL };
+    }
+    return { format: 0x1902, type: 0x1405, internal: utils_1.isWebgl2(gl) ? gl.DEPTH_COMPONENT24 : gl.DEPTH_COMPONENT };
+}
 module.exports = Fbo;

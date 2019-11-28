@@ -1,7 +1,7 @@
 
 
-var Texture = require( '../nanogl' ).Texture;
-var Program = require( '../nanogl' ).Program;
+var Texture = require( '../texture' );
+var Program = require( '../program' );
 var expect  = require( 'expect.js' );
 
 var when = require( 'when' );
@@ -35,8 +35,8 @@ describe( "Texture", function(){
     mireRGB  = document.createElement( 'img' );
     mireRGBA = document.createElement( 'img' );
     return when.all( [
-      loadImage( mireRGB, 'assets/mireRGB.png' ),
-      loadImage( mireRGBA, 'assets/mireRGBA.png' ),
+      loadImage( mireRGB, 'base/test/assets/mireRGB.png' ),
+      loadImage( mireRGBA, 'base/test/assets/mireRGBA.png' ),
     ]);
   });
 
@@ -100,7 +100,7 @@ describe( "Texture", function(){
   });
 
 
-  it( "should render various filtering", function( ){
+  it( "should render nearest filtering", function( ){
     var tex = new Texture( gl );
     tex.fromImage( mireRGB, false );
 
@@ -116,47 +116,85 @@ describe( "Texture", function(){
     testContext.drawProgram( filltex );
     testContext.testPixel( 16, 3, 0xFFee0000 )
     testContext.testPixel( 48, 3, 0xFF101010 )
+  });
 
-    // LINEAR
+
+  it( "should render linear filtering", function( ){
+    var tex = new Texture( gl );
+    tex.fromImage( mireRGB, false );
+
+    filltex.bind()
+
+    gl.activeTexture( gl.TEXTURE0 );
+    gl.bindTexture( gl.TEXTURE_2D, tex.id );
+    gl.uniform1i( filltex.tTex(), 0 );
+
     tex.setFilter( true, false, false )
     tex.clamp()
     testContext.drawProgram( filltex );
     testContext.testPixel( 16, 3, 0xFF955900 )
     testContext.testPixel( 48, 3, 0xFF630A0A )
+  });
 
-    // 16 test
-    // filltex16.bind()
-    // gl.uniform1i( filltex16.tTex(), 0 );
 
-    // tex.setFilter( false, false, false )
-    // tex.setRepeat( false )
-    // testContext.drawProgram( filltex16 );
-    // testContext.testPixel( 0, 0, 0xFF00EE00 )
 
-    // MIPMAP
+  it( "should render nearest mip filtering", function( ){
+    var tex = new Texture( gl );
+    tex.fromImage( mireRGB, false );
+
+    filltex.bind()
+
+    gl.activeTexture( gl.TEXTURE0 );
+    gl.bindTexture( gl.TEXTURE_2D, tex.id );
+    gl.uniform1i( filltex.tTex(), 0 );
+
+    
     gl.generateMipmap( gl.TEXTURE_2D, tex.id );
     tex.setFilter( false, true, false )
     tex.clamp()
     testContext.drawProgram( filltex16 );
     testContext.testPixel( 0, 0, 0xFF7b4004 )
     testContext.testPixel( 2, 0, 0xFF777700 )
+  });
 
 
-    // MIPMAP LINEAR
+  it( "should render nearest mip linear filtering", function( ){
+    var tex = new Texture( gl );
+    tex.fromImage( mireRGB, false );
+
+    filltex.bind()
+
+    gl.activeTexture( gl.TEXTURE0 );
+    gl.bindTexture( gl.TEXTURE_2D, tex.id );
+    gl.uniform1i( filltex.tTex(), 0 );
+
+    
+    gl.generateMipmap( gl.TEXTURE_2D, tex.id );
     tex.setFilter( false, true, true )
     tex.clamp()
     testContext.drawProgram( filltex16 );
     testContext.testPixel( 0, 0, 0xFF794209 )
     testContext.testPixel( 2, 0, 0xFF767405 )
+  });
 
-    // LINEAR MIPMAP LINEAR
+
+  it( "should render linear mip linear filtering", function( ){
+    var tex = new Texture( gl );
+    tex.fromImage( mireRGB, false );
+
+    filltex.bind()
+
+    gl.activeTexture( gl.TEXTURE0 );
+    gl.bindTexture( gl.TEXTURE_2D, tex.id );
+    gl.uniform1i( filltex.tTex(), 0 );
+
+    
+    gl.generateMipmap( gl.TEXTURE_2D, tex.id );
     tex.setFilter( true, true, true )
     tex.clamp()
     testContext.drawProgram( filltex16 );
     testContext.testPixel( 0, 0, 0xff794509 )
     testContext.testPixel( 2, 0, 0xff756c0c )
-
-    testContext.assertNoError();
   });
 
 
@@ -176,7 +214,7 @@ describe( "Texture", function(){
 
 
 
-  it( "should accept Uint8Array RGB data", function( ){
+  it( "@should accept Uint8Array RGB data", function( ){
     var tex = new Texture( gl, gl.RGB );
     tex.bind();
     gl.pixelStorei( gl.UNPACK_ALIGNMENT, 1 );
