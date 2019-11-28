@@ -120,7 +120,8 @@ module.exports = function(config) {
         base: 'SauceLabs',
         browserName: 'chrome',
         version: '78.0',
-        platform: 'macOS 10.13'
+        platform: 'macOS 10.13',
+        webgl2:true
       },
       // 'SL_Firefox38_OSX10_10': {
       //   base: 'SauceLabs',
@@ -152,15 +153,17 @@ module.exports = function(config) {
         base: 'SauceLabs',
         browserName: 'chrome',
         version: '78.0',
-        platform: 'Windows 10'
+        platform: 'Windows 10',
+        webgl2:true
       },
 
 
-      'SL_Chrome50_WIN10': {
+      'SL_Chrome65_WIN10': {
         base: 'SauceLabs',
         browserName: 'chrome',
         version: '65.0',
-        platform: 'Windows 10'
+        platform: 'Windows 10',
+        webgl2:true
       },
 
       // 'SL_Firefox_WIN81': {
@@ -208,6 +211,11 @@ module.exports = function(config) {
 
     var browsers = [];
     for( var browser in config.customLaunchers ){
+      
+      // skip browser not supporting webgl2
+      if( glversion !== 1 && browser.webgl2 !== true ) 
+        continue; 
+
       browsers.push( browser );
     }
     config.browsers = browsers;
