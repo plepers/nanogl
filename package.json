@@ -4,7 +4,7 @@
   "description": "webgl micro framework ",
   "main": "nanogl.js",
   "scripts": {
-    "test": "npm run test_gl1",
+    "test": "tsc && karma start && karma start --webgl-version=2",
     "test_gl1": "tsc && karma start",
     "test_gl2": "tsc && karma start --webgl-version=2",
     "docs": "jsdoc program.js texture.js fbo.js arraybuffer.js indexbuffer.js bufferutils.js -R README.md -d ../nanogl_gh_pages -t node_modules/minami",

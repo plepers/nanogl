@@ -15,9 +15,9 @@ declare class Attachment {
 }
 declare class Fbo {
     gl: GLContext;
+    fbo: WebGLFramebuffer;
     width: number;
     height: number;
-    fbo: WebGLFramebuffer;
     attachmentsList: Attachment[];
     attachments: Record<string, Attachment>;
     constructor(gl: GLContext);
@@ -26,7 +26,7 @@ declare class Fbo {
     getAttachment(bindingPoint: GLenum): Attachment | null;
     getColor(index: number): AttachmentTarget | null;
     getDepth(): AttachmentTarget | null;
-    attachColor(format: GLenum, type: GLenum, internal: GLenum): Attachment;
+    attachColor(format?: GLenum, type?: GLenum, internal?: GLenum): Attachment;
     attachDepth(depth?: boolean, stencil?: boolean, useTexture?: boolean): Attachment;
     resize(w: number, h: number): void;
     bind(): void;

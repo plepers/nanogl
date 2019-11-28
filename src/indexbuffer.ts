@@ -77,7 +77,7 @@ class IndexBuffer extends BaseBuffer {
   subData(array: BufferSource, offset: number) {
     const gl = this.gl;
     gl.bindBuffer(TGT, this.buffer);
-    gl.bufferSubData(TGT, offset, array as any);
+    gl.bufferSubData(TGT, offset, array);
     gl.bindBuffer(TGT, null);
   }
 
@@ -95,7 +95,7 @@ class IndexBuffer extends BaseBuffer {
    *   @param {uint} [offset=0] the position of the first index to draw
    */
   draw(mode: GLenum, count?: number, offset: number = 0) {
-    count = count === undefined ? this.byteLength / this.typeSize : count;
+    count = (count === undefined) ? this.byteLength / this.typeSize : count;
     this.gl.drawElements(mode, count, this.type, 0 | offset);
   }
 }

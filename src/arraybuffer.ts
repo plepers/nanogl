@@ -102,7 +102,7 @@ class ArrayBuffer extends BaseBuffer {
   subData(array: BufferSource, offset: number) {
     const gl = this.gl;
     gl.bindBuffer(TGT, this.buffer);
-    gl.bufferSubData(TGT, offset, array as any);
+    gl.bufferSubData(TGT, offset, array);
     gl.bindBuffer(TGT, null);
   }
 

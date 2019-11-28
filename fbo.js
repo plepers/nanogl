@@ -68,9 +68,9 @@ class Fbo {
         return attachment;
     }
     detach(bindingPoint) {
-        var att = this.attachments[bindingPoint.toString()];
+        const att = this.attachments[bindingPoint.toString()];
         if (att !== undefined) {
-            var index = this.attachmentsList.indexOf(att);
+            const index = this.attachmentsList.indexOf(att);
             this.attachmentsList.splice(index, 1);
             att._detach(bindingPoint);
         }

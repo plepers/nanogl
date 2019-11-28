@@ -40,10 +40,13 @@ class Program {
   static debug: boolean = false;
 
   gl: GLContext;
+
   readonly program: WebGLProgram;
   readonly vShader: WebGLShader;
   readonly fShader: WebGLShader;
+
   protected dyns: string[];
+  
   ready: boolean;
   _uid: number;
   _cuid: number;

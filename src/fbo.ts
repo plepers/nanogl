@@ -10,6 +10,7 @@ function isTexture(target: AttachmentTarget): target is Texture {
 type AttachmentTarget = Texture | RenderBuffer;
 
 class Attachment {
+
   level: number;
   target: AttachmentTarget;
   _isTexture: boolean;
@@ -74,14 +75,17 @@ class Attachment {
  *
  */
 class Fbo {
+
   gl: GLContext;
+  fbo: WebGLFramebuffer;
+
   width: number;
   height: number;
-  fbo: WebGLFramebuffer;
+  
   attachmentsList: Attachment[];
   attachments: Record<string,Attachment>;
 
-  constructor(gl: GLContext) {
+  constructor( gl: GLContext ) {
     this.gl = gl;
     this.width = 0;
     this.height = 0;
@@ -110,9 +114,9 @@ class Fbo {
 
   // The Fbo must be explicitely bound before calling this method
   detach(bindingPoint: GLenum) {
-    var att = this.attachments[bindingPoint.toString()];
+    const att = this.attachments[bindingPoint.toString()];
     if (att !== undefined) {
-      var index = this.attachmentsList.indexOf(att);
+      const index = this.attachmentsList.indexOf(att);
       this.attachmentsList.splice(index, 1);
       att._detach(bindingPoint);
     }
@@ -144,7 +148,7 @@ class Fbo {
   /**
    * Shortcut to attach texture to color attachment 0
    */
-  attachColor(format: GLenum, type: GLenum, internal: GLenum) {
+  attachColor(format?: GLenum, type?: GLenum, internal?: GLenum) {
     const t = new Texture(this.gl, format, type, internal);
     return this.attach(0x8ce0, t);
   }

@@ -34,7 +34,7 @@ class RenderBuffer {
 
     // Dummy allocation needed
     // on some platform (chrome 57, osx, nvidia), gl.framebufferRenderbuffer raise
-    // an INVALID_OPERATION if a RB is attached before it storage is set.
+    // an INVALID_OPERATION if a RB is attached before it storage is allocated.
     this._storage();
   }
 

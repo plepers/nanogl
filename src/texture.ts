@@ -14,16 +14,21 @@ const T2D = 0x0de1;
  *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
  */
 class Texture {
+
   gl: GLContext;
   id: WebGLTexture;
-  format: GLenum = 0;
-  internal: GLenum = 0;
-  type: GLenum = 0;
-  width: number;
+
+  width : number;
   height: number;
+
+  format  : GLenum = 0;
+  internal: GLenum = 0;
+  type    : GLenum = 0;
+
   _uid: number;
 
   constructor(gl: GLContext, format?: GLenum, type?: GLenum, internal?: GLenum) {
+      
     this._uid = _UID++;
     this.gl = gl;
     this.id = <WebGLTexture>gl.createTexture();

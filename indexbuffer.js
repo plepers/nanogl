@@ -40,7 +40,7 @@ class IndexBuffer extends BaseBuffer {
         this.gl.deleteBuffer(this.buffer);
     }
     draw(mode, count, offset = 0) {
-        count = count === undefined ? this.byteLength / this.typeSize : count;
+        count = (count === undefined) ? this.byteLength / this.typeSize : count;
         this.gl.drawElements(mode, count, this.type, 0 | offset);
     }
 }
