@@ -213,7 +213,8 @@ module.exports = function(config) {
     for( var browser in config.customLaunchers ){
       
       // skip browser not supporting webgl2
-      if( glversion !== 1 && browser.webgl2 !== true ) 
+      var bdata = config.customLaunchers[browser];
+      if( glversion !== 1 && bdata.webgl2 !== true ) 
         continue; 
 
       browsers.push( browser );
