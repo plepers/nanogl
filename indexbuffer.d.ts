@@ -1,5 +1,5 @@
 import { GLContext } from './types';
-import BaseBuffer = require('./basebuffer');
+import BaseBuffer from './basebuffer';
 declare class IndexBuffer extends BaseBuffer {
     gl: GLContext;
     usage: GLenum;
@@ -15,4 +15,4 @@ declare class IndexBuffer extends BaseBuffer {
     dispose(): void;
     draw(mode: GLenum, count?: number, offset?: number): void;
 }
-export = IndexBuffer;
+export default IndexBuffer;

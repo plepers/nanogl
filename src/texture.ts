@@ -151,4 +151,4 @@ class Texture {
 }
 
 
-export = Texture
+export default Texture

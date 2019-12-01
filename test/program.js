@@ -1,4 +1,4 @@
-var Program = require( '../program' );
+import Program from '../program'
 var expect  = require( 'expect.js' );
 
 var testContext = require( './utils/TestContext' );

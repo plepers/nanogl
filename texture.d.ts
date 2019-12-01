@@ -20,4 +20,4 @@ declare class Texture {
     mirror(): void;
     wrap(wrap: GLenum): void;
 }
-export = Texture;
+export default Texture;

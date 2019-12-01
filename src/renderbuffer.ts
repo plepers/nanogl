@@ -88,4 +88,4 @@ class RenderBuffer {
 }
 
 
-export = RenderBuffer
+export default RenderBuffer

@@ -1,5 +1,5 @@
-import Program = require('./program');
-import BaseBuffer = require('./basebuffer');
+import Program from './program';
+import BaseBuffer from './basebuffer';
 import { GLContext } from './types';
 interface AttributeDef {
     name: string;
@@ -10,12 +10,12 @@ interface AttributeDef {
 }
 declare class ArrayBuffer extends BaseBuffer {
     gl: GLContext;
-    usage: GLenum;
     buffer: WebGLBuffer;
-    attribs: AttributeDef[];
+    usage: GLenum;
     stride: number;
     byteLength: number;
     length: number;
+    attribs: AttributeDef[];
     constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage?: GLenum);
     bind(): void;
     attrib(name: string, size: number, type: GLenum, normalize?: boolean): this;
@@ -26,4 +26,4 @@ declare class ArrayBuffer extends BaseBuffer {
     dispose(): void;
     _computeLength(): void;
 }
-export = ArrayBuffer;
+export default ArrayBuffer;

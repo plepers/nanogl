@@ -1,6 +1,6 @@
-var IndexBuffer = require( '../indexbuffer' );
-var ArrayBuffer = require( '../arraybuffer' );
-var Program = require( '../program' );
+import IndexBuffer from '../indexbuffer'
+import ArrayBuffer from '../arraybuffer'
+import Program from '../program'
 
 var expect  = require( 'expect.js' );
 

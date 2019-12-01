@@ -1,7 +1,8 @@
 
 
-var Texture = require( '../texture' );
-var Program = require( '../program' );
+import Texture from '../texture'
+import Program from '../program'
+
 var expect  = require( 'expect.js' );
 
 var when = require( 'when' );
@@ -24,8 +25,8 @@ var filltex, filltex16;
 describe( "Texture", function(){
 
   before(function() {
-    vert = require( './glsl/filltex.vert')
-    frag = require( './glsl/filltex.frag')
+    var vert = require( './glsl/filltex.vert')
+    var frag = require( './glsl/filltex.frag')
     filltex = new Program( gl );
     filltex.compile( vert, frag, "#define UV_MULT 2.0" );
 
@@ -42,7 +43,7 @@ describe( "Texture", function(){
 
   after( function(){
     filltex.dispose()
-    filltex.dispose()
+    filltex16.dispose()
   })
 
 

@@ -1,5 +1,4 @@
-"use strict";
-const utils_1 = require("./utils");
+import { isWebgl2 } from './utils';
 let _UID = 0;
 class Program {
     constructor(gl, vert, frag, defs) {
@@ -81,7 +80,7 @@ class Program {
             this[attribName] = getAttribAccess(aLocation);
             this.dyns.push(attribName);
         }
-        if (utils_1.isWebgl2(gl)) {
+        if (isWebgl2(gl)) {
             const numBlocks = gl.getProgramParameter(prg, gl.ACTIVE_UNIFORM_BLOCKS);
             for (var blockIndex = 0; blockIndex < numBlocks; ++blockIndex) {
                 var blockName = gl.getActiveUniformBlockName(prg, blockIndex);
@@ -205,4 +204,4 @@ function getAttribAccess(attrib) {
         return attrib;
     };
 }
-module.exports = Program;
+export default Program;

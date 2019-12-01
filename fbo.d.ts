@@ -1,5 +1,5 @@
-import Texture = require('./texture');
-import RenderBuffer = require('./renderbuffer');
+import Texture from './texture';
+import RenderBuffer from './renderbuffer';
 import { GLContext } from './types';
 declare type AttachmentTarget = Texture | RenderBuffer;
 declare class Attachment {
@@ -36,4 +36,4 @@ declare class Fbo {
     dispose(): void;
     _allocate(): void;
 }
-export = Fbo;
+export default Fbo;

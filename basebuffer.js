@@ -1,4 +1,3 @@
-"use strict";
 class BaseBuffer {
     drawPoints(count, offset) {
         this.draw(0, count, offset);
@@ -22,4 +21,4 @@ class BaseBuffer {
         this.draw(6, count, offset);
     }
 }
-module.exports = BaseBuffer;
+export default BaseBuffer;

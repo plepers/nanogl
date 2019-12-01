@@ -1,7 +1,6 @@
-"use strict";
-const BaseBuffer = require("./basebuffer");
-const utils_1 = require("./utils");
-const TGT = 0x8892;
+import BaseBuffer from './basebuffer';
+import { getComponentSize, isBufferSource } from './utils';
+const GL_ARRAY_BUFFER = 0x8892;
 class ArrayBuffer extends BaseBuffer {
     constructor(gl, data, usage = gl.STATIC_DRAW) {
         super();
@@ -17,7 +16,7 @@ class ArrayBuffer extends BaseBuffer {
         }
     }
     bind() {
-        this.gl.bindBuffer(TGT, this.buffer);
+        this.gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
     }
     attrib(name, size, type, normalize = false) {
         this.attribs.push({
@@ -27,27 +26,27 @@ class ArrayBuffer extends BaseBuffer {
             normalize,
             offset: this.stride,
         });
-        this.stride += utils_1.getComponentSize(type) * size;
+        this.stride += getComponentSize(type) * size;
         this._computeLength();
         return this;
     }
     data(array) {
         const gl = this.gl;
-        gl.bindBuffer(TGT, this.buffer);
-        gl.bufferData(TGT, array, this.usage);
-        gl.bindBuffer(TGT, null);
-        this.byteLength = utils_1.isBufferSource(array) ? array.byteLength : array;
+        gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
+        gl.bufferData(GL_ARRAY_BUFFER, array, this.usage);
+        gl.bindBuffer(GL_ARRAY_BUFFER, null);
+        this.byteLength = isBufferSource(array) ? array.byteLength : array;
         this._computeLength();
     }
     subData(array, offset) {
         const gl = this.gl;
-        gl.bindBuffer(TGT, this.buffer);
-        gl.bufferSubData(TGT, offset, array);
-        gl.bindBuffer(TGT, null);
+        gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
+        gl.bufferSubData(GL_ARRAY_BUFFER, offset, array);
+        gl.bindBuffer(GL_ARRAY_BUFFER, null);
     }
     attribPointer(program) {
         const gl = this.gl;
-        gl.bindBuffer(TGT, this.buffer);
+        gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
         for (var i = 0; i < this.attribs.length; i++) {
             var attrib = this.attribs[i];
             if (program[attrib.name] !== undefined) {
@@ -69,4 +68,4 @@ class ArrayBuffer extends BaseBuffer {
         }
     }
 }
-module.exports = ArrayBuffer;
+export default ArrayBuffer;

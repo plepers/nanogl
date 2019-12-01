@@ -1,7 +1,7 @@
-var Fbo          = require( '../fbo' )
-var Texture      = require( '../texture' )
-var Program      = require( '../program' )
-var Renderbuffer = require( '../renderbuffer' )
+import  Fbo          from '../fbo'
+import  Texture      from '../texture'
+import  Program      from '../program'
+import  Renderbuffer from '../renderbuffer'
 var expect       = require( 'expect.js' );
 
 var testContext = require( './utils/TestContext' );
@@ -506,10 +506,10 @@ describe( "Fbo", function(){
 
     it( " test", function(){
       
-      var fbo, tex, color;
+      var fbo;
 
-      tex0 = new Texture(gl)
-      tex1 = new Texture(gl)
+      var tex0 = new Texture(gl)
+      var tex1 = new Texture(gl)
       fbo = new Fbo( gl );
 
 

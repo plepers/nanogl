@@ -1,5 +1,4 @@
-"use strict";
-const utils_1 = require("./utils");
+import { getTextureFiltering } from './utils';
 let _UID = 0;
 const T2D = 0x0de1;
 class Texture {
@@ -48,8 +47,8 @@ class Texture {
     }
     setFilter(smooth = false, mipmap = false, miplinear = false) {
         const gl = this.gl;
-        gl.texParameteri(T2D, gl.TEXTURE_MAG_FILTER, utils_1.getTextureFiltering(!!smooth, false, false));
-        gl.texParameteri(T2D, gl.TEXTURE_MIN_FILTER, utils_1.getTextureFiltering(!!smooth, !!mipmap, !!miplinear));
+        gl.texParameteri(T2D, gl.TEXTURE_MAG_FILTER, getTextureFiltering(!!smooth, false, false));
+        gl.texParameteri(T2D, gl.TEXTURE_MIN_FILTER, getTextureFiltering(!!smooth, !!mipmap, !!miplinear));
     }
     repeat() {
         this.wrap(this.gl.REPEAT);
@@ -66,4 +65,4 @@ class Texture {
         gl.texParameteri(T2D, gl.TEXTURE_WRAP_T, wrap);
     }
 }
-module.exports = Texture;
+export default Texture;

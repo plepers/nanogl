@@ -1,7 +1,6 @@
-"use strict";
-const Texture = require("./texture");
-const RenderBuffer = require("./renderbuffer");
-const utils_1 = require("./utils");
+import Texture from './texture';
+import RenderBuffer from './renderbuffer';
+import { isWebgl2 } from './utils';
 function isTexture(target) {
     return target.id instanceof WebGLTexture;
 }
@@ -174,8 +173,8 @@ function dsRenderbufferStorage(depth, stencil) {
 }
 function dsTextureConfig(gl, stencil) {
     if (stencil) {
-        return { format: 0x84f9, type: 0x84fa, internal: utils_1.isWebgl2(gl) ? gl.DEPTH24_STENCIL8 : gl.DEPTH_STENCIL };
+        return { format: 0x84f9, type: 0x84fa, internal: isWebgl2(gl) ? gl.DEPTH24_STENCIL8 : gl.DEPTH_STENCIL };
     }
-    return { format: 0x1902, type: 0x1405, internal: utils_1.isWebgl2(gl) ? gl.DEPTH_COMPONENT24 : gl.DEPTH_COMPONENT };
+    return { format: 0x1902, type: 0x1405, internal: isWebgl2(gl) ? gl.DEPTH_COMPONENT24 : gl.DEPTH_COMPONENT };
 }
-module.exports = Fbo;
+export default Fbo;
