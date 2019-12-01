@@ -14,4 +14,4 @@ declare class RenderBuffer {
     dispose(): void;
     _storage(): void;
 }
-export = RenderBuffer;
+export default RenderBuffer;

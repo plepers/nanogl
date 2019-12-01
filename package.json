@@ -24,7 +24,22 @@
     "url": "https://github.com/plepers/nanogl/issues"
   },
   "homepage": "https://github.com/plepers/nanogl#readme",
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "@babel/preset-env"
+          ]
+        }
+      ]
+    ]
+  },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babelify": "^10.0.0",
     "browserify": "^16.5.0",
     "expect.js": "^0.3.1",
     "karma": "^4.4.1",

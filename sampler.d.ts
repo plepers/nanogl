@@ -11,4 +11,4 @@ declare class Sampler {
     mirror(): void;
     wrap(wrap: GLenum): void;
 }
-export = Sampler;
+export default Sampler;

@@ -400,4 +400,4 @@ function getAttribAccess(attrib:number) {
 }
 
 
-export = Program
+export default Program

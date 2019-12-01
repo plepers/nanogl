@@ -1,5 +1,5 @@
 import { GLContext } from './types';
-import BaseBuffer = require('./basebuffer');
+import BaseBuffer from './basebuffer'
 import { getComponentSize, isBufferSource } from './utils';
 
 
@@ -101,4 +101,4 @@ class IndexBuffer extends BaseBuffer {
 }
 
 
-export = IndexBuffer
+export default IndexBuffer

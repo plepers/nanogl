@@ -12,4 +12,4 @@ declare abstract class BaseBuffer {
     drawTriangleStrip(count?: number, offset?: number): void;
     drawTriangleFan(count?: number, offset?: number): void;
 }
-export = BaseBuffer;
+export default BaseBuffer;

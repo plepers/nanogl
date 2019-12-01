@@ -1,5 +1,5 @@
-var ArrayBuffer = require( '../arraybuffer' );
-var Program = require( '../program' );
+import ArrayBuffer from '../arraybuffer'
+import Program from '../program'
 
 var expect  = require( 'expect.js' );
 

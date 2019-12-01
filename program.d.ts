@@ -17,4 +17,4 @@ declare class Program {
     dispose(): void;
     _grabParameters(): void;
 }
-export = Program;
+export default Program;

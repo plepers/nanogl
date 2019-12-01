@@ -1,12 +1,12 @@
-import Program = require('./program');
-import BaseBuffer = require('./basebuffer');
+import Program from './program'
+import BaseBuffer from './basebuffer'
 import { GLContext } from './types';
 import { getComponentSize, isBufferSource } from './utils';
 
 
 /*
  * GL_ARRAY_BUFFER */
-const TGT = 0x8892;
+const GL_ARRAY_BUFFER = 0x8892;
 
 interface AttributeDef {
   name: string;
@@ -28,12 +28,14 @@ interface AttributeDef {
 class ArrayBuffer extends BaseBuffer {
 
   gl: GLContext;
-  usage: GLenum;
   buffer: WebGLBuffer;
-  attribs: AttributeDef[];
-  stride: number;
+  
+  usage: GLenum;
+  stride    : number;
   byteLength: number;
-  length: number;
+  length    : number;
+  attribs: AttributeDef[];
+  
 
   constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage: GLenum = gl.STATIC_DRAW ) {
     super();
@@ -55,7 +57,7 @@ class ArrayBuffer extends BaseBuffer {
    * Bind the underlying webgl buffer.
    */
   bind() {
-    this.gl.bindBuffer(TGT, this.buffer);
+    this.gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
   }
 
   /**
@@ -86,9 +88,9 @@ class ArrayBuffer extends BaseBuffer {
 
   data(array: BufferSource | GLsizeiptr) {
     const gl = this.gl;
-    gl.bindBuffer(TGT, this.buffer);
-    gl.bufferData(TGT, array as any, this.usage);
-    gl.bindBuffer(TGT, null);
+    gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
+    gl.bufferData(GL_ARRAY_BUFFER, array as any, this.usage);
+    gl.bindBuffer(GL_ARRAY_BUFFER, null);
 
     this.byteLength = isBufferSource(array) ? array.byteLength : array;
     this._computeLength();
@@ -101,9 +103,9 @@ class ArrayBuffer extends BaseBuffer {
    */
   subData(array: BufferSource, offset: number) {
     const gl = this.gl;
-    gl.bindBuffer(TGT, this.buffer);
-    gl.bufferSubData(TGT, offset, array);
-    gl.bindBuffer(TGT, null);
+    gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
+    gl.bufferSubData(GL_ARRAY_BUFFER, offset, array);
+    gl.bindBuffer(GL_ARRAY_BUFFER, null);
   }
 
   /**
@@ -113,7 +115,7 @@ class ArrayBuffer extends BaseBuffer {
    */
   attribPointer(program: Program) {
     const gl = this.gl;
-    gl.bindBuffer(TGT, this.buffer);
+    gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
 
     for (var i = 0; i < this.attribs.length; i++) {
       var attrib = this.attribs[i];
@@ -151,4 +153,4 @@ class ArrayBuffer extends BaseBuffer {
 }
 
 
-export = ArrayBuffer
+export default ArrayBuffer

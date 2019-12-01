@@ -1,5 +1,5 @@
-import Texture = require( './texture');
-import RenderBuffer = require( './renderbuffer');
+import Texture from './texture'
+import RenderBuffer from './renderbuffer'
 import { GLContext } from './types';
 import { isWebgl2 } from './utils';
 
@@ -285,4 +285,4 @@ function dsTextureConfig(gl: GLContext, stencil: boolean) {
 }
 
 
-export = Fbo
+export default Fbo
