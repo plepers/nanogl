@@ -262,7 +262,7 @@ describe( "Program GLSL1", function(){
 
       var vert = require( './glsl/bad.vert')
       var frag = require( './glsl/simple.frag')
-      var warn = sinon.spy( console, 'warn' );    
+      var warn = sinon.stub( console, 'warn' );    
 
       Program.debug = true;
 
@@ -283,7 +283,7 @@ describe( "Program GLSL1", function(){
 
       var vert = require( './glsl/complete.vert')
       var frag = require( './glsl/bad_link_complete.frag')
-      var warn = sinon.spy( console, 'warn' );
+      var warn = sinon.stub( console, 'warn' );
 
       Program.debug = true;
 
@@ -311,7 +311,7 @@ describe( "Program GLSL1", function(){
 
       var vert = require( './glsl/bad.vert')
       var frag = require( './glsl/simple.frag')
-      var warn = sinon.spy( console, 'warn' );      
+      var warn = sinon.stub( console, 'warn' );      
 
       var p = new Program( gl );
       Program.debug = false;
@@ -329,7 +329,7 @@ describe( "Program GLSL1", function(){
 
       var vert = require( './glsl/complete.vert')
       var frag = require( './glsl/bad_link_complete.frag')
-      var warn = sinon.spy( console, 'warn' ); 
+      var warn = sinon.stub( console, 'warn' ); 
 
       Program.debug = false;
 
