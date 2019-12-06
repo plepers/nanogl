@@ -27,8 +27,8 @@ interface AttributeDef {
 
 class ArrayBuffer extends BaseBuffer {
 
-  gl: GLContext;
-  buffer: WebGLBuffer;
+  readonly gl: GLContext;
+  readonly buffer: WebGLBuffer;
   
   usage: GLenum;
   stride    : number;

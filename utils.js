@@ -20,6 +20,6 @@ export function getComponentSize(type) {
         case 0x1406:
             return 4;
         default:
-            return 0;
+            throw new Error(`unknown type ${type}`);
     }
 }

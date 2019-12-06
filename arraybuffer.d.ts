@@ -9,8 +9,8 @@ interface AttributeDef {
     normalize: boolean;
 }
 declare class ArrayBuffer extends BaseBuffer {
-    gl: GLContext;
-    buffer: WebGLBuffer;
+    readonly gl: GLContext;
+    readonly buffer: WebGLBuffer;
     usage: GLenum;
     stride: number;
     byteLength: number;

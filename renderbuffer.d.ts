@@ -1,7 +1,7 @@
 import { GLContext } from './types';
 declare class RenderBuffer {
-    gl: GLContext;
-    id: WebGLRenderbuffer;
+    readonly gl: GLContext;
+    readonly id: WebGLRenderbuffer;
     width: number;
     height: number;
     format: GLenum;

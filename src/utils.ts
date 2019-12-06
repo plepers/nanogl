@@ -17,11 +17,13 @@ export function isBufferSource(val: GLsizeiptr | BufferSource): val is BufferSou
  *  NEAREST_MIPMAP_LINEAR
  *  LINEAR_MIPMAP_LINEAR
  */
-export function getTextureFiltering(smooth: boolean, mipmap: boolean, miplinear: boolean) {
+export function getTextureFiltering(smooth: boolean, mipmap: boolean, miplinear: boolean) : GLenum {
   return 0x2600 | +smooth | (+mipmap << 8) | (+(mipmap && miplinear) << 1);
 }
 
-export function getComponentSize(type: GLenum): number {
+type ComponentSize = 1|2|4
+
+export function getComponentSize(type: GLenum): ComponentSize {
   switch (type) {
     case 0x1400: //gl.BYTE:
     case 0x1401: //gl.UNSIGNED_BYTE:
@@ -34,6 +36,6 @@ export function getComponentSize(type: GLenum): number {
     case 0x1406: //gl.FLOAT:
       return 4;
     default:
-      return 0;
+      throw new Error(`unknown type ${type}`)
   }
 }
