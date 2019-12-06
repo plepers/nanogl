@@ -33,8 +33,8 @@ class Program {
             return false;
         }
         gl.linkProgram(this.program);
-        if (Program.debug && !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-            warn(gl.getProgramInfoLog(this.program));
+        if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+            Program.debug && warn(gl.getProgramInfoLog(this.program));
             return false;
         }
         while (this.dyns.length > 0) {
@@ -105,12 +105,25 @@ function formatCode(shader) {
         .map(appendLine)
         .join('\n');
 }
+const ErrLineRegex = /^ERROR:\s?(\d+):(\d+)/;
+function reportCompileError(infos, source) {
+    const sourceLines = source.split('\n');
+    infos = infos.split('\n').map((line) => {
+        const rr = ErrLineRegex.exec(line);
+        if (rr) {
+            line += '\n  > ' + sourceLines[parseInt(rr[2]) - 1];
+        }
+        return line;
+    }).join('\n');
+    source = formatCode(source);
+    warn(infos);
+    warn(source);
+}
 function compileShader(gl, shader, code) {
     gl.shaderSource(shader, code);
     gl.compileShader(shader);
-    if (Program.debug && !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        warn(gl.getShaderInfoLog(shader));
-        warn(formatCode(code));
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        Program.debug && reportCompileError(gl.getShaderInfoLog(shader), code);
         return false;
     }
     return true;
@@ -120,7 +133,9 @@ USetFMap[String(5126)] = '1f';
 USetFMap[String(35664)] = '2f';
 USetFMap[String(35665)] = '3f';
 USetFMap[String(35666)] = '4f';
-USetFMap[String(35670)] = USetFMap[String(5124)] = USetFMap[String(35678)] = USetFMap[String(35680)] = '1i';
+USetFMap[String(35670)] =
+    USetFMap[String(5124)] =
+        USetFMap[String(35678)] = USetFMap[String(35680)] = '1i';
 USetFMap[String(35671)] = USetFMap[String(35667)] = '2i';
 USetFMap[String(35672)] = USetFMap[String(35668)] = '3i';
 USetFMap[String(35673)] = USetFMap[String(35669)] = '4i';

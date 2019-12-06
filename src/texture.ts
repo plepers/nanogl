@@ -15,8 +15,8 @@ const T2D = 0x0de1;
  */
 class Texture {
 
-  gl: GLContext;
-  id: WebGLTexture;
+  readonly gl: GLContext;
+  readonly id: WebGLTexture;
 
   width : number;
   height: number;
@@ -25,7 +25,7 @@ class Texture {
   internal: GLenum = 0;
   type    : GLenum = 0;
 
-  _uid: number;
+  readonly _uid: number;
 
   constructor(gl: GLContext, format?: GLenum, type?: GLenum, internal?: GLenum) {
       

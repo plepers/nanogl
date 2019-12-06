@@ -1,5 +1,6 @@
 import Program from '../program'
 var expect  = require( 'expect.js' );
+var sinon = require('sinon');
 
 var testContext = require( './utils/TestContext' );
 var gl = testContext.getContext();
@@ -8,7 +9,7 @@ Program.debug = true
 
 describe( "Program GLSL1", function(){
 
-  it( "should be exported in nanogl namespace", function(){
+  it( "should be exported", function(){
 
     expect( Program ).to.be.ok( );
 
@@ -21,6 +22,7 @@ describe( "Program GLSL1", function(){
     expect( p.gl ).to.be.ok( );
 
   });
+
 
 
   it( "should compile simple", function(){
@@ -252,26 +254,99 @@ describe( "Program GLSL1", function(){
 
 
 
+  describe( "invalid program in debug", function(){
+
+    var regex = /^ERROR:\s?(\d+):(\d+)/gm
+
+    it( "should warn on invalid program", function(){
+
+      var vert = require( './glsl/bad.vert')
+      var frag = require( './glsl/simple.frag')
+      var warn = sinon.stub( console, 'warn' );    
+
+      Program.debug = true;
+
+      var p = new Program( gl );
+      var res = p.compile( vert, frag );
+
+      expect(warn.called).to.be.ok()
+      expect(res).to.be(false)
+
+      expect( warn.firstCall.args[0] ).to.match(regex)
+      
+      testContext.assertNoError();
+      warn.restore()
+
+    });
+
+    it( "should warn on link error", function(){
+
+      var vert = require( './glsl/complete.vert')
+      var frag = require( './glsl/bad_link_complete.frag')
+      var warn = sinon.stub( console, 'warn' );
+
+      Program.debug = true;
+
+      var p = new Program( gl );
+      var res = p.compile( vert, frag );
+
+      expect(warn.called).to.be.ok()
+      expect(res).to.be(false)
+
+      testContext.assertNoError();
+      warn.restore()
+
+    });
+  });
 
 
 
 
 
+  describe( "invalid program not in debug", function(){
+
+    var regex = /^ERROR:\s?(\d+):(\d+)/gm
+
+    it( "should not warn on invalid program", function(){
+
+      var vert = require( './glsl/bad.vert')
+      var frag = require( './glsl/simple.frag')
+      var warn = sinon.stub( console, 'warn' );      
+
+      var p = new Program( gl );
+      Program.debug = false;
+      var res = p.compile( vert, frag );
+      warn.restore()
+
+      expect(warn.called).not.to.be.ok()
+      expect(res).to.be(false)
+
+      testContext.assertNoError();
+
+    });
+
+    it( "should not warn on link error", function(){
+
+      var vert = require( './glsl/complete.vert')
+      var frag = require( './glsl/bad_link_complete.frag')
+      var warn = sinon.stub( console, 'warn' ); 
+
+      Program.debug = false;
+
+      var p = new Program( gl );
+      var res = p.compile( vert, frag );
+      warn.restore()
+
+      expect(warn.called).not.to.be.ok()
+      expect(res).to.be(false)
+
+      testContext.assertNoError();
+
+    });
+  });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  describe( "should uniform struct/block", function(){
+  describe( "uniform struct/block", function(){
 
     it( "should compile", function(){
       var prefix = (testContext.getGlVersion()===2) ? '#version 300 es' : '';
@@ -279,7 +354,7 @@ describe( "Program GLSL1", function(){
       var vert = require( './glsl/ublock_compat.vert')
       var frag = require( './glsl/ublock_compat.frag')
 
-      var p = new Program( gl );
+      var p = new Program( gl ); 
       p.compile( vert, frag, prefix );
 
       testContext.assertNoError();
@@ -304,17 +379,6 @@ describe( "Program GLSL1", function(){
   });
 
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 

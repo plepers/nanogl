@@ -1,7 +1,7 @@
 import { GLContext } from './types';
 declare class Program {
     static debug: boolean;
-    gl: GLContext;
+    readonly gl: GLContext;
     readonly program: WebGLProgram;
     readonly vShader: WebGLShader;
     readonly fShader: WebGLShader;

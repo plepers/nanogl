@@ -12,8 +12,10 @@ const RENDERBUFFER = 0x8d41;
  *  @param {GLenum} [format=DEPTH_COMPONENT16] the pixel internal format, default to gl.DEPTH_COMPONENT16
  */
 class RenderBuffer {
-  gl: GLContext;
-  id: WebGLRenderbuffer;
+
+  readonly gl: GLContext;
+  readonly id: WebGLRenderbuffer;
+  
   width: number;
   height: number;
   format: GLenum;

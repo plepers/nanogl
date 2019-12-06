@@ -4,7 +4,7 @@ import { isWebgl2 } from './utils';
 function isTexture(target) {
     return target.id instanceof WebGLTexture;
 }
-class Attachment {
+export class Attachment {
     constructor(target) {
         this.target = target;
         this.level = 0;
@@ -82,8 +82,7 @@ class Fbo {
         }
         return null;
     }
-    getColor(index) {
-        index = index | 0;
+    getColor(index = 0) {
         const att = this.getAttachment(0x8ce0 + index);
         return att ? att.target : null;
     }

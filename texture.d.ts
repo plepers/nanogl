@@ -1,13 +1,13 @@
 import { GLContext } from './types';
 declare class Texture {
-    gl: GLContext;
-    id: WebGLTexture;
+    readonly gl: GLContext;
+    readonly id: WebGLTexture;
     width: number;
     height: number;
     format: GLenum;
     internal: GLenum;
     type: GLenum;
-    _uid: number;
+    readonly _uid: number;
     constructor(gl: GLContext, format?: GLenum, type?: GLenum, internal?: GLenum);
     setFormat(format?: GLenum, type?: GLenum, internal?: GLenum): void;
     fromImage(img: TexImageSource): void;

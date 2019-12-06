@@ -16,11 +16,13 @@ const TGT = 0x8893;
  *
  */
 class IndexBuffer extends BaseBuffer {
-  gl: GLContext;
+  
+  readonly gl: GLContext;
+  readonly buffer: WebGLBuffer;
+
   usage: GLenum;
-  type: GLenum;
-  buffer: WebGLBuffer;
-  typeSize: number;
+  type : GLenum;
+  typeSize  : number;
   byteLength: number;
 
   constructor(gl: GLContext, type: GLenum, data: GLsizeiptr | BufferSource, usage: GLenum) {
