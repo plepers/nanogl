@@ -7,6 +7,15 @@ function isTexture(target: AttachmentTarget): target is Texture {
   return target.id instanceof WebGLTexture;
 }
 
+
+
+function assertIsTexture(target: AttachmentTarget|null, msg:string): asserts target is Texture {
+  if( target === null || !isTexture(target) ){
+    throw new Error( msg );
+  }
+}
+
+
 export type AttachmentTarget = Texture | RenderBuffer;
 
 export class Attachment {
@@ -124,6 +133,7 @@ class Fbo {
     delete this.attachments[bindingPoint.toString()];
   }
 
+  
   getAttachment(bindingPoint: GLenum): Attachment | null {
     const att = this.attachments[bindingPoint.toString()];
     if (att !== undefined) {
@@ -132,10 +142,19 @@ class Fbo {
     return null;
   }
 
+
   getColor(index: number = 0): AttachmentTarget | null {
     const att = this.getAttachment(0x8ce0 + index); // COLOR_ATTACHMENT<index>
     return att ? att.target : null;
   }
+
+
+  getColorTexture(index: number = 0): Texture {
+    const res = this.getColor( index );
+    assertIsTexture( res, "Color attachment {index} is not a texture." );
+    return res;
+  }
+
 
   getDepth(): AttachmentTarget | null {
     const att =
