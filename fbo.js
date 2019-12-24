@@ -4,6 +4,11 @@ import { isWebgl2 } from './utils';
 function isTexture(target) {
     return target.id instanceof WebGLTexture;
 }
+function assertIsTexture(target, msg) {
+    if (target === null || !isTexture(target)) {
+        throw new Error(msg);
+    }
+}
 export class Attachment {
     constructor(target) {
         this.target = target;
@@ -85,6 +90,11 @@ class Fbo {
     getColor(index = 0) {
         const att = this.getAttachment(0x8ce0 + index);
         return att ? att.target : null;
+    }
+    getColorTexture(index = 0) {
+        const res = this.getColor(index);
+        assertIsTexture(res, "Color attachment {index} is not a texture.");
+        return res;
     }
     getDepth() {
         const att = this.getAttachment(0x8d00) ||

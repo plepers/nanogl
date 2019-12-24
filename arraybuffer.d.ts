@@ -7,6 +7,7 @@ interface AttributeDef {
     size: number;
     offset: number;
     normalize: boolean;
+    stride: number;
 }
 declare class ArrayBuffer extends BaseBuffer {
     readonly gl: GLContext;
@@ -16,7 +17,7 @@ declare class ArrayBuffer extends BaseBuffer {
     byteLength: number;
     length: number;
     attribs: AttributeDef[];
-    constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage?: GLenum);
+    constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage?: GLenum, glbuffer?: WebGLBuffer);
     bind(): void;
     attrib(name: string, size: number, type: GLenum, normalize?: boolean): this;
     data(array: BufferSource | GLsizeiptr): void;

@@ -25,6 +25,7 @@ declare class Fbo {
     detach(bindingPoint: GLenum): void;
     getAttachment(bindingPoint: GLenum): Attachment | null;
     getColor(index?: number): AttachmentTarget | null;
+    getColorTexture(index?: number): Texture;
     getDepth(): AttachmentTarget | null;
     attachColor(format?: GLenum, type?: GLenum, internal?: GLenum): Attachment;
     attachDepth(depth?: boolean, stencil?: boolean, useTexture?: boolean): Attachment;

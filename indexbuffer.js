@@ -2,15 +2,15 @@ import BaseBuffer from './basebuffer';
 import { getComponentSize, isBufferSource } from './utils';
 const TGT = 0x8893;
 class IndexBuffer extends BaseBuffer {
-    constructor(gl, type, data, usage) {
+    constructor(gl, type = gl.UNSIGNED_SHORT, data, usage = gl.STATIC_DRAW, glbuffer) {
         super();
         this.gl = gl;
-        this.buffer = gl.createBuffer();
-        this.usage = usage || gl.STATIC_DRAW;
+        this.usage = usage;
+        this.buffer = (glbuffer !== undefined) ? glbuffer : gl.createBuffer();
         this.type = 0;
         this.typeSize = 0;
         this.byteLength = 0;
-        this.setType(type || gl.UNSIGNED_SHORT);
+        this.setType(type);
         if (data) {
             this.data(data);
         }

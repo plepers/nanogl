@@ -7,7 +7,7 @@ declare class IndexBuffer extends BaseBuffer {
     type: GLenum;
     typeSize: number;
     byteLength: number;
-    constructor(gl: GLContext, type: GLenum, data: GLsizeiptr | BufferSource, usage: GLenum);
+    constructor(gl: GLContext, type?: GLenum, data?: GLsizeiptr | BufferSource, usage?: GLenum, glbuffer?: WebGLBuffer);
     bind(): void;
     setType(type: GLenum): void;
     data(array: GLsizeiptr | BufferSource): void;

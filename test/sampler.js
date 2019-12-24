@@ -48,6 +48,7 @@ describe( "Sampler @WEBGL2", function(){
 
 
 
+
   it( "should be exported in nanogl namespace", function(){
     expect( Sampler ).to.be.ok( );
   });

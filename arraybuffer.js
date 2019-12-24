@@ -2,11 +2,11 @@ import BaseBuffer from './basebuffer';
 import { getComponentSize, isBufferSource } from './utils';
 const GL_ARRAY_BUFFER = 0x8892;
 class ArrayBuffer extends BaseBuffer {
-    constructor(gl, data, usage = gl.STATIC_DRAW) {
+    constructor(gl, data, usage = gl.STATIC_DRAW, glbuffer) {
         super();
         this.gl = gl;
-        this.usage = usage || gl.STATIC_DRAW;
-        this.buffer = gl.createBuffer();
+        this.usage = usage;
+        this.buffer = (glbuffer !== undefined) ? glbuffer : gl.createBuffer();
         this.attribs = [];
         this.stride = 0;
         this.byteLength = 0;
@@ -25,6 +25,7 @@ class ArrayBuffer extends BaseBuffer {
             size: 0 | size,
             normalize,
             offset: this.stride,
+            stride: 0
         });
         this.stride += getComponentSize(type) * size;
         this._computeLength();
@@ -52,7 +53,7 @@ class ArrayBuffer extends BaseBuffer {
             if (program[attrib.name] !== undefined) {
                 var aLocation = program[attrib.name]();
                 gl.enableVertexAttribArray(aLocation);
-                gl.vertexAttribPointer(aLocation, attrib.size, attrib.type, attrib.normalize, this.stride, attrib.offset);
+                gl.vertexAttribPointer(aLocation, attrib.size, attrib.type, attrib.normalize, attrib.stride || this.stride, attrib.offset);
             }
         }
     }

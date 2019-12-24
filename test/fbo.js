@@ -1,5 +1,5 @@
 import  Fbo          from '../fbo'
-import  Texture      from '../texture'
+import  Texture2D    from '../texture'
 import  Program      from '../program'
 import  Renderbuffer from '../renderbuffer'
 var expect       = require( 'expect.js' );
@@ -140,7 +140,7 @@ describe( "Fbo", function(){
 
     beforeEach( function() {
 
-      tex = new Texture(gl)
+      tex = new Texture2D(gl)
       fbo = new Fbo( gl );
     });
 
@@ -202,7 +202,7 @@ describe( "Fbo", function(){
     var fbo, tex, color;
 
     beforeEach( function() {
-      tex = new Texture(gl)
+      tex = new Texture2D(gl)
       fbo = new Fbo( gl );
     });
 
@@ -235,7 +235,7 @@ describe( "Fbo", function(){
     var fbo, tex, color;
 
     beforeEach( function() {
-      tex = new Texture(gl)
+      tex = new Texture2D(gl)
       fbo = new Fbo( gl );
       fbo.bind();
       color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
@@ -270,7 +270,7 @@ describe( "Fbo", function(){
     var fbo, tex, color;
 
     beforeEach( function() {
-      tex = new Texture(gl)
+      tex = new Texture2D(gl)
       fbo = new Fbo( gl );
       fbo.bind();
       color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
@@ -341,7 +341,7 @@ describe( "Fbo", function(){
     var fbo, tex, color;
 
     beforeEach( function() {
-      tex = new Texture(gl)
+      tex = new Texture2D(gl)
       fbo = new Fbo( gl );
       fbo.bind();
       color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
@@ -397,7 +397,7 @@ describe( "Fbo", function(){
     var fbo, tex, color;
 
     beforeEach( function() {
-      tex = new Texture(gl)
+      tex = new Texture2D(gl)
       fbo = new Fbo( gl );
       fbo.bind();
       color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
@@ -455,7 +455,7 @@ describe( "Fbo", function(){
     var fbo, tex, color;
 
     beforeEach( function() {
-      tex = new Texture(gl)
+      tex = new Texture2D(gl)
       fbo = new Fbo( gl );
       fbo.bind();
       color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
@@ -508,8 +508,8 @@ describe( "Fbo", function(){
       
       var fbo;
 
-      var tex0 = new Texture(gl)
-      var tex1 = new Texture(gl)
+      var tex0 = new Texture2D(gl)
+      var tex1 = new Texture2D(gl)
       fbo = new Fbo( gl );
 
 
