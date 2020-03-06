@@ -1,7 +1,8 @@
 import { getTextureFiltering } from './utils';
 let _UID = 0;
-export default class BaseTexture {
+export default class AbstractTexture {
     constructor(gl, format, type, internal) {
+        this.textureType = 0;
         this.format = 0;
         this.internal = 0;
         this.type = 0;

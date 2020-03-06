@@ -1,5 +1,16 @@
 import { GLContext } from './types';
-export default abstract class BaseTexture {
+import TextureCube from './texture-cube';
+import Texture from './texture';
+export declare const enum TextureType {
+    NONE = 0,
+    TEXTURE_2D = 3553,
+    TEXTURE_2D_ARRAY = 35866,
+    TEXTURE_CUBE = 34067,
+    TEXTURE_3D = 32879
+}
+export declare type BaseTexture = TextureCube | Texture;
+export default abstract class AbstractTexture {
+    readonly textureType: TextureType;
     readonly gl: GLContext;
     readonly id: WebGLTexture;
     width: number;

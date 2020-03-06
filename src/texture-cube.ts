@@ -1,4 +1,4 @@
-import BaseTexture from './texture-base';
+import AbstractTexture, { TextureType } from './texture-base';
 import { GLContext } from './types';
 
 const GL_TEXTURE_CUBE = 0x8513;
@@ -12,7 +12,9 @@ const GL_TEXTURE_CUBE = 0x8513;
  *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
  *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
  */
-export default class TextureCube extends BaseTexture {
+export default class TextureCube extends AbstractTexture {
+
+  readonly textureType : TextureType.TEXTURE_CUBE = TextureType.TEXTURE_CUBE;
 
   _target: GLenum = GL_TEXTURE_CUBE;
 

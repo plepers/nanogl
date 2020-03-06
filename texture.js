@@ -1,8 +1,9 @@
-import BaseTexture from './texture-base';
+import AbstractTexture from './texture-base';
 const GL_TEXTURE_2D = 0x0de1;
-export default class Texture extends BaseTexture {
+export default class Texture extends AbstractTexture {
     constructor(gl, format, type, internal) {
         super(gl, format, type, internal);
+        this.textureType = 3553;
         this._target = GL_TEXTURE_2D;
         gl.bindTexture(GL_TEXTURE_2D, this.id);
         this.setFilter(true);

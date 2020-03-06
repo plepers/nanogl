@@ -1,6 +1,7 @@
-import BaseTexture from './texture-base';
+import AbstractTexture, { TextureType } from './texture-base';
 import { GLContext } from './types';
-export default class Texture extends BaseTexture {
+export default class Texture extends AbstractTexture {
+    readonly textureType: TextureType.TEXTURE_2D;
     _target: GLenum;
     constructor(gl: GLContext, format?: GLenum, type?: GLenum, internal?: GLenum);
     fromImage(img: TexImageSource): void;

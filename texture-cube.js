@@ -1,8 +1,9 @@
-import BaseTexture from './texture-base';
+import AbstractTexture from './texture-base';
 const GL_TEXTURE_CUBE = 0x8513;
-export default class TextureCube extends BaseTexture {
+export default class TextureCube extends AbstractTexture {
     constructor(gl, format, type, internal) {
         super(gl, format, type, internal);
+        this.textureType = 34067;
         this._target = GL_TEXTURE_CUBE;
         gl.bindTexture(GL_TEXTURE_CUBE, this.id);
         this.setFilter(true);

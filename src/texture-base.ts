@@ -1,7 +1,22 @@
 import { GLContext } from './types';
 import { getTextureFiltering } from './utils';
+import TextureCube from './texture-cube';
+import Texture from './texture';
 
 let _UID = 0;
+
+
+export const enum TextureType {
+    NONE             = 0     ,
+    TEXTURE_2D       = 0x0de1,
+    TEXTURE_2D_ARRAY = 0x8C1A,
+    TEXTURE_CUBE     = 0x8513,
+    TEXTURE_3D       = 0x806F,
+}
+
+
+export type BaseTexture = TextureCube | Texture;
+
 
 /**
  * @class
@@ -12,8 +27,10 @@ let _UID = 0;
  *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
  *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
  */
-export default abstract class BaseTexture {
+export default abstract class AbstractTexture {
 
+  readonly textureType : TextureType = TextureType.NONE;
+  
   readonly gl: GLContext;
   readonly id: WebGLTexture;
 
