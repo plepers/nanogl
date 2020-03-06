@@ -1,5 +1,5 @@
-import Texture = require( './texture');
-import RenderBuffer = require( './renderbuffer');
+import Texture from './texture'
+import RenderBuffer from './renderbuffer'
 import { GLContext } from './types';
 import { isWebgl2 } from './utils';
 
@@ -7,13 +7,22 @@ function isTexture(target: AttachmentTarget): target is Texture {
   return target.id instanceof WebGLTexture;
 }
 
-type AttachmentTarget = Texture | RenderBuffer;
 
-class Attachment {
+
+function assertIsTexture(target: AttachmentTarget|null, msg:string): asserts target is Texture {
+  if( target === null || !isTexture(target) ){
+    throw new Error( msg );
+  }
+}
+
+
+export type AttachmentTarget = Texture | RenderBuffer;
+
+export class Attachment {
 
   level: number;
-  target: AttachmentTarget;
-  _isTexture: boolean;
+  readonly target: AttachmentTarget;
+  private _isTexture: boolean;
 
   constructor(target: AttachmentTarget) {
     this.target = target;
@@ -76,14 +85,15 @@ class Attachment {
  */
 class Fbo {
 
-  gl: GLContext;
-  fbo: WebGLFramebuffer;
+  readonly gl: GLContext;
+  readonly fbo: WebGLFramebuffer;
+
+  readonly attachmentsList: Attachment[];
+  attachments: Record<string,Attachment>;
 
   width: number;
   height: number;
   
-  attachmentsList: Attachment[];
-  attachments: Record<string,Attachment>;
 
   constructor( gl: GLContext ) {
     this.gl = gl;
@@ -123,6 +133,7 @@ class Fbo {
     delete this.attachments[bindingPoint.toString()];
   }
 
+  
   getAttachment(bindingPoint: GLenum): Attachment | null {
     const att = this.attachments[bindingPoint.toString()];
     if (att !== undefined) {
@@ -131,11 +142,19 @@ class Fbo {
     return null;
   }
 
-  getColor(index: number): AttachmentTarget | null {
-    index = index | 0;
+
+  getColor(index: number = 0): AttachmentTarget | null {
     const att = this.getAttachment(0x8ce0 + index); // COLOR_ATTACHMENT<index>
     return att ? att.target : null;
   }
+
+
+  getColorTexture(index: number = 0): Texture {
+    const res = this.getColor( index );
+    assertIsTexture( res, "Color attachment {index} is not a texture." );
+    return res;
+  }
+
 
   getDepth(): AttachmentTarget | null {
     const att =
@@ -285,4 +304,4 @@ function dsTextureConfig(gl: GLContext, stencil: boolean) {
 }
 
 
-export = Fbo
+export default Fbo

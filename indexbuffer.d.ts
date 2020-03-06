@@ -1,13 +1,13 @@
 import { GLContext } from './types';
-import BaseBuffer = require('./basebuffer');
+import BaseBuffer from './basebuffer';
 declare class IndexBuffer extends BaseBuffer {
-    gl: GLContext;
+    readonly gl: GLContext;
+    readonly buffer: WebGLBuffer;
     usage: GLenum;
     type: GLenum;
-    buffer: WebGLBuffer;
     typeSize: number;
     byteLength: number;
-    constructor(gl: GLContext, type: GLenum, data: GLsizeiptr | BufferSource, usage: GLenum);
+    constructor(gl: GLContext, type?: GLenum, data?: GLsizeiptr | BufferSource, usage?: GLenum, glbuffer?: WebGLBuffer);
     bind(): void;
     setType(type: GLenum): void;
     data(array: GLsizeiptr | BufferSource): void;
@@ -15,4 +15,4 @@ declare class IndexBuffer extends BaseBuffer {
     dispose(): void;
     draw(mode: GLenum, count?: number, offset?: number): void;
 }
-export = IndexBuffer;
+export default IndexBuffer;

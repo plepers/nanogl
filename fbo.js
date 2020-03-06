@@ -1,11 +1,15 @@
-"use strict";
-const Texture = require("./texture");
-const RenderBuffer = require("./renderbuffer");
-const utils_1 = require("./utils");
+import Texture from './texture';
+import RenderBuffer from './renderbuffer';
+import { isWebgl2 } from './utils';
 function isTexture(target) {
     return target.id instanceof WebGLTexture;
 }
-class Attachment {
+function assertIsTexture(target, msg) {
+    if (target === null || !isTexture(target)) {
+        throw new Error(msg);
+    }
+}
+export class Attachment {
     constructor(target) {
         this.target = target;
         this.level = 0;
@@ -83,10 +87,14 @@ class Fbo {
         }
         return null;
     }
-    getColor(index) {
-        index = index | 0;
+    getColor(index = 0) {
         const att = this.getAttachment(0x8ce0 + index);
         return att ? att.target : null;
+    }
+    getColorTexture(index = 0) {
+        const res = this.getColor(index);
+        assertIsTexture(res, "Color attachment {index} is not a texture.");
+        return res;
     }
     getDepth() {
         const att = this.getAttachment(0x8d00) ||
@@ -174,8 +182,8 @@ function dsRenderbufferStorage(depth, stencil) {
 }
 function dsTextureConfig(gl, stencil) {
     if (stencil) {
-        return { format: 0x84f9, type: 0x84fa, internal: utils_1.isWebgl2(gl) ? gl.DEPTH24_STENCIL8 : gl.DEPTH_STENCIL };
+        return { format: 0x84f9, type: 0x84fa, internal: isWebgl2(gl) ? gl.DEPTH24_STENCIL8 : gl.DEPTH_STENCIL };
     }
-    return { format: 0x1902, type: 0x1405, internal: utils_1.isWebgl2(gl) ? gl.DEPTH_COMPONENT24 : gl.DEPTH_COMPONENT };
+    return { format: 0x1902, type: 0x1405, internal: isWebgl2(gl) ? gl.DEPTH_COMPONENT24 : gl.DEPTH_COMPONENT };
 }
-module.exports = Fbo;
+export default Fbo;

@@ -1,4 +1,3 @@
-"use strict";
 let _UID = 0;
 const RENDERBUFFER = 0x8d41;
 class RenderBuffer {
@@ -38,4 +37,4 @@ class RenderBuffer {
         gl.bindRenderbuffer(RENDERBUFFER, null);
     }
 }
-module.exports = RenderBuffer;
+export default RenderBuffer;

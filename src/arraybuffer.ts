@@ -1,12 +1,12 @@
-import Program = require('./program');
-import BaseBuffer = require('./basebuffer');
+import Program from './program'
+import BaseBuffer from './basebuffer'
 import { GLContext } from './types';
 import { getComponentSize, isBufferSource } from './utils';
 
 
 /*
  * GL_ARRAY_BUFFER */
-const TGT = 0x8892;
+const GL_ARRAY_BUFFER = 0x8892;
 
 interface AttributeDef {
   name: string;
@@ -14,6 +14,7 @@ interface AttributeDef {
   size: number;
   offset: number;
   normalize: boolean;
+  stride: number;
 }
 
 /**
@@ -27,20 +28,24 @@ interface AttributeDef {
 
 class ArrayBuffer extends BaseBuffer {
 
-  gl: GLContext;
+  readonly gl: GLContext;
+  readonly buffer: WebGLBuffer;
+  
   usage: GLenum;
-  buffer: WebGLBuffer;
-  attribs: AttributeDef[];
-  stride: number;
+  stride    : number;
   byteLength: number;
-  length: number;
+  length    : number;
+  attribs: AttributeDef[];
+  
 
-  constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage: GLenum = gl.STATIC_DRAW ) {
+  constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage: GLenum = gl.STATIC_DRAW, glbuffer? : WebGLBuffer ) {
     super();
 
     this.gl = gl;
-    this.usage = usage || gl.STATIC_DRAW;
-    this.buffer = <WebGLBuffer>gl.createBuffer();
+    this.usage = usage;
+
+    this.buffer = (glbuffer !== undefined ) ? glbuffer : <WebGLBuffer>gl.createBuffer();
+    
     this.attribs = [];
     this.stride = 0;
     this.byteLength = 0;
@@ -55,7 +60,7 @@ class ArrayBuffer extends BaseBuffer {
    * Bind the underlying webgl buffer.
    */
   bind() {
-    this.gl.bindBuffer(TGT, this.buffer);
+    this.gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
   }
 
   /**
@@ -73,6 +78,7 @@ class ArrayBuffer extends BaseBuffer {
       size: 0 | size,
       normalize,
       offset: this.stride,
+      stride:0
     });
     this.stride += getComponentSize(type) * size;
     this._computeLength();
@@ -86,9 +92,9 @@ class ArrayBuffer extends BaseBuffer {
 
   data(array: BufferSource | GLsizeiptr) {
     const gl = this.gl;
-    gl.bindBuffer(TGT, this.buffer);
-    gl.bufferData(TGT, array as any, this.usage);
-    gl.bindBuffer(TGT, null);
+    gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
+    gl.bufferData(GL_ARRAY_BUFFER, array as any, this.usage);
+    gl.bindBuffer(GL_ARRAY_BUFFER, null);
 
     this.byteLength = isBufferSource(array) ? array.byteLength : array;
     this._computeLength();
@@ -101,9 +107,9 @@ class ArrayBuffer extends BaseBuffer {
    */
   subData(array: BufferSource, offset: number) {
     const gl = this.gl;
-    gl.bindBuffer(TGT, this.buffer);
-    gl.bufferSubData(TGT, offset, array);
-    gl.bindBuffer(TGT, null);
+    gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
+    gl.bufferSubData(GL_ARRAY_BUFFER, offset, array);
+    gl.bindBuffer(GL_ARRAY_BUFFER, null);
   }
 
   /**
@@ -113,7 +119,7 @@ class ArrayBuffer extends BaseBuffer {
    */
   attribPointer(program: Program) {
     const gl = this.gl;
-    gl.bindBuffer(TGT, this.buffer);
+    gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
 
     for (var i = 0; i < this.attribs.length; i++) {
       var attrib = this.attribs[i];
@@ -121,7 +127,7 @@ class ArrayBuffer extends BaseBuffer {
       if (program[attrib.name] !== undefined) {
         var aLocation = program[attrib.name]();
         gl.enableVertexAttribArray(aLocation);
-        gl.vertexAttribPointer(aLocation, attrib.size, attrib.type, attrib.normalize, this.stride, attrib.offset);
+        gl.vertexAttribPointer(aLocation, attrib.size, attrib.type, attrib.normalize, attrib.stride || this.stride, attrib.offset);
       }
     }
   }
@@ -151,4 +157,4 @@ class ArrayBuffer extends BaseBuffer {
 }
 
 
-export = ArrayBuffer
+export default ArrayBuffer

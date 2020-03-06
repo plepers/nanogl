@@ -6,9 +6,6 @@ interface CompilationContext {
   ublockIndex: number;
 }
 
-interface USET_MAP {
-  [k: string]: string;
-}
 
 let _UID: number = 0;
 
@@ -39,7 +36,7 @@ class Program {
    */
   static debug: boolean = false;
 
-  gl: GLContext;
+  readonly gl: GLContext;
 
   readonly program: WebGLProgram;
   readonly vShader: WebGLShader;
@@ -93,7 +90,7 @@ class Program {
    *  @param {String} frag fragment shader code
    *  @param {String} [prefix=''] an optional string append to both fragment and vertex code
    */
-  compile(vert: string, frag: string, prefix?: string): boolean {
+  compile(vert: string, frag: string, prefix?: string ): boolean {
     this.ready = false;
 
     prefix = prefix === undefined ? '' : prefix + '\n';
@@ -106,8 +103,8 @@ class Program {
 
     gl.linkProgram(this.program);
 
-    if (Program.debug && !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      warn(gl.getProgramInfoLog(this.program));
+    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+      Program.debug && warn(gl.getProgramInfoLog(this.program));
       return false;
     }
 
@@ -240,6 +237,22 @@ function formatCode(shader: string): string {
     .join('\n');
 }
 
+const ErrLineRegex = /^ERROR:\s?(\d+):(\d+)/
+
+function reportCompileError( infos : string, source : string ){
+  const sourceLines = source.split('\n');
+  infos = infos.split('\n').map( (line)=>{
+    const rr = ErrLineRegex.exec(line);
+    if( rr ) { line += '\n  > ' + sourceLines[parseInt(rr[2])-1] }
+    return line;
+  }).join('\n');
+  source = formatCode(source);
+
+  warn( infos );
+  warn( source );
+}
+
+
 /*
  * Shader compilation utility
  */
@@ -247,23 +260,25 @@ function compileShader(gl: GLContext, shader: WebGLShader, code: string): boolea
   gl.shaderSource(shader, code);
   gl.compileShader(shader);
 
-  if (Program.debug && !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    warn(gl.getShaderInfoLog(shader));
-    warn(formatCode(code));
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    Program.debug && reportCompileError( gl.getShaderInfoLog(shader)!, code );
     return false;
   }
 
   return true;
 }
 
-const USetFMap: USET_MAP = {};
+
+
+
+const USetFMap: Record<string,string> = {};
 USetFMap[String(5126) /*FLOAT       */] = '1f';
 USetFMap[String(35664) /*FLOAT_VEC2  */] = '2f';
 USetFMap[String(35665) /*FLOAT_VEC3  */] = '3f';
 USetFMap[String(35666) /*FLOAT_VEC4  */] = '4f';
-USetFMap[String(35670) /*BOOL        */] = USetFMap[String(5124) /*INT         */] = USetFMap[
-  String(35678) /*SAMPLER_2D  */
-] = USetFMap[String(35680) /*SAMPLER_CUBE*/] = '1i';
+USetFMap[String(35670) /*BOOL        */] = 
+USetFMap[String(5124) /*INT         */] = 
+USetFMap[String(35678) /*SAMPLER_2D  */] = USetFMap[String(35680) /*SAMPLER_CUBE*/] = '1i';
 USetFMap[String(35671) /*BOOL_VEC2   */] = USetFMap[String(35667) /*INT_VEC2    */] = '2i';
 USetFMap[String(35672) /*BOOL_VEC3   */] = USetFMap[String(35668) /*INT_VEC3    */] = '3i';
 USetFMap[String(35673) /*BOOL_VEC4   */] = USetFMap[String(35669) /*INT_VEC4    */] = '4i';
@@ -400,4 +415,4 @@ function getAttribAccess(attrib:number) {
 }
 
 
-export = Program
+export default Program

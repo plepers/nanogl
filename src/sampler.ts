@@ -82,4 +82,4 @@ class Sampler {
 }
 
 
-export = Sampler
+export default Sampler

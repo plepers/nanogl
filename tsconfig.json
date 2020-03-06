@@ -1,14 +1,14 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "target": "es6",
-      "outDir": "./",
-      "rootDir": "./src",
-      "removeComments": true,
-      "declaration": true,
-      "strict": true
-
-    },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules"]
-  }
+  "compilerOptions": {
+    "module": "es2015",
+    "target": "es6",
+    "outDir": "./",
+    "rootDir": "./src",
+    "removeComments": true,
+    "declaration": true,
+    "strict": true,
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

@@ -1,18 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function isWebgl2(context) {
+export function isWebgl2(context) {
     return context.fenceSync !== undefined;
 }
-exports.isWebgl2 = isWebgl2;
-function isBufferSource(val) {
+export function isBufferSource(val) {
     return val.byteLength !== undefined;
 }
-exports.isBufferSource = isBufferSource;
-function getTextureFiltering(smooth, mipmap, miplinear) {
+export function getTextureFiltering(smooth, mipmap, miplinear) {
     return 0x2600 | +smooth | (+mipmap << 8) | (+(mipmap && miplinear) << 1);
 }
-exports.getTextureFiltering = getTextureFiltering;
-function getComponentSize(type) {
+export function getComponentSize(type) {
     switch (type) {
         case 0x1400:
         case 0x1401:
@@ -25,7 +20,6 @@ function getComponentSize(type) {
         case 0x1406:
             return 4;
         default:
-            return 0;
+            throw new Error(`unknown type ${type}`);
     }
 }
-exports.getComponentSize = getComponentSize;

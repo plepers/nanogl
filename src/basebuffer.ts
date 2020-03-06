@@ -91,4 +91,4 @@ abstract class BaseBuffer {
 }
 
 
-export = BaseBuffer
+export default BaseBuffer

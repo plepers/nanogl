@@ -1,11 +1,11 @@
-import Texture = require('./texture');
-import RenderBuffer = require('./renderbuffer');
+import Texture from './texture';
+import RenderBuffer from './renderbuffer';
 import { GLContext } from './types';
-declare type AttachmentTarget = Texture | RenderBuffer;
-declare class Attachment {
+export declare type AttachmentTarget = Texture | RenderBuffer;
+export declare class Attachment {
     level: number;
-    target: AttachmentTarget;
-    _isTexture: boolean;
+    readonly target: AttachmentTarget;
+    private _isTexture;
     constructor(target: AttachmentTarget);
     isTexture(): boolean;
     _resize(w: number, h: number): void;
@@ -14,17 +14,18 @@ declare class Attachment {
     dispose(): void;
 }
 declare class Fbo {
-    gl: GLContext;
-    fbo: WebGLFramebuffer;
+    readonly gl: GLContext;
+    readonly fbo: WebGLFramebuffer;
+    readonly attachmentsList: Attachment[];
+    attachments: Record<string, Attachment>;
     width: number;
     height: number;
-    attachmentsList: Attachment[];
-    attachments: Record<string, Attachment>;
     constructor(gl: GLContext);
     attach(bindingPoint: GLenum, res: AttachmentTarget): Attachment;
     detach(bindingPoint: GLenum): void;
     getAttachment(bindingPoint: GLenum): Attachment | null;
-    getColor(index: number): AttachmentTarget | null;
+    getColor(index?: number): AttachmentTarget | null;
+    getColorTexture(index?: number): Texture;
     getDepth(): AttachmentTarget | null;
     attachColor(format?: GLenum, type?: GLenum, internal?: GLenum): Attachment;
     attachDepth(depth?: boolean, stencil?: boolean, useTexture?: boolean): Attachment;
@@ -36,4 +37,4 @@ declare class Fbo {
     dispose(): void;
     _allocate(): void;
 }
-export = Fbo;
+export default Fbo;
