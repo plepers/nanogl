@@ -1,6 +1,6 @@
 
 
-import Texture from '../texture'
+import Texture2D from '../texture-2d'
 import Program from '../program'
 
 var expect  = require( 'expect.js' );
@@ -22,7 +22,7 @@ function loadImage( img, src ){
 var mireRGB, mireRGBA;
 var filltex, filltex16;
 
-describe( "Texture", function(){
+describe( "Texture2d", function(){
 
   before(function() {
     var vert = require( './glsl/filltex.vert')
@@ -49,25 +49,25 @@ describe( "Texture", function(){
 
 
   it( "should be exported in nanogl namespace", function(){
-    expect( Texture ).to.be.ok( );
+    expect( Texture2D ).to.be.ok( );
   });
 
   it( "creation should leave clean gl state", function(){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     testContext.assertNoError();
     tex.dispose()
   });
 
 
   it( "dispose should leave clean gl state", function(){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.dispose()
     testContext.assertNoError();
   });
 
 
   it( "should load rgb tex", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
     tex.dispose();
     testContext.assertNoError();
@@ -75,7 +75,7 @@ describe( "Texture", function(){
 
 
   it( "should load rgba tex", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGBA, true );
     tex.dispose();
     testContext.assertNoError();
@@ -84,7 +84,7 @@ describe( "Texture", function(){
 
 
   it( "should render rgb tex", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     filltex.bind()
@@ -102,7 +102,7 @@ describe( "Texture", function(){
 
 
   it( "should render nearest filtering", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     filltex.bind()
@@ -121,7 +121,7 @@ describe( "Texture", function(){
 
 
   it( "should render linear filtering", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     filltex.bind()
@@ -140,7 +140,7 @@ describe( "Texture", function(){
 
 
   it( "should render nearest mip filtering", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     filltex.bind()
@@ -160,7 +160,7 @@ describe( "Texture", function(){
 
 
   it( "should render nearest mip linear filtering", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     filltex.bind()
@@ -180,7 +180,7 @@ describe( "Texture", function(){
 
 
   it( "should render linear mip linear filtering", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     filltex.bind()
@@ -200,7 +200,7 @@ describe( "Texture", function(){
 
 
   it( "should render with program sampler helper", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     filltex.bind()
@@ -216,7 +216,7 @@ describe( "Texture", function(){
 
 
   it( "@should accept Uint8Array RGB data", function( ){
-    var tex = new Texture( gl, gl.RGB );
+    var tex = new Texture2D( gl, gl.RGB );
     tex.bind();
     gl.pixelStorei( gl.UNPACK_ALIGNMENT, 1 );
 
@@ -242,7 +242,7 @@ describe( "Texture", function(){
   });
 
   it( "should accept Uint8Array RGBA data", function( ){
-    var tex = new Texture( gl, gl.RGBA );
+    var tex = new Texture2D( gl, gl.RGBA );
 
     var data = new Uint8Array( [
       0x10, 0x10, 0x10, 0x60,

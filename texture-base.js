@@ -1,8 +1,16 @@
 import { getTextureFiltering } from './utils';
 let _UID = 0;
+export var TextureType;
+(function (TextureType) {
+    TextureType[TextureType["NONE"] = 0] = "NONE";
+    TextureType[TextureType["TEXTURE_2D"] = 3553] = "TEXTURE_2D";
+    TextureType[TextureType["TEXTURE_2D_ARRAY"] = 35866] = "TEXTURE_2D_ARRAY";
+    TextureType[TextureType["TEXTURE_CUBE"] = 34067] = "TEXTURE_CUBE";
+    TextureType[TextureType["TEXTURE_3D"] = 32879] = "TEXTURE_3D";
+})(TextureType || (TextureType = {}));
 export default class AbstractTexture {
     constructor(gl, format, type, internal) {
-        this.textureType = 0;
+        this.textureType = TextureType.NONE;
         this.format = 0;
         this.internal = 0;
         this.type = 0;

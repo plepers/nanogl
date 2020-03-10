@@ -1,7 +1,7 @@
 
 
 import Sampler from '../sampler'
-import Texture from '../texture'
+import Texture2D from '../texture-2d'
 import Program from '../program'
 var expect  = require( 'expect.js' );
 
@@ -69,7 +69,7 @@ describe( "Sampler @WEBGL2", function(){
 
 
   it( "should render various filtering", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     var sampler = new Sampler( gl )

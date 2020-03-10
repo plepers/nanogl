@@ -12,7 +12,7 @@ const GL_TEXTURE_2D = 0x0de1;
  *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
  *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
  */
-export default class Texture extends AbstractTexture {
+export default class Texture2D extends AbstractTexture {
 
   readonly textureType : TextureType.TEXTURE_2D = TextureType.TEXTURE_2D;
 

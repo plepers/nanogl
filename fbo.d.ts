@@ -1,7 +1,7 @@
-import Texture from './texture';
+import Texture2D from './texture-2d';
 import RenderBuffer from './renderbuffer';
 import { GLContext } from './types';
-export declare type AttachmentTarget = Texture | RenderBuffer;
+export declare type AttachmentTarget = Texture2D | RenderBuffer;
 export declare class Attachment {
     level: number;
     readonly target: AttachmentTarget;
@@ -25,7 +25,7 @@ declare class Fbo {
     detach(bindingPoint: GLenum): void;
     getAttachment(bindingPoint: GLenum): Attachment | null;
     getColor(index?: number): AttachmentTarget | null;
-    getColorTexture(index?: number): Texture;
+    getColorTexture(index?: number): Texture2D;
     getDepth(): AttachmentTarget | null;
     attachColor(format?: GLenum, type?: GLenum, internal?: GLenum): Attachment;
     attachDepth(depth?: boolean, stencil?: boolean, useTexture?: boolean): Attachment;
