@@ -93,7 +93,7 @@ class Fbo {
     }
     getColorTexture(index = 0) {
         const res = this.getColor(index);
-        assertIsTexture(res, "Color attachment {index} is not a texture.");
+        assertIsTexture(res, `Color attachment ${index} is not a texture.`);
         return res;
     }
     getDepth() {
