@@ -1,14 +1,14 @@
 import { GLContext } from './types';
 import TextureCube from './texture-cube';
-import Texture from './texture';
-export declare const enum TextureType {
+import Texture2D from './texture-2d';
+export declare enum TextureType {
     NONE = 0,
     TEXTURE_2D = 3553,
     TEXTURE_2D_ARRAY = 35866,
     TEXTURE_CUBE = 34067,
     TEXTURE_3D = 32879
 }
-export declare type BaseTexture = TextureCube | Texture;
+export declare type Texture = TextureCube | Texture2D;
 export default abstract class AbstractTexture {
     readonly textureType: TextureType;
     readonly gl: GLContext;

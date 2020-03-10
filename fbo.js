@@ -1,4 +1,4 @@
-import Texture from './texture';
+import Texture2D from './texture-2d';
 import RenderBuffer from './renderbuffer';
 import { isWebgl2 } from './utils';
 function isTexture(target) {
@@ -103,14 +103,14 @@ class Fbo {
         return att ? att.target : null;
     }
     attachColor(format, type, internal) {
-        const t = new Texture(this.gl, format, type, internal);
+        const t = new Texture2D(this.gl, format, type, internal);
         return this.attach(0x8ce0, t);
     }
     attachDepth(depth = true, stencil = false, useTexture = false) {
         let attachment;
         if (useTexture) {
             const cfg = dsTextureConfig(this.gl, stencil);
-            attachment = new Texture(this.gl, cfg.format, cfg.type, cfg.internal);
+            attachment = new Texture2D(this.gl, cfg.format, cfg.type, cfg.internal);
         }
         else {
             attachment = new RenderBuffer(this.gl, dsRenderbufferStorage(depth, stencil));

@@ -1,22 +1,22 @@
-import Texture from './texture'
+import Texture2D from './texture-2d'
 import RenderBuffer from './renderbuffer'
 import { GLContext } from './types';
 import { isWebgl2 } from './utils';
 
-function isTexture(target: AttachmentTarget): target is Texture {
+function isTexture(target: AttachmentTarget): target is Texture2D {
   return target.id instanceof WebGLTexture;
 }
 
 
 
-function assertIsTexture(target: AttachmentTarget|null, msg:string): asserts target is Texture {
+function assertIsTexture(target: AttachmentTarget|null, msg:string): asserts target is Texture2D {
   if( target === null || !isTexture(target) ){
     throw new Error( msg );
   }
 }
 
 
-export type AttachmentTarget = Texture | RenderBuffer;
+export type AttachmentTarget = Texture2D | RenderBuffer;
 
 export class Attachment {
 
@@ -149,9 +149,9 @@ class Fbo {
   }
 
 
-  getColorTexture(index: number = 0): Texture {
+  getColorTexture(index: number = 0): Texture2D {
     const res = this.getColor( index );
-    assertIsTexture( res, "Color attachment {index} is not a texture." );
+    assertIsTexture( res, `Color attachment ${index} is not a texture.` );
     return res;
   }
 
@@ -168,7 +168,7 @@ class Fbo {
    * Shortcut to attach texture to color attachment 0
    */
   attachColor(format?: GLenum, type?: GLenum, internal?: GLenum) {
-    const t = new Texture(this.gl, format, type, internal);
+    const t = new Texture2D(this.gl, format, type, internal);
     return this.attach(0x8ce0, t);
   }
 
@@ -183,7 +183,7 @@ class Fbo {
 
     if (useTexture) {
       const cfg = dsTextureConfig(this.gl, stencil);
-      attachment = new Texture(this.gl, cfg.format, cfg.type, cfg.internal);
+      attachment = new Texture2D(this.gl, cfg.format, cfg.type, cfg.internal);
     } else {
       attachment = new RenderBuffer(this.gl, dsRenderbufferStorage(depth, stencil));
     }

@@ -1,5 +1,5 @@
 import  Fbo          from '../fbo'
-import  Texture2D    from '../texture'
+import  Texture2D    from '../texture-2d'
 import  Program      from '../program'
 import  Renderbuffer from '../renderbuffer'
 var expect       = require( 'expect.js' );

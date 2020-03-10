@@ -1,12 +1,12 @@
 import { GLContext } from './types';
 import { getTextureFiltering } from './utils';
 import TextureCube from './texture-cube';
-import Texture from './texture';
+import Texture2D from './texture-2d';
 
 let _UID = 0;
 
 
-export const enum TextureType {
+export enum TextureType {
     NONE             = 0     ,
     TEXTURE_2D       = 0x0de1,
     TEXTURE_2D_ARRAY = 0x8C1A,
@@ -15,7 +15,7 @@ export const enum TextureType {
 }
 
 
-export type BaseTexture = TextureCube | Texture;
+export type Texture = TextureCube | Texture2D;
 
 
 /**
