@@ -1,6 +1,6 @@
 import Texture2D from './texture-2d';
 import RenderBuffer from './renderbuffer';
-import { isWebgl2 } from './utils';
+import { isWebgl2 } from './types';
 function isTexture(target) {
     return target.id instanceof WebGLTexture;
 }

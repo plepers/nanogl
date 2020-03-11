@@ -1,4 +1,4 @@
-import { isWebgl2 } from './utils';
+import { isWebgl2 } from './types';
 let _UID = 0;
 class Program {
     constructor(gl, vert, frag, defs) {

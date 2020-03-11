@@ -1,5 +1,4 @@
-import { GLContext } from './types';
-import { isWebgl2 } from './utils';
+import { GLContext, isWebgl2 } from './types';
 
 interface CompilationContext {
   texIndex: number;

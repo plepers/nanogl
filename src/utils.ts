@@ -1,8 +1,3 @@
-import { GLContext } from './types';
-
-export function isWebgl2(context: GLContext): context is WebGL2RenderingContext {
-  return (<WebGL2RenderingContext>context).fenceSync !== undefined;
-}
 
 export function isBufferSource(val: GLsizeiptr | BufferSource): val is BufferSource {
   return (<BufferSource>val).byteLength !== undefined;

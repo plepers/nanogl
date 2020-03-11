@@ -1,6 +1,3 @@
-export function isWebgl2(context) {
-    return context.fenceSync !== undefined;
-}
 export function isBufferSource(val) {
     return val.byteLength !== undefined;
 }
