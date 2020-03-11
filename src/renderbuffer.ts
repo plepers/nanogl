@@ -27,8 +27,12 @@ class RenderBuffer {
   constructor(gl: GLContext, format: GLenum, samples : number = 0) {
     this._uid = _UID++;
     this.gl = gl;
-    this.samples = samples;
     this.id = <WebGLRenderbuffer>gl.createRenderbuffer();
+
+    if( samples > 0 && isWebgl2(gl) ){
+      const maxSamples = gl.getParameter( gl.MAX_SAMPLES )
+      this.samples = (samples > maxSamples) ? maxSamples : samples;
+    }
 
     this.width = 0;
     this.height = 0;

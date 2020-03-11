@@ -6,8 +6,11 @@ class RenderBuffer {
         this.samples = 0;
         this._uid = _UID++;
         this.gl = gl;
-        this.samples = samples;
         this.id = gl.createRenderbuffer();
+        if (samples > 0 && isWebgl2(gl)) {
+            const maxSamples = gl.getParameter(gl.MAX_SAMPLES);
+            this.samples = (samples > maxSamples) ? maxSamples : samples;
+        }
         this.width = 0;
         this.height = 0;
         this.format = format || gl.DEPTH_COMPONENT16;
