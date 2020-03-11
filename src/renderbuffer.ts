@@ -1,4 +1,4 @@
-import { GLContext } from './types';
+import { GLContext, isWebgl2 } from './types';
 
 let _UID = 0;
 
@@ -15,18 +15,24 @@ class RenderBuffer {
 
   readonly gl: GLContext;
   readonly id: WebGLRenderbuffer;
+  readonly samples: number = 0;
+  readonly format: GLenum;
   
   width: number;
   height: number;
-  format: GLenum;
 
   readonly _uid: number;
   private _valid: boolean;
 
-  constructor(gl: GLContext, format: GLenum) {
+  constructor(gl: GLContext, format: GLenum, samples : number = 0) {
     this._uid = _UID++;
     this.gl = gl;
     this.id = <WebGLRenderbuffer>gl.createRenderbuffer();
+
+    if( samples > 0 && isWebgl2(gl) ){
+      const maxSamples = gl.getParameter( gl.MAX_SAMPLES )
+      this.samples = (samples > maxSamples) ? maxSamples : samples;
+    }
 
     this.width = 0;
     this.height = 0;
@@ -84,7 +90,11 @@ class RenderBuffer {
   _storage() {
     const gl = this.gl;
     gl.bindRenderbuffer(RENDERBUFFER, this.id);
-    gl.renderbufferStorage(RENDERBUFFER, this.format, this.width, this.height);
+    if( this.samples > 0 && isWebgl2(gl) ){
+      gl.renderbufferStorageMultisample(RENDERBUFFER, this.samples, this.format, this.width, this.height);
+    } else {
+      gl.renderbufferStorage(RENDERBUFFER, this.format, this.width, this.height);
+    }
     gl.bindRenderbuffer(RENDERBUFFER, null);
   }
 }

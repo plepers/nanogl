@@ -1,7 +1,6 @@
 import Texture2D from './texture-2d'
 import RenderBuffer from './renderbuffer'
-import { GLContext } from './types';
-import { isWebgl2 } from './utils';
+import { GLContext, isWebgl2 } from './types';
 
 function isTexture(target: AttachmentTarget): target is Texture2D {
   return target.id instanceof WebGLTexture;

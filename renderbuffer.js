@@ -1,10 +1,16 @@
+import { isWebgl2 } from './types';
 let _UID = 0;
 const RENDERBUFFER = 0x8d41;
 class RenderBuffer {
-    constructor(gl, format) {
+    constructor(gl, format, samples = 0) {
+        this.samples = 0;
         this._uid = _UID++;
         this.gl = gl;
         this.id = gl.createRenderbuffer();
+        if (samples > 0 && isWebgl2(gl)) {
+            const maxSamples = gl.getParameter(gl.MAX_SAMPLES);
+            this.samples = (samples > maxSamples) ? maxSamples : samples;
+        }
         this.width = 0;
         this.height = 0;
         this.format = format || gl.DEPTH_COMPONENT16;
@@ -33,7 +39,12 @@ class RenderBuffer {
     _storage() {
         const gl = this.gl;
         gl.bindRenderbuffer(RENDERBUFFER, this.id);
-        gl.renderbufferStorage(RENDERBUFFER, this.format, this.width, this.height);
+        if (this.samples > 0 && isWebgl2(gl)) {
+            gl.renderbufferStorageMultisample(RENDERBUFFER, this.samples, this.format, this.width, this.height);
+        }
+        else {
+            gl.renderbufferStorage(RENDERBUFFER, this.format, this.width, this.height);
+        }
         gl.bindRenderbuffer(RENDERBUFFER, null);
     }
 }
