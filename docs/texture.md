@@ -3,11 +3,10 @@ Texture
 Texture class provide helpers for TEXTURE_2D textures:
   - uploading from image, canvas, video, or data
   - filtering and wrapping
-It support any kind of pixel formats (RGB, RGBA, LUMINANCE etc)
-and any kind of pixel type (UNSIGNED_BYTE, FLOAT etc)
+It supports any kind of pixel formats (RGB, RGBA, LUMINANCE etc), and any kind of pixel type (UNSIGNED_BYTE, FLOAT etc)
 
 
-##exemples
+## Examples
 
 ##### Texture creation
 
