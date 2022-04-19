@@ -3,12 +3,12 @@ import RenderBuffer from './renderbuffer';
 import { GLContext } from './types';
 export declare type AttachmentTarget = Texture2D | RenderBuffer;
 export declare class Attachment {
-    level: number;
     readonly target: AttachmentTarget;
+    level: number;
     private _isTexture;
     constructor(target: AttachmentTarget);
     isTexture(): boolean;
-    _resize(w: number, h: number): void;
+    _allocate(w: number, h: number): void;
     _attach(bindingPoint: GLenum): void;
     _detach(bindingPoint: GLenum): void;
     dispose(): void;
@@ -29,12 +29,13 @@ declare class Fbo {
     getDepth(): AttachmentTarget | null;
     attachColor(format?: GLenum, type?: GLenum, internal?: GLenum): Attachment;
     attachDepth(depth?: boolean, stencil?: boolean, useTexture?: boolean): Attachment;
+    setSize(w: number, h: number): void;
     resize(w: number, h: number): void;
     bind(): void;
     clear(): void;
     defaultViewport(): void;
     isValid(): boolean;
     dispose(): void;
-    _allocate(): void;
+    private _allocate;
 }
 export default Fbo;

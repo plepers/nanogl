@@ -18,14 +18,13 @@ export class Attachment {
     isTexture() {
         return this._isTexture;
     }
-    _resize(w, h) {
+    _allocate(w, h) {
         if (w > 0 && h > 0) {
             if (isTexture(this.target)) {
                 this.target.fromData(w, h, null);
             }
             else {
-                this.target.resize(w, h);
-                this.target.allocate();
+                this.target.allocate(w, h);
             }
         }
     }
@@ -53,9 +52,9 @@ export class Attachment {
 }
 class Fbo {
     constructor(gl) {
+        this.width = 4;
+        this.height = 4;
         this.gl = gl;
-        this.width = 0;
-        this.height = 0;
         this.fbo = gl.createFramebuffer();
         this.bind();
         this.attachments = {};
@@ -67,7 +66,7 @@ class Fbo {
         this.detach(bindingPoint);
         this.attachments[bindingPoint.toString()] = attachment;
         this.attachmentsList.push(attachment);
-        attachment._resize(this.width, this.height);
+        attachment._allocate(this.width, this.height);
         attachment._attach(bindingPoint);
         return attachment;
     }
@@ -113,16 +112,19 @@ class Fbo {
             attachment = new Texture2D(this.gl, cfg.format, cfg.type, cfg.internal);
         }
         else {
-            attachment = new RenderBuffer(this.gl, dsRenderbufferStorage(depth, stencil));
+            attachment = new RenderBuffer(this.gl, dsRenderbufferStorage(this.gl, depth, stencil));
         }
         return this.attach(dsAttachmentPoint(depth, stencil), attachment);
     }
-    resize(w, h) {
+    setSize(w, h) {
         if (this.width !== w || this.height !== h) {
             this.width = w | 0;
             this.height = h | 0;
             this._allocate();
         }
+    }
+    resize(w, h) {
+        this.setSize(w, h);
     }
     bind() {
         const gl = this.gl;
@@ -149,7 +151,7 @@ class Fbo {
     }
     _allocate() {
         for (var attachment of this.attachmentsList) {
-            attachment._resize(this.width, this.height);
+            attachment._allocate(this.width, this.height);
         }
     }
 }
@@ -168,14 +170,14 @@ function dsAttachmentPoint(depth, stencil) {
             return 0;
     }
 }
-function dsRenderbufferStorage(depth, stencil) {
+function dsRenderbufferStorage(gl, depth, stencil) {
     switch (dsFlag(depth, stencil)) {
         case 1:
             return 0x81a5;
         case 2:
             return 0x8d48;
         case 3:
-            return 0x84f9;
+            return isWebgl2(gl) ? gl.DEPTH24_STENCIL8 : gl.DEPTH_STENCIL;
         default:
             return 0;
     }

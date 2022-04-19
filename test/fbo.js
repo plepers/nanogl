@@ -33,7 +33,7 @@ describe( "Fbo", function(){
   it( "should dispose correctly", function(){
     
     var fbo = new Fbo( gl );
-    fbo.resize( 32, 32 );
+    fbo.setSize( 32, 32 );
     var dispose = function(){
       fbo.dispose()
     }
@@ -56,7 +56,7 @@ describe( "Fbo", function(){
   it( "should dispose when color attach", function(){
     
     var fbo = new Fbo( gl );
-    fbo.resize( 32, 32 );
+    fbo.setSize( 32, 32 );
     fbo.bind()
     fbo.attachColor()
     
@@ -85,7 +85,7 @@ describe( "Fbo", function(){
   it( "resize empty fbo", function(){
     
     var fbo = new Fbo( gl );
-    fbo.resize( 32, 32 );
+    fbo.setSize( 32, 32 );
     
     testContext.assertNoError();
 
@@ -97,7 +97,7 @@ describe( "Fbo", function(){
     var vert, frag, p;
 
     var fbo = new Fbo( gl );
-    fbo.resize( 32, 32 );
+    fbo.setSize( 32, 32 );
     fbo.bind()
     fbo.attachColor();
 
@@ -154,7 +154,7 @@ describe( "Fbo", function(){
     it( " after resize leave clean state", function(){
     
       fbo.bind()
-      fbo.resize( 32, 32 );
+      fbo.setSize( 32, 32 );
       fbo.attach( 0x8CE0, tex );
       testContext.assertNoError();
 
@@ -164,7 +164,7 @@ describe( "Fbo", function(){
     it( "after resize make complete fbo ", function(){
       
       fbo.bind()
-      fbo.resize( 64, 64 );
+      fbo.setSize( 64, 64 );
       fbo.attach( 0x8CE0, tex );
 
       expect( fbo.isValid() ).to.be.ok()
@@ -176,7 +176,7 @@ describe( "Fbo", function(){
     
       fbo.bind()
       fbo.attach( 0x8CE0, tex );
-      fbo.resize( 16, 16 );
+      fbo.setSize( 16, 16 );
       testContext.assertNoError();
 
     })
@@ -186,7 +186,7 @@ describe( "Fbo", function(){
       
       fbo.bind()
       fbo.attach( 0x8CE0, tex );
-      fbo.resize( 4, 8 );
+      fbo.setSize( 4, 8 );
 
       expect( fbo.isValid() ).to.be.ok()
       testContext.assertNoError();
@@ -217,7 +217,7 @@ describe( "Fbo", function(){
     
       fbo.bind()
       fbo.attach( 0x8CE0, tex );
-      fbo.resize( 32, 32 );
+      fbo.setSize( 32, 32 );
       fbo.detach( 0x8CE0 );
       testContext.assertNoError();
 
@@ -287,7 +287,7 @@ describe( "Fbo", function(){
       
       var depth = new Renderbuffer( gl, gl.DEPTH_COMPONENT16 );
       fbo.bind()
-      fbo.resize( 32, 32 );
+      fbo.setSize( 32, 32 );
       fbo.attach( gl.DEPTH_ATTACHMENT, depth );
       testContext.assertNoError();
 
@@ -299,7 +299,7 @@ describe( "Fbo", function(){
       var depth = new Renderbuffer( gl, gl.DEPTH_COMPONENT16 );
 
       fbo.bind()
-      fbo.resize( 64, 64 );
+      fbo.setSize( 64, 64 );
       fbo.attach( gl.DEPTH_ATTACHMENT, depth );
 
       expect( fbo.isValid() ).to.be.ok()
@@ -313,7 +313,7 @@ describe( "Fbo", function(){
 
       fbo.bind()
       fbo.attach( gl.DEPTH_ATTACHMENT, depth );
-      fbo.resize( 16, 16 );
+      fbo.setSize( 16, 16 );
       testContext.assertNoError();
 
     })
@@ -324,7 +324,7 @@ describe( "Fbo", function(){
 
       fbo.bind()
       fbo.attach( gl.DEPTH_ATTACHMENT, depth );
-      fbo.resize( 4, 8 );
+      fbo.setSize( 4, 8 );
 
       expect( fbo.isValid() ).to.be.ok()
       testContext.assertNoError();
@@ -376,12 +376,20 @@ describe( "Fbo", function(){
     })
 
 
-    it( " both", function(){
+    it( "@WEBGL1 both", function(){
       
       fbo.attachDepth( true, true );
       var att = fbo.getDepth( )
-
       expect( att.format ).to.be( gl.DEPTH_STENCIL )
+      testContext.assertNoError();
+
+    })
+    
+    it( "@WEBGL2 both", function(){
+      
+      fbo.attachDepth( true, true );
+      var att = fbo.getDepth( )
+      expect( att.format ).to.be( gl.DEPTH24_STENCIL8 )
       testContext.assertNoError();
 
     })
@@ -401,7 +409,7 @@ describe( "Fbo", function(){
       fbo = new Fbo( gl );
       fbo.bind();
       color = fbo.attach( gl.COLOR_ATTACHMENT0, tex );
-      fbo.resize( 16,16 )
+      fbo.setSize( 16,16 )
     });
 
 
@@ -514,7 +522,7 @@ describe( "Fbo", function(){
 
 
       fbo.bind()
-      fbo.resize( 32, 32 );
+      fbo.setSize( 32, 32 );
       fbo.attach( 0x8CE0      , tex0 );
       fbo.attach( 0x8CE0 + 1  , tex1 );
 
@@ -527,6 +535,26 @@ describe( "Fbo", function(){
       testContext.assertNoError();
 
     })
+
+
+    // it( " MSAA fbo", function(){
+      
+    //   var fbo;
+    //   fbo = new Fbo( gl );
+
+
+    //   fbo.setSize( 32, 32 );
+    //   fbo.attachColor();
+    //   fbo.attachDepth(true, true);
+
+    //   testContext.assertNoError();
+
+    //   gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    //   fbo.dispose()
+
+    //   testContext.assertNoError();
+
+    // })
 
 
   })

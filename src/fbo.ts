@@ -2,10 +2,10 @@ import Texture2D from './texture-2d'
 import RenderBuffer from './renderbuffer'
 import { GLContext, isWebgl2 } from './types';
 
+
 function isTexture(target: AttachmentTarget): target is Texture2D {
   return target.id instanceof WebGLTexture;
 }
-
 
 
 function assertIsTexture(target: AttachmentTarget|null, msg:string): asserts target is Texture2D {
@@ -20,13 +20,10 @@ export type AttachmentTarget = Texture2D | RenderBuffer;
 export class Attachment {
 
   level: number;
-  readonly target: AttachmentTarget;
   private _isTexture: boolean;
 
-  constructor(target: AttachmentTarget) {
-    this.target = target;
+  constructor( readonly target: AttachmentTarget) {
     this.level = 0;
-
     this._isTexture = isTexture(target);
   }
 
@@ -34,14 +31,13 @@ export class Attachment {
     return this._isTexture;
   }
 
-  _resize(w: number, h: number) {
+  _allocate(w: number, h: number) {
     if (w > 0 && h > 0) {
       // const target :
       if (isTexture(this.target)) {
         this.target.fromData(w, h, null);
       } else {
-        this.target.resize(w, h);
-        this.target.allocate();
+        this.target.allocate(w, h);
       }
     }
   }
@@ -90,14 +86,12 @@ class Fbo {
   readonly attachmentsList: Attachment[];
   attachments: Record<string,Attachment>;
 
-  width: number;
-  height: number;
+  width  = 4
+  height = 4
   
 
   constructor( gl: GLContext ) {
     this.gl = gl;
-    this.width = 0;
-    this.height = 0;
 
     this.fbo = <WebGLFramebuffer>gl.createFramebuffer();
     this.bind();
@@ -116,7 +110,7 @@ class Fbo {
     this.attachments[bindingPoint.toString()] = attachment;
     this.attachmentsList.push(attachment);
 
-    attachment._resize(this.width, this.height);
+    attachment._allocate(this.width, this.height );
     attachment._attach(bindingPoint);
     return attachment;
   }
@@ -173,9 +167,9 @@ class Fbo {
 
   /**
    * shortcut to attach depth/stencil renderbuffer/texture to this FBO
-   *  @param {bool} [depth      =true ] add depth component to depth/stencil buffer
-   *  @param {bool} [stencil    =false] add stencil components to depth/stencil buffer
-   *  @param {bool} [useTexture =false] if true, use Texture instead of RenderBuffer, depth param must also be true. You must ensure Depth Texture capability is available on your context, no test are made here
+   * @param {bool} [depth      =true ] add depth component to depth/stencil buffer
+   * @param {bool} [stencil    =false] add stencil components to depth/stencil buffer
+   * @param {bool} [useTexture =false] if true, use Texture instead of RenderBuffer, depth param must also be true. You must ensure Depth Texture capability is available on your context, no test are made here
    */
   attachDepth(depth: boolean = true, stencil: boolean = false, useTexture: boolean = false) {
     let attachment: AttachmentTarget;
@@ -184,7 +178,7 @@ class Fbo {
       const cfg = dsTextureConfig(this.gl, stencil);
       attachment = new Texture2D(this.gl, cfg.format, cfg.type, cfg.internal);
     } else {
-      attachment = new RenderBuffer(this.gl, dsRenderbufferStorage(depth, stencil));
+      attachment = new RenderBuffer(this.gl, dsRenderbufferStorage(this.gl, depth, stencil));
     }
 
     return this.attach(dsAttachmentPoint(depth, stencil), attachment);
@@ -195,13 +189,21 @@ class Fbo {
    *  @param {uint} w new width
    *  @param {uint} h new height
    */
-  resize(w: number, h: number) {
+  setSize(w: number, h: number) {
     if (this.width !== w || this.height !== h) {
       this.width = w | 0;
       this.height = h | 0;
       this._allocate();
     }
   }
+
+  /**
+   * @deprecated use setSize instead
+   */
+  resize(w: number, h: number) {
+    this.setSize(w, h)
+  }
+
 
   /**
    * Bind the Fbo ( simple shortcut for gl.bindFramebuffer(...) )
@@ -232,6 +234,7 @@ class Fbo {
     return gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
   }
 
+
   /**
    * Delete all webgl objects related to this Fbo (fbo, and all attachments )
    */
@@ -249,11 +252,12 @@ class Fbo {
   }
 
   // (re)allocate render buffers to size
-  _allocate() {
+  private _allocate() {
     for (var attachment of this.attachmentsList) {
-      attachment._resize(this.width, this.height);
+      attachment._allocate(this.width, this.height );
     }
   }
+
 }
 
 // ============================================
@@ -278,14 +282,14 @@ function dsAttachmentPoint(depth: any, stencil: any) {
 }
 
 //
-function dsRenderbufferStorage(depth: any, stencil: any) {
+function dsRenderbufferStorage(gl: GLContext, depth: any, stencil: any) {
   switch (dsFlag(depth, stencil)) {
     case 1:
       return 0x81a5; // DEPTH_COMPONENT16;
     case 2:
       return 0x8d48; // STENCIL_INDEX8;
     case 3:
-      return 0x84f9; // DEPTH_STENCIL;
+      return isWebgl2(gl) ? gl.DEPTH24_STENCIL8 : gl.DEPTH_STENCIL; // DEPTH_STENCIL;
     default:
       return 0;
   }

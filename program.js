@@ -34,7 +34,8 @@ class Program {
         }
         gl.linkProgram(this.program);
         if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-            Program.debug && warn(gl.getProgramInfoLog(this.program));
+            if (Program.debug)
+                warn(gl.getProgramInfoLog(this.program));
             return false;
         }
         while (this.dyns.length > 0) {
@@ -123,7 +124,8 @@ function compileShader(gl, shader, code) {
     gl.shaderSource(shader, code);
     gl.compileShader(shader);
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        Program.debug && reportCompileError(gl.getShaderInfoLog(shader), code);
+        if (Program.debug)
+            reportCompileError(gl.getShaderInfoLog(shader), code);
         return false;
     }
     return true;

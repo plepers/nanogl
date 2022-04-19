@@ -13,61 +13,51 @@ const RENDERBUFFER = 0x8d41;
  */
 class RenderBuffer {
 
-  readonly gl: GLContext;
-  readonly id: WebGLRenderbuffer;
-  readonly samples: number = 0;
-  readonly format: GLenum;
+  readonly _uid: number
+  readonly id: WebGLRenderbuffer
+
+  private _maxSamples = 0
+  private _samples = 0
   
-  width: number;
-  height: number;
+  width  = 0
+  height = 0
 
-  readonly _uid: number;
-  private _valid: boolean;
 
-  constructor(gl: GLContext, format: GLenum, samples : number = 0) {
+  constructor( readonly gl: GLContext, readonly format: GLenum = gl.DEPTH_COMPONENT16, msaaSamples = 0) {
     this._uid = _UID++;
-    this.gl = gl;
     this.id = <WebGLRenderbuffer>gl.createRenderbuffer();
-
-    if( samples > 0 && isWebgl2(gl) ){
-      const maxSamples = gl.getParameter( gl.MAX_SAMPLES )
-      this.samples = (samples > maxSamples) ? maxSamples : samples;
-    }
-
-    this.width = 0;
-    this.height = 0;
-    this.format = format || gl.DEPTH_COMPONENT16;
-
-    this._valid = false;
-
-    // Dummy allocation needed
-    // on some platform (chrome 57, osx, nvidia), gl.framebufferRenderbuffer raise
-    // an INVALID_OPERATION if a RB is attached before it storage is allocated.
-    this._storage();
+    this._maxSamples = isWebgl2(gl) ? gl.getParameter( gl.MAX_SAMPLES ):0
+    this._samples = Math.min(msaaSamples, this._maxSamples);
   }
 
+  
   /**
-   *
-   *
+   * Set number of msaa samples
+   * @param {number} samples set to 0 to disable msaa
    */
-  resize(w: number, h: number) {
-    if (this.width !== w || this.height !== h) {
-      this.width = w;
-      this.height = h;
-      this._valid = false;
-    }
-  }
-
-  /**
-   * check renderbuffer for  validity and allocate it if invalid.
-   * this method may leave RENDERBUFFER binding point empty
-   */
-  allocate() {
-    if (!this._valid && this.width > 0 && this.height > 0) {
+  public multisampling( samples:number ) {
+    samples = Math.min(samples, this._maxSamples);
+    if( this._samples !== samples){
+      this._samples = samples;
       this._storage();
-      this._valid = true;
     }
   }
+
+
+  /**
+   * Allocate RenderBuffer storage
+   * this method may leave RENDERBUFFER binding point empty
+   * @param {number} width with of teh renderbuffer
+   * @param {number} height height of the renderbuffer
+   */
+  allocate( width:number, height:number ) {
+    if( this.width !== width || this.height !== height ) {
+      this.width = width
+      this.height = height
+      this._storage()
+    }
+  }
+
 
   /**
    * Bind the renderbuffer
@@ -76,22 +66,20 @@ class RenderBuffer {
     this.gl.bindRenderbuffer(RENDERBUFFER, this.id);
   }
 
+
   /**
    * delete the webgl renderbuffer
-   *
    */
   dispose() {
     this.gl.deleteRenderbuffer(this.id);
   }
 
-  /*
-   * actual RB gl allocation
-   */
-  _storage() {
+  
+  private _storage() {
     const gl = this.gl;
     gl.bindRenderbuffer(RENDERBUFFER, this.id);
-    if( this.samples > 0 && isWebgl2(gl) ){
-      gl.renderbufferStorageMultisample(RENDERBUFFER, this.samples, this.format, this.width, this.height);
+    if( this._samples > 0 && isWebgl2(gl) ){
+      gl.renderbufferStorageMultisample(RENDERBUFFER, this._samples, this.format, this.width, this.height);
     } else {
       gl.renderbufferStorage(RENDERBUFFER, this.format, this.width, this.height);
     }

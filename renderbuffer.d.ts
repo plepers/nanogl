@@ -1,18 +1,18 @@
 import { GLContext } from './types';
 declare class RenderBuffer {
     readonly gl: GLContext;
-    readonly id: WebGLRenderbuffer;
-    readonly samples: number;
     readonly format: GLenum;
+    readonly _uid: number;
+    readonly id: WebGLRenderbuffer;
+    private _maxSamples;
+    private _samples;
     width: number;
     height: number;
-    readonly _uid: number;
-    private _valid;
-    constructor(gl: GLContext, format: GLenum, samples?: number);
-    resize(w: number, h: number): void;
-    allocate(): void;
+    constructor(gl: GLContext, format?: GLenum, msaaSamples?: number);
+    multisampling(samples: number): void;
+    allocate(width: number, height: number): void;
     bind(): void;
     dispose(): void;
-    _storage(): void;
+    private _storage;
 }
 export default RenderBuffer;

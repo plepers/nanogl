@@ -102,8 +102,8 @@ class Program {
 
     gl.linkProgram(this.program);
 
-    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      Program.debug && warn(gl.getProgramInfoLog(this.program));
+    if ( !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+      if( Program.debug ) warn(gl.getProgramInfoLog(this.program));
       return false;
     }
 
@@ -259,8 +259,8 @@ function compileShader(gl: GLContext, shader: WebGLShader, code: string): boolea
   gl.shaderSource(shader, code);
   gl.compileShader(shader);
 
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    Program.debug && reportCompileError( gl.getShaderInfoLog(shader)!, code );
+  if ( !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    if( Program.debug ) reportCompileError( gl.getShaderInfoLog(shader)!, code );
     return false;
   }
 
