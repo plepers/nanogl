@@ -1,4 +1,4 @@
-var Renderbuffer = require( '../renderbuffer' )
+import Renderbuffer from '../renderbuffer'
 var expect  = require( 'expect.js' );
 
 var testContext = require( './utils/TestContext' );

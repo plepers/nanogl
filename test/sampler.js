@@ -1,8 +1,8 @@
 
 
-var Sampler = require( '../nanogl' ).Sampler;
-var Texture = require( '../nanogl' ).Texture;
-var Program = require( '../nanogl' ).Program;
+import Sampler from '../sampler'
+import Texture2D from '../texture-2d'
+import Program from '../program'
 var expect  = require( 'expect.js' );
 
 var when = require( 'when' );
@@ -25,8 +25,8 @@ var filltex, filltex16;
 describe( "Sampler @WEBGL2", function(){
 
   before(function() {
-    vert = require( './glsl/filltex.vert')
-    frag = require( './glsl/filltex.frag')
+    var vert = require( './glsl/filltex.vert')
+    var frag = require( './glsl/filltex.frag')
     filltex = new Program( gl );
     filltex.compile( vert, frag, "#define UV_MULT 2.0" );
 
@@ -36,15 +36,16 @@ describe( "Sampler @WEBGL2", function(){
     mireRGB  = document.createElement( 'img' );
     mireRGBA = document.createElement( 'img' );
     return when.all( [
-      loadImage( mireRGB, 'assets/mireRGB.png' ),
-      loadImage( mireRGBA, 'assets/mireRGBA.png' ),
+      loadImage( mireRGB, 'base/test/assets/mireRGB.png' ),
+      loadImage( mireRGBA, 'base/test/assets/mireRGBA.png' ),
     ]);
   });
 
   after( function(){
     filltex.dispose()
-    filltex.dispose()
+    filltex16.dispose()
   })
+
 
 
 
@@ -68,7 +69,7 @@ describe( "Sampler @WEBGL2", function(){
 
 
   it( "should render various filtering", function( ){
-    var tex = new Texture( gl );
+    var tex = new Texture2D( gl );
     tex.fromImage( mireRGB, false );
 
     var sampler = new Sampler( gl )

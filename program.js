@@ -1,387 +1,222 @@
-
-var _UID = 0;
-
-/**
- * Program constructor. Create gl program and shaders. You can pass optional shader code to immediatly compile shaders
- *   @param {WebGLRenderingContext} gl webgl context this program belongs to
- *   @param {String} [vert=undefined] an optional vertex shader code. See {@link Program#compile}
- *   @param {String} [frag=undefined] an optional fragment shader code See {@link Program#compile}
- *   @param {String} [defs=undefined] an optional string prepend to both fragment and vertex shader code. See {@link Program#compile}.
- *   @see {@link Program#compile}
- *
- * @example <caption>For the given vertex shader</caption>
- * attribute vec3 aPosition;
- * uniform mat4 uMVP;
- * uniform vec3 uCameraPosition;
- *
- * @class
- * @classdesc Program class provide shader compilation and linking functionality.
- *              It also give you convenient access to active uniforms and attributes.
- *              Once compiled, the Program object list all used uniforms/attributes and provide getter/setter function for each one. See {@link Program} constructor.
- *
- */
-function Program( gl, vert, frag, defs  ){
-  this.gl = gl;
-  this.program = gl.createProgram();
-  this.vShader = gl.createShader( gl.VERTEX_SHADER );
-  this.fShader = gl.createShader( gl.FRAGMENT_SHADER );
-  this.dyns    = [];
-  this.ready   = false;
-  gl.attachShader(this.program, this.vShader);
-  gl.attachShader(this.program, this.fShader);
-
-  this._uid    = (_UID++)|0; 
-  this._cuid   = (_UID++)|0; 
-
-  if( vert !== undefined && frag !== undefined ){
-    this.compile( vert, frag, defs );
-  }
+import { isWebgl2 } from './types';
+let _UID = 0;
+class Program {
+    constructor(gl, vert, frag, defs) {
+        this.gl = gl;
+        this.program = gl.createProgram();
+        this.vShader = gl.createShader(gl.VERTEX_SHADER);
+        this.fShader = gl.createShader(gl.FRAGMENT_SHADER);
+        this.dyns = [];
+        this.ready = false;
+        gl.attachShader(this.program, this.vShader);
+        gl.attachShader(this.program, this.fShader);
+        this._uid = _UID++ | 0;
+        this._cuid = _UID++ | 0;
+        if (vert !== undefined && frag !== undefined) {
+            this.compile(vert, frag, defs);
+        }
+    }
+    use() {
+        if (!this.ready) {
+            this._grabParameters();
+        }
+        this.gl.useProgram(this.program);
+    }
+    bind() {
+        this.use();
+    }
+    compile(vert, frag, prefix) {
+        this.ready = false;
+        prefix = prefix === undefined ? '' : prefix + '\n';
+        const gl = this.gl;
+        if (!(compileShader(gl, this.fShader, prefix + frag) && compileShader(gl, this.vShader, prefix + vert))) {
+            return false;
+        }
+        gl.linkProgram(this.program);
+        if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+            Program.debug && warn(gl.getProgramInfoLog(this.program));
+            return false;
+        }
+        while (this.dyns.length > 0) {
+            delete this[this.dyns.pop()];
+        }
+        this._cuid = _UID++ | 0;
+        return true;
+    }
+    dispose() {
+        if (this.gl !== null) {
+            this.gl.deleteProgram(this.program);
+            this.gl.deleteShader(this.fShader);
+            this.gl.deleteShader(this.vShader);
+        }
+    }
+    _grabParameters() {
+        const gl = this.gl, prg = this.program;
+        const context = {
+            texIndex: 0,
+            ublockIndex: 0,
+        };
+        const numUniforms = gl.getProgramParameter(prg, gl.ACTIVE_UNIFORMS);
+        for (var uniformIndex = 0; uniformIndex < numUniforms; ++uniformIndex) {
+            var uniform = gl.getActiveUniform(prg, uniformIndex);
+            if (uniform === null) {
+                gl.getError();
+                continue;
+            }
+            var uName = uniform.name, n = uName.indexOf('[');
+            if (n >= 0) {
+                uName = uName.substring(0, n);
+            }
+            var uLocation = gl.getUniformLocation(prg, uniform.name);
+            if (uLocation !== null) {
+                this[uName] = getUniformSetter(uniform.type, uLocation, gl, context);
+                this.dyns.push(uName);
+            }
+        }
+        const numAttribs = gl.getProgramParameter(prg, gl.ACTIVE_ATTRIBUTES);
+        for (var aIndex = 0; aIndex < numAttribs; ++aIndex) {
+            var attribName = gl.getActiveAttrib(prg, aIndex).name;
+            var aLocation = gl.getAttribLocation(prg, attribName);
+            this[attribName] = getAttribAccess(aLocation);
+            this.dyns.push(attribName);
+        }
+        if (isWebgl2(gl)) {
+            const numBlocks = gl.getProgramParameter(prg, gl.ACTIVE_UNIFORM_BLOCKS);
+            for (var blockIndex = 0; blockIndex < numBlocks; ++blockIndex) {
+                var blockName = gl.getActiveUniformBlockName(prg, blockIndex);
+                this[blockName] = getUniformBufferSetFunction(blockIndex, gl, context);
+                this.dyns.push(blockName);
+            }
+        }
+        this.ready = true;
+    }
 }
-
-/**
- * Program.debug
- *   can be set to true to check and log compilation and linking errors (default to false)
- */
 Program.debug = false;
-
-
-
-Program.prototype = {
-
-  /**
-   * Shortcut for gl.useProgram()
-   * alias program.bind()
-   */
-  use : function(){
-    if( !this.ready ){
-      this._grabParameters();
+function warn(str) {
+    console.warn(str);
+}
+const __pads = ['', '   ', '  ', ' ', ''];
+function appendLine(l, i) {
+    return __pads[String(i + 1).length] + (i + 1) + ': ' + l;
+}
+function formatCode(shader) {
+    return shader
+        .split('\n')
+        .map(appendLine)
+        .join('\n');
+}
+const ErrLineRegex = /^ERROR:\s?(\d+):(\d+)/;
+function reportCompileError(infos, source) {
+    const sourceLines = source.split('\n');
+    infos = infos.split('\n').map((line) => {
+        const rr = ErrLineRegex.exec(line);
+        if (rr) {
+            line += '\n  > ' + sourceLines[parseInt(rr[2]) - 1];
+        }
+        return line;
+    }).join('\n');
+    source = formatCode(source);
+    warn(infos);
+    warn(source);
+}
+function compileShader(gl, shader, code) {
+    gl.shaderSource(shader, code);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        Program.debug && reportCompileError(gl.getShaderInfoLog(shader), code);
+        return false;
     }
-    this.gl.useProgram( this.program );
-  },
-
-  /**
-   * Compile vertex and fragment shader then link gl program
-   * This method can be safely called several times.
-   *  @param {String} vert vertex shader code
-   *  @param {String} frag fragment shader code
-   *  @param {String} [prefix=''] an optional string append to both fragment and vertex code
-   */
-  compile : function( vert, frag, prefix ){
-    this.ready   = false;
-
-    prefix = ( prefix === undefined ) ? '' : prefix+'\n';
-
-    var gl = this.gl;
-
-    if( !( compileShader( gl, this.fShader, prefix + frag ) &&
-           compileShader( gl, this.vShader, prefix + vert ) ) ) {
-      return false;
-    }
-
-    gl.linkProgram(this.program);
-
-    if ( Program.debug && !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      warn(gl.getProgramInfoLog(this.program));
-      return false;
-    }
-
-    // delete old accessors
-    while (this.dyns.length>0) {
-      delete this[this.dyns.pop()];
-    }
-
-    this._cuid   = (_UID++)|0; 
-
     return true;
-  },
-
-  /**
-    * Delete program and shaders
-    */
-  dispose : function() {
-    if( this.gl !== null ){
-      this.gl.deleteProgram( this.program );
-      this.gl.deleteShader(  this.fShader  );
-      this.gl.deleteShader(  this.vShader  );
-      this.gl = null;
+}
+const USetFMap = {};
+USetFMap[String(5126)] = '1f';
+USetFMap[String(35664)] = '2f';
+USetFMap[String(35665)] = '3f';
+USetFMap[String(35666)] = '4f';
+USetFMap[String(35670)] =
+    USetFMap[String(5124)] =
+        USetFMap[String(35678)] = USetFMap[String(35680)] = '1i';
+USetFMap[String(35671)] = USetFMap[String(35667)] = '2i';
+USetFMap[String(35672)] = USetFMap[String(35668)] = '3i';
+USetFMap[String(35673)] = USetFMap[String(35669)] = '4i';
+USetFMap[String(35674)] = 'Matrix2f';
+USetFMap[String(35675)] = 'Matrix3f';
+USetFMap[String(35676)] = 'Matrix4f';
+function getUniformSetFunctionName(type) {
+    return 'uniform' + USetFMap[String(type)];
+}
+function getUniformSetter(type, location, gl, context) {
+    switch (type) {
+        case gl.FLOAT_MAT2:
+        case gl.FLOAT_MAT3:
+        case gl.FLOAT_MAT4:
+            return getMatrixSetFunction(type, location, gl, context);
+        case gl.SAMPLER_2D:
+        case gl.SAMPLER_CUBE:
+        case 0x8b62:
+        case 0x8b5f:
+            return getSamplerSetFunction(type, location, gl, context);
+        default:
+            return getUniformSetFunction(type, location, gl, context);
     }
-  },
-
-  /*
-   *  List all uniforms and attributes and create helper function on Program instance
-   *  eg :
-   *     for a uniform vec3 uDirection;
-   *     create a method
-   *        program.uDirection( 1, 0, 0 );
-   */
-  _grabParameters : function(){
-
-    var gl = this.gl,
-        prg = this.program;
-
-    var context = {
-      texIndex    : 0,
-      ublockIndex : 0
+}
+function getUniformSetFunction(type, location, gl, context) {
+    context;
+    const fname = getUniformSetFunctionName(type);
+    return function (...args) {
+        if (args.length === 1 && args[0].length != undefined) {
+            gl[fname + 'v'](location, args[0]);
+        }
+        else if (args.length > 0) {
+            gl[fname](location, ...args);
+        }
+        return location;
     };
-
-    // Uniforms
-    // ========
-
-    var numUniforms = gl.getProgramParameter( prg, gl.ACTIVE_UNIFORMS );
-
-    for ( var uniformIndex = 0; uniformIndex < numUniforms; ++uniformIndex )
-    {
-      var uniform = gl.getActiveUniform( prg, uniformIndex );
-
-      // safari 8.0 issue,
-      // when recompiling shader and link the progam again, old uniforms are kept in ACTIVE_UNIFORMS count but return null here
-      if( uniform === null ){
-        gl.getError(); // also flush error
-        continue;
-      }
-
-      var uName   = uniform.name,
-          n       = uName.indexOf('[');
-
-      if( n >= 0 ){
-        uName = uName.substring(0, n);
-      }
-
-      var uLocation = gl.getUniformLocation( prg, uniform.name );
-      
-      // in Webgl2 location can be null here if uniform is member of a uniform block
-      if( uLocation !== null ) 
-      {
-        this[uName] = getUniformSetter( uniform.type, uLocation, gl, context );
-        this.dyns.push( uName );
-      }
-    }
-
-    // Attributes
-    // ==========
-
-    var numAttribs = gl.getProgramParameter( prg, gl.ACTIVE_ATTRIBUTES );
-
-    for (var aIndex = 0; aIndex < numAttribs; ++aIndex )
-    {
-      var attribName = gl.getActiveAttrib( prg, aIndex ).name;
-      var aLocation  = gl.getAttribLocation( prg, attribName );
-      this[attribName] = getAttribAccess( aLocation );
-      this.dyns.push( attribName );
-    }
-
-
-    // UniformBlock
-    // ============
-
-    if( gl.ACTIVE_UNIFORM_BLOCKS !== undefined ) {
-
-      var numBlocks = gl.getProgramParameter( prg, gl.ACTIVE_UNIFORM_BLOCKS );
-
-      for ( var blockIndex = 0; blockIndex < numBlocks; ++blockIndex )
-      {
-        var blockName = gl.getActiveUniformBlockName( prg, blockIndex );
-        this[blockName] = getUniformBufferSetFunction( blockIndex, gl, context );
-        this.dyns.push( blockName );
-      }
-
-    }
-
-    this.ready   = true;
-  }
-
-
-};
-
-/**
- * alias to Program.use()
- */
-Program.prototype.bind = Program.prototype.use;
-
-
-
-/*
- * internal logs
- */
-function warn(str){
-  console.warn(str);
 }
-
-
-
-// -------------------------------------------------
-//                    UTILITIES
-// -------------------------------------------------
-
-/*
- * Shader logging utilities
- */
-
-var __pads = ['','   ','  ',' ',''];
-
-function appendLine( l, i ){
-  return __pads[String(i+1).length] + ( i+1 ) + ': ' + l;
+function getMatrixSetFunction(type, location, gl, context) {
+    context;
+    const fname = getUniformSetFunctionName(type);
+    return function () {
+        if (arguments.length > 0 && arguments[0].length !== undefined) {
+            var transpose = arguments.length > 1 ? !!arguments[1] : false;
+            gl[fname + 'v'](location, transpose, arguments[0]);
+        }
+        return location;
+    };
 }
-
-/*
- * Format shader code
- * add padded lines number
- */
-function formatCode( shader ) {
-  return shader.split( '\n' ).map( appendLine ).join( '\n' );
+function getSamplerSetFunction(type, location, gl, context) {
+    const unit = context.texIndex++;
+    return function () {
+        if (arguments.length === 1) {
+            if (arguments[0].bind !== undefined) {
+                arguments[0].bind(unit);
+                gl.uniform1i(location, unit);
+            }
+            else {
+                gl.uniform1i(location, arguments[0]);
+            }
+        }
+        return location;
+    };
 }
-
-/*
- * Shader compilation utility
- */
-function compileShader( gl, shader, code ){
-  gl.shaderSource( shader, code );
-  gl.compileShader( shader );
-
-  if (Program.debug && !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    warn( gl.getShaderInfoLog(shader) );
-    warn( formatCode( code ) );
-    return false;
-  }
-
-  return true;
+function getUniformBufferSetFunction(index, gl, context) {
+    const unit = context.ublockIndex++;
+    return function () {
+        if (arguments.length === 1) {
+            if (arguments[0] instanceof WebGLBuffer) {
+                gl.uniformBlockBinding(this.program, index, unit);
+                gl.bindBufferBase(gl.UNIFORM_BUFFER, unit, arguments[0]);
+            }
+            else {
+                gl.uniformBlockBinding(this.program, index, arguments[0]);
+            }
+        }
+        return index;
+    };
 }
-
-
-
-var USetFMap = {};
-USetFMap[ 5126  /*FLOAT       */ ] = '1f';
-USetFMap[ 35664 /*FLOAT_VEC2  */ ] = '2f';
-USetFMap[ 35665 /*FLOAT_VEC3  */ ] = '3f';
-USetFMap[ 35666 /*FLOAT_VEC4  */ ] = '4f';
-USetFMap[ 35670 /*BOOL        */ ] =
-USetFMap[ 5124  /*INT         */ ] =
-USetFMap[ 35678 /*SAMPLER_2D  */ ] =
-USetFMap[ 35680 /*SAMPLER_CUBE*/ ] = '1i';
-USetFMap[ 35671 /*BOOL_VEC2   */ ] =
-USetFMap[ 35667 /*INT_VEC2    */ ] = '2i';
-USetFMap[ 35672 /*BOOL_VEC3   */ ] =
-USetFMap[ 35668 /*INT_VEC3    */ ] = '3i';
-USetFMap[ 35673 /*BOOL_VEC4   */ ] =
-USetFMap[ 35669 /*INT_VEC4    */ ] = '4i';
-USetFMap[ 35674 /*FLOAT_MAT2  */ ] = 'Matrix2f';
-USetFMap[ 35675 /*FLOAT_MAT3  */ ] = 'Matrix3f';
-USetFMap[ 35676 /*FLOAT_MAT4  */ ] = 'Matrix4f';
-
-/*
- * Uniform upload utilities
- */
-
-function getUniformSetFunctionName( type ){
-  type = String(type);
-  return 'uniform' + USetFMap[type];
+function getAttribAccess(attrib) {
+    return function () {
+        return attrib;
+    };
 }
-
-/*
- * For a given uniform's type, return the proper setter function
- */
-function getUniformSetter( type, location, gl, context ){
-  switch( type ){
-    case gl.FLOAT_MAT2  :
-    case gl.FLOAT_MAT3  :
-    case gl.FLOAT_MAT4  :
-      return getMatrixSetFunction( type, location, gl, context );
-
-    case gl.SAMPLER_2D  :
-    case gl.SAMPLER_CUBE:
-    case 0x8B62 : //gl.SAMPLER_2D_SHADOW:
-    case 0x8B5F : //gl.SAMPLER_3D:
-      return getSamplerSetFunction( type, location, gl, context );
-
-    default  :
-      return getUniformSetFunction( type, location, gl, context );
-  }
-}
-
-
-/*
- * setter factory for vector uniforms
- * return a function wich take both array or arguments
- */
-function getUniformSetFunction( type, location, gl, context ){
-  context;
-  var fname = getUniformSetFunctionName( type );
-  return function(){
-    if( arguments.length === 1 && arguments[0].length !== undefined ){
-      gl[fname+'v']( location, arguments[0] );
-    } else if( arguments.length > 0) {
-      gl[fname].apply( gl, Array.prototype.concat.apply( location, arguments) );
-    }
-    return location;
-  };
-}
-
-/*
- * setter factory for matrix uniforms
- */
-function getMatrixSetFunction( type, location, gl, context ){
-  context;
-  var fname = getUniformSetFunctionName( type );
-  return function(){
-    if( arguments.length > 0 && arguments[0].length !== undefined ){
-      var transpose = (arguments.length > 1) ? !!arguments[1] : false;
-      gl[fname+'v']( location, transpose, arguments[0] );
-    }
-    return location;
-  };
-}
-
-/*
- * setter factory for sampler uniforms
- */
-function getSamplerSetFunction( type, location, gl, context ){
-  var unit = context.texIndex++;
-  return function(){
-    if( arguments.length === 1 ) {
-      if( arguments[0].bind !== undefined ){ // is texture
-        arguments[0].bind( unit );
-        gl.uniform1i( location, unit );
-      } else {
-        gl.uniform1i( location, arguments[0] );
-      }
-    }
-    return location;
-  };
-}
-
-
-/*
- * setter factory for uniform buffers
- * can be 
- *   f( buffer ) 
- *     buffer is bound to auto increment binding point unit and block binding reset to this point
- *   f( unit )
- *     only set the block binding point to given unit
- */
-function getUniformBufferSetFunction( index, gl, context ){
-  var unit = context.ublockIndex++;
-  return function(){
-    if( arguments.length === 1 ) {
-      if( arguments[0] instanceof WebGLBuffer ){ // is buffer
-        gl.uniformBlockBinding(this.program, index, unit);
-        gl.bindBufferBase(gl.UNIFORM_BUFFER, unit, arguments[0] );
-      } else {
-        gl.uniformBlockBinding(this.program, index, arguments[0]);
-      }
-    }
-    return index;
-  };
-}
-
-/*
- * getter factory for attributes
- */
-function getAttribAccess( attrib ){
-  return function(){
-    return attrib;
-  };
-}
-
-
-
-module.exports = Program;
+export default Program;
