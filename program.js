@@ -135,7 +135,7 @@ USetFMap[String(35665)] = '3f';
 USetFMap[String(35666)] = '4f';
 USetFMap[String(35670)] =
     USetFMap[String(5124)] =
-        USetFMap[String(35678)] = USetFMap[String(35680)] = '1i';
+        USetFMap[String(35678)] = USetFMap[String(35680)] = USetFMap[String(35866)] = '1i';
 USetFMap[String(35671)] = USetFMap[String(35667)] = '2i';
 USetFMap[String(35672)] = USetFMap[String(35668)] = '3i';
 USetFMap[String(35673)] = USetFMap[String(35669)] = '4i';
@@ -155,6 +155,7 @@ function getUniformSetter(type, location, gl, context) {
         case gl.SAMPLER_CUBE:
         case 0x8b62:
         case 0x8b5f:
+        case 0x8DC1:
             return getSamplerSetFunction(type, location, gl, context);
         default:
             return getUniformSetFunction(type, location, gl, context);
