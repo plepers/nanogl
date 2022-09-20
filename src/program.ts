@@ -277,7 +277,7 @@ USetFMap[String(35665) /*FLOAT_VEC3  */] = '3f';
 USetFMap[String(35666) /*FLOAT_VEC4  */] = '4f';
 USetFMap[String(35670) /*BOOL        */] = 
 USetFMap[String(5124) /*INT         */] = 
-USetFMap[String(35678) /*SAMPLER_2D  */] = USetFMap[String(35680) /*SAMPLER_CUBE*/] = '1i';
+USetFMap[String(35678) /*SAMPLER_2D  */] = USetFMap[String(35680) /*SAMPLER_CUBE*/] =  USetFMap[String(35866) /*SAMPLER_2D_ARRAY*/] = '1i';
 USetFMap[String(35671) /*BOOL_VEC2   */] = USetFMap[String(35667) /*INT_VEC2    */] = '2i';
 USetFMap[String(35672) /*BOOL_VEC3   */] = USetFMap[String(35668) /*INT_VEC3    */] = '3i';
 USetFMap[String(35673) /*BOOL_VEC4   */] = USetFMap[String(35669) /*INT_VEC4    */] = '4i';
@@ -307,6 +307,7 @@ function getUniformSetter(type: number, location: WebGLUniformLocation, gl: GLCo
     case gl.SAMPLER_CUBE:
     case 0x8b62: //gl.SAMPLER_2D_SHADOW:
     case 0x8b5f: //gl.SAMPLER_3D:
+    case 0x8DC1: // gl.SAMPLER_2D_ARRAY:
       return getSamplerSetFunction(type, location, gl, context);
 
     default:
