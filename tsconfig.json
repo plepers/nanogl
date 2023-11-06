@@ -10,5 +10,12 @@
     "moduleResolution": "node"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "typedocOptions": {
+	  "entryPoints": "src",
+	  "entryPointStrategy": "expand",
+	  "out": "tempdocs",
+	  "json": "tempdocs/data.json",
+	  "githubPages": false
+  }
 }

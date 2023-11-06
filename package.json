@@ -9,7 +9,8 @@
     "test_gl2": "tsc && karma start --webgl-version=2",
     "docs": "jsdoc program.js texture.js fbo.js arraybuffer.js indexbuffer.js bufferutils.js -R README.md -d ../nanogl_gh_pages -t node_modules/minami",
     "gztest": "browserify nanogl.js -o gztest.js && uglifyjs --screw-ie8 -m -c warnings=false -o gztest.min.js -- gztest.js && gzip -k -9 gztest.min.js && stat -f%z gztest.min.js.gz && rm ./*gztest*",
-    "perf": "browserify -t [ stringify --extensions [.vert .frag] ] -o test/perf/main.js test/perf/index.js"
+    "perf": "browserify -t [ stringify --extensions [.vert .frag] ] -o test/perf/main.js test/perf/index.js",
+    "build-docs": "typedoc && del tempdocs/** '!tempdocs/data.json' && mv tempdocs/* docs/ && rm -rf tempdocs"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "@babel/preset-env": "^7.7.4",
     "babelify": "^10.0.0",
     "browserify": "^16.5.0",
+    "del-cli": "^5.0.0",
     "expect.js": "^0.3.1",
     "karma": "^4.4.1",
     "karma-browserify": "^6.1.0",
@@ -52,7 +54,9 @@
     "mocha": "^6.2.2",
     "sinon": "^7.5.0",
     "stringify": "^5.2.0",
-    "typescript": "^3.7.2",
+    "typedoc": "^0.23.24",
+    "typedoc-plugin-rename-defaults": "^0.6.4",
+    "typescript": "^4.9.5",
     "watchify": "^3.11.1",
     "when": "^3.7.8"
   }
