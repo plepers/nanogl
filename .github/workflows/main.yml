@@ -1,0 +1,22 @@
+name: Trigger docs re-build
+
+on:
+  push:
+    branches:
+      - 'NAME_OF_MAIN_BRANCH'
+
+jobs:
+  trigger_docs:
+    name: Trigger docs re-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.ACTIONS_KEY }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'evanmartiin',
+              repo: 'nanogl-docs',
+              workflow_id: 'main.yml',
+              ref: 'main'
+            })
