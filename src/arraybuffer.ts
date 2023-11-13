@@ -8,7 +8,7 @@ import { getComponentSize, isBufferSource } from './utils';
  * GL_ARRAY_BUFFER */
 const GL_ARRAY_BUFFER = 0x8892;
 
-interface AttributeDef {
+export interface AttributeDef {
   name: string;
   type: GLenum;
   size: number;
