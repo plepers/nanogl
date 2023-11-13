@@ -18,26 +18,33 @@ interface AttributeDef {
 }
 
 /**
- * @class
- * @implements {Drawable}
- * @param {WebGLRenderingContext} gl      then webgl context this ArrayBuffer belongs to
- * @param {TypedArray|uint} [data]   optional data to copy to buffer, or the size (in bytes)
- * @param {GLenum} [usage=GL_STATIC_DRAW] the usage hint for this buffer.
- *
+ * This class provides helpers for ARRAY_BUFFER type buffers.
+ * @extends {BaseBuffer}
  */
 
 class ArrayBuffer extends BaseBuffer {
-
+  /** The webgl context this ArrayBuffer belongs to */
   readonly gl: GLContext;
+  /** The webgl buffer this ArrayBuffer writes to */
   readonly buffer: WebGLBuffer;
-  
-  usage: GLenum;
-  stride    : number;
-  byteLength: number;
-  length    : number;
-  attribs: AttributeDef[];
-  
 
+  /** The usage hint for this buffer */
+  usage: GLenum;
+  /** The offset in bytes between the beginning of consecutive vertex attributes */
+  stride    : number;
+  /** The length in bytes of the buffer */
+  byteLength: number;
+  /** The number of vertices in the buffer data */
+  length    : number;
+  /** The attributes declared for this buffer */
+  attribs: AttributeDef[];
+
+/**
+  * @param {GLContext} gl  The webgl context this ArrayBuffer belongs to
+  * @param {BufferSource|GLsizeiptr} [data]   Optional data to fill the buffer with, or the size (in bytes)
+  * @param {GLenum} [usage=GL_STATIC_DRAW] Optional usage hint for this buffer (`STATIC_DRAW`, `DYNAMIC_DRAW`, etc.)
+  * @param {WebGLBuffer} [glbuffer] Optional WebGLBuffer to use instead of creating a new one
+  */
   constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage: GLenum = gl.STATIC_DRAW, glbuffer? : WebGLBuffer ) {
     super();
 
@@ -45,7 +52,7 @@ class ArrayBuffer extends BaseBuffer {
     this.usage = usage;
 
     this.buffer = (glbuffer !== undefined ) ? glbuffer : <WebGLBuffer>gl.createBuffer();
-    
+
     this.attribs = [];
     this.stride = 0;
     this.byteLength = 0;
@@ -64,12 +71,12 @@ class ArrayBuffer extends BaseBuffer {
   }
 
   /**
-   * Add attribute declaration for this buffer. Once attributes declared, the buffer can be linked to
-   * programs attributes using {@link ArrayBuffer#attribPointer}
-   *  @param {string} name the name of the program's attribute
-   *  @param {uint} size the size of the attribute (3 for a vec3)
-   *  @param {GLenum} type the type of data (GL_FLOAT, GL_SHORT etc)
-   *  @param {boolean} [normalize=false] indicate if the data must be normalized
+   * Add attribute declaration for this buffer. Once the attributes declared, the buffer can be linked to
+   * the programs attributes using {@link ArrayBuffer#attribPointer}
+   *  @param {string} name The name of the program's attribute
+   *  @param {number} size The size of the attribute (`1` for a number, `2` for a vec2, etc.)
+   *  @param {GLenum} type The type of data (`GL_FLOAT`, `GL_SHORT`, etc.)
+   *  @param {boolean} [normalize=false] Indicate if the data must be normalized
    */
   attrib(name: string, size: number, type: GLenum, normalize: boolean = false): this {
     this.attribs.push({
@@ -86,8 +93,8 @@ class ArrayBuffer extends BaseBuffer {
   }
 
   /**
-   * Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size.
-   *   @param {TypedArray|uint} array the data to send to the buffer, or a size.
+   * Fill the webgl buffer with the given data. You can also pass a number instead to allocate the buffer to a given size.
+   *   @param {BufferSource|GLsizeiptr} array The data to use, or a size
    */
 
   data(array: BufferSource | GLsizeiptr) {
@@ -101,9 +108,9 @@ class ArrayBuffer extends BaseBuffer {
   }
 
   /**
-   * Set a part of the buffer with the given data, starting a offset (in bytes)
-   *  @param {typedArray} array the data to send to buffer
-   *  @param {uint} offset the offset in byte where the data will be written
+   * Set part of the buffer with the given data, starting at an offset.
+   *  @param {BufferSource} array The data to use
+   *  @param {number} offset The offset (in bytes) where the data should start to be written
    */
   subData(array: BufferSource, offset: number) {
     const gl = this.gl;
@@ -113,9 +120,9 @@ class ArrayBuffer extends BaseBuffer {
   }
 
   /**
-   * Link given program attributes to this buffer. You should first declare attributes using {@link ArrayBuffer#attrib}
+   * Link the given program attributes to this buffer. You should first declare attributes using {@link ArrayBuffer#attrib}
    * before calling this method.
-   *   @param {Program} program the nanogl Program
+   *   @param {Program} program The program to link
    */
   attribPointer(program: Program) {
     const gl = this.gl;
@@ -134,9 +141,9 @@ class ArrayBuffer extends BaseBuffer {
 
   /**
    * Shortcut to gl.drawArrays
-   *   @param {GLenum} mode the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)
-   *   @param {uint} [count] the number of vertices to draw (full buffer is used if omited)
-   *   @param {uint} [offset=0] the position of the first vertex to draw
+   *   @param {GLenum} mode The type of primitive to draw (`GL_TRIANGLE`, `GL_POINTS` etc)
+   *   @param {uint} [count] The number of vertices to draw (the full buffer is used if omited)
+   *   @param {uint} [offset=0] The position of the first vertex to draw
    */
   draw(mode: GLenum, count: number = this.length, offset: number = 0) {
     this.gl.drawArrays(mode, offset, 0|count);
@@ -149,6 +156,9 @@ class ArrayBuffer extends BaseBuffer {
     this.gl.deleteBuffer(this.buffer);
   }
 
+  /**
+   * Compute the number of vertices in the buffer data
+   */
   _computeLength() {
     if (this.stride > 0) {
       this.length = this.byteLength / this.stride;
