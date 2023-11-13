@@ -63,9 +63,6 @@ class ArrayBuffer extends BaseBuffer {
     }
   }
 
-  /**
-   * Bind the underlying webgl buffer.
-   */
   bind() {
     this.gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
   }
@@ -92,11 +89,6 @@ class ArrayBuffer extends BaseBuffer {
     return this;
   }
 
-  /**
-   * Fill the webgl buffer with the given data. You can also pass a number instead to allocate the buffer to a given size.
-   *   @param {BufferSource|GLsizeiptr} array The data to use, or a size
-   */
-
   data(array: BufferSource | GLsizeiptr) {
     const gl = this.gl;
     gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
@@ -107,11 +99,6 @@ class ArrayBuffer extends BaseBuffer {
     this._computeLength();
   }
 
-  /**
-   * Set part of the buffer with the given data, starting at an offset.
-   *  @param {BufferSource} array The data to use
-   *  @param {number} offset The offset (in bytes) where the data should start to be written
-   */
   subData(array: BufferSource, offset: number) {
     const gl = this.gl;
     gl.bindBuffer(GL_ARRAY_BUFFER, this.buffer);
@@ -149,9 +136,6 @@ class ArrayBuffer extends BaseBuffer {
     this.gl.drawArrays(mode, offset, 0|count);
   }
 
-  /**
-   * Delete underlying webgl objects
-   */
   dispose() {
     this.gl.deleteBuffer(this.buffer);
   }
