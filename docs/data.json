@@ -19,41 +19,10 @@
 					"kindString": "Class",
 					"flags": {},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@implements",
-								"content": []
-							},
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "then webgl context this ArrayBuffer belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "data",
-								"content": [
-									{
-										"kind": "text",
-										"text": "optional data to copy to buffer, or the size (in bytes)"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "usage",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the usage hint for this buffer."
-									}
-								]
+								"kind": "text",
+								"text": "This class provides helpers for ARRAY_BUFFER type buffers."
 							}
 						]
 					},
@@ -68,9 +37,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 41,
+									"line": 48,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L48"
 								}
 							],
 							"signatures": [
@@ -87,6 +56,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this ArrayBuffer belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 492,
@@ -100,6 +77,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The data to fill the buffer with, or the size (in bytes)"
+													}
+												]
 											},
 											"type": {
 												"type": "union",
@@ -122,7 +107,33 @@
 											"name": "usage",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The usage hint for this buffer ("
+													},
+													{
+														"kind": "code",
+														"text": "`STATIC_DRAW`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`DYNAMIC_DRAW`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -136,6 +147,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "A WebGLBuffer to use instead of creating a new one"
+													}
+												]
 											},
 											"type": {
 												"type": "reference",
@@ -169,12 +188,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The attributes declared for this buffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 38,
+									"line": 40,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L40"
 								}
 							],
 							"type": {
@@ -193,12 +220,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl buffer this ArrayBuffer writes to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 32,
+									"line": 29,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L32"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L29"
 								}
 							],
 							"type": {
@@ -214,12 +249,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The length in bytes of the buffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
 									"line": 36,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L36"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L36"
 								}
 							],
 							"type": {
@@ -235,12 +278,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this ArrayBuffer belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 31,
+									"line": 27,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L31"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L27"
 								}
 							],
 							"type": {
@@ -255,12 +306,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The number of vertices in the buffer data"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 37,
+									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L37"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L38"
 								}
 							],
 							"type": {
@@ -274,12 +333,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The offset in bytes between the beginning of consecutive vertex attributes"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 35,
+									"line": 34,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L34"
 								}
 							],
 							"type": {
@@ -293,12 +360,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The usage hint for this buffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 34,
+									"line": 32,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L32"
 								}
 							],
 							"type": {
@@ -315,9 +390,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 152,
+									"line": 146,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L152"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L146"
 								}
 							],
 							"signatures": [
@@ -327,6 +402,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Compute the number of vertices in the buffer data"
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -343,9 +426,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 74,
+									"line": 78,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L74"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L78"
 								}
 							],
 							"signatures": [
@@ -359,7 +442,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Add attribute declaration for this buffer. Once attributes declared, the buffer can be linked to\nprograms attributes using "
+												"text": "Add attribute declaration for this buffer. Once the attributes declared, the buffer can be linked to\nthe programs attributes using "
 											},
 											{
 												"kind": "inline-tag",
@@ -380,7 +463,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the name of the program's attribute"
+														"text": "The name of the program's attribute"
 													}
 												]
 											},
@@ -399,7 +482,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the size of the attribute (3 for a vec3)"
+														"text": "The size of the attribute ("
+													},
+													{
+														"kind": "code",
+														"text": "`1`"
+													},
+													{
+														"kind": "text",
+														"text": " for a number, "
+													},
+													{
+														"kind": "code",
+														"text": "`2`"
+													},
+													{
+														"kind": "text",
+														"text": " for a vec2, etc.)"
 													}
 												]
 											},
@@ -418,7 +517,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the type of data (GL_FLOAT, GL_SHORT etc)"
+														"text": "The type of data ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_SHORT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
 													}
 												]
 											},
@@ -439,7 +554,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "indicate if the data must be normalized"
+														"text": "Indicate if the data must be normalized"
 													}
 												]
 											},
@@ -467,9 +582,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 120,
+									"line": 114,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L120"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L114"
 								}
 							],
 							"signatures": [
@@ -483,7 +598,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Link given program attributes to this buffer. You should first declare attributes using "
+												"text": "Link the given program attributes to this buffer. You should first declare attributes using "
 											},
 											{
 												"kind": "inline-tag",
@@ -508,7 +623,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the nanogl Program"
+														"text": "The program to link"
 													}
 												]
 											},
@@ -535,9 +650,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 62,
+									"line": 66,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L62"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L66"
 								}
 							],
 							"signatures": [
@@ -581,9 +696,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 93,
+									"line": 92,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L93"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L92"
 								}
 							],
 							"signatures": [
@@ -597,7 +712,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size."
+												"text": "Fill the webgl buffer with the given data. You can also pass a number instead to allocate the buffer to a given size."
 											}
 										]
 									},
@@ -612,7 +727,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the data to send to the buffer, or a size."
+														"text": "The data to use, or a size"
 													}
 												]
 											},
@@ -659,9 +774,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 148,
+									"line": 139,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L148"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L139"
 								}
 							],
 							"signatures": [
@@ -705,9 +820,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 141,
+									"line": 135,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L141"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L135"
 								}
 							],
 							"signatures": [
@@ -736,7 +851,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)"
+														"text": "The type of primitive to draw ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_TRIANGLE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_POINTS`"
+													},
+													{
+														"kind": "text",
+														"text": " etc)"
 													}
 												]
 											},
@@ -757,7 +888,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of vertices to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -779,7 +910,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position of the first vertex to draw"
+														"text": "The position of the first vertex to draw"
 													}
 												]
 											},
@@ -816,9 +947,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 44,
+									"line": 61,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L44"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L61"
 								}
 							],
 							"signatures": [
@@ -832,22 +963,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINE_LOOP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLineLoop"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINE_LOOP, offset, count)`"
 											}
 										]
 									},
@@ -864,7 +984,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -885,7 +1005,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -921,9 +1041,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 55,
+									"line": 70,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L55"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L70"
 								}
 							],
 							"signatures": [
@@ -938,21 +1058,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLineStrip"
-													}
-												]
 											}
 										]
 									},
@@ -969,7 +1074,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -990,7 +1095,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -1026,9 +1131,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 33,
+									"line": 52,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L33"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L52"
 								}
 							],
 							"signatures": [
@@ -1042,22 +1147,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINES, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLines"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINES, offset, count)`"
 											}
 										]
 									},
@@ -1074,7 +1168,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -1095,7 +1189,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -1131,9 +1225,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 21,
+									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L21"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L42"
 								}
 							],
 							"signatures": [
@@ -1147,22 +1241,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.POINTS, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawPoints"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.POINTS, offset, count)`"
 											}
 										]
 									},
@@ -1179,7 +1262,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -1200,7 +1283,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -1236,9 +1319,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 88,
+									"line": 97,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L97"
 								}
 							],
 							"signatures": [
@@ -1253,21 +1336,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangleFan"
-													}
-												]
 											}
 										]
 									},
@@ -1284,7 +1352,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -1305,7 +1373,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -1341,9 +1409,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 77,
+									"line": 88,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L88"
 								}
 							],
 							"signatures": [
@@ -1358,21 +1426,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangleStrip"
-													}
-												]
 											}
 										]
 									},
@@ -1389,7 +1442,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -1410,7 +1463,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -1446,9 +1499,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 66,
+									"line": 79,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L66"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L79"
 								}
 							],
 							"signatures": [
@@ -1463,21 +1516,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangles"
-													}
-												]
 											}
 										]
 									},
@@ -1494,7 +1532,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -1515,7 +1553,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -1551,9 +1589,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 108,
+									"line": 102,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L108"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L102"
 								}
 							],
 							"signatures": [
@@ -1567,7 +1605,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set a part of the buffer with the given data, starting a offset (in bytes)"
+												"text": "Set part of the buffer with the given data, starting at an offset."
 											}
 										]
 									},
@@ -1582,7 +1620,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the data to send to buffer"
+														"text": "The data to use"
 													}
 												]
 											},
@@ -1603,7 +1641,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the offset in byte where the data will be written"
+														"text": "The offset (in bytes) where the data should start to be written"
 													}
 												]
 											},
@@ -1674,9 +1712,9 @@
 					"sources": [
 						{
 							"fileName": "arraybuffer.ts",
-							"line": 29,
+							"line": 25,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L29"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L25"
 						}
 					],
 					"extendedTypes": [
@@ -1701,7 +1739,7 @@
 					"fileName": "arraybuffer.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/arraybuffer.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/arraybuffer.ts#L1"
 				}
 			]
 		},
@@ -1719,6 +1757,14 @@
 					"kindString": "Class",
 					"flags": {
 						"isAbstract": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "This class is the base for all buffer classes."
+							}
+						]
 					},
 					"originalName": "default",
 					"children": [
@@ -1754,9 +1800,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 4,
+									"line": 9,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L4"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L9"
 								}
 							],
 							"signatures": [
@@ -1766,6 +1812,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Bind the underlying webgl buffer."
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -1784,9 +1838,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 8,
+									"line": 20,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L8"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L20"
 								}
 							],
 							"signatures": [
@@ -1796,6 +1850,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Fill the webgl buffer with the given data. You can also pass a number instead to allocate the buffer to a given size."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 81,
@@ -1803,6 +1865,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The data to use, or a size"
+													}
+												]
+											},
 											"type": {
 												"type": "union",
 												"types": [
@@ -1838,9 +1908,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 6,
+									"line": 14,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L6"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L14"
 								}
 							],
 							"signatures": [
@@ -1850,6 +1920,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delete underlying webgl objects"
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -1868,9 +1946,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 12,
+									"line": 35,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L12"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L35"
 								}
 							],
 							"signatures": [
@@ -1880,6 +1958,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Shortcut to gl.drawArrays"
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 88,
@@ -1887,6 +1973,30 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The type of primitive to draw ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_TRIANGLE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_POINTS`"
+													},
+													{
+														"kind": "text",
+														"text": " etc)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -1900,6 +2010,14 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The number of elements to draw (the full buffer is used if omited)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -1912,6 +2030,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The position in the buffer to start from"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -1935,9 +2061,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 44,
+									"line": 61,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L44"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L61"
 								}
 							],
 							"signatures": [
@@ -1951,22 +2077,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINE_LOOP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLineLoop"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINE_LOOP, offset, count)`"
 											}
 										]
 									},
@@ -1983,7 +2098,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -2004,7 +2119,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -2030,9 +2145,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 55,
+									"line": 70,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L55"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L70"
 								}
 							],
 							"signatures": [
@@ -2047,21 +2162,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLineStrip"
-													}
-												]
 											}
 										]
 									},
@@ -2078,7 +2178,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -2099,7 +2199,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -2125,9 +2225,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 33,
+									"line": 52,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L33"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L52"
 								}
 							],
 							"signatures": [
@@ -2141,22 +2241,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINES, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLines"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINES, offset, count)`"
 											}
 										]
 									},
@@ -2173,7 +2262,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -2194,7 +2283,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -2220,9 +2309,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 21,
+									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L21"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L42"
 								}
 							],
 							"signatures": [
@@ -2236,22 +2325,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.POINTS, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawPoints"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.POINTS, offset, count)`"
 											}
 										]
 									},
@@ -2268,7 +2346,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -2289,7 +2367,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -2315,9 +2393,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 88,
+									"line": 97,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L97"
 								}
 							],
 							"signatures": [
@@ -2332,21 +2410,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangleFan"
-													}
-												]
 											}
 										]
 									},
@@ -2363,7 +2426,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -2384,7 +2447,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -2410,9 +2473,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 77,
+									"line": 88,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L88"
 								}
 							],
 							"signatures": [
@@ -2427,21 +2490,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangleStrip"
-													}
-												]
 											}
 										]
 									},
@@ -2458,7 +2506,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -2479,7 +2527,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -2505,9 +2553,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 66,
+									"line": 79,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L66"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L79"
 								}
 							],
 							"signatures": [
@@ -2522,21 +2570,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangles"
-													}
-												]
 											}
 										]
 									},
@@ -2553,7 +2586,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -2574,7 +2607,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -2602,9 +2635,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 10,
+									"line": 27,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L10"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L27"
 								}
 							],
 							"signatures": [
@@ -2614,6 +2647,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set part of the buffer with the given data, starting at an offset."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 84,
@@ -2621,6 +2662,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The data to use"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"name": "BufferSource",
@@ -2634,6 +2683,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The offset (in bytes) where the data should start to be written"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -2676,9 +2733,9 @@
 					"sources": [
 						{
 							"fileName": "basebuffer.ts",
-							"line": 2,
+							"line": 5,
 							"character": 15,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L2"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L5"
 						}
 					],
 					"extendedBy": [
@@ -2706,9 +2763,9 @@
 			"sources": [
 				{
 					"fileName": "basebuffer.ts",
-					"line": 2,
+					"line": 5,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L2"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L5"
 				}
 			]
 		},
@@ -2737,7 +2794,7 @@
 									"fileName": "fbo.ts",
 									"line": 26,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L26"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L26"
 								}
 							],
 							"signatures": [
@@ -2782,7 +2839,7 @@
 									"fileName": "fbo.ts",
 									"line": 24,
 									"character": 10,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L24"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L24"
 								}
 							],
 							"type": {
@@ -2801,7 +2858,7 @@
 									"fileName": "fbo.ts",
 									"line": 22,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L22"
 								}
 							],
 							"type": {
@@ -2822,7 +2879,7 @@
 									"fileName": "fbo.ts",
 									"line": 23,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L23"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L23"
 								}
 							],
 							"type": {
@@ -2842,7 +2899,7 @@
 									"fileName": "fbo.ts",
 									"line": 49,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L49"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L49"
 								}
 							],
 							"signatures": [
@@ -2883,7 +2940,7 @@
 									"fileName": "fbo.ts",
 									"line": 58,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L58"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L58"
 								}
 							],
 							"signatures": [
@@ -2924,7 +2981,7 @@
 									"fileName": "fbo.ts",
 									"line": 37,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L37"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L37"
 								}
 							],
 							"signatures": [
@@ -2976,7 +3033,7 @@
 									"fileName": "fbo.ts",
 									"line": 67,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L67"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L67"
 								}
 							],
 							"signatures": [
@@ -3004,7 +3061,7 @@
 									"fileName": "fbo.ts",
 									"line": 33,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L33"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L33"
 								}
 							],
 							"signatures": [
@@ -3053,7 +3110,7 @@
 							"fileName": "fbo.ts",
 							"line": 20,
 							"character": 13,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L20"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L20"
 						}
 					]
 				},
@@ -3146,7 +3203,7 @@
 									"fileName": "fbo.ts",
 									"line": 97,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L97"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L97"
 								}
 							],
 							"signatures": [
@@ -3189,7 +3246,7 @@
 									"fileName": "fbo.ts",
 									"line": 91,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L91"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L91"
 								}
 							],
 							"type": {
@@ -3223,7 +3280,7 @@
 									"fileName": "fbo.ts",
 									"line": 90,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L90"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L90"
 								}
 							],
 							"type": {
@@ -3248,7 +3305,7 @@
 									"fileName": "fbo.ts",
 									"line": 88,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L88"
 								}
 							],
 							"type": {
@@ -3271,7 +3328,7 @@
 									"fileName": "fbo.ts",
 									"line": 87,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L87"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L87"
 								}
 							],
 							"type": {
@@ -3291,7 +3348,7 @@
 									"fileName": "fbo.ts",
 									"line": 94,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L94"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L94"
 								}
 							],
 							"type": {
@@ -3310,7 +3367,7 @@
 									"fileName": "fbo.ts",
 									"line": 93,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L93"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L93"
 								}
 							],
 							"type": {
@@ -3329,7 +3386,7 @@
 									"fileName": "fbo.ts",
 									"line": 252,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L252"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L252"
 								}
 							],
 							"signatures": [
@@ -3357,7 +3414,7 @@
 									"fileName": "fbo.ts",
 									"line": 110,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L110"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L110"
 								}
 							],
 							"signatures": [
@@ -3411,7 +3468,7 @@
 									"fileName": "fbo.ts",
 									"line": 169,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L169"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L169"
 								}
 							],
 							"signatures": [
@@ -3489,7 +3546,7 @@
 									"fileName": "fbo.ts",
 									"line": 180,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L180"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L180"
 								}
 							],
 							"signatures": [
@@ -3570,7 +3627,7 @@
 									"fileName": "fbo.ts",
 									"line": 209,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L209"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L209"
 								}
 							],
 							"signatures": [
@@ -3606,7 +3663,7 @@
 									"fileName": "fbo.ts",
 									"line": 217,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L217"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L217"
 								}
 							],
 							"signatures": [
@@ -3634,7 +3691,7 @@
 									"fileName": "fbo.ts",
 									"line": 222,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L222"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L222"
 								}
 							],
 							"signatures": [
@@ -3662,7 +3719,7 @@
 									"fileName": "fbo.ts",
 									"line": 125,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L125"
 								}
 							],
 							"signatures": [
@@ -3703,7 +3760,7 @@
 									"fileName": "fbo.ts",
 									"line": 238,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L238"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L238"
 								}
 							],
 							"signatures": [
@@ -3739,7 +3796,7 @@
 									"fileName": "fbo.ts",
 									"line": 136,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L136"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L136"
 								}
 							],
 							"signatures": [
@@ -3790,7 +3847,7 @@
 									"fileName": "fbo.ts",
 									"line": 145,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L145"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L145"
 								}
 							],
 							"signatures": [
@@ -3842,7 +3899,7 @@
 									"fileName": "fbo.ts",
 									"line": 151,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L151"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L151"
 								}
 							],
 							"signatures": [
@@ -3885,7 +3942,7 @@
 									"fileName": "fbo.ts",
 									"line": 158,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L158"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L158"
 								}
 							],
 							"signatures": [
@@ -3923,7 +3980,7 @@
 									"fileName": "fbo.ts",
 									"line": 230,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L230"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L230"
 								}
 							],
 							"signatures": [
@@ -3959,7 +4016,7 @@
 									"fileName": "fbo.ts",
 									"line": 198,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L198"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L198"
 								}
 							],
 							"signatures": [
@@ -4069,7 +4126,7 @@
 							"fileName": "fbo.ts",
 							"line": 85,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L85"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L85"
 						}
 					]
 				},
@@ -4084,7 +4141,7 @@
 							"fileName": "fbo.ts",
 							"line": 18,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L18"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L18"
 						}
 					],
 					"type": {
@@ -4124,7 +4181,7 @@
 					"fileName": "fbo.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/fbo.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/fbo.ts#L1"
 				}
 			]
 		},
@@ -4203,7 +4260,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 28,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L28"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L28"
 								}
 							],
 							"signatures": [
@@ -4321,7 +4378,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 21,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L21"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L21"
 								}
 							],
 							"type": {
@@ -4342,7 +4399,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 26,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L26"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L26"
 								}
 							],
 							"type": {
@@ -4363,7 +4420,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 20,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L20"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L20"
 								}
 							],
 							"type": {
@@ -4383,7 +4440,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 24,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L24"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L24"
 								}
 							],
 							"type": {
@@ -4402,7 +4459,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 25,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L25"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L25"
 								}
 							],
 							"type": {
@@ -4421,7 +4478,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 23,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L23"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L23"
 								}
 							],
 							"type": {
@@ -4440,7 +4497,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 49,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L49"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L49"
 								}
 							],
 							"signatures": [
@@ -4486,7 +4543,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 66,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L66"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L66"
 								}
 							],
 							"signatures": [
@@ -4564,7 +4621,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 89,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L89"
 								}
 							],
 							"signatures": [
@@ -4610,7 +4667,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 99,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L99"
 								}
 							],
 							"signatures": [
@@ -4718,9 +4775,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 44,
+									"line": 61,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L44"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L61"
 								}
 							],
 							"signatures": [
@@ -4734,22 +4791,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINE_LOOP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLineLoop"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINE_LOOP, offset, count)`"
 											}
 										]
 									},
@@ -4766,7 +4812,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -4787,7 +4833,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -4823,9 +4869,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 55,
+									"line": 70,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L55"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L70"
 								}
 							],
 							"signatures": [
@@ -4840,21 +4886,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLineStrip"
-													}
-												]
 											}
 										]
 									},
@@ -4871,7 +4902,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -4892,7 +4923,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -4928,9 +4959,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 33,
+									"line": 52,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L33"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L52"
 								}
 							],
 							"signatures": [
@@ -4944,22 +4975,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINES, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawLines"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINES, offset, count)`"
 											}
 										]
 									},
@@ -4976,7 +4996,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -4997,7 +5017,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -5033,9 +5053,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 21,
+									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L21"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L42"
 								}
 							],
 							"signatures": [
@@ -5049,22 +5069,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.POINTS, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
+												"text": "Shortcut to "
 											},
 											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawPoints"
-													}
-												]
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.POINTS, offset, count)`"
 											}
 										]
 									},
@@ -5081,7 +5090,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -5102,7 +5111,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -5138,9 +5147,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 88,
+									"line": 97,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L97"
 								}
 							],
 							"signatures": [
@@ -5155,21 +5164,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangleFan"
-													}
-												]
 											}
 										]
 									},
@@ -5186,7 +5180,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -5207,7 +5201,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -5243,9 +5237,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 77,
+									"line": 88,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L88"
 								}
 							],
 							"signatures": [
@@ -5260,21 +5254,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangleStrip"
-													}
-												]
 											}
 										]
 									},
@@ -5291,7 +5270,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -5312,7 +5291,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -5348,9 +5327,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 66,
+									"line": 79,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/basebuffer.ts#L66"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/basebuffer.ts#L79"
 								}
 							],
 							"signatures": [
@@ -5365,21 +5344,6 @@
 											{
 												"kind": "text",
 												"text": "Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )"
-											}
-										],
-										"blockTags": [
-											{
-												"tag": "@function",
-												"content": []
-											},
-											{
-												"tag": "@name",
-												"content": [
-													{
-														"kind": "text",
-														"text": "Drawable#drawTriangles"
-													}
-												]
 											}
 										]
 									},
@@ -5396,7 +5360,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of vertices to draw (full buffer is used if omited)"
+														"text": "The number of elements to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -5417,7 +5381,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position in buffer to start from."
+														"text": "The position in the buffer to start from"
 													}
 												]
 											},
@@ -5455,7 +5419,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 57,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L57"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L57"
 								}
 							],
 							"signatures": [
@@ -5512,7 +5476,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 79,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L79"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L79"
 								}
 							],
 							"signatures": [
@@ -5632,7 +5596,7 @@
 							"fileName": "indexbuffer.ts",
 							"line": 18,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L18"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L18"
 						}
 					],
 					"extendedTypes": [
@@ -5657,7 +5621,7 @@
 					"fileName": "indexbuffer.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/indexbuffer.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/indexbuffer.ts#L1"
 				}
 			]
 		},
@@ -5802,7 +5766,7 @@
 									"fileName": "program.ts",
 									"line": 52,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L52"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L52"
 								}
 							],
 							"signatures": [
@@ -5884,7 +5848,7 @@
 									"fileName": "program.ts",
 									"line": 48,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L48"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L48"
 								}
 							],
 							"type": {
@@ -5903,7 +5867,7 @@
 									"fileName": "program.ts",
 									"line": 47,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L47"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L47"
 								}
 							],
 							"type": {
@@ -5924,7 +5888,7 @@
 									"fileName": "program.ts",
 									"line": 44,
 									"character": 12,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L44"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L44"
 								}
 							],
 							"type": {
@@ -5948,7 +5912,7 @@
 									"fileName": "program.ts",
 									"line": 42,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L42"
 								}
 							],
 							"type": {
@@ -5971,7 +5935,7 @@
 									"fileName": "program.ts",
 									"line": 38,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L38"
 								}
 							],
 							"type": {
@@ -5993,7 +5957,7 @@
 									"fileName": "program.ts",
 									"line": 40,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L40"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L40"
 								}
 							],
 							"type": {
@@ -6014,7 +5978,7 @@
 									"fileName": "program.ts",
 									"line": 46,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L46"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L46"
 								}
 							],
 							"type": {
@@ -6035,7 +5999,7 @@
 									"fileName": "program.ts",
 									"line": 41,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L41"
 								}
 							],
 							"type": {
@@ -6066,7 +6030,7 @@
 									"fileName": "program.ts",
 									"line": 36,
 									"character": 9,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L36"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L36"
 								}
 							],
 							"type": {
@@ -6086,7 +6050,7 @@
 									"fileName": "program.ts",
 									"line": 138,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L138"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L138"
 								}
 							],
 							"signatures": [
@@ -6114,7 +6078,7 @@
 									"fileName": "program.ts",
 									"line": 81,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L81"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L81"
 								}
 							],
 							"signatures": [
@@ -6142,7 +6106,7 @@
 									"fileName": "program.ts",
 									"line": 92,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L92"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L92"
 								}
 							],
 							"signatures": [
@@ -6239,7 +6203,7 @@
 									"fileName": "program.ts",
 									"line": 123,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L123"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L123"
 								}
 							],
 							"signatures": [
@@ -6275,7 +6239,7 @@
 									"fileName": "program.ts",
 									"line": 74,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L74"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L74"
 								}
 							],
 							"signatures": [
@@ -6338,7 +6302,7 @@
 							"fileName": "program.ts",
 							"line": 31,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L31"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L31"
 						}
 					],
 					"indexSignature": {
@@ -6379,7 +6343,7 @@
 					"fileName": "program.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/program.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/program.ts#L1"
 				}
 			]
 		},
@@ -6443,7 +6407,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 27,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L27"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L27"
 								}
 							],
 							"signatures": [
@@ -6511,7 +6475,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 24,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L24"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L24"
 								}
 							],
 							"type": {
@@ -6532,7 +6496,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 25,
 									"character": 10,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L25"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L25"
 								}
 							],
 							"type": {
@@ -6553,7 +6517,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 19,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L19"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L19"
 								}
 							],
 							"type": {
@@ -6574,7 +6538,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 16,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L16"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L16"
 								}
 							],
 							"type": {
@@ -6594,7 +6558,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 22,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L22"
 								}
 							],
 							"type": {
@@ -6615,7 +6579,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 17,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L17"
 								}
 							],
 							"type": {
@@ -6638,7 +6602,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 18,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L18"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L18"
 								}
 							],
 							"type": {
@@ -6658,7 +6622,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 21,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L21"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L21"
 								}
 							],
 							"type": {
@@ -6677,7 +6641,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 90,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L90"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L90"
 								}
 							],
 							"signatures": [
@@ -6705,7 +6669,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 65,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L65"
 								}
 							],
 							"signatures": [
@@ -6741,7 +6705,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 75,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L75"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L75"
 								}
 							],
 							"signatures": [
@@ -6777,7 +6741,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 83,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L83"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L83"
 								}
 							],
 							"signatures": [
@@ -6813,7 +6777,7 @@
 									"fileName": "renderbuffer.ts",
 									"line": 53,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L53"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L53"
 								}
 							],
 							"signatures": [
@@ -6891,7 +6855,7 @@
 							"fileName": "renderbuffer.ts",
 							"line": 14,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L14"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L14"
 						}
 					]
 				}
@@ -6909,7 +6873,7 @@
 					"fileName": "renderbuffer.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/renderbuffer.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/renderbuffer.ts#L1"
 				}
 			]
 		},
@@ -6963,7 +6927,7 @@
 									"fileName": "sampler.ts",
 									"line": 17,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L17"
 								}
 							],
 							"signatures": [
@@ -7009,7 +6973,7 @@
 									"fileName": "sampler.ts",
 									"line": 12,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L12"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L12"
 								}
 							],
 							"type": {
@@ -7028,7 +6992,7 @@
 									"fileName": "sampler.ts",
 									"line": 14,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L14"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L14"
 								}
 							],
 							"type": {
@@ -7049,7 +7013,7 @@
 									"fileName": "sampler.ts",
 									"line": 15,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L15"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L15"
 								}
 							],
 							"type": {
@@ -7070,7 +7034,7 @@
 									"fileName": "sampler.ts",
 									"line": 28,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L28"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L28"
 								}
 							],
 							"signatures": [
@@ -7129,7 +7093,7 @@
 									"fileName": "sampler.ts",
 									"line": 62,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L62"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L62"
 								}
 							],
 							"signatures": [
@@ -7165,7 +7129,7 @@
 									"fileName": "sampler.ts",
 									"line": 36,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L36"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L36"
 								}
 							],
 							"signatures": [
@@ -7201,7 +7165,7 @@
 									"fileName": "sampler.ts",
 									"line": 69,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L69"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L69"
 								}
 							],
 							"signatures": [
@@ -7237,7 +7201,7 @@
 									"fileName": "sampler.ts",
 									"line": 55,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L55"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L55"
 								}
 							],
 							"signatures": [
@@ -7273,7 +7237,7 @@
 									"fileName": "sampler.ts",
 									"line": 46,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L46"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L46"
 								}
 							],
 							"signatures": [
@@ -7377,7 +7341,7 @@
 									"fileName": "sampler.ts",
 									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L77"
 								}
 							],
 							"signatures": [
@@ -7457,7 +7421,7 @@
 							"fileName": "sampler.ts",
 							"line": 11,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L11"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L11"
 						}
 					]
 				}
@@ -7475,7 +7439,7 @@
 					"fileName": "sampler.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/sampler.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/sampler.ts#L1"
 				}
 			]
 		},
@@ -7559,7 +7523,7 @@
 									"fileName": "texture-2d.ts",
 									"line": 22,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-2d.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-2d.ts#L22"
 								}
 							],
 							"signatures": [
@@ -7651,7 +7615,7 @@
 									"fileName": "texture-2d.ts",
 									"line": 19,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-2d.ts#L19"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-2d.ts#L19"
 								}
 							],
 							"type": {
@@ -7678,7 +7642,7 @@
 									"fileName": "texture-base.ts",
 									"line": 45,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L45"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L45"
 								}
 							],
 							"type": {
@@ -7702,7 +7666,7 @@
 									"fileName": "texture-base.ts",
 									"line": 41,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L41"
 								}
 							],
 							"type": {
@@ -7729,7 +7693,7 @@
 									"fileName": "texture-base.ts",
 									"line": 34,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L34"
 								}
 							],
 							"type": {
@@ -7754,7 +7718,7 @@
 									"fileName": "texture-base.ts",
 									"line": 39,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L39"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L39"
 								}
 							],
 							"type": {
@@ -7780,7 +7744,7 @@
 									"fileName": "texture-base.ts",
 									"line": 35,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L35"
 								}
 							],
 							"type": {
@@ -7806,7 +7770,7 @@
 									"fileName": "texture-base.ts",
 									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L42"
 								}
 							],
 							"type": {
@@ -7833,7 +7797,7 @@
 									"fileName": "texture-2d.ts",
 									"line": 17,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-2d.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-2d.ts#L17"
 								}
 							],
 							"type": {
@@ -7859,7 +7823,7 @@
 									"fileName": "texture-base.ts",
 									"line": 43,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L43"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L43"
 								}
 							],
 							"type": {
@@ -7884,7 +7848,7 @@
 									"fileName": "texture-base.ts",
 									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L38"
 								}
 							],
 							"type": {
@@ -7908,7 +7872,7 @@
 									"fileName": "texture-base.ts",
 									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L77"
 								}
 							],
 							"signatures": [
@@ -7977,7 +7941,7 @@
 									"fileName": "texture-base.ts",
 									"line": 117,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L117"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L117"
 								}
 							],
 							"signatures": [
@@ -8024,7 +7988,7 @@
 									"fileName": "texture-base.ts",
 									"line": 89,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L89"
 								}
 							],
 							"signatures": [
@@ -8070,7 +8034,7 @@
 									"fileName": "texture-2d.ts",
 									"line": 50,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-2d.ts#L50"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-2d.ts#L50"
 								}
 							],
 							"signatures": [
@@ -8179,7 +8143,7 @@
 									"fileName": "texture-2d.ts",
 									"line": 33,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-2d.ts#L33"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-2d.ts#L33"
 								}
 							],
 							"signatures": [
@@ -8230,7 +8194,7 @@
 									"fileName": "texture-base.ts",
 									"line": 125,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L125"
 								}
 							],
 							"signatures": [
@@ -8277,7 +8241,7 @@
 									"fileName": "texture-base.ts",
 									"line": 109,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L109"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L109"
 								}
 							],
 							"signatures": [
@@ -8324,7 +8288,7 @@
 									"fileName": "texture-base.ts",
 									"line": 99,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L99"
 								}
 							],
 							"signatures": [
@@ -8439,7 +8403,7 @@
 									"fileName": "texture-base.ts",
 									"line": 65,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L65"
 								}
 							],
 							"signatures": [
@@ -8534,7 +8498,7 @@
 									"fileName": "texture-base.ts",
 									"line": 134,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L134"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L134"
 								}
 							],
 							"signatures": [
@@ -8635,7 +8599,7 @@
 							"fileName": "texture-2d.ts",
 							"line": 15,
 							"character": 21,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-2d.ts#L15"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-2d.ts#L15"
 						}
 					],
 					"extendedTypes": [
@@ -8660,7 +8624,7 @@
 					"fileName": "texture-2d.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-2d.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-2d.ts#L1"
 				}
 			]
 		},
@@ -8689,7 +8653,7 @@
 									"fileName": "texture-base.ts",
 									"line": 10,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L10"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L10"
 								}
 							],
 							"type": {
@@ -8708,7 +8672,7 @@
 									"fileName": "texture-base.ts",
 									"line": 11,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L11"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L11"
 								}
 							],
 							"type": {
@@ -8727,7 +8691,7 @@
 									"fileName": "texture-base.ts",
 									"line": 12,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L12"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L12"
 								}
 							],
 							"type": {
@@ -8746,7 +8710,7 @@
 									"fileName": "texture-base.ts",
 									"line": 14,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L14"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L14"
 								}
 							],
 							"type": {
@@ -8765,7 +8729,7 @@
 									"fileName": "texture-base.ts",
 									"line": 13,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L13"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L13"
 								}
 							],
 							"type": {
@@ -8791,7 +8755,7 @@
 							"fileName": "texture-base.ts",
 							"line": 9,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L9"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L9"
 						}
 					]
 				},
@@ -8870,7 +8834,7 @@
 									"fileName": "texture-base.ts",
 									"line": 49,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L49"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L49"
 								}
 							],
 							"signatures": [
@@ -8954,7 +8918,7 @@
 									"fileName": "texture-base.ts",
 									"line": 47,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L47"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L47"
 								}
 							],
 							"type": {
@@ -8975,7 +8939,7 @@
 									"fileName": "texture-base.ts",
 									"line": 45,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L45"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L45"
 								}
 							],
 							"type": {
@@ -8994,7 +8958,7 @@
 									"fileName": "texture-base.ts",
 									"line": 41,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L41"
 								}
 							],
 							"type": {
@@ -9016,7 +8980,7 @@
 									"fileName": "texture-base.ts",
 									"line": 34,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L34"
 								}
 							],
 							"type": {
@@ -9036,7 +9000,7 @@
 									"fileName": "texture-base.ts",
 									"line": 39,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L39"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L39"
 								}
 							],
 							"type": {
@@ -9057,7 +9021,7 @@
 									"fileName": "texture-base.ts",
 									"line": 35,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L35"
 								}
 							],
 							"type": {
@@ -9078,7 +9042,7 @@
 									"fileName": "texture-base.ts",
 									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L42"
 								}
 							],
 							"type": {
@@ -9100,7 +9064,7 @@
 									"fileName": "texture-base.ts",
 									"line": 32,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L32"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L32"
 								}
 							],
 							"type": {
@@ -9121,7 +9085,7 @@
 									"fileName": "texture-base.ts",
 									"line": 43,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L43"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L43"
 								}
 							],
 							"type": {
@@ -9141,7 +9105,7 @@
 									"fileName": "texture-base.ts",
 									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L38"
 								}
 							],
 							"type": {
@@ -9160,7 +9124,7 @@
 									"fileName": "texture-base.ts",
 									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L77"
 								}
 							],
 							"signatures": [
@@ -9219,7 +9183,7 @@
 									"fileName": "texture-base.ts",
 									"line": 117,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L117"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L117"
 								}
 							],
 							"signatures": [
@@ -9256,7 +9220,7 @@
 									"fileName": "texture-base.ts",
 									"line": 89,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L89"
 								}
 							],
 							"signatures": [
@@ -9292,7 +9256,7 @@
 									"fileName": "texture-base.ts",
 									"line": 125,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L125"
 								}
 							],
 							"signatures": [
@@ -9329,7 +9293,7 @@
 									"fileName": "texture-base.ts",
 									"line": 109,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L109"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L109"
 								}
 							],
 							"signatures": [
@@ -9366,7 +9330,7 @@
 									"fileName": "texture-base.ts",
 									"line": 99,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L99"
 								}
 							],
 							"signatures": [
@@ -9471,7 +9435,7 @@
 									"fileName": "texture-base.ts",
 									"line": 65,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L65"
 								}
 							],
 							"signatures": [
@@ -9556,7 +9520,7 @@
 									"fileName": "texture-base.ts",
 									"line": 134,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L134"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L134"
 								}
 							],
 							"signatures": [
@@ -9645,7 +9609,7 @@
 							"fileName": "texture-base.ts",
 							"line": 30,
 							"character": 30,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L30"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L30"
 						}
 					],
 					"extendedBy": [
@@ -9672,7 +9636,7 @@
 							"fileName": "texture-base.ts",
 							"line": 18,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L18"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L18"
 						}
 					],
 					"type": {
@@ -9717,7 +9681,7 @@
 					"fileName": "texture-base.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L1"
 				}
 			]
 		},
@@ -9801,7 +9765,7 @@
 									"fileName": "texture-cube.ts",
 									"line": 22,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-cube.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-cube.ts#L22"
 								}
 							],
 							"signatures": [
@@ -9893,7 +9857,7 @@
 									"fileName": "texture-cube.ts",
 									"line": 19,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-cube.ts#L19"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-cube.ts#L19"
 								}
 							],
 							"type": {
@@ -9920,7 +9884,7 @@
 									"fileName": "texture-base.ts",
 									"line": 45,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L45"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L45"
 								}
 							],
 							"type": {
@@ -9944,7 +9908,7 @@
 									"fileName": "texture-base.ts",
 									"line": 41,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L41"
 								}
 							],
 							"type": {
@@ -9971,7 +9935,7 @@
 									"fileName": "texture-base.ts",
 									"line": 34,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L34"
 								}
 							],
 							"type": {
@@ -9996,7 +9960,7 @@
 									"fileName": "texture-base.ts",
 									"line": 39,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L39"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L39"
 								}
 							],
 							"type": {
@@ -10022,7 +9986,7 @@
 									"fileName": "texture-base.ts",
 									"line": 35,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L35"
 								}
 							],
 							"type": {
@@ -10048,7 +10012,7 @@
 									"fileName": "texture-base.ts",
 									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L42"
 								}
 							],
 							"type": {
@@ -10075,7 +10039,7 @@
 									"fileName": "texture-cube.ts",
 									"line": 17,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-cube.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-cube.ts#L17"
 								}
 							],
 							"type": {
@@ -10101,7 +10065,7 @@
 									"fileName": "texture-base.ts",
 									"line": 43,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L43"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L43"
 								}
 							],
 							"type": {
@@ -10126,7 +10090,7 @@
 									"fileName": "texture-base.ts",
 									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L38"
 								}
 							],
 							"type": {
@@ -10150,7 +10114,7 @@
 									"fileName": "texture-base.ts",
 									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L77"
 								}
 							],
 							"signatures": [
@@ -10219,7 +10183,7 @@
 									"fileName": "texture-base.ts",
 									"line": 117,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L117"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L117"
 								}
 							],
 							"signatures": [
@@ -10266,7 +10230,7 @@
 									"fileName": "texture-base.ts",
 									"line": 89,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L89"
 								}
 							],
 							"signatures": [
@@ -10312,7 +10276,7 @@
 									"fileName": "texture-cube.ts",
 									"line": 31,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-cube.ts#L31"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-cube.ts#L31"
 								}
 							],
 							"signatures": [
@@ -10358,7 +10322,7 @@
 									"fileName": "texture-base.ts",
 									"line": 125,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L125"
 								}
 							],
 							"signatures": [
@@ -10405,7 +10369,7 @@
 									"fileName": "texture-base.ts",
 									"line": 109,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L109"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L109"
 								}
 							],
 							"signatures": [
@@ -10452,7 +10416,7 @@
 									"fileName": "texture-base.ts",
 									"line": 99,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L99"
 								}
 							],
 							"signatures": [
@@ -10567,7 +10531,7 @@
 									"fileName": "texture-base.ts",
 									"line": 65,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L65"
 								}
 							],
 							"signatures": [
@@ -10662,7 +10626,7 @@
 									"fileName": "texture-base.ts",
 									"line": 134,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-base.ts#L134"
+									"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-base.ts#L134"
 								}
 							],
 							"signatures": [
@@ -10762,7 +10726,7 @@
 							"fileName": "texture-cube.ts",
 							"line": 15,
 							"character": 21,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-cube.ts#L15"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-cube.ts#L15"
 						}
 					],
 					"extendedTypes": [
@@ -10787,7 +10751,7 @@
 					"fileName": "texture-cube.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/texture-cube.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/texture-cube.ts#L1"
 				}
 			]
 		},
@@ -10809,7 +10773,7 @@
 							"fileName": "types.ts",
 							"line": 1,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/types.ts#L1"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/types.ts#L1"
 						}
 					],
 					"type": {
@@ -10841,7 +10805,7 @@
 							"fileName": "types.ts",
 							"line": 3,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/types.ts#L3"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/types.ts#L3"
 						}
 					],
 					"signatures": [
@@ -10899,7 +10863,7 @@
 					"fileName": "types.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/types.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/types.ts#L1"
 				}
 			]
 		},
@@ -10921,7 +10885,7 @@
 							"fileName": "utils.ts",
 							"line": 21,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/utils.ts#L21"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/utils.ts#L21"
 						}
 					],
 					"signatures": [
@@ -10962,7 +10926,7 @@
 							"fileName": "utils.ts",
 							"line": 15,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/utils.ts#L15"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/utils.ts#L15"
 						}
 					],
 					"signatures": [
@@ -11027,7 +10991,7 @@
 							"fileName": "utils.ts",
 							"line": 2,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/utils.ts#L2"
+							"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/utils.ts#L2"
 						}
 					],
 					"signatures": [
@@ -11091,7 +11055,7 @@
 					"fileName": "utils.ts",
 					"line": 2,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/5ca31a2/src/utils.ts#L2"
+					"url": "https://github.com/evanmartiin/nanogl/blob/8ededaf/src/utils.ts#L2"
 				}
 			]
 		}
