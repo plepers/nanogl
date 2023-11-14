@@ -39,11 +39,11 @@ class Program {
 
   /**
    * You can pass optional shader code to immediatly compile shaders or compile them later with {@link Program#compile}.
-    * @param {GLContext} gl  The webgl context this Program belongs to
-    * @param {String} [vert] The vertex shader code
-    * @param {String} [frag] The fragment shader code
-    * @param {String} [defs] A string to prepend to both fragment and vertex shader code
-    */
+   * @param {GLContext} gl  The webgl context this Program belongs to
+   * @param {String} [vert] The vertex shader code
+   * @param {String} [frag] The fragment shader code
+   * @param {String} [defs] A string to prepend to both fragment and vertex shader code
+   */
   constructor(gl: GLContext, vert?: string, frag?: string, defs?: string) {
     this.gl = gl;
     this.program = <WebGLProgram>gl.createProgram();

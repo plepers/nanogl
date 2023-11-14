@@ -9,7 +9,13 @@ export function isBufferSource(val: GLsizeiptr | BufferSource): val is BufferSou
 
 /**
  * Compute texture filtering enum from parameters.
- * Will return one of the following : `NEAREST`, `LINEAR`, `NEAREST_MIPMAP_NEAREST`, `LINEAR_MIPMAP_NEAREST`, `NEAREST_MIPMAP_LINEAR`, `LINEAR_MIPMAP_LINEAR`.
+ * Will return one of the following :
+ * - `NEAREST`
+ * - `LINEAR`
+ * - `NEAREST_MIPMAP_NEAREST`
+ * - `LINEAR_MIPMAP_NEAREST`
+ * - `NEAREST_MIPMAP_LINEAR`
+ * - `LINEAR_MIPMAP_LINEAR`
  * @param {boolean} [smooth=false] Use linear filtering or not
  * @param {boolean} [mipmap=false] Enable mipmapping or not
  * @param {boolean} [miplinear=false] Use linear mipmapping or not
