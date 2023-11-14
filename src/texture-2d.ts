@@ -4,13 +4,7 @@ import { GLContext } from './types';
 const GL_TEXTURE_2D = 0x0de1;
 
 /**
- * @class
- * @classdesc Texture class manage TEXTURE_2D types textures
- *
- *  @param {WebGLRenderingContext} gl webgl context the texture belongs to
- *  @param {GLenum} [format  =GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
- *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
- *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
+ * This class manages TEXTURE_2D type textures.
  */
 export default class Texture2D extends AbstractTexture {
 
@@ -19,6 +13,12 @@ export default class Texture2D extends AbstractTexture {
   _target: GLenum = GL_TEXTURE_2D;
 
 
+  /**
+   * @param {WebGLRenderingContext} gl The webgl context this Texture belongs to
+   * @param {GLenum} [format=GL_RGB]  The pixel format of the texture (`GL_RGB`, `GL_RGBA`, etc.)
+   * @param {GLenum} [type=GL_UNSIGNED_BYTE]  The pixel data type of the texture (`GL_UNSIGNED_BYTE`, `GL_FLOAT`, etc.)
+   * @param {GLenum} [internal="format parameter value"]  The pixel internal format of the texture, defaults to the `format` parameter value
+   */
   constructor(gl: GLContext, format?: GLenum, type?: GLenum, internal?: GLenum) {
     super( gl, format, type, internal );
 
@@ -28,7 +28,8 @@ export default class Texture2D extends AbstractTexture {
 
 
   /**
-   * set texture data from html source
+   * Set the texture data from an HTML source.
+   * @param img The HTML image, canvas or video element to use as source
    */
   fromImage(img: TexImageSource) {
     const gl = this.gl;
@@ -41,11 +42,11 @@ export default class Texture2D extends AbstractTexture {
   }
 
   /**
-   * Allocate texture to the given size, with optional data (TypedArray) and data type
-   *  @param {number} width     the new texture's width
-   *  @param {number} height    the new texture's height
-   *  @param {TypedArray} [data=null]  TypedArray of texture data, can be null
-   *  @param {GLenum} [dataType=GL_UNSIGNED_BYTE] can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc depending on available extensions
+   * Set the texture data from a TypedArray.
+   * You can also allocate an empty texture by providing only the size.
+   *  @param {number} width The width of the texture
+   *  @param {number} height The height of the texture
+   *  @param {TypedArray|null} [data=null] The data to fill the texture with, or null to allocate an empty texture
    */
   fromData(width: number, height: number, data: ArrayBufferView|null = null) {
     const gl = this.gl;

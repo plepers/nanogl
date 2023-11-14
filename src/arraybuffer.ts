@@ -18,10 +18,9 @@ export interface AttributeDef {
 }
 
 /**
- * This class provides helpers for ARRAY_BUFFER type buffers.
+ * This class manages ARRAY_BUFFER type buffers.
  * @extends {BaseBuffer}
  */
-
 class ArrayBuffer extends BaseBuffer {
   /** The webgl context this ArrayBuffer belongs to */
   readonly gl: GLContext;
@@ -30,7 +29,7 @@ class ArrayBuffer extends BaseBuffer {
 
   /** The usage hint for this buffer */
   usage: GLenum;
-  /** The offset in bytes between the beginning of consecutive vertex attributes */
+  /** The number of bytes for each vertex in this buffer  */
   stride    : number;
   /** The length in bytes of the buffer */
   byteLength: number;
@@ -39,12 +38,12 @@ class ArrayBuffer extends BaseBuffer {
   /** The attributes declared for this buffer */
   attribs: AttributeDef[];
 
-/**
-  * @param {GLContext} gl  The webgl context this ArrayBuffer belongs to
-  * @param {BufferSource|GLsizeiptr} [data]  The data to fill the buffer with, or the size (in bytes)
-  * @param {GLenum} [usage=GL_STATIC_DRAW] The usage hint for this buffer (`STATIC_DRAW`, `DYNAMIC_DRAW`, etc.)
-  * @param {WebGLBuffer} [glbuffer] A WebGLBuffer to use instead of creating a new one
-  */
+  /**
+    * @param {GLContext} gl  The webgl context this ArrayBuffer belongs to
+    * @param {BufferSource|GLsizeiptr} [data]  The data to fill the buffer with, or the size (in bytes)
+    * @param {GLenum} [usage=GL_STATIC_DRAW] The usage hint for this buffer (`STATIC_DRAW`, `DYNAMIC_DRAW`, etc.)
+    * @param {WebGLBuffer} [glbuffer] A WebGLBuffer to use instead of creating a new one
+    */
   constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage: GLenum = gl.STATIC_DRAW, glbuffer? : WebGLBuffer ) {
     super();
 
@@ -129,7 +128,7 @@ class ArrayBuffer extends BaseBuffer {
   /**
    * Shortcut to gl.drawArrays
    *   @param {GLenum} mode The type of primitive to draw (`GL_TRIANGLE`, `GL_POINTS` etc)
-   *   @param {uint} [count] The number of vertices to draw (the full buffer is used if omited)
+   *   @param {uint} [count=this.length] The number of vertices to draw (the full buffer is used if omited)
    *   @param {uint} [offset=0] The position of the first vertex to draw
    */
   draw(mode: GLenum, count: number = this.length, offset: number = 0) {

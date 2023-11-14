@@ -9,46 +9,41 @@ interface CompilationContext {
 let _UID: number = 0;
 
 /**
- * Program constructor. Create gl program and shaders. You can pass optional shader code to immediatly compile shaders
- *   @param {WebGLRenderingContext} gl webgl context this program belongs to
- *   @param {String} [vert=undefined] an optional vertex shader code. See {@link Program#compile}
- *   @param {String} [frag=undefined] an optional fragment shader code See {@link Program#compile}
- *   @param {String} [defs=undefined] an optional string prepend to both fragment and vertex shader code. See {@link Program#compile}.
- *   @see {@link Program#compile}
- *
- * @example <caption>For the given vertex shader</caption>
- * attribute vec3 aPosition;
- * uniform mat4 uMVP;
- * uniform vec3 uCameraPosition;
- *
- * @class
- * @classdesc Program class provide shader compilation and linking functionality.
- *              It also give you convenient access to active uniforms and attributes.
- *              Once compiled, the Program object list all used uniforms/attributes and provide getter/setter function for each one. See {@link Program} constructor.
- *
+ * This class provides provides shader compilation and webgl program linking functionality.
+ * It also give you convenient access to active uniforms and attributes.
  */
-
 class Program {
-  /**
-   * Program.debug
-   *   can be set to true to check and log compilation and linking errors (default to false)
-   */
+  /** Can be set to true to check and log compilation and linking errors */
   static debug: boolean = false;
-
+  /** The webgl context this Program belongs to */
   readonly gl: GLContext;
 
+  /** The underlying webgl program */
   readonly program: WebGLProgram;
+  /** The underlying webgl vertex shader */
   readonly vShader: WebGLShader;
+  /** The underlying webgl fragment shader */
   readonly fShader: WebGLShader;
 
+  /** The list of uniform & attribute names */
   protected dyns: string[];
-  
+
+  /** Whether the program is ready to use or not */
   ready: boolean;
+  /** Unique id for the program */
   _uid: number;
+  /** Unique id for the program that updates every time it is compiled */
   _cuid: number;
 
   [k: string]: any;
 
+  /**
+   * You can pass optional shader code to immediatly compile shaders or compile them later with {@link Program#compile}.
+    * @param {GLContext} gl  The webgl context this Program belongs to
+    * @param {String} [vert] The vertex shader code
+    * @param {String} [frag] The fragment shader code
+    * @param {String} [defs] A string to prepend to both fragment and vertex shader code
+    */
   constructor(gl: GLContext, vert?: string, frag?: string, defs?: string) {
     this.gl = gl;
     this.program = <WebGLProgram>gl.createProgram();
@@ -68,8 +63,8 @@ class Program {
   }
 
   /**
-   * Shortcut for gl.useProgram()
-   * alias program.bind()
+   * Bind the underlying webgl program.
+   * Shortcut for `gl.useProgram()`.
    */
   use() {
     if (!this.ready) {
@@ -78,16 +73,19 @@ class Program {
     this.gl.useProgram(this.program);
   }
 
+  /**
+   * Alias for {@link Program#use}
+   */
   bind() {
     this.use();
   }
 
   /**
-   * Compile vertex and fragment shader then link gl program
+   * Compile vertex and fragment shader, then link webgl program.
    * This method can be safely called several times.
-   *  @param {String} vert vertex shader code
-   *  @param {String} frag fragment shader code
-   *  @param {String} [prefix=''] an optional string append to both fragment and vertex code
+   * @param {String} vert The vertex shader code
+   * @param {String} frag The fragment shader code
+   * @param {String} [prefix] A string to prepend to both fragment and vertex shader code
    */
   compile(vert: string, frag: string, prefix?: string ): boolean {
     this.ready = false;
@@ -118,7 +116,7 @@ class Program {
   }
 
   /**
-   * Delete program and shaders
+   * Delete all webgl objects related to this Program.
    */
   dispose() {
     if (this.gl !== null) {
@@ -130,10 +128,22 @@ class Program {
 
   /*
    *  List all uniforms and attributes and create helper function on Program instance
-   *  eg :
-   *     for a uniform vec3 uDirection;
+   *  for a uniform vec3 uDirection;
    *     create a method
    *        program.uDirection( 1, 0, 0 );
+   */
+  /**
+   * List all uniforms and attributes and create a helper function for each on Program instance.
+   *
+   * @example
+   * For a uniform
+   * ```js
+   * uniform vec3 uDirection;
+   * ```
+   * it creates a method
+   * ```js
+   * program.uDirection(1, 0, 0);
+   * ```
    */
   _grabParameters() {
     const gl = this.gl,
@@ -275,8 +285,8 @@ USetFMap[String(5126) /*FLOAT       */] = '1f';
 USetFMap[String(35664) /*FLOAT_VEC2  */] = '2f';
 USetFMap[String(35665) /*FLOAT_VEC3  */] = '3f';
 USetFMap[String(35666) /*FLOAT_VEC4  */] = '4f';
-USetFMap[String(35670) /*BOOL        */] = 
-USetFMap[String(5124) /*INT         */] = 
+USetFMap[String(35670) /*BOOL        */] =
+USetFMap[String(5124) /*INT         */] =
 USetFMap[String(35678) /*SAMPLER_2D  */] = USetFMap[String(35680) /*SAMPLER_CUBE*/] =  USetFMap[String(35866) /*SAMPLER_2D_ARRAY*/] = '1i';
 USetFMap[String(35671) /*BOOL_VEC2   */] = USetFMap[String(35667) /*INT_VEC2    */] = '2i';
 USetFMap[String(35672) /*BOOL_VEC3   */] = USetFMap[String(35668) /*INT_VEC3    */] = '3i';

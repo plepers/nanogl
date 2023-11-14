@@ -5,25 +5,33 @@ let _UID = 0;
 const RENDERBUFFER = 0x8d41;
 
 /**
- * @class
- * @classdesc RenderBuffer class manage renderbuffers
- *
- *  @param {WebGLRenderingContext} gl webgl context the texture belongs to
- *  @param {GLenum} [format=DEPTH_COMPONENT16] the pixel internal format, default to gl.DEPTH_COMPONENT16
+ * This class manages renderbuffers.
  */
 class RenderBuffer {
-
+  /** The webgl context this RenderBuffer belongs to */
   readonly gl: GLContext;
+  /** The underlying webgl renderbuffer */
   readonly id: WebGLRenderbuffer;
+  /** The number of samples used for the renderbuffer storage (webgl2 only) */
   readonly samples: number = 0;
+   /** The pixel internal format of the renderbuffer */
   readonly format: GLenum;
-  
+
+  /** The width of the renderbuffer */
   width: number;
+  /** The height of the renderbuffer */
   height: number;
 
+  /** Unique id for the RenderBuffer */
   readonly _uid: number;
+  /** Whether the RenderBuffer is valid or not */
   private _valid: boolean;
 
+  /**
+    * @param {GLContext} gl  The webgl context this RenderBuffer belongs to
+    * @param {GLenum} [format=GL_DEPTH_COMPONENT16]  The pixel internal format of the renderbuffer (`GL_RGB`, `GL_RGBA`, etc.)
+    * @param {number} [samples=0]  The number of samples to be used for the renderbuffer storage (webgl2 only)
+    */
   constructor(gl: GLContext, format: GLenum, samples : number = 0) {
     this._uid = _UID++;
     this.gl = gl;
@@ -47,8 +55,9 @@ class RenderBuffer {
   }
 
   /**
-   *
-   *
+   * Resize the RenderBuffer.
+   *  @param {number} w The new width
+   *  @param {number} h The new height
    */
   resize(w: number, h: number) {
     if (this.width !== w || this.height !== h) {
@@ -59,8 +68,8 @@ class RenderBuffer {
   }
 
   /**
-   * check renderbuffer for  validity and allocate it if invalid.
-   * this method may leave RENDERBUFFER binding point empty
+   * Check renderbuffer for validity and allocate it if invalid.
+   * This method may leave RENDERBUFFER binding point empty.
    */
   allocate() {
     if (!this._valid && this.width > 0 && this.height > 0) {
@@ -70,22 +79,21 @@ class RenderBuffer {
   }
 
   /**
-   * Bind the renderbuffer
+   * Bind the underlying webgl renderbuffer.
    */
   bind() {
     this.gl.bindRenderbuffer(RENDERBUFFER, this.id);
   }
 
   /**
-   * delete the webgl renderbuffer
-   *
+   * Delete all webgl objects related to this RenderBuffer.
    */
   dispose() {
     this.gl.deleteRenderbuffer(this.id);
   }
 
-  /*
-   * actual RB gl allocation
+  /**
+   * Allocate webgl renderbuffer with current parameters.
    */
   _storage() {
     const gl = this.gl;

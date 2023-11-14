@@ -17,37 +17,43 @@ export enum TextureType {
 
 export type Texture = TextureCube | Texture2D;
 
-
 /**
- * @class
- * @classdesc Texture class manage TEXTURE_2D types textures
- *
- *  @param {WebGLRenderingContext} gl webgl context the texture belongs to
- *  @param {GLenum} [format  =GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
- *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
- *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
+ * This class is the base for all texture classes.
  */
 export default abstract class AbstractTexture {
-
+  /** The type of webgl texture (`TEXTURE_2D`, `TEXTURE_CUBE`, etc) */
   readonly textureType : TextureType = TextureType.NONE;
-  
+
+  /** The webgl context this Texture belongs to */
   readonly gl: GLContext;
+  /** The underlying webgl texture */
   readonly id: WebGLTexture;
 
-
+  /** The width of the texture */
   width : number;
+  /** The height of the texture */
   height: number;
 
+  /** The pixel format of the texture */
   format  : GLenum = 0;
+  /** The pixel internal format of the texture */
   internal: GLenum = 0;
+  /** The pixel data type of the texture */
   type    : GLenum = 0;
 
+  /** Unique id for the Texture */
   readonly _uid: number;
 
+  /** The binding point for this Texture */
   abstract _target : GLenum
 
+  /**
+   * @param {WebGLRenderingContext} gl The webgl context this Texture belongs to
+   * @param {GLenum} [format=GL_RGB]  The pixel format of the texture (`GL_RGB`, `GL_RGBA`, etc.)
+   * @param {GLenum} [type=GL_UNSIGNED_BYTE]  The pixel data type of the texture (`GL_UNSIGNED_BYTE`, `GL_FLOAT`, etc.)
+   * @param {GLenum} [internal="format parameter value"]  The pixel internal format of the texture, defaults to the `format` parameter value
+   */
   constructor(gl: GLContext, format?: GLenum, type?: GLenum, internal?: GLenum) {
-      
     this._uid = _UID++;
     this.gl = gl;
     this.id = <WebGLTexture>gl.createTexture();
@@ -57,10 +63,10 @@ export default abstract class AbstractTexture {
   }
 
   /**
-   * define underlying format, internal format and data type of texture
-   *  @param {GLenum} [format  =GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)
-   *  @param {GLenum} [type    =GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE
-   *  @param {GLenum} [internal=format] the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)
+   * Define underlying format, internal format and data type of the texture.
+   *  @param {GLenum} [format=GL_RGB]  The pixel format of the texture (`GL_RGB`, `GL_RGBA`, etc.)
+   * @param {GLenum} [type=GL_UNSIGNED_BYTE]  The pixel data type of the texture (`GL_UNSIGNED_BYTE`, `GL_FLOAT`, etc.)
+   * @param {GLenum} [internal="format parameter value"]  The pixel internal format of the texture, defaults to the `format` parameter value
    */
   setFormat(format?: GLenum, type?: GLenum, internal?: GLenum) {
     this.format = format || this.gl.RGB;
@@ -68,11 +74,9 @@ export default abstract class AbstractTexture {
     this.type = type || this.gl.UNSIGNED_BYTE;
   }
 
-
-
   /**
-   * Bind the texture
-   *   @param {uint} [unit=undefined] optional texture unit to make active before binding
+   * Bind the underlying webgl texture.
+   * @param {number} [unit] The texture unit to make active before binding
    */
   bind(unit?: number) {
     const gl = this.gl;
@@ -83,8 +87,7 @@ export default abstract class AbstractTexture {
   }
 
   /**
-   * delete the webgl texture
-   *
+   * Delete all webgl objects related to this Texture.
    */
   dispose() {
     this.gl.deleteTexture(this.id);
@@ -92,9 +95,9 @@ export default abstract class AbstractTexture {
 
   /**
    * Change the filtering parameters
-   *   @param {boolean} [smooth=false]    if true, use LINEAR filtering
-   *   @param {boolean} [mipmap=false]    if true, enable mipmaping
-   *   @param {boolean} [miplinear=false] if true, use linear Mipmapping
+   * @param {boolean} [smooth=false] Use linear filtering or not
+   * @param {boolean} [mipmap=false] Enable mipmapping or not
+   * @param {boolean} [miplinear=false] Use linear mipmapping or not
    */
   setFilter(smooth: boolean = false, mipmap: boolean = false, miplinear: boolean = false) : this {
     const gl = this.gl;
@@ -104,32 +107,35 @@ export default abstract class AbstractTexture {
   }
 
   /**
-   * Set both WRAP_S and WRAP_T property to gl.REPEAT
+   * Make texture repeat :
+   * Set the `WRAP_S` and `WRAP_T` properties to `GL_REPEAT`.
    */
   repeat() :this {
     this.wrap(this.gl.REPEAT);
     return this;
   }
-  
+
   /**
-   * Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE
+   * Make texture clamp :
+   * Set the `WRAP_S` and `WRAP_T` properties to `GL_CLAMP_TO_EDGE`.
    */
   clamp() : this {
     this.wrap(this.gl.CLAMP_TO_EDGE);
     return this;
   }
-  
+
   /**
-   * Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT
+   * Make texture mirror :
+   * Set the `WRAP_S` and `WRAP_T` properties to `GL_MIRRORED_REPEAT`.
    */
   mirror() : this {
     this.wrap(this.gl.MIRRORED_REPEAT);
     return this;
   }
-  
+
   /**
-   * Set both WRAP_S and WRAP_T property to the given value
-   *  @param {GLenum} wrap the wrap enum
+   * Set the `WRAP_S` and `WRAP_T` properties to the given value.
+   * @param {GLenum} wrap The wrap value to use (`GL_REPEAT`, `GL_CLAMP_TO_EDGE`, etc.)
    */
   wrap(wrap: GLenum) : this {
     const gl = this.gl;

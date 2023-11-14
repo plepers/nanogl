@@ -22,7 +22,7 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "This class provides helpers for ARRAY_BUFFER type buffers."
+								"text": "This class manages ARRAY_BUFFER type buffers."
 							}
 						]
 					},
@@ -37,9 +37,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 48,
+									"line": 47,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L48"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L47"
 								}
 							],
 							"signatures": [
@@ -199,9 +199,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 40,
+									"line": 39,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L40"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L39"
 								}
 							],
 							"type": {
@@ -232,9 +232,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 29,
+									"line": 28,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L29"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L28"
 								}
 							],
 							"type": {
@@ -261,9 +261,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 36,
+									"line": 35,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L36"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L35"
 								}
 							],
 							"type": {
@@ -290,9 +290,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 27,
+									"line": 26,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L27"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L26"
 								}
 							],
 							"type": {
@@ -318,9 +318,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 38,
+									"line": 37,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L37"
 								}
 							],
 							"type": {
@@ -338,16 +338,16 @@
 								"summary": [
 									{
 										"kind": "text",
-										"text": "The offset in bytes between the beginning of consecutive vertex attributes"
+										"text": "The number of bytes for each vertex in this buffer"
 									}
 								]
 							},
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 34,
+									"line": 33,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L33"
 								}
 							],
 							"type": {
@@ -372,9 +372,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 32,
+									"line": 31,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L32"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L31"
 								}
 							],
 							"type": {
@@ -391,9 +391,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 146,
+									"line": 145,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L146"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L145"
 								}
 							],
 							"signatures": [
@@ -427,9 +427,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 78,
+									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L78"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L77"
 								}
 							],
 							"signatures": [
@@ -583,9 +583,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 114,
+									"line": 113,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L114"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L113"
 								}
 							],
 							"signatures": [
@@ -651,9 +651,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 66,
+									"line": 65,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L66"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L65"
 								}
 							],
 							"signatures": [
@@ -697,9 +697,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 92,
+									"line": 91,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L92"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L91"
 								}
 							],
 							"signatures": [
@@ -775,9 +775,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 139,
+									"line": 138,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L139"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L138"
 								}
 							],
 							"signatures": [
@@ -791,7 +791,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Delete underlying webgl objects"
+												"text": "Delete all webgl objects related to this BaseBuffer."
 											}
 										]
 									},
@@ -821,9 +821,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 135,
+									"line": 134,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L135"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L134"
 								}
 							],
 							"signatures": [
@@ -948,9 +948,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 61,
+									"line": 59,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L61"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L59"
 								}
 							],
 							"signatures": [
@@ -1042,9 +1042,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 70,
+									"line": 68,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L70"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L68"
 								}
 							],
 							"signatures": [
@@ -1058,7 +1058,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINE_STRIP, offset, count)`"
 											}
 										]
 									},
@@ -1132,9 +1136,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 52,
+									"line": 50,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L52"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L50"
 								}
 							],
 							"signatures": [
@@ -1226,9 +1230,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 42,
+									"line": 41,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L41"
 								}
 							],
 							"signatures": [
@@ -1320,9 +1324,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 97,
+									"line": 95,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L97"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L95"
 								}
 							],
 							"signatures": [
@@ -1336,7 +1340,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLE_FAN, offset, count)`"
 											}
 										]
 									},
@@ -1410,9 +1418,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 88,
+									"line": 86,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L86"
 								}
 							],
 							"signatures": [
@@ -1426,7 +1434,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLE_STRIP, offset, count)`"
 											}
 										]
 									},
@@ -1500,9 +1512,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 79,
+									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L79"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L77"
 								}
 							],
 							"signatures": [
@@ -1516,7 +1528,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLES, offset, count)`"
 											}
 										]
 									},
@@ -1590,9 +1606,9 @@
 							"sources": [
 								{
 									"fileName": "arraybuffer.ts",
-									"line": 102,
+									"line": 101,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L102"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L101"
 								}
 							],
 							"signatures": [
@@ -1713,9 +1729,9 @@
 					"sources": [
 						{
 							"fileName": "arraybuffer.ts",
-							"line": 25,
+							"line": 24,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L25"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L24"
 						}
 					],
 					"extendedTypes": [
@@ -1744,7 +1760,7 @@
 									"fileName": "arraybuffer.ts",
 									"line": 12,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L12"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L12"
 								}
 							],
 							"type": {
@@ -1763,7 +1779,7 @@
 									"fileName": "arraybuffer.ts",
 									"line": 16,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L16"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L16"
 								}
 							],
 							"type": {
@@ -1782,7 +1798,7 @@
 									"fileName": "arraybuffer.ts",
 									"line": 15,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L15"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L15"
 								}
 							],
 							"type": {
@@ -1801,7 +1817,7 @@
 									"fileName": "arraybuffer.ts",
 									"line": 14,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L14"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L14"
 								}
 							],
 							"type": {
@@ -1820,7 +1836,7 @@
 									"fileName": "arraybuffer.ts",
 									"line": 17,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L17"
 								}
 							],
 							"type": {
@@ -1839,7 +1855,7 @@
 									"fileName": "arraybuffer.ts",
 									"line": 13,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L13"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L13"
 								}
 							],
 							"type": {
@@ -1866,7 +1882,7 @@
 							"fileName": "arraybuffer.ts",
 							"line": 11,
 							"character": 17,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L11"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L11"
 						}
 					]
 				}
@@ -1890,7 +1906,7 @@
 					"fileName": "arraybuffer.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/arraybuffer.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/arraybuffer.ts#L1"
 				}
 			]
 		},
@@ -1951,9 +1967,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 9,
+									"line": 8,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L9"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L8"
 								}
 							],
 							"signatures": [
@@ -1989,9 +2005,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 20,
+									"line": 19,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L20"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L19"
 								}
 							],
 							"signatures": [
@@ -2059,9 +2075,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 14,
+									"line": 13,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L14"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L13"
 								}
 							],
 							"signatures": [
@@ -2075,7 +2091,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Delete underlying webgl objects"
+												"text": "Delete all webgl objects related to this BaseBuffer."
 											}
 										]
 									},
@@ -2097,9 +2113,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 35,
+									"line": 34,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L34"
 								}
 							],
 							"signatures": [
@@ -2113,7 +2129,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays`"
 											}
 										]
 									},
@@ -2212,9 +2232,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 61,
+									"line": 59,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L61"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L59"
 								}
 							],
 							"signatures": [
@@ -2296,9 +2316,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 70,
+									"line": 68,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L70"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L68"
 								}
 							],
 							"signatures": [
@@ -2312,7 +2332,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINE_STRIP, offset, count)`"
 											}
 										]
 									},
@@ -2376,9 +2400,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 52,
+									"line": 50,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L52"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L50"
 								}
 							],
 							"signatures": [
@@ -2460,9 +2484,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 42,
+									"line": 41,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L41"
 								}
 							],
 							"signatures": [
@@ -2544,9 +2568,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 97,
+									"line": 95,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L97"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L95"
 								}
 							],
 							"signatures": [
@@ -2560,7 +2584,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLE_FAN, offset, count)`"
 											}
 										]
 									},
@@ -2624,9 +2652,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 88,
+									"line": 86,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L86"
 								}
 							],
 							"signatures": [
@@ -2640,7 +2668,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLE_STRIP, offset, count)`"
 											}
 										]
 									},
@@ -2704,9 +2736,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 79,
+									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L79"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L77"
 								}
 							],
 							"signatures": [
@@ -2720,7 +2752,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLES, offset, count)`"
 											}
 										]
 									},
@@ -2786,9 +2822,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 27,
+									"line": 26,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L27"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L26"
 								}
 							],
 							"signatures": [
@@ -2884,9 +2920,9 @@
 					"sources": [
 						{
 							"fileName": "basebuffer.ts",
-							"line": 5,
+							"line": 4,
 							"character": 15,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L5"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L4"
 						}
 					],
 					"extendedBy": [
@@ -2914,9 +2950,9 @@
 			"sources": [
 				{
 					"fileName": "basebuffer.ts",
-					"line": 5,
+					"line": 4,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L5"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L4"
 				}
 			]
 		},
@@ -2933,6 +2969,14 @@
 					"kind": 128,
 					"kindString": "Class",
 					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "This class manages framebuffer attachments."
+							}
+						]
+					},
 					"children": [
 						{
 							"id": 129,
@@ -2943,9 +2987,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 26,
+									"line": 34,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L26"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L34"
 								}
 							],
 							"signatures": [
@@ -2962,6 +3006,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The texture or renderbuffer to attach"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 127,
@@ -2985,12 +3037,20 @@
 							"flags": {
 								"isPrivate": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Whether the attachment target is a texture or not"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 24,
+									"line": 29,
 									"character": 10,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L24"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L29"
 								}
 							],
 							"type": {
@@ -3004,12 +3064,28 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The mipmap level of the target texture (must be "
+									},
+									{
+										"kind": "code",
+										"text": "`0`"
+									},
+									{
+										"kind": "text",
+										"text": ")"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 22,
+									"line": 25,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L25"
 								}
 							],
 							"type": {
@@ -3025,12 +3101,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The target (texture or renderbuffer) of this attachment"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 23,
+									"line": 27,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L23"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L27"
 								}
 							],
 							"type": {
@@ -3048,9 +3132,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 49,
+									"line": 71,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L49"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L71"
 								}
 							],
 							"signatures": [
@@ -3060,6 +3144,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Attach the target to the FBO.\nThe FBO must be explicitely bound before calling this method."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 143,
@@ -3067,6 +3159,30 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The binding point of the attachment ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_COLOR_ATTACHMENT0`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_DEPTH_ATTACHMENT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -3089,9 +3205,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 58,
+									"line": 85,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L58"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L85"
 								}
 							],
 							"signatures": [
@@ -3101,6 +3217,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Detach the target from the FBO.\nThe FBO must be explicitely bound before calling this method."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 146,
@@ -3108,6 +3232,30 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The binding point of the attachment ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_COLOR_ATTACHMENT0`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_DEPTH_ATTACHMENT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -3130,9 +3278,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 37,
+									"line": 54,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L37"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L54"
 								}
 							],
 							"signatures": [
@@ -3142,6 +3290,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Resize the attachment target."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 139,
@@ -3149,6 +3305,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The new width"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -3160,6 +3324,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The new height"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -3182,9 +3354,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 67,
+									"line": 97,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L67"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L97"
 								}
 							],
 							"signatures": [
@@ -3194,6 +3366,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Delete all webgl objects related to this Attachment."
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -3210,9 +3390,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 33,
+									"line": 45,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L33"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L45"
 								}
 							],
 							"signatures": [
@@ -3222,6 +3402,22 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Getter for the "
+											},
+											{
+												"kind": "code",
+												"text": "`_isTexture`"
+											},
+											{
+												"kind": "text",
+												"text": " property.\nKnow whether the attachment target is a texture or not."
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
@@ -3259,9 +3455,9 @@
 					"sources": [
 						{
 							"fileName": "fbo.ts",
-							"line": 20,
+							"line": 23,
 							"character": 13,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L20"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L23"
 						}
 					]
 				},
@@ -3272,72 +3468,10 @@
 					"kindString": "Class",
 					"flags": {},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the webgl context this Fbo belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "opts",
-								"content": []
-							},
-							{
-								"tag": "@param",
-								"name": "opts.depth",
-								"content": [
-									{
-										"kind": "text",
-										"text": "if true, a depth renderbuffer is attached"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "opts.stencil",
-								"content": [
-									{
-										"kind": "text",
-										"text": "if true, a stencil renderbuffer is attached"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "opts.type",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "opts.format",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the color attachment pixel format."
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "opts.internal",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the internal color attachment pixel format."
-									}
-								]
+								"kind": "text",
+								"text": "This class manages framebuffers and their attachments."
 							}
 						]
 					},
@@ -3352,9 +3486,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 97,
+									"line": 124,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L97"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L124"
 								}
 							],
 							"signatures": [
@@ -3371,6 +3505,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this FBO belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 499,
@@ -3392,12 +3534,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The list of the bindingPoint/attachment pairs setup for this FBO"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 91,
+									"line": 114,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L91"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L114"
 								}
 							],
 							"type": {
@@ -3426,12 +3576,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The list of the attachments setup for this FBO"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 90,
+									"line": 112,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L90"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L112"
 								}
 							],
 							"type": {
@@ -3451,12 +3609,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl framebuffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 88,
+									"line": 109,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L109"
 								}
 							],
 							"type": {
@@ -3474,12 +3640,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this FBO belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 87,
+									"line": 107,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L87"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L107"
 								}
 							],
 							"type": {
@@ -3494,12 +3668,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The height of this FBO"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 94,
+									"line": 119,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L94"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L119"
 								}
 							],
 							"type": {
@@ -3513,12 +3695,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The width of this FBO"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 93,
+									"line": 117,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L93"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L117"
 								}
 							],
 							"type": {
@@ -3535,9 +3725,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 252,
+									"line": 309,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L252"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L309"
 								}
 							],
 							"signatures": [
@@ -3547,6 +3737,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Resize all attachments to the FBO size."
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -3563,9 +3761,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 110,
+									"line": 142,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L110"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L142"
 								}
 							],
 							"signatures": [
@@ -3575,6 +3773,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Add an attachment to this FBO.\nThe FBO must be explicitely bound before calling this method."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 161,
@@ -3582,6 +3788,30 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The binding point of the attachment ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_COLOR_ATTACHMENT0`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_DEPTH_ATTACHMENT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -3593,6 +3823,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The texture or buffer to attach"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 127,
@@ -3617,9 +3855,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 169,
+									"line": 220,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L169"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L220"
 								}
 							],
 							"signatures": [
@@ -3633,7 +3871,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to attach texture to color attachment 0"
+												"text": "Attach a texture to the color attachment 0 of this FBO.\nThe FBO must be explicitely bound before calling this method."
 											}
 										]
 									},
@@ -3645,6 +3883,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel format of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -3658,6 +3920,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel data type of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -3695,9 +3981,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 180,
+									"line": 232,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L180"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L232"
 								}
 							],
 							"signatures": [
@@ -3711,7 +3997,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "shortcut to attach depth/stencil renderbuffer/texture to this FBO"
+												"text": "Attach a renderbuffer/texture to the depth/stencil attachment of this FBO.\n The FBO must be explicitely bound before calling this method."
 											}
 										]
 									},
@@ -3723,6 +4009,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Add depth component or not"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -3738,6 +4032,14 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Add stencil component or not"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "boolean"
@@ -3751,6 +4053,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "Use a Texture2D instead of a RenderBuffer. If true, the depth param must also be true. You also must ensure Depth Texture capability is available on your context."
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -3776,9 +4086,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 209,
+									"line": 261,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L209"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L261"
 								}
 							],
 							"signatures": [
@@ -3792,7 +4102,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Bind the Fbo ( simple shortcut for gl.bindFramebuffer(...) )"
+												"text": "Bind the underlying webgl framebuffer."
 											}
 										]
 									},
@@ -3812,9 +4122,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 217,
+									"line": 269,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L217"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L269"
 								}
 							],
 							"signatures": [
@@ -3824,6 +4134,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Clear all buffers (color, depth and stencil)."
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -3840,9 +4158,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 222,
+									"line": 277,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L222"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L277"
 								}
 							],
 							"signatures": [
@@ -3852,6 +4170,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the webgl viewport to the size of this FBO."
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -3868,9 +4194,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 125,
+									"line": 161,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L161"
 								}
 							],
 							"signatures": [
@@ -3880,6 +4206,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Remove an attachment from this FBO.\nThe FBO must be explicitely bound before calling this method."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 165,
@@ -3887,6 +4221,30 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The binding point of the attachment ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_COLOR_ATTACHMENT0`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_DEPTH_ATTACHMENT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -3909,9 +4267,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 238,
+									"line": 293,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L238"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L293"
 								}
 							],
 							"signatures": [
@@ -3925,7 +4283,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Delete all webgl objects related to this Fbo (fbo, and all attachments )"
+												"text": "Delete all webgl objects related to this FBO."
 											}
 										]
 									},
@@ -3945,9 +4303,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 136,
+									"line": 175,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L136"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L175"
 								}
 							],
 							"signatures": [
@@ -3957,6 +4315,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Get a specific attachment of this FBO (if it exists)"
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 168,
@@ -3964,6 +4330,30 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The binding point of the attachment ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_COLOR_ATTACHMENT0`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_DEPTH_ATTACHMENT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -3996,9 +4386,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 145,
+									"line": 187,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L145"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L187"
 								}
 							],
 							"signatures": [
@@ -4008,13 +4398,31 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Get the color attachment of this FBO (if it exists)"
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 171,
 											"name": "index",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The color attachment index"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -4048,9 +4456,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 151,
+									"line": 196,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L151"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L196"
 								}
 							],
 							"signatures": [
@@ -4060,13 +4468,31 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Get the color texture of this FBO (if it exists)"
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 174,
 											"name": "index",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The color attachment index"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -4091,9 +4517,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 158,
+									"line": 205,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L158"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L205"
 								}
 							],
 							"signatures": [
@@ -4103,6 +4529,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Get the depth attachment of this FBO (if it exists)"
+											}
+										]
+									},
 									"type": {
 										"type": "union",
 										"types": [
@@ -4129,9 +4563,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 230,
+									"line": 285,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L230"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L285"
 								}
 							],
 							"signatures": [
@@ -4145,7 +4579,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Check if the Fbo is valid,\nThe Fbo must be explicitely bound before calling this method"
+												"text": "Check if the FBO is valid.\nThe FBO must be explicitely bound before calling this method."
 											}
 										]
 									},
@@ -4165,9 +4599,9 @@
 							"sources": [
 								{
 									"fileName": "fbo.ts",
-									"line": 198,
+									"line": 250,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L198"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L250"
 								}
 							],
 							"signatures": [
@@ -4181,7 +4615,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Resize FBO attachments"
+												"text": "Resize the FBO and its attachments."
 											}
 										]
 									},
@@ -4196,7 +4630,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "new width"
+														"text": "The new width"
 													}
 												]
 											},
@@ -4215,7 +4649,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "new height"
+														"text": "The new height"
 													}
 												]
 											},
@@ -4275,9 +4709,9 @@
 					"sources": [
 						{
 							"fileName": "fbo.ts",
-							"line": 85,
+							"line": 105,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L85"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L105"
 						}
 					]
 				},
@@ -4292,7 +4726,7 @@
 							"fileName": "fbo.ts",
 							"line": 18,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L18"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L18"
 						}
 					],
 					"type": {
@@ -4332,7 +4766,7 @@
 					"fileName": "fbo.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/fbo.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/fbo.ts#L1"
 				}
 			]
 		},
@@ -4350,51 +4784,10 @@
 					"kindString": "Class",
 					"flags": {},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@implements",
-								"content": []
-							},
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "then webgl context this ArrayBuffer belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "type",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the inetger type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "data",
-								"content": [
-									{
-										"kind": "text",
-										"text": "optional data to copy to buffer, or the size (in bytes)"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "usage",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the usage hint for this buffer."
-									}
-								]
+								"kind": "text",
+								"text": "This class manages ELEMENT_ARRAY_BUFFER type buffers."
 							}
 						]
 					},
@@ -4409,9 +4802,9 @@
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 28,
+									"line": 35,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L28"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L35"
 								}
 							],
 							"signatures": [
@@ -4428,6 +4821,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this IndexBuffer belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 499,
@@ -4439,7 +4840,33 @@
 											"name": "type",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The number type of the index data ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_INT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -4453,6 +4880,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The data to fill the buffer with, or the size (in bytes)"
+													}
+												]
 											},
 											"type": {
 												"type": "union",
@@ -4475,7 +4910,33 @@
 											"name": "usage",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The usage hint for this buffer ("
+													},
+													{
+														"kind": "code",
+														"text": "`STATIC_DRAW`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`DYNAMIC_DRAW`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -4489,6 +4950,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "A WebGLBuffer to use instead of creating a new one"
+													}
+												]
 											},
 											"type": {
 												"type": "reference",
@@ -4524,12 +4993,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl buffer this IndexBuffer writes to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 21,
+									"line": 17,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L21"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L17"
 								}
 							],
 							"type": {
@@ -4545,12 +5022,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The length in bytes of the buffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
 									"line": 26,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L26"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L26"
 								}
 							],
 							"type": {
@@ -4566,12 +5051,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this IndexBuffer belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 20,
+									"line": 15,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L20"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L15"
 								}
 							],
 							"type": {
@@ -4586,12 +5079,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The number type of the index data for this buffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 24,
+									"line": 22,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L24"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L22"
 								}
 							],
 							"type": {
@@ -4605,12 +5106,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The number of bytes for each index in this buffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 25,
+									"line": 24,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L25"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L24"
 								}
 							],
 							"type": {
@@ -4624,12 +5133,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The usage hint for this buffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 23,
+									"line": 20,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L23"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L20"
 								}
 							],
 							"type": {
@@ -4646,9 +5163,9 @@
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 49,
+									"line": 53,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L49"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L53"
 								}
 							],
 							"signatures": [
@@ -4694,7 +5211,7 @@
 									"fileName": "indexbuffer.ts",
 									"line": 66,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L66"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L66"
 								}
 							],
 							"signatures": [
@@ -4708,7 +5225,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size."
+												"text": "Fill the webgl buffer with the given data. You can also pass a number instead to allocate the buffer to a given size."
 											}
 										]
 									},
@@ -4723,7 +5240,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the data to send to the buffer, or a size."
+														"text": "The data to use, or a size"
 													}
 												]
 											},
@@ -4770,9 +5287,9 @@
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 89,
+									"line": 81,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L81"
 								}
 							],
 							"signatures": [
@@ -4786,7 +5303,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Delete underlying webgl objects"
+												"text": "Delete all webgl objects related to this BaseBuffer."
 											}
 										]
 									},
@@ -4816,9 +5333,9 @@
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 99,
+									"line": 91,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L91"
 								}
 							],
 							"signatures": [
@@ -4847,7 +5364,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)"
+														"text": "The type of primitive to draw ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_TRIANGLE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_POINTS`"
+													},
+													{
+														"kind": "text",
+														"text": " etc)"
 													}
 												]
 											},
@@ -4868,7 +5401,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the number of indices to draw (full buffer is used if omited)"
+														"text": "The number of indices to draw (the full buffer is used if omited)"
 													}
 												]
 											},
@@ -4889,7 +5422,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the position of the first index to draw"
+														"text": "The position of the first index to draw"
 													}
 												]
 											},
@@ -4926,9 +5459,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 61,
+									"line": 59,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L61"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L59"
 								}
 							],
 							"signatures": [
@@ -5020,9 +5553,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 70,
+									"line": 68,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L70"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L68"
 								}
 							],
 							"signatures": [
@@ -5036,7 +5569,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.LINE_STRIP, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.LINE_STRIP, offset, count)`"
 											}
 										]
 									},
@@ -5110,9 +5647,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 52,
+									"line": 50,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L52"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L50"
 								}
 							],
 							"signatures": [
@@ -5204,9 +5741,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 42,
+									"line": 41,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L41"
 								}
 							],
 							"signatures": [
@@ -5298,9 +5835,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 97,
+									"line": 95,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L97"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L95"
 								}
 							],
 							"signatures": [
@@ -5314,7 +5851,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_FAN, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLE_FAN, offset, count)`"
 											}
 										]
 									},
@@ -5388,9 +5929,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 88,
+									"line": 86,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L88"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L86"
 								}
 							],
 							"signatures": [
@@ -5404,7 +5945,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLE_STRIP, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLE_STRIP, offset, count)`"
 											}
 										]
 									},
@@ -5478,9 +6023,9 @@
 							"sources": [
 								{
 									"fileName": "basebuffer.ts",
-									"line": 79,
+									"line": 77,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/basebuffer.ts#L79"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/basebuffer.ts#L77"
 								}
 							],
 							"signatures": [
@@ -5494,7 +6039,11 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut to gl.drawArrays( gl.TRIANGLES, offset, count )"
+												"text": "Shortcut to "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.drawArrays(gl.TRIANGLES, offset, count)`"
 											}
 										]
 									},
@@ -5568,9 +6117,9 @@
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 57,
+									"line": 61,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L57"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L61"
 								}
 							],
 							"signatures": [
@@ -5584,7 +6133,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Change the type of internal type of the IndexBuffer"
+												"text": "Change the internal type of the index data of the IndexBuffer"
 											}
 										]
 									},
@@ -5599,7 +6148,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the integer type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)"
+														"text": "the number type of the index data ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_INT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc)"
 													}
 												]
 											},
@@ -5625,9 +6190,9 @@
 							"sources": [
 								{
 									"fileName": "indexbuffer.ts",
-									"line": 79,
+									"line": 74,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L79"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L74"
 								}
 							],
 							"signatures": [
@@ -5641,7 +6206,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set a part of the buffer with the given data, starting a offset (in bytes)"
+												"text": "Set part of the buffer with the given data, starting at an offset."
 											}
 										]
 									},
@@ -5656,7 +6221,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the data to send to buffer"
+														"text": "The data to use"
 													}
 												]
 											},
@@ -5677,7 +6242,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the offset in byte where the data will be written"
+														"text": "The offset (in bytes) where the data should start to be written"
 													}
 												]
 											},
@@ -5745,9 +6310,9 @@
 					"sources": [
 						{
 							"fileName": "indexbuffer.ts",
-							"line": 18,
+							"line": 13,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L18"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L13"
 						}
 					],
 					"extendedTypes": [
@@ -5772,7 +6337,7 @@
 					"fileName": "indexbuffer.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/indexbuffer.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/indexbuffer.ts#L1"
 				}
 			]
 		},
@@ -5793,114 +6358,7 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Program constructor. Create gl program and shaders. You can pass optional shader code to immediatly compile shaders"
-							}
-						],
-						"blockTags": [
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "webgl context this program belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "vert",
-								"content": [
-									{
-										"kind": "text",
-										"text": "an optional vertex shader code. See "
-									},
-									{
-										"kind": "inline-tag",
-										"tag": "@link",
-										"text": "compile",
-										"target": 286
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "frag",
-								"content": [
-									{
-										"kind": "text",
-										"text": "an optional fragment shader code See "
-									},
-									{
-										"kind": "inline-tag",
-										"tag": "@link",
-										"text": "compile",
-										"target": 286
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "defs",
-								"content": [
-									{
-										"kind": "text",
-										"text": "an optional string prepend to both fragment and vertex shader code. See "
-									},
-									{
-										"kind": "inline-tag",
-										"tag": "@link",
-										"text": "compile",
-										"target": 286
-									},
-									{
-										"kind": "text",
-										"text": "."
-									}
-								]
-							},
-							{
-								"tag": "@see",
-								"content": [
-									{
-										"kind": "inline-tag",
-										"tag": "@link",
-										"text": "compile",
-										"target": 286
-									}
-								]
-							},
-							{
-								"tag": "@example",
-								"content": [
-									{
-										"kind": "text",
-										"text": "For the given vertex shader\n"
-									},
-									{
-										"kind": "code",
-										"text": "```ts\nattribute vec3 aPosition;\nuniform mat4 uMVP;\nuniform vec3 uCameraPosition;\n```"
-									}
-								]
-							},
-							{
-								"tag": "@classdesc",
-								"content": [
-									{
-										"kind": "text",
-										"text": "Program class provide shader compilation and linking functionality.\n             It also give you convenient access to active uniforms and attributes.\n             Once compiled, the Program object list all used uniforms/attributes and provide getter/setter function for each one. See "
-									},
-									{
-										"kind": "inline-tag",
-										"tag": "@link",
-										"text": "Program",
-										"target": 266
-									},
-									{
-										"kind": "text",
-										"text": " constructor."
-									}
-								]
+								"text": "This class provides provides shader compilation and webgl program linking functionality.\nIt also give you convenient access to active uniforms and attributes."
 							}
 						]
 					},
@@ -5915,9 +6373,9 @@
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 52,
+									"line": 47,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L52"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L47"
 								}
 							],
 							"signatures": [
@@ -5927,6 +6385,24 @@
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "You can pass optional shader code to immediatly compile shaders or compile them later with "
+											},
+											{
+												"kind": "inline-tag",
+												"tag": "@link",
+												"text": "compile",
+												"target": 286
+											},
+											{
+												"kind": "text",
+												"text": ".\n *"
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 270,
@@ -5934,6 +6410,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this Program belongs to\n *"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 499,
@@ -5948,6 +6432,14 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The vertex shader code\n *"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -5961,6 +6453,14 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The fragment shader code\n *"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "string"
@@ -5973,6 +6473,14 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "A string to prepend to both fragment and vertex shader code"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -5994,12 +6502,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Unique id for the program that updates every time it is compiled"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 48,
+									"line": 36,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L48"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L36"
 								}
 							],
 							"type": {
@@ -6013,12 +6529,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Unique id for the program"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 47,
+									"line": 34,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L47"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L34"
 								}
 							],
 							"type": {
@@ -6034,12 +6558,20 @@
 							"flags": {
 								"isProtected": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The list of uniform & attribute names"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 44,
+									"line": 29,
 									"character": 12,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L44"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L29"
 								}
 							],
 							"type": {
@@ -6058,12 +6590,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl fragment shader"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 42,
+									"line": 26,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L26"
 								}
 							],
 							"type": {
@@ -6081,12 +6621,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this Program belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 38,
+									"line": 19,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L19"
 								}
 							],
 							"type": {
@@ -6103,12 +6651,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl program"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 40,
+									"line": 22,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L40"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L22"
 								}
 							],
 							"type": {
@@ -6124,12 +6680,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Whether the program is ready to use or not"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 46,
+									"line": 32,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L46"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L32"
 								}
 							],
 							"type": {
@@ -6145,12 +6709,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl vertex shader"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 41,
+									"line": 24,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L24"
 								}
 							],
 							"type": {
@@ -6172,16 +6744,16 @@
 								"summary": [
 									{
 										"kind": "text",
-										"text": "Program.debug\n  can be set to true to check and log compilation and linking errors (default to false)"
+										"text": "Can be set to true to check and log compilation and linking errors"
 									}
 								]
 							},
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 36,
+									"line": 17,
 									"character": 9,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L36"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L17"
 								}
 							],
 							"type": {
@@ -6199,9 +6771,9 @@
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 138,
+									"line": 148,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L138"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L148"
 								}
 							],
 							"signatures": [
@@ -6211,6 +6783,37 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "List all uniforms and attributes and create a helper function for each on Program instance."
+											}
+										],
+										"blockTags": [
+											{
+												"tag": "@example",
+												"content": [
+													{
+														"kind": "text",
+														"text": "For a uniform\n"
+													},
+													{
+														"kind": "code",
+														"text": "```js\nuniform vec3 uDirection;\n```"
+													},
+													{
+														"kind": "text",
+														"text": "\nit creates a method\n"
+													},
+													{
+														"kind": "code",
+														"text": "```js\nprogram.uDirection(1, 0, 0);\n```"
+													}
+												]
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -6227,9 +6830,9 @@
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 81,
+									"line": 79,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L81"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L79"
 								}
 							],
 							"signatures": [
@@ -6239,6 +6842,20 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Alias for "
+											},
+											{
+												"kind": "inline-tag",
+												"tag": "@link",
+												"text": "use",
+												"target": 282
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -6255,9 +6872,9 @@
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 92,
+									"line": 90,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L92"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L90"
 								}
 							],
 							"signatures": [
@@ -6271,7 +6888,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Compile vertex and fragment shader then link gl program\nThis method can be safely called several times."
+												"text": "Compile vertex and fragment shader, then link webgl program.\nThis method can be safely called several times."
 											}
 										]
 									},
@@ -6286,7 +6903,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "vertex shader code"
+														"text": "The vertex shader code"
 													}
 												]
 											},
@@ -6305,7 +6922,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "fragment shader code"
+														"text": "The fragment shader code"
 													}
 												]
 											},
@@ -6326,7 +6943,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "an optional string append to both fragment and vertex code"
+														"text": "A string to prepend to both fragment and vertex shader code"
 													}
 												]
 											},
@@ -6352,9 +6969,9 @@
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 123,
+									"line": 121,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L123"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L121"
 								}
 							],
 							"signatures": [
@@ -6368,7 +6985,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Delete program and shaders"
+												"text": "Delete all webgl objects related to this Program."
 											}
 										]
 									},
@@ -6388,9 +7005,9 @@
 							"sources": [
 								{
 									"fileName": "program.ts",
-									"line": 74,
+									"line": 69,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L74"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L69"
 								}
 							],
 							"signatures": [
@@ -6404,7 +7021,15 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Shortcut for gl.useProgram()\nalias program.bind()"
+												"text": "Bind the underlying webgl program.\nShortcut for "
+											},
+											{
+												"kind": "code",
+												"text": "`gl.useProgram()`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -6451,9 +7076,9 @@
 					"sources": [
 						{
 							"fileName": "program.ts",
-							"line": 31,
+							"line": 15,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L31"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L15"
 						}
 					],
 					"indexSignature": {
@@ -6494,7 +7119,7 @@
 					"fileName": "program.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/program.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/program.ts#L1"
 				}
 			]
 		},
@@ -6512,36 +7137,10 @@
 					"kindString": "Class",
 					"flags": {},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@classdesc",
-								"content": [
-									{
-										"kind": "text",
-										"text": "RenderBuffer class manage renderbuffers"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "webgl context the texture belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "format",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the pixel internal format, default to gl.DEPTH_COMPONENT16"
-									}
-								]
+								"kind": "text",
+								"text": "This class manages renderbuffers."
 							}
 						]
 					},
@@ -6556,9 +7155,9 @@
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 27,
+									"line": 35,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L27"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L35"
 								}
 							],
 							"signatures": [
@@ -6575,6 +7174,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this RenderBuffer belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 499,
@@ -6586,7 +7193,33 @@
 											"name": "format",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel internal format of the renderbuffer ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -6597,7 +7230,17 @@
 											"name": "samples",
 											"kind": 32768,
 											"kindString": "Parameter",
-											"flags": {},
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The number of samples to be used for the renderbuffer storage (webgl2 only)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -6621,12 +7264,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Unique id for the RenderBuffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 24,
+									"line": 26,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L24"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L26"
 								}
 							],
 							"type": {
@@ -6642,12 +7293,20 @@
 							"flags": {
 								"isPrivate": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Whether the RenderBuffer is valid or not"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 25,
+									"line": 28,
 									"character": 10,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L25"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L28"
 								}
 							],
 							"type": {
@@ -6663,12 +7322,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel internal format of the renderbuffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 19,
+									"line": 18,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L19"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L18"
 								}
 							],
 							"type": {
@@ -6684,12 +7351,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this RenderBuffer belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 16,
+									"line": 12,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L16"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L12"
 								}
 							],
 							"type": {
@@ -6704,12 +7379,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The height of the renderbuffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 22,
+									"line": 23,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L23"
 								}
 							],
 							"type": {
@@ -6725,12 +7408,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl renderbuffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 17,
+									"line": 14,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L14"
 								}
 							],
 							"type": {
@@ -6748,12 +7439,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The number of samples used for the renderbuffer storage (webgl2 only)"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 18,
+									"line": 16,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L18"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L16"
 								}
 							],
 							"type": {
@@ -6768,12 +7467,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The width of the renderbuffer"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
 									"line": 21,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L21"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L21"
 								}
 							],
 							"type": {
@@ -6790,9 +7497,9 @@
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 90,
+									"line": 98,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L90"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L98"
 								}
 							],
 							"signatures": [
@@ -6802,6 +7509,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Allocate webgl renderbuffer with current parameters."
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "void"
@@ -6818,9 +7533,9 @@
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 65,
+									"line": 74,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L74"
 								}
 							],
 							"signatures": [
@@ -6834,7 +7549,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "check renderbuffer for  validity and allocate it if invalid.\nthis method may leave RENDERBUFFER binding point empty"
+												"text": "Check renderbuffer for validity and allocate it if invalid.\nThis method may leave RENDERBUFFER binding point empty."
 											}
 										]
 									},
@@ -6854,9 +7569,9 @@
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 75,
+									"line": 84,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L75"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L84"
 								}
 							],
 							"signatures": [
@@ -6870,7 +7585,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Bind the renderbuffer"
+												"text": "Bind the underlying webgl renderbuffer."
 											}
 										]
 									},
@@ -6890,9 +7605,9 @@
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 83,
+									"line": 91,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L83"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L91"
 								}
 							],
 							"signatures": [
@@ -6906,7 +7621,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "delete the webgl renderbuffer"
+												"text": "Delete all webgl objects related to this RenderBuffer."
 											}
 										]
 									},
@@ -6926,9 +7641,9 @@
 							"sources": [
 								{
 									"fileName": "renderbuffer.ts",
-									"line": 53,
+									"line": 62,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L53"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L62"
 								}
 							],
 							"signatures": [
@@ -6938,6 +7653,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Resize the RenderBuffer."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 314,
@@ -6945,6 +7668,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The new width"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -6956,6 +7687,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The new height"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -7004,9 +7743,9 @@
 					"sources": [
 						{
 							"fileName": "renderbuffer.ts",
-							"line": 14,
+							"line": 10,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L14"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L10"
 						}
 					]
 				}
@@ -7024,7 +7763,7 @@
 					"fileName": "renderbuffer.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/renderbuffer.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/renderbuffer.ts#L1"
 				}
 			]
 		},
@@ -7042,26 +7781,10 @@
 					"kindString": "Class",
 					"flags": {},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@classdesc",
-								"content": [
-									{
-										"kind": "text",
-										"text": "Sampler class wrapper for GLES3 Samplers"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "webgl context the sampler belongs to"
-									}
-								]
+								"kind": "text",
+								"text": "This class manages GLES3 Samplers."
 							}
 						]
 					},
@@ -7076,9 +7799,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 17,
+									"line": 20,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L20"
 								}
 							],
 							"signatures": [
@@ -7095,6 +7818,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this Sampler belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"name": "WebGL2RenderingContext",
@@ -7119,12 +7850,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Unique id for the Sampler"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 12,
+									"line": 10,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L12"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L10"
 								}
 							],
 							"type": {
@@ -7138,12 +7877,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this Sampler belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 14,
+									"line": 13,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L14"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L13"
 								}
 							],
 							"type": {
@@ -7159,12 +7906,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl sampler"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "sampler.ts",
 									"line": 15,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L15"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L15"
 								}
 							],
 							"type": {
@@ -7183,9 +7938,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 28,
+									"line": 31,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L28"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L31"
 								}
 							],
 							"signatures": [
@@ -7199,7 +7954,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Bind the sampler"
+												"text": "Bind the underlying webgl sampler."
 											}
 										]
 									},
@@ -7216,7 +7971,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "texture unit to on which bind the sampler"
+														"text": "The texture unit to make active before binding"
 													}
 												]
 											},
@@ -7242,9 +7997,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 62,
+									"line": 66,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L62"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L66"
 								}
 							],
 							"signatures": [
@@ -7258,7 +8013,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE"
+												"text": "Make sampler clamp :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_CLAMP_TO_EDGE`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -7278,9 +8057,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 36,
+									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L36"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L38"
 								}
 							],
 							"signatures": [
@@ -7294,7 +8073,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "delete the webgl sampler"
+												"text": "Delete all webgl objects related to this Sampler."
 											}
 										]
 									},
@@ -7314,9 +8093,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 69,
+									"line": 74,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L69"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L74"
 								}
 							],
 							"signatures": [
@@ -7330,7 +8109,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT"
+												"text": "Make sampler mirror :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_MIRRORED_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -7350,9 +8153,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 55,
+									"line": 58,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L55"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L58"
 								}
 							],
 							"signatures": [
@@ -7366,7 +8169,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.REPEAT"
+												"text": "Make sampler repeat :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -7386,9 +8213,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 46,
+									"line": 48,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L46"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L48"
 								}
 							],
 							"signatures": [
@@ -7419,7 +8246,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use LINEAR filtering"
+														"text": "Use linear filtering or not"
 													}
 												]
 											},
@@ -7441,7 +8268,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, enable mipmaping"
+														"text": "Enable mipmapping or not"
 													}
 												]
 											},
@@ -7463,7 +8290,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use linear Mipmapping"
+														"text": "Use linear mipmapping or not"
 													}
 												]
 											},
@@ -7490,9 +8317,9 @@
 							"sources": [
 								{
 									"fileName": "sampler.ts",
-									"line": 77,
+									"line": 82,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L82"
 								}
 							],
 							"signatures": [
@@ -7506,7 +8333,23 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to the given value"
+												"text": "Set the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to the given value."
 											}
 										]
 									},
@@ -7521,7 +8364,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the wrap enum"
+														"text": "The wrap value to use ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_REPEAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_CLAMP_TO_EDGE`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
 													}
 												]
 											},
@@ -7570,9 +8429,9 @@
 					"sources": [
 						{
 							"fileName": "sampler.ts",
-							"line": 11,
+							"line": 8,
 							"character": 6,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L11"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L8"
 						}
 					]
 				}
@@ -7590,7 +8449,7 @@
 					"fileName": "sampler.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/sampler.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/sampler.ts#L1"
 				}
 			]
 		},
@@ -7608,56 +8467,10 @@
 					"kindString": "Class",
 					"flags": {},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@classdesc",
-								"content": [
-									{
-										"kind": "text",
-										"text": "Texture class manage TEXTURE_2D types textures"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "webgl context the texture belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "[format",
-								"content": [
-									{
-										"kind": "text",
-										"text": "=GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "[type",
-								"content": [
-									{
-										"kind": "text",
-										"text": "=GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "internal",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)"
-									}
-								]
+								"kind": "text",
+								"text": "This class manages TEXTURE_2D type textures."
 							}
 						]
 					},
@@ -7674,7 +8487,7 @@
 									"fileName": "texture-2d.ts",
 									"line": 22,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-2d.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-2d.ts#L22"
 								}
 							],
 							"signatures": [
@@ -7691,6 +8504,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this Texture belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 499,
@@ -7705,6 +8526,30 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel format of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -7717,6 +8562,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel data type of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -7761,12 +8630,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The binding point for this Texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-2d.ts",
-									"line": 19,
+									"line": 13,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-2d.ts#L19"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-2d.ts#L13"
 								}
 							],
 							"type": {
@@ -7788,12 +8665,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Unique id for the Texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
 									"line": 45,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L45"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L45"
 								}
 							],
 							"type": {
@@ -7812,12 +8697,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel format of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 41,
+									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L38"
 								}
 							],
 							"type": {
@@ -7839,12 +8732,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this Texture belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 34,
+									"line": 28,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L28"
 								}
 							],
 							"type": {
@@ -7864,12 +8765,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The height of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 39,
+									"line": 35,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L39"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L35"
 								}
 							],
 							"type": {
@@ -7890,12 +8799,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 35,
+									"line": 30,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L30"
 								}
 							],
 							"type": {
@@ -7916,12 +8833,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel internal format of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 42,
+									"line": 40,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L40"
 								}
 							],
 							"type": {
@@ -7943,12 +8868,36 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The type of webgl texture ("
+									},
+									{
+										"kind": "code",
+										"text": "`TEXTURE_2D`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`TEXTURE_CUBE`"
+									},
+									{
+										"kind": "text",
+										"text": ", etc)"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-2d.ts",
-									"line": 17,
+									"line": 11,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-2d.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-2d.ts#L11"
 								}
 							],
 							"type": {
@@ -7969,12 +8918,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel data type of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 43,
+									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L43"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L42"
 								}
 							],
 							"type": {
@@ -7994,12 +8951,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The width of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 38,
+									"line": 33,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L33"
 								}
 							],
 							"type": {
@@ -8021,9 +8986,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 77,
+									"line": 81,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L81"
 								}
 							],
 							"signatures": [
@@ -8037,7 +9002,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Bind the texture"
+												"text": "Bind the underlying webgl texture."
 											}
 										]
 									},
@@ -8054,7 +9019,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "optional texture unit to make active before binding"
+														"text": "The texture unit to make active before binding"
 													}
 												]
 											},
@@ -8090,9 +9055,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 117,
+									"line": 122,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L117"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L122"
 								}
 							],
 							"signatures": [
@@ -8106,7 +9071,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE"
+												"text": "Make texture clamp :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_CLAMP_TO_EDGE`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -8137,9 +9126,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 89,
+									"line": 92,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L92"
 								}
 							],
 							"signatures": [
@@ -8153,7 +9142,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "delete the webgl texture"
+												"text": "Delete all webgl objects related to this Texture."
 											}
 										]
 									},
@@ -8183,9 +9172,9 @@
 							"sources": [
 								{
 									"fileName": "texture-2d.ts",
-									"line": 50,
+									"line": 51,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-2d.ts#L50"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-2d.ts#L51"
 								}
 							],
 							"signatures": [
@@ -8199,7 +9188,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Allocate texture to the given size, with optional data (TypedArray) and data type"
+												"text": "Set the texture data from a TypedArray.\nYou can also allocate an empty texture by providing only the size."
 											}
 										]
 									},
@@ -8214,7 +9203,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the new texture's width"
+														"text": "The width of the texture"
 													}
 												]
 											},
@@ -8233,7 +9222,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the new texture's height"
+														"text": "The height of the texture"
 													}
 												]
 											},
@@ -8254,7 +9243,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "TypedArray of texture data, can be null"
+														"text": "The data to fill the texture with, or null to allocate an empty texture"
 													}
 												]
 											},
@@ -8292,9 +9281,9 @@
 							"sources": [
 								{
 									"fileName": "texture-2d.ts",
-									"line": 33,
+									"line": 34,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-2d.ts#L33"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-2d.ts#L34"
 								}
 							],
 							"signatures": [
@@ -8308,7 +9297,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "set texture data from html source"
+												"text": "Set the texture data from an HTML source."
 											}
 										]
 									},
@@ -8319,6 +9308,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The HTML image, canvas or video element to use as source"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"name": "TexImageSource",
@@ -8343,9 +9340,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 125,
+									"line": 131,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L131"
 								}
 							],
 							"signatures": [
@@ -8359,7 +9356,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT"
+												"text": "Make texture mirror :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_MIRRORED_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -8390,9 +9411,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 109,
+									"line": 113,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L109"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L113"
 								}
 							],
 							"signatures": [
@@ -8406,7 +9427,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.REPEAT"
+												"text": "Make texture repeat :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -8437,9 +9482,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 99,
+									"line": 102,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L102"
 								}
 							],
 							"signatures": [
@@ -8470,7 +9515,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use LINEAR filtering"
+														"text": "Use linear filtering or not"
 													}
 												]
 											},
@@ -8492,7 +9537,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, enable mipmaping"
+														"text": "Enable mipmapping or not"
 													}
 												]
 											},
@@ -8514,7 +9559,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use linear Mipmapping"
+														"text": "Use linear mipmapping or not"
 													}
 												]
 											},
@@ -8552,9 +9597,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 65,
+									"line": 71,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L71"
 								}
 							],
 							"signatures": [
@@ -8568,7 +9613,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "define underlying format, internal format and data type of texture"
+												"text": "Define underlying format, internal format and data type of the texture."
 											}
 										]
 									},
@@ -8580,6 +9625,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel format of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -8594,6 +9663,30 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel data type of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -8606,14 +9699,6 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
-											},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)"
-													}
-												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -8647,9 +9732,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 134,
+									"line": 140,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L134"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L140"
 								}
 							],
 							"signatures": [
@@ -8663,7 +9748,23 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to the given value"
+												"text": "Set the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to the given value."
 											}
 										]
 									},
@@ -8678,7 +9779,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the wrap enum"
+														"text": "The wrap value to use ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_REPEAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_CLAMP_TO_EDGE`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
 													}
 												]
 											},
@@ -8748,9 +9865,9 @@
 					"sources": [
 						{
 							"fileName": "texture-2d.ts",
-							"line": 15,
+							"line": 9,
 							"character": 21,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-2d.ts#L15"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-2d.ts#L9"
 						}
 					],
 					"extendedTypes": [
@@ -8775,7 +9892,7 @@
 					"fileName": "texture-2d.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-2d.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-2d.ts#L1"
 				}
 			]
 		},
@@ -8804,7 +9921,7 @@
 									"fileName": "texture-base.ts",
 									"line": 10,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L10"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L10"
 								}
 							],
 							"type": {
@@ -8823,7 +9940,7 @@
 									"fileName": "texture-base.ts",
 									"line": 11,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L11"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L11"
 								}
 							],
 							"type": {
@@ -8842,7 +9959,7 @@
 									"fileName": "texture-base.ts",
 									"line": 12,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L12"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L12"
 								}
 							],
 							"type": {
@@ -8861,7 +9978,7 @@
 									"fileName": "texture-base.ts",
 									"line": 14,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L14"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L14"
 								}
 							],
 							"type": {
@@ -8880,7 +9997,7 @@
 									"fileName": "texture-base.ts",
 									"line": 13,
 									"character": 4,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L13"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L13"
 								}
 							],
 							"type": {
@@ -8906,7 +10023,7 @@
 							"fileName": "texture-base.ts",
 							"line": 9,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L9"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L9"
 						}
 					]
 				},
@@ -8919,56 +10036,10 @@
 						"isAbstract": true
 					},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@classdesc",
-								"content": [
-									{
-										"kind": "text",
-										"text": "Texture class manage TEXTURE_2D types textures"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "webgl context the texture belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "[format",
-								"content": [
-									{
-										"kind": "text",
-										"text": "=GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "[type",
-								"content": [
-									{
-										"kind": "text",
-										"text": "=GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "internal",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)"
-									}
-								]
+								"kind": "text",
+								"text": "This class is the base for all texture classes."
 							}
 						]
 					},
@@ -8983,9 +10054,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 49,
+									"line": 56,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L49"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L56"
 								}
 							],
 							"signatures": [
@@ -9002,6 +10073,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this Texture belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 499,
@@ -9016,6 +10095,30 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel format of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -9028,6 +10131,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel data type of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -9064,12 +10191,20 @@
 							"flags": {
 								"isAbstract": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The binding point for this Texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 47,
+									"line": 48,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L47"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L48"
 								}
 							],
 							"type": {
@@ -9085,12 +10220,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Unique id for the Texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
 									"line": 45,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L45"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L45"
 								}
 							],
 							"type": {
@@ -9104,12 +10247,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel format of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 41,
+									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L38"
 								}
 							],
 							"type": {
@@ -9126,12 +10277,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this Texture belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 34,
+									"line": 28,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L28"
 								}
 							],
 							"type": {
@@ -9146,12 +10305,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The height of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 39,
+									"line": 35,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L39"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L35"
 								}
 							],
 							"type": {
@@ -9167,12 +10334,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 35,
+									"line": 30,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L30"
 								}
 							],
 							"type": {
@@ -9188,12 +10363,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel internal format of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 42,
+									"line": 40,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L40"
 								}
 							],
 							"type": {
@@ -9210,12 +10393,36 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The type of webgl texture ("
+									},
+									{
+										"kind": "code",
+										"text": "`TEXTURE_2D`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`TEXTURE_CUBE`"
+									},
+									{
+										"kind": "text",
+										"text": ", etc)"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 32,
+									"line": 25,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L32"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L25"
 								}
 							],
 							"type": {
@@ -9231,12 +10438,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel data type of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 43,
+									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L43"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L42"
 								}
 							],
 							"type": {
@@ -9251,12 +10466,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The width of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 38,
+									"line": 33,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L33"
 								}
 							],
 							"type": {
@@ -9273,9 +10496,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 77,
+									"line": 81,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L81"
 								}
 							],
 							"signatures": [
@@ -9289,7 +10512,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Bind the texture"
+												"text": "Bind the underlying webgl texture."
 											}
 										]
 									},
@@ -9306,7 +10529,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "optional texture unit to make active before binding"
+														"text": "The texture unit to make active before binding"
 													}
 												]
 											},
@@ -9332,9 +10555,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 117,
+									"line": 122,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L117"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L122"
 								}
 							],
 							"signatures": [
@@ -9348,7 +10571,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE"
+												"text": "Make texture clamp :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_CLAMP_TO_EDGE`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -9369,9 +10616,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 89,
+									"line": 92,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L92"
 								}
 							],
 							"signatures": [
@@ -9385,7 +10632,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "delete the webgl texture"
+												"text": "Delete all webgl objects related to this Texture."
 											}
 										]
 									},
@@ -9405,9 +10652,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 125,
+									"line": 131,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L131"
 								}
 							],
 							"signatures": [
@@ -9421,7 +10668,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT"
+												"text": "Make texture mirror :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_MIRRORED_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -9442,9 +10713,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 109,
+									"line": 113,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L109"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L113"
 								}
 							],
 							"signatures": [
@@ -9458,7 +10729,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.REPEAT"
+												"text": "Make texture repeat :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -9479,9 +10774,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 99,
+									"line": 102,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L102"
 								}
 							],
 							"signatures": [
@@ -9512,7 +10807,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use LINEAR filtering"
+														"text": "Use linear filtering or not"
 													}
 												]
 											},
@@ -9534,7 +10829,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, enable mipmaping"
+														"text": "Enable mipmapping or not"
 													}
 												]
 											},
@@ -9556,7 +10851,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use linear Mipmapping"
+														"text": "Use linear mipmapping or not"
 													}
 												]
 											},
@@ -9584,9 +10879,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 65,
+									"line": 71,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L71"
 								}
 							],
 							"signatures": [
@@ -9600,7 +10895,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "define underlying format, internal format and data type of texture"
+												"text": "Define underlying format, internal format and data type of the texture."
 											}
 										]
 									},
@@ -9612,6 +10907,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel format of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -9626,6 +10945,30 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel data type of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -9638,14 +10981,6 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
-											},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)"
-													}
-												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -9669,9 +11004,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 134,
+									"line": 140,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L134"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L140"
 								}
 							],
 							"signatures": [
@@ -9685,7 +11020,23 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to the given value"
+												"text": "Set the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to the given value."
 											}
 										]
 									},
@@ -9700,7 +11051,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the wrap enum"
+														"text": "The wrap value to use ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_REPEAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_CLAMP_TO_EDGE`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
 													}
 												]
 											},
@@ -9758,9 +11125,9 @@
 					"sources": [
 						{
 							"fileName": "texture-base.ts",
-							"line": 30,
+							"line": 23,
 							"character": 30,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L30"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L23"
 						}
 					],
 					"extendedBy": [
@@ -9787,7 +11154,7 @@
 							"fileName": "texture-base.ts",
 							"line": 18,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L18"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L18"
 						}
 					],
 					"type": {
@@ -9832,7 +11199,7 @@
 					"fileName": "texture-base.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L1"
 				}
 			]
 		},
@@ -9850,56 +11217,10 @@
 					"kindString": "Class",
 					"flags": {},
 					"comment": {
-						"summary": [],
-						"blockTags": [
+						"summary": [
 							{
-								"tag": "@classdesc",
-								"content": [
-									{
-										"kind": "text",
-										"text": "Texture class manage TEXTURE_CUBE types textures"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "gl",
-								"content": [
-									{
-										"kind": "text",
-										"text": "webgl context the texture belongs to"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "[format",
-								"content": [
-									{
-										"kind": "text",
-										"text": "=GL_RGB] the pixel format, default to gl.RGB (can be gl.RGB, gl.RGBA, gl.LUMINANCE...)"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "[type",
-								"content": [
-									{
-										"kind": "text",
-										"text": "=GL_UNSIGNED_BYTE] the pixel data type, default to gl.UNSIGNED_BYTE"
-									}
-								]
-							},
-							{
-								"tag": "@param",
-								"name": "internal",
-								"content": [
-									{
-										"kind": "text",
-										"text": "the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)"
-									}
-								]
+								"kind": "text",
+								"text": "This class manages TEXTURE_CUBE type textures."
 							}
 						]
 					},
@@ -9916,7 +11237,7 @@
 									"fileName": "texture-cube.ts",
 									"line": 22,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-cube.ts#L22"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-cube.ts#L22"
 								}
 							],
 							"signatures": [
@@ -9933,6 +11254,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The webgl context this Texture belongs to"
+													}
+												]
+											},
 											"type": {
 												"type": "reference",
 												"id": 499,
@@ -9947,6 +11276,30 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel format of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -9959,6 +11312,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel data type of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -10003,12 +11380,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The binding point for this Texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-cube.ts",
-									"line": 19,
+									"line": 13,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-cube.ts#L19"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-cube.ts#L13"
 								}
 							],
 							"type": {
@@ -10030,12 +11415,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Unique id for the Texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
 									"line": 45,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L45"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L45"
 								}
 							],
 							"type": {
@@ -10054,12 +11447,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel format of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 41,
+									"line": 38,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L41"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L38"
 								}
 							],
 							"type": {
@@ -10081,12 +11482,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The webgl context this Texture belongs to"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 34,
+									"line": 28,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L34"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L28"
 								}
 							],
 							"type": {
@@ -10106,12 +11515,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The height of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 39,
+									"line": 35,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L39"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L35"
 								}
 							],
 							"type": {
@@ -10132,12 +11549,20 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The underlying webgl texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 35,
+									"line": 30,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L35"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L30"
 								}
 							],
 							"type": {
@@ -10158,12 +11583,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel internal format of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 42,
+									"line": 40,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L42"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L40"
 								}
 							],
 							"type": {
@@ -10185,12 +11618,36 @@
 							"flags": {
 								"isReadonly": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The type of webgl texture ("
+									},
+									{
+										"kind": "code",
+										"text": "`TEXTURE_2D`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`TEXTURE_CUBE`"
+									},
+									{
+										"kind": "text",
+										"text": ", etc)"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-cube.ts",
-									"line": 17,
+									"line": 11,
 									"character": 11,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-cube.ts#L17"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-cube.ts#L11"
 								}
 							],
 							"type": {
@@ -10211,12 +11668,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The pixel data type of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 43,
+									"line": 42,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L43"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L42"
 								}
 							],
 							"type": {
@@ -10236,12 +11701,20 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The width of the texture"
+									}
+								]
+							},
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 38,
+									"line": 33,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L38"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L33"
 								}
 							],
 							"type": {
@@ -10263,9 +11736,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 77,
+									"line": 81,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L77"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L81"
 								}
 							],
 							"signatures": [
@@ -10279,7 +11752,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Bind the texture"
+												"text": "Bind the underlying webgl texture."
 											}
 										]
 									},
@@ -10296,7 +11769,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "optional texture unit to make active before binding"
+														"text": "The texture unit to make active before binding"
 													}
 												]
 											},
@@ -10332,9 +11805,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 117,
+									"line": 122,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L117"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L122"
 								}
 							],
 							"signatures": [
@@ -10348,7 +11821,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE"
+												"text": "Make texture clamp :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_CLAMP_TO_EDGE`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -10379,9 +11876,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 89,
+									"line": 92,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L89"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L92"
 								}
 							],
 							"signatures": [
@@ -10395,7 +11892,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "delete the webgl texture"
+												"text": "Delete all webgl objects related to this Texture."
 											}
 										]
 									},
@@ -10425,9 +11922,9 @@
 							"sources": [
 								{
 									"fileName": "texture-cube.ts",
-									"line": 31,
+									"line": 34,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-cube.ts#L31"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-cube.ts#L34"
 								}
 							],
 							"signatures": [
@@ -10437,6 +11934,14 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Set the texture data from a list of HTML sources."
+											}
+										]
+									},
 									"parameters": [
 										{
 											"id": 462,
@@ -10444,6 +11949,14 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The list of HTML image, canvas or video elements to use as source"
+													}
+												]
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -10471,9 +11984,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 125,
+									"line": 131,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L125"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L131"
 								}
 							],
 							"signatures": [
@@ -10487,7 +12000,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT"
+												"text": "Make texture mirror :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_MIRRORED_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -10518,9 +12055,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 109,
+									"line": 113,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L109"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L113"
 								}
 							],
 							"signatures": [
@@ -10534,7 +12071,31 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to gl.REPEAT"
+												"text": "Make texture repeat :\nSet the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_REPEAT`"
+											},
+											{
+												"kind": "text",
+												"text": "."
 											}
 										]
 									},
@@ -10565,9 +12126,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 99,
+									"line": 102,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L99"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L102"
 								}
 							],
 							"signatures": [
@@ -10598,7 +12159,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use LINEAR filtering"
+														"text": "Use linear filtering or not"
 													}
 												]
 											},
@@ -10620,7 +12181,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, enable mipmaping"
+														"text": "Enable mipmapping or not"
 													}
 												]
 											},
@@ -10642,7 +12203,7 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "if true, use linear Mipmapping"
+														"text": "Use linear mipmapping or not"
 													}
 												]
 											},
@@ -10680,9 +12241,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 65,
+									"line": 71,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L65"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L71"
 								}
 							],
 							"signatures": [
@@ -10696,7 +12257,7 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "define underlying format, internal format and data type of texture"
+												"text": "Define underlying format, internal format and data type of the texture."
 											}
 										]
 									},
@@ -10708,6 +12269,30 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
+											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel format of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGB`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_RGBA`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -10722,6 +12307,30 @@
 											"flags": {
 												"isOptional": true
 											},
+											"comment": {
+												"summary": [
+													{
+														"kind": "text",
+														"text": "The pixel data type of the texture ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_UNSIGNED_BYTE`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_FLOAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
+													}
+												]
+											},
 											"type": {
 												"type": "intrinsic",
 												"name": "number"
@@ -10734,14 +12343,6 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isOptional": true
-											},
-											"comment": {
-												"summary": [
-													{
-														"kind": "text",
-														"text": "the pixel internal format, default to the same value than 'format' parameter (which must be in webgl 1)"
-													}
-												]
 											},
 											"type": {
 												"type": "intrinsic",
@@ -10775,9 +12376,9 @@
 							"sources": [
 								{
 									"fileName": "texture-base.ts",
-									"line": 134,
+									"line": 140,
 									"character": 2,
-									"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-base.ts#L134"
+									"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-base.ts#L140"
 								}
 							],
 							"signatures": [
@@ -10791,7 +12392,23 @@
 										"summary": [
 											{
 												"kind": "text",
-												"text": "Set both WRAP_S and WRAP_T property to the given value"
+												"text": "Set the "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_S`"
+											},
+											{
+												"kind": "text",
+												"text": " and "
+											},
+											{
+												"kind": "code",
+												"text": "`WRAP_T`"
+											},
+											{
+												"kind": "text",
+												"text": " properties to the given value."
 											}
 										]
 									},
@@ -10806,7 +12423,23 @@
 												"summary": [
 													{
 														"kind": "text",
-														"text": "the wrap enum"
+														"text": "The wrap value to use ("
+													},
+													{
+														"kind": "code",
+														"text": "`GL_REPEAT`"
+													},
+													{
+														"kind": "text",
+														"text": ", "
+													},
+													{
+														"kind": "code",
+														"text": "`GL_CLAMP_TO_EDGE`"
+													},
+													{
+														"kind": "text",
+														"text": ", etc.)"
 													}
 												]
 											},
@@ -10875,9 +12508,9 @@
 					"sources": [
 						{
 							"fileName": "texture-cube.ts",
-							"line": 15,
+							"line": 9,
 							"character": 21,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-cube.ts#L15"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-cube.ts#L9"
 						}
 					],
 					"extendedTypes": [
@@ -10902,7 +12535,7 @@
 					"fileName": "texture-cube.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/texture-cube.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/texture-cube.ts#L1"
 				}
 			]
 		},
@@ -10924,7 +12557,7 @@
 							"fileName": "types.ts",
 							"line": 1,
 							"character": 12,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/types.ts#L1"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/types.ts#L1"
 						}
 					],
 					"type": {
@@ -10954,9 +12587,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 3,
+							"line": 7,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/types.ts#L3"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/types.ts#L7"
 						}
 					],
 					"signatures": [
@@ -10966,6 +12599,14 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Know whether the webgl context is webgl2 or not."
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 498,
@@ -10973,6 +12614,14 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The webgl context to test"
+											}
+										]
+									},
 									"type": {
 										"type": "reference",
 										"id": 499,
@@ -11014,7 +12663,7 @@
 					"fileName": "types.ts",
 					"line": 1,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/types.ts#L1"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/types.ts#L1"
 				}
 			]
 		},
@@ -11026,6 +12675,38 @@
 			"flags": {},
 			"children": [
 				{
+					"id": 512,
+					"name": "ComponentSize",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "utils.ts",
+							"line": 21,
+							"character": 12,
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/utils.ts#L21"
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": 1
+							},
+							{
+								"type": "literal",
+								"value": 2
+							},
+							{
+								"type": "literal",
+								"value": 4
+							}
+						]
+					}
+				},
+				{
 					"id": 509,
 					"name": "getComponentSize",
 					"kind": 64,
@@ -11034,9 +12715,9 @@
 					"sources": [
 						{
 							"fileName": "utils.ts",
-							"line": 21,
+							"line": 27,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/utils.ts#L21"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/utils.ts#L27"
 						}
 					],
 					"signatures": [
@@ -11046,6 +12727,14 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Get the component size in bytes from a data type."
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 511,
@@ -11053,6 +12742,30 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The type of data ("
+											},
+											{
+												"kind": "code",
+												"text": "`GL_FLOAT`"
+											},
+											{
+												"kind": "text",
+												"text": ", "
+											},
+											{
+												"kind": "code",
+												"text": "`GL_SHORT`"
+											},
+											{
+												"kind": "text",
+												"text": ", etc.)"
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "number"
@@ -11061,6 +12774,7 @@
 							],
 							"type": {
 								"type": "reference",
+								"id": 512,
 								"name": "ComponentSize"
 							}
 						}
@@ -11075,9 +12789,9 @@
 					"sources": [
 						{
 							"fileName": "utils.ts",
-							"line": 15,
+							"line": 17,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/utils.ts#L15"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/utils.ts#L17"
 						}
 					],
 					"signatures": [
@@ -11087,13 +12801,79 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Compute texture filtering enum from parameters.\nWill return one of the following : "
+									},
+									{
+										"kind": "code",
+										"text": "`NEAREST`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`LINEAR`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`NEAREST_MIPMAP_NEAREST`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`LINEAR_MIPMAP_NEAREST`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`NEAREST_MIPMAP_LINEAR`"
+									},
+									{
+										"kind": "text",
+										"text": ", "
+									},
+									{
+										"kind": "code",
+										"text": "`LINEAR_MIPMAP_LINEAR`"
+									},
+									{
+										"kind": "text",
+										"text": "."
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 506,
 									"name": "smooth",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Use linear filtering or not"
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
@@ -11104,7 +12884,17 @@
 									"name": "mipmap",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Enable mipmapping or not"
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
@@ -11115,7 +12905,17 @@
 									"name": "miplinear",
 									"kind": 32768,
 									"kindString": "Parameter",
-									"flags": {},
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "Use linear mipmapping or not"
+											}
+										]
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
@@ -11140,9 +12940,9 @@
 					"sources": [
 						{
 							"fileName": "utils.ts",
-							"line": 2,
+							"line": 6,
 							"character": 16,
-							"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/utils.ts#L2"
+							"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/utils.ts#L6"
 						}
 					],
 					"signatures": [
@@ -11152,6 +12952,14 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Know whether the value is a buffer source or not.\nYou can use it for values that can be either a size or a buffer source."
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 503,
@@ -11159,6 +12967,14 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"summary": [
+											{
+												"kind": "text",
+												"text": "The value to test"
+											}
+										]
+									},
 									"type": {
 										"type": "union",
 										"types": [
@@ -11193,6 +13009,12 @@
 			],
 			"groups": [
 				{
+					"title": "Type Aliases",
+					"children": [
+						512
+					]
+				},
+				{
 					"title": "Functions",
 					"children": [
 						509,
@@ -11204,9 +13026,9 @@
 			"sources": [
 				{
 					"fileName": "utils.ts",
-					"line": 2,
+					"line": 6,
 					"character": 0,
-					"url": "https://github.com/evanmartiin/nanogl/blob/f296d7e/src/utils.ts#L2"
+					"url": "https://github.com/evanmartiin/nanogl/blob/e703cab/src/utils.ts#L6"
 				}
 			]
 		}
