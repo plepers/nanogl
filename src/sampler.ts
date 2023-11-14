@@ -15,7 +15,7 @@ class Sampler {
   id: WebGLSampler;
 
   /**
-   * @param {WebGLRenderingContext} gl The webgl context this Sampler belongs to
+   * @param {WebGL2RenderingContext} gl The webgl2 context this Sampler belongs to
    */
   constructor(gl: WebGL2RenderingContext) {
     this._uid = _UID++;
