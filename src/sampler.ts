@@ -40,7 +40,7 @@ class Sampler {
   }
 
   /**
-   * Change the filtering parameters
+   * Change the filtering parameters.
    * @param {boolean} [smooth=false] Use linear filtering or not
    * @param {boolean} [mipmap=false] Enable mipmapping or not
    * @param {boolean} [miplinear=false] Use linear mipmapping or not

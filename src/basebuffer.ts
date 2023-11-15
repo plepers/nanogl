@@ -26,7 +26,7 @@ abstract class BaseBuffer {
   abstract subData(array: BufferSource, offset: number): void;
 
   /**
-   * Shortcut to `gl.drawArrays`
+   * Shortcut to `gl.drawArrays`.
    *   @param {GLenum} mode The type of primitive to draw (`GL_TRIANGLE`, `GL_POINTS` etc)
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
@@ -34,7 +34,7 @@ abstract class BaseBuffer {
   abstract draw(mode: GLenum, count?: number, offset?: number): void;
 
   /**
-   * Shortcut to `gl.drawArrays(gl.POINTS, offset, count)`
+   * Shortcut to `gl.drawArrays(gl.POINTS, offset, count)`.
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
    */
@@ -43,7 +43,7 @@ abstract class BaseBuffer {
   }
 
   /**
-   * Shortcut to `gl.drawArrays(gl.LINES, offset, count)`
+   * Shortcut to `gl.drawArrays(gl.LINES, offset, count)`.
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
    */
@@ -52,7 +52,7 @@ abstract class BaseBuffer {
   }
 
   /**
-   * Shortcut to `gl.drawArrays(gl.LINE_LOOP, offset, count)`
+   * Shortcut to `gl.drawArrays(gl.LINE_LOOP, offset, count)`.
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
    */
@@ -61,7 +61,7 @@ abstract class BaseBuffer {
   }
 
   /**
-   * Shortcut to `gl.drawArrays(gl.LINE_STRIP, offset, count)`
+   * Shortcut to `gl.drawArrays(gl.LINE_STRIP, offset, count)`.
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
    */
@@ -70,7 +70,7 @@ abstract class BaseBuffer {
   }
 
   /**
-   * Shortcut to `gl.drawArrays(gl.TRIANGLES, offset, count)`
+   * Shortcut to `gl.drawArrays(gl.TRIANGLES, offset, count)`.
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
    */
@@ -79,7 +79,7 @@ abstract class BaseBuffer {
   }
 
   /**
-   * Shortcut to `gl.drawArrays(gl.TRIANGLE_STRIP, offset, count)`
+   * Shortcut to `gl.drawArrays(gl.TRIANGLE_STRIP, offset, count)`.
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
    */
@@ -88,7 +88,7 @@ abstract class BaseBuffer {
   }
 
   /**
-   * Shortcut to `gl.drawArrays(gl.TRIANGLE_FAN, offset, count)`
+   * Shortcut to `gl.drawArrays(gl.TRIANGLE_FAN, offset, count)`.
    *   @param {number} [count] The number of elements to draw (the full buffer is used if omited)
    *   @param {number} [offset=0] The position in the buffer to start from
    */

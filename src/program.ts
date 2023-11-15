@@ -74,7 +74,7 @@ class Program {
   }
 
   /**
-   * Alias for {@link Program#use}
+   * Alias for {@link Program#use}.
    */
   bind() {
     this.use();

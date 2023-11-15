@@ -68,7 +68,7 @@ class ArrayBuffer extends BaseBuffer {
 
   /**
    * Add attribute declaration for this buffer. Once the attributes declared, the buffer can be linked to
-   * the programs attributes using {@link ArrayBuffer#attribPointer}
+   * the program's attributes using {@link ArrayBuffer#attribPointer}.
    *  @param {string} name The name of the program's attribute
    *  @param {number} size The size of the attribute (`1` for a number, `2` for a vec2, etc.)
    *  @param {GLenum} type The type of data (`GL_FLOAT`, `GL_SHORT`, etc.)
@@ -126,7 +126,7 @@ class ArrayBuffer extends BaseBuffer {
   }
 
   /**
-   * Shortcut to gl.drawArrays
+   * Shortcut to `gl.drawArrays`.
    *   @param {GLenum} mode The type of primitive to draw (`GL_TRIANGLE`, `GL_POINTS` etc)
    *   @param {uint} [count=this.length] The number of vertices to draw (the full buffer is used if omited)
    *   @param {uint} [offset=0] The position of the first vertex to draw
@@ -140,7 +140,7 @@ class ArrayBuffer extends BaseBuffer {
   }
 
   /**
-   * Compute the number of vertices in the buffer data
+   * Compute the number of vertices in the buffer data.
    */
   _computeLength() {
     if (this.stride > 0) {

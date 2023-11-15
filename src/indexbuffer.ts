@@ -55,7 +55,7 @@ class IndexBuffer extends BaseBuffer {
   }
 
   /**
-   *  Change the internal type of the index data of the IndexBuffer
+   *  Change the internal type of the index data of the IndexBuffer.
    *  @param {GLenum} type  the number type of the index data (`GL_UNSIGNED_BYTE`, `GL_UNSIGNED_INT`, etc)
    */
   setType(type: GLenum) {
@@ -83,7 +83,7 @@ class IndexBuffer extends BaseBuffer {
   }
 
   /**
-   * Shortcut to gl.drawArrays
+   * Shortcut to `gl.drawArrays`.
    *   @param {GLenum} mode The type of primitive to draw (`GL_TRIANGLE`, `GL_POINTS` etc)
    *   @param {uint} [count=this.length] The number of indices to draw (the full buffer is used if omited)
    *   @param {uint} [offset=0] The position of the first index to draw

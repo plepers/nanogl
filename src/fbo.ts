@@ -169,7 +169,7 @@ class Fbo {
   }
 
   /**
-    * Get a specific attachment of this FBO (if it exists)
+    * Get a specific attachment of this FBO (if it exists).
     * @param {GLenum} bindingPoint  The binding point of the attachment (`GL_COLOR_ATTACHMENT0`, `GL_DEPTH_ATTACHMENT`, etc.)
     */
   getAttachment(bindingPoint: GLenum): Attachment | null {
@@ -181,7 +181,7 @@ class Fbo {
   }
 
   /**
-    * Get the color attachment of this FBO (if it exists)
+    * Get the color attachment of this FBO (if it exists).
     * @param {number} [index=0]  The color attachment index
     */
   getColor(index: number = 0): AttachmentTarget | null {
@@ -190,7 +190,7 @@ class Fbo {
   }
 
   /**
-    * Get the color texture of this FBO (if it exists)
+    * Get the color texture of this FBO (if it exists).
     * @param {number} [index=0]  The color attachment index
     */
   getColorTexture(index: number = 0): Texture2D {
@@ -200,7 +200,7 @@ class Fbo {
   }
 
   /**
-    * Get the depth attachment of this FBO (if it exists)
+    * Get the depth attachment of this FBO (if it exists).
     */
   getDepth(): AttachmentTarget | null {
     const att =
