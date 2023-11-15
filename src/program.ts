@@ -137,7 +137,7 @@ class Program {
    *
    * @example
    * For a uniform
-   * ```js
+   * ```glsl
    * uniform vec3 uDirection;
    * ```
    * it creates a method
