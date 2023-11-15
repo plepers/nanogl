@@ -41,7 +41,7 @@ class ArrayBuffer extends BaseBuffer {
   /**
     * @param {GLContext} gl  The webgl context this ArrayBuffer belongs to
     * @param {BufferSource|GLsizeiptr} [data]  The data to fill the buffer with, or the size (in bytes)
-    * @param {GLenum} [usage=GL_STATIC_DRAW] The usage hint for this buffer (`STATIC_DRAW`, `DYNAMIC_DRAW`, etc.)
+    * @param {GLenum} [usage=GL_STATIC_DRAW] The usage hint for this buffer (`GL_STATIC_DRAW`, `GL_DYNAMIC_DRAW`, etc.)
     * @param {WebGLBuffer} [glbuffer] A WebGLBuffer to use instead of creating a new one
     */
   constructor(gl: GLContext, data?: GLsizeiptr | BufferSource, usage: GLenum = gl.STATIC_DRAW, glbuffer? : WebGLBuffer ) {
