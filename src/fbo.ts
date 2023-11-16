@@ -213,8 +213,8 @@ class Fbo {
   /**
     * Attach a texture to the color attachment 0 of this FBO.
     * The FBO must be explicitely bound before calling this method.
-    * @param {GLenum} [format=GL_RGB]  The pixel format of the texture (`GL_RGB`, `GL_RGBA`, etc.)
-    * @param {GLenum} [type=GL_UNSIGNED_BYTE]  The pixel data type of the texture (`GL_UNSIGNED_BYTE`, `GL_FLOAT`, etc.)
+    * @param {GLenum} [format=GL_RGB]  The pixel format of the texture (`GL_RGB`, `GL_RGBA`, etc.), defaults to `GL_RGB`
+    * @param {GLenum} [type=GL_UNSIGNED_BYTE]  The pixel data type of the texture (`GL_UNSIGNED_BYTE`, `GL_FLOAT`, etc.), defaults to `GL_UNSIGNED_BYTE`
     * @param {GLenum} [internal=format]  The pixel internal format of the texture, defaults to the `format` parameter value
     */
   attachColor(format?: GLenum, type?: GLenum, internal?: GLenum) {

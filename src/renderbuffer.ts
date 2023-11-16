@@ -29,7 +29,7 @@ class RenderBuffer {
 
   /**
     * @param {GLContext} gl  The webgl context this RenderBuffer belongs to
-    * @param {GLenum} [format=GL_DEPTH_COMPONENT16]  The pixel internal format of the renderbuffer (`GL_RGB`, `GL_RGBA`, etc.)
+    * @param {GLenum} [format=GL_DEPTH_COMPONENT16]  The pixel internal format of the renderbuffer (`GL_RGB`, `GL_RGBA`, etc.), defaults to `GL_DEPTH_COMPONENT16`
     * @param {number} [samples=0]  The number of samples to be used for the renderbuffer storage (webgl2 only)
     */
   constructor(gl: GLContext, format: GLenum, samples : number = 0) {
