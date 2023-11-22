@@ -14,7 +14,7 @@ function assertIsTexture(target: AttachmentTarget|null, msg:string): asserts tar
   }
 }
 
-
+/** A target for an Attachment. */
 export type AttachmentTarget = Texture2D | RenderBuffer;
 
 /**

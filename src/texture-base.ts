@@ -5,7 +5,7 @@ import Texture2D from './texture-2d';
 
 let _UID = 0;
 
-
+/** The types of webgl textures. */
 export enum TextureType {
     NONE             = 0     ,
     TEXTURE_2D       = 0x0de1,
@@ -14,7 +14,7 @@ export enum TextureType {
     TEXTURE_3D       = 0x806F,
 }
 
-
+/** A nanogl texture. */
 export type Texture = TextureCube | Texture2D;
 
 /**

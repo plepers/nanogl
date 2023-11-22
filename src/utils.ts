@@ -24,6 +24,7 @@ export function getTextureFiltering(smooth: boolean, mipmap: boolean, miplinear:
   return 0x2600 | +smooth | (+mipmap << 8) | (+(mipmap && miplinear) << 1);
 }
 
+/** The size in bytes if a component. */
 export type ComponentSize = 1|2|4
 
 /**

@@ -8,12 +8,22 @@ import { getComponentSize, isBufferSource } from './utils';
  * GL_ARRAY_BUFFER */
 const GL_ARRAY_BUFFER = 0x8892;
 
+/** The definition for an attribute in a buffer. */
 export interface AttributeDef {
+  /** The attribute name */
   name: string;
+  /** The type of data (`GL_FLOAT`, `GL_SHORT`, etc.) */
   type: GLenum;
+  /** The size of the attribute (`1` for a number, `2` for a vec2, etc.) */
   size: number;
+  /** The offset in bytes of the attribute data in the buffer */
   offset: number;
+  /** Whethere the data must be normalized or not */
   normalize: boolean;
+  /**
+   * The number of bytes for each vertex in the buffer.
+   * If not set, the stride of the buffer is used.
+   */
   stride: number;
 }
 

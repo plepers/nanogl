@@ -1,3 +1,4 @@
+/** A webgl rendering context. */
 export type GLContext = WebGLRenderingContext | WebGL2RenderingContext;
 
 /**
