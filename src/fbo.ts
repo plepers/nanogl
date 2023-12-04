@@ -14,15 +14,23 @@ function assertIsTexture(target: AttachmentTarget|null, msg:string): asserts tar
   }
 }
 
-
+/** A target for an Attachment. */
 export type AttachmentTarget = Texture2D | RenderBuffer;
 
+/**
+ * This class manages framebuffer attachments.
+ */
 export class Attachment {
-
+  /** The mipmap level of the target texture (must be `0`) */
   level: number;
+  /** The target (texture or renderbuffer) of this attachment */
   readonly target: AttachmentTarget;
+  /** Whether the attachment target is a texture or not */
   private _isTexture: boolean;
 
+  /**
+    * @param {AttachmentTarget} target  The texture or renderbuffer to attach
+    */
   constructor(target: AttachmentTarget) {
     this.target = target;
     this.level = 0;
@@ -30,10 +38,19 @@ export class Attachment {
     this._isTexture = isTexture(target);
   }
 
+  /**
+    * Getter for the `_isTexture` property.
+    * Know whether the attachment target is a texture or not.
+    */
   isTexture() {
     return this._isTexture;
   }
 
+  /**
+   * Resize the attachment target.
+   *  @param {number} w The new width
+   *  @param {number} h The new height
+   */
   _resize(w: number, h: number) {
     if (w > 0 && h > 0) {
       // const target :
@@ -46,6 +63,11 @@ export class Attachment {
     }
   }
 
+  /**
+    * Attach the target to the FBO.
+    * The FBO must be explicitely bound before calling this method.
+    * @param {GLenum} bindingPoint  The binding point of the attachment (`GL_COLOR_ATTACHMENT0`, `GL_DEPTH_ATTACHMENT`, etc.)
+    */
   _attach(bindingPoint: GLenum) {
     var gl = this.target.gl;
     if (this._isTexture) {
@@ -55,6 +77,11 @@ export class Attachment {
     }
   }
 
+  /**
+    * Detach the target from the FBO.
+    * The FBO must be explicitely bound before calling this method.
+    * @param {GLenum} bindingPoint  The binding point of the attachment (`GL_COLOR_ATTACHMENT0`, `GL_DEPTH_ATTACHMENT`, etc.)
+    */
   _detach(bindingPoint: GLenum) {
     var gl = this.target.gl;
     if (this._isTexture) {
@@ -64,36 +91,36 @@ export class Attachment {
     }
   }
 
+  /**
+   * Delete all webgl objects related to this Attachment.
+   */
   dispose() {
     this.target.dispose();
   }
 }
 
-
-
 /**
- * @class
- * @param {WebGLRenderingContext} gl      the webgl context this Fbo belongs to
- * @param {Object} [opts]
- * @param {boolean} [opts.depth=false] if true, a depth renderbuffer is attached
- * @param {boolean} [opts.stencil=false] if true, a stencil renderbuffer is attached
- * @param {GLenum|GLenum[]} [opts.type=GL_UNSIGNED_BYTE] the pixel type of the Fbo, can be gl.UNSIGNED_BYTE, gl.FLOAT, half.HALF_FLOAT_OES etc. you can also provide an array of types used as cascaded fallbacks
- * @param {GLenum} [opts.format=GL_RGB]   the color attachment pixel format.
- * @param {GLenum} [opts.internal=GL_RGB] the internal color attachment pixel format.
- *
+ * This class manages framebuffers and their attachments.
  */
 class Fbo {
-
+  /** The webgl context this FBO belongs to */
   readonly gl: GLContext;
+  /** The underlying webgl framebuffer */
   readonly fbo: WebGLFramebuffer;
 
+  /** The list of the attachments setup for this FBO */
   readonly attachmentsList: Attachment[];
+  /** The list of the bindingPoint/attachment pairs setup for this FBO */
   attachments: Record<string,Attachment>;
 
+  /** The width of this FBO */
   width: number;
+  /** The height of this FBO */
   height: number;
-  
 
+  /**
+    * @param {GLContext} gl  The webgl context this FBO belongs to
+    */
   constructor( gl: GLContext ) {
     this.gl = gl;
     this.width = 0;
@@ -106,7 +133,12 @@ class Fbo {
     this.attachmentsList = [];
   }
 
-  // The Fbo must be explicitely bound before calling this method
+  /**
+    * Add an attachment to this FBO.
+    * The FBO must be explicitely bound before calling this method.
+    * @param {GLenum} bindingPoint  The binding point of the attachment (`GL_COLOR_ATTACHMENT0`, `GL_DEPTH_ATTACHMENT`, etc.)
+    * @param {AttachmentTarget} res  The texture or buffer to attach
+    */
   attach(bindingPoint: GLenum, res: AttachmentTarget): Attachment {
     const attachment = new Attachment(res);
     bindingPoint = 0 | bindingPoint;
@@ -121,7 +153,11 @@ class Fbo {
     return attachment;
   }
 
-  // The Fbo must be explicitely bound before calling this method
+  /**
+    * Remove an attachment from this FBO.
+    * The FBO must be explicitely bound before calling this method.
+    * @param {GLenum} bindingPoint  The binding point of the attachment (`GL_COLOR_ATTACHMENT0`, `GL_DEPTH_ATTACHMENT`, etc.)
+    */
   detach(bindingPoint: GLenum) {
     const att = this.attachments[bindingPoint.toString()];
     if (att !== undefined) {
@@ -132,7 +168,10 @@ class Fbo {
     delete this.attachments[bindingPoint.toString()];
   }
 
-  
+  /**
+    * Get a specific attachment of this FBO (if it exists).
+    * @param {GLenum} bindingPoint  The binding point of the attachment (`GL_COLOR_ATTACHMENT0`, `GL_DEPTH_ATTACHMENT`, etc.)
+    */
   getAttachment(bindingPoint: GLenum): Attachment | null {
     const att = this.attachments[bindingPoint.toString()];
     if (att !== undefined) {
@@ -141,20 +180,28 @@ class Fbo {
     return null;
   }
 
-
+  /**
+    * Get the color attachment of this FBO (if it exists).
+    * @param {number} [index=0]  The color attachment index
+    */
   getColor(index: number = 0): AttachmentTarget | null {
     const att = this.getAttachment(0x8ce0 + index); // COLOR_ATTACHMENT<index>
     return att ? att.target : null;
   }
 
-
+  /**
+    * Get the color texture of this FBO (if it exists).
+    * @param {number} [index=0]  The color attachment index
+    */
   getColorTexture(index: number = 0): Texture2D {
     const res = this.getColor( index );
     assertIsTexture( res, `Color attachment ${index} is not a texture.` );
     return res;
   }
 
-
+  /**
+    * Get the depth attachment of this FBO (if it exists).
+    */
   getDepth(): AttachmentTarget | null {
     const att =
       this.getAttachment(0x8d00) || // DEPTH_ATTACHMENT
@@ -164,18 +211,23 @@ class Fbo {
   }
 
   /**
-   * Shortcut to attach texture to color attachment 0
-   */
+    * Attach a texture to the color attachment 0 of this FBO.
+    * The FBO must be explicitely bound before calling this method.
+    * @param {GLenum} [format=GL_RGB]  The pixel format of the texture (`GL_RGB`, `GL_RGBA`, etc.), defaults to `GL_RGB`
+    * @param {GLenum} [type=GL_UNSIGNED_BYTE]  The pixel data type of the texture (`GL_UNSIGNED_BYTE`, `GL_FLOAT`, etc.), defaults to `GL_UNSIGNED_BYTE`
+    * @param {GLenum} [internal=format]  The pixel internal format of the texture, defaults to the `format` parameter value
+    */
   attachColor(format?: GLenum, type?: GLenum, internal?: GLenum) {
     const t = new Texture2D(this.gl, format, type, internal);
     return this.attach(0x8ce0, t);
   }
 
   /**
-   * shortcut to attach depth/stencil renderbuffer/texture to this FBO
-   *  @param {bool} [depth      =true ] add depth component to depth/stencil buffer
-   *  @param {bool} [stencil    =false] add stencil components to depth/stencil buffer
-   *  @param {bool} [useTexture =false] if true, use Texture instead of RenderBuffer, depth param must also be true. You must ensure Depth Texture capability is available on your context, no test are made here
+   *  Attach a renderbuffer/texture to the depth/stencil attachment of this FBO.
+   *  The FBO must be explicitely bound before calling this method.
+   *  @param {boolean} [depth=true] Add depth component or not
+   *  @param {boolean} [stencil=false] Add stencil component or not
+   *  @param {boolean} [useTexture=false] Use a Texture2D instead of a RenderBuffer. If true, the depth param must also be true. You also must ensure Depth Texture capability is available on your context.
    */
   attachDepth(depth: boolean = true, stencil: boolean = false, useTexture: boolean = false) {
     let attachment: AttachmentTarget;
@@ -191,9 +243,9 @@ class Fbo {
   }
 
   /**
-   * Resize FBO attachments
-   *  @param {uint} w new width
-   *  @param {uint} h new height
+   * Resize the FBO and its attachments.
+   *  @param {number} w The new width
+   *  @param {number} h The new height
    */
   resize(w: number, h: number) {
     if (this.width !== w || this.height !== h) {
@@ -204,28 +256,31 @@ class Fbo {
   }
 
   /**
-   * Bind the Fbo ( simple shortcut for gl.bindFramebuffer(...) )
+   * Bind the underlying webgl framebuffer.
    */
   bind() {
     const gl = this.gl;
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.fbo);
   }
 
-  /*
-   * Clear all buffers
+  /**
+   * Clear all buffers (color, depth and stencil).
    */
   clear() {
     // COLOR | DEPTH | STENCIL
     this.gl.clear(0x4500);
   }
 
+  /**
+   *  Set the webgl viewport to the size of this FBO.
+   */
   defaultViewport() {
     this.gl.viewport(0, 0, this.width, this.height);
   }
 
   /**
-   * Check if the Fbo is valid,
-   * The Fbo must be explicitely bound before calling this method
+   * Check if the FBO is valid.
+   * The FBO must be explicitely bound before calling this method.
    */
   isValid() {
     const gl = this.gl;
@@ -233,7 +288,7 @@ class Fbo {
   }
 
   /**
-   * Delete all webgl objects related to this Fbo (fbo, and all attachments )
+   * Delete all webgl objects related to this FBO.
    */
   dispose() {
     const gl = this.gl;
@@ -248,7 +303,9 @@ class Fbo {
 
   }
 
-  // (re)allocate render buffers to size
+  /**
+   *  Resize all attachments to the FBO size.
+   */
   _allocate() {
     for (var attachment of this.attachmentsList) {
       attachment._resize(this.width, this.height);

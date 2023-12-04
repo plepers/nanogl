@@ -7,24 +7,31 @@ import { getComponentSize, isBufferSource } from './utils';
 const TGT = 0x8893;
 
 /**
- * @class
- * @implements {Drawable}
- * @param {WebGLRenderingContext} gl      then webgl context this ArrayBuffer belongs to
- * @param {GLenum} [type=GL_UNSIGNED_SHORT]  the inetger type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)
- * @param {TypedArray|uint} [data]   optional data to copy to buffer, or the size (in bytes)
- * @param {GLenum} [usage=GL_STATIC_DRAW] the usage hint for this buffer.
- *
+ * This class manages ELEMENT_ARRAY_BUFFER type buffers.
+ * @extends {BaseBuffer}
  */
 class IndexBuffer extends BaseBuffer {
-  
+  /** The webgl context this IndexBuffer belongs to */
   readonly gl: GLContext;
+  /** The webgl buffer this IndexBuffer writes to */
   readonly buffer: WebGLBuffer;
 
+  /** The usage hint for this buffer */
   usage: GLenum;
+  /** The number type of the index data for this buffer */
   type : GLenum;
+  /** The number of bytes for each index in this buffer */
   typeSize  : number;
+  /** The length in bytes of the buffer */
   byteLength: number;
 
+  /**
+    * @param {GLContext} gl  The webgl context this IndexBuffer belongs to
+    * @param {GLenum} [type=GL_UNSIGNED_SHORT]  The number type of the index data (`GL_UNSIGNED_BYTE`, `GL_UNSIGNED_INT`, etc.)
+    * @param {BufferSource|GLsizeiptr} [data]  The data to fill the buffer with, or the size (in bytes)
+    * @param {GLenum} [usage=GL_STATIC_DRAW] The usage hint for this buffer (`GL_STATIC_DRAW`, `GL_DYNAMIC_DRAW`, etc.)
+    * @param {WebGLBuffer} [glbuffer] A WebGLBuffer to use instead of creating a new one
+    */
   constructor(gl: GLContext, type: GLenum = gl.UNSIGNED_SHORT, data?: GLsizeiptr | BufferSource, usage: GLenum = gl.STATIC_DRAW, glbuffer? : WebGLBuffer ) {
     super();
 
@@ -43,26 +50,19 @@ class IndexBuffer extends BaseBuffer {
     }
   }
 
-  /**
-   * Bind the underlying webgl buffer.
-   */
   bind() {
     this.gl.bindBuffer(TGT, this.buffer);
   }
 
   /**
-   *  Change the type of internal type of the IndexBuffer
-   *  @param {GLenum} type  the integer type of the indices (GL_UNSIGNED_BYTE, GL_UNSIGNED_INT etc)
+   *  Change the internal type of the index data of the IndexBuffer.
+   *  @param {GLenum} type  the number type of the index data (`GL_UNSIGNED_BYTE`, `GL_UNSIGNED_INT`, etc)
    */
   setType(type: GLenum) {
     this.type = type;
     this.typeSize = getComponentSize(type);
   }
 
-  /**
-   * Fill webgl buffer with the given data. You can also pass a uint  to allocate the buffer to the given size.
-   *   @param {TypedArray|uint} array the data to send to the buffer, or a size.
-   */
   data(array: GLsizeiptr | BufferSource) {
     const gl = this.gl;
     gl.bindBuffer(TGT, this.buffer);
@@ -71,11 +71,6 @@ class IndexBuffer extends BaseBuffer {
     this.byteLength = isBufferSource(array) ? array.byteLength : array;
   }
 
-  /**
-   * Set a part of the buffer with the given data, starting a offset (in bytes)
-   *  @param {typedArray} array the data to send to buffer
-   *  @param {uint} offset the offset in byte where the data will be written
-   */
   subData(array: BufferSource, offset: number) {
     const gl = this.gl;
     gl.bindBuffer(TGT, this.buffer);
@@ -83,18 +78,15 @@ class IndexBuffer extends BaseBuffer {
     gl.bindBuffer(TGT, null);
   }
 
-  /**
-   * Delete underlying webgl objects
-   */
   dispose() {
     this.gl.deleteBuffer(this.buffer);
   }
 
   /**
-   * Shortcut to gl.drawArrays
-   *   @param {GLenum} mode the type of primitive to draw (GL_TRIANGLE, GL_POINTS etc)
-   *   @param {uint} [count] the number of indices to draw (full buffer is used if omited)
-   *   @param {uint} [offset=0] the position of the first index to draw
+   * Shortcut to `gl.drawArrays`.
+   *   @param {GLenum} mode The type of primitive to draw (`GL_TRIANGLE`, `GL_POINTS` etc)
+   *   @param {uint} [count=this.length] The number of indices to draw (the full buffer is used if omited)
+   *   @param {uint} [offset=0] The position of the first index to draw
    */
   draw(mode: GLenum, count?: number, offset: number = 0) {
     count = (count === undefined) ? this.byteLength / this.typeSize : count;

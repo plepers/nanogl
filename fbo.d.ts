@@ -1,7 +1,7 @@
 import Texture2D from './texture-2d';
 import RenderBuffer from './renderbuffer';
 import { GLContext } from './types';
-export declare type AttachmentTarget = Texture2D | RenderBuffer;
+export type AttachmentTarget = Texture2D | RenderBuffer;
 export declare class Attachment {
     level: number;
     readonly target: AttachmentTarget;

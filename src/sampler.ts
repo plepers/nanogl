@@ -3,17 +3,20 @@ import { getTextureFiltering } from './utils';
 let _UID = 0;
 
 /**
- * @class
- * @classdesc Sampler class wrapper for GLES3 Samplers
- *
- *  @param {WebGLRenderingContext} gl webgl context the sampler belongs to
+ * This class manages GLES3 Samplers.
  */
 class Sampler {
+  /** Unique id for the Sampler */
   readonly _uid: number;
 
+  /** The webgl context this Sampler belongs to */
   gl: WebGL2RenderingContext;
+  /** The underlying webgl sampler */
   id: WebGLSampler;
 
+  /**
+   * @param {WebGL2RenderingContext} gl The webgl2 context this Sampler belongs to
+   */
   constructor(gl: WebGL2RenderingContext) {
     this._uid = _UID++;
     this.gl = gl;
@@ -22,26 +25,25 @@ class Sampler {
   }
 
   /**
-   * Bind the sampler
-   *   @param {uint} [unit] texture unit to on which bind the sampler
+   * Bind the underlying webgl sampler.
+   * @param {number} [unit] The texture unit to make active before binding
    */
   bind(unit: number) {
     this.gl.bindSampler(unit, this.id);
   }
 
   /**
-   * delete the webgl sampler
-   *
+   * Delete all webgl objects related to this Sampler.
    */
   dispose() {
     this.gl.deleteSampler(this.id);
   }
 
   /**
-   * Change the filtering parameters
-   *   @param {boolean} [smooth=false]    if true, use LINEAR filtering
-   *   @param {boolean} [mipmap=false]    if true, enable mipmaping
-   *   @param {boolean} [miplinear=false] if true, use linear Mipmapping
+   * Change the filtering parameters.
+   * @param {boolean} [smooth=false] Use linear filtering or not
+   * @param {boolean} [mipmap=false] Enable mipmapping or not
+   * @param {boolean} [miplinear=false] Use linear mipmapping or not
    */
   setFilter(smooth: boolean = false, mipmap: boolean = false, miplinear: boolean = false) {
     const gl = this.gl;
@@ -50,29 +52,32 @@ class Sampler {
   }
 
   /**
-   * Set both WRAP_S and WRAP_T property to gl.REPEAT
+   * Make sampler repeat :
+   * Set the `WRAP_S` and `WRAP_T` properties to `GL_REPEAT`.
    */
   repeat() {
     this.wrap(this.gl.REPEAT);
   }
 
   /**
-   * Set both WRAP_S and WRAP_T property to gl.CLAMP_TO_EDGE
+   * Make sampler clamp :
+   * Set the `WRAP_S` and `WRAP_T` properties to `GL_CLAMP_TO_EDGE`.
    */
   clamp() {
     this.wrap(this.gl.CLAMP_TO_EDGE);
   }
 
   /**
-   * Set both WRAP_S and WRAP_T property to gl.MIRRORED_REPEAT
+   * Make sampler mirror :
+   * Set the `WRAP_S` and `WRAP_T` properties to `GL_MIRRORED_REPEAT`.
    */
   mirror() {
     this.wrap(this.gl.MIRRORED_REPEAT);
   }
 
   /**
-   * Set both WRAP_S and WRAP_T property to the given value
-   *  @param {GLenum} wrap the wrap enum
+   * Set the `WRAP_S` and `WRAP_T` properties to the given value.
+   * @param {GLenum} wrap The wrap value to use (`GL_REPEAT`, `GL_CLAMP_TO_EDGE`, etc.)
    */
   wrap(wrap: GLenum) {
     const gl = this.gl;

@@ -8,7 +8,7 @@ export declare enum TextureType {
     TEXTURE_CUBE = 34067,
     TEXTURE_3D = 32879
 }
-export declare type Texture = TextureCube | Texture2D;
+export type Texture = TextureCube | Texture2D;
 export default abstract class AbstractTexture {
     readonly textureType: TextureType;
     readonly gl: GLContext;
