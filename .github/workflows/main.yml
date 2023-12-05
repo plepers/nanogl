@@ -10,6 +10,28 @@ jobs:
     name: Trigger docs re-build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2.4.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      - name: Build docs
+        run: |
+          npm install
+          npm run build-docs
+
+      - name: Commit and push
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: 'update: docs (runned by GHAction)'
+          author_email: 'pierre.lepers@gmail.com'
+          author_name: 'plepers'
+          branch: 'develop'
+
       - uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.ACTIONS_KEY }}
